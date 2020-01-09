@@ -1,0 +1,21 @@
+p {
+  font-size: 12px;
+}
+
+.p1 {
+  font-size: 12px;
+  text-align: right;
+}
+
+.today {
+  background-color: #f2ebb3;
+}
+.scrollable {
+  height:85vh;
+  overflow-y: scroll;
+}
+
+.scrollable2 {
+  height:60vh;
+  overflow-y: scroll;
+}
