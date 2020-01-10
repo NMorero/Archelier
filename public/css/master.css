@@ -1,0 +1,29 @@
+.header-base{
+    background-color: rgb(52, 58, 64);
+}
+
+
+.scroll-post{
+    height:100vh;
+
+    font:16px/26px Georgia, Garamond, Serif;
+    overflow:auto;
+}
+
+.scroll-reminders{
+    height:300px;
+    overflow:auto;
+}
+
+.button-add-reminder{
+    height: 40px;
+}
+
+
+.button-actions{
+    height: 40px;
+}
+
+.div-actions{
+    height: 100px;
+}
