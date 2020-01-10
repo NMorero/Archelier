@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class ModifyViewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('USERS', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        Schema::table('VIEWS', function (Blueprint $table) {
+
+            $table->unsignedBigInteger('image_id');
+            $table->foreign('image_id')->references('id')->on('IMAGES');
+
+            });
     }
 
     /**
@@ -27,6 +28,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        //
     }
 }

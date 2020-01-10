@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class ModifyDevelopersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('USERS', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        Schema::table('DEVELOPERS', function (Blueprint $table) {
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('USERS');
+
+
+            });
     }
 
     /**
@@ -27,6 +29,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        //
     }
 }
