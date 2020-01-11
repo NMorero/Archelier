@@ -73,11 +73,11 @@ Home
         <div class="col-4 justify-content-center">
             <div class="col-12 pt-3 row div-actions justify-content-between">
                 <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalTasks">Task</button>
-                <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modal2">Delivery</button>
-                <button class="btn btn-info m-1 col-3 button-actions">Feedback</button>
-                <button class="btn btn-info m-1 col-3 button-actions">Event</button>
-                <button class="btn btn-info m-1 col-3 button-actions">New Post</button>
-                <button class="btn btn-info m-1 col-3 button-actions">Reminder</button>
+                <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
+                <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalFeedback">Feedback</button>
+                <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalEvent">Event</button>
+                <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalPosts">New Post</button>
+                <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalReminder">Reminder</button>
 
             </div>
 
