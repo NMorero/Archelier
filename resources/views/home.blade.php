@@ -57,7 +57,7 @@ Home
 
         {{-- Segunda seccion ( Posts ) --}}
 
-        <div class="col-4 scroll-post">
+        <div class="col-4 scroll-post scrollable">
             As you can see, once there's enough text in this box, the box will grow scroll bars... that's why we call it a scroll box! You could also place an image into the scroll box.
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, nisi porro. Ullam unde hic quis illum a ipsa quas officiis? Consequatur impedit aliquam voluptatem officiis quos quia aliquid animi sint!
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia nesciunt eaque dolor incidunt eum quisquam fugit quam, id laudantium est explicabo facere ipsam iure rerum provident, architecto autem praesentium alias!
@@ -66,42 +66,207 @@ Home
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo porro quaerat enim modi ipsam voluptates minus deserunt architecto nam dolorem unde veritatis, adipisci dolorum consectetur. Voluptatem excepturi blanditiis rerum voluptas?
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis debitis velit, sit placeat iure suscipit itaque aut nisi ut et eum beatae exercitationem veritatis, mollitia aspernatur modi minus eveniet. Doloribus?
         </div>
-
+        {{-- Tercera seccion ( actions yu reminders ) --}}
         <div class="col-4 justify-content-center">
             <div class="col-12 pt-3 row div-actions justify-content-between">
-                <button class="btn btn-primary m-1 col-3 button-actions">Task</button>
-                <button class="btn btn-primary m-1 col-3 button-actions">Delivery</button>
-                <button class="btn btn-primary m-1 col-3 button-actions">Feedback</button>
-                <button class="btn btn-primary m-1 col-3 button-actions">Event</button>
-                <button class="btn btn-primary m-1 col-3 button-actions">New Post</button>
-                <button class="btn btn-primary m-1 col-3 button-actions">Reminder</button>
+                <button class="btn btn-info m-1 col-3 button-actions">Task</button>
+                <button class="btn btn-info m-1 col-3 button-actions">Delivery</button>
+                <button class="btn btn-info m-1 col-3 button-actions">Feedback</button>
+                <button class="btn btn-info m-1 col-3 button-actions">Event</button>
+                <button class="btn btn-info m-1 col-3 button-actions">New Post</button>
+                <button class="btn btn-info m-1 col-3 button-actions">Reminder</button>
 
             </div>
 
-            <div class="col-11 mt-3 p-3">
+            <div class="col-11 mt-3 ">
                 <h3 class=" justify-content-between row mb-2"><p class="col-5">Reminders</p> <button class="btn btn-success col-2 mr-4 button-add-reminder">Add</button></h3>
 
                 <ul class="list-group scroll-reminders border-bottom p-0">
-                    <li class="list-group-item justify-content-between d-flex"><p>1</p>     <button class="btn btn-primary">Delete</button> </li>
-                    <li class="list-group-item justify-content-between d-flex"><p>1</p>     <button class="btn btn-primary">Delete</button> </li>
-                    <li class="list-group-item justify-content-between d-flex"><p>1</p>     <button class="btn btn-primary">Delete</button> </li>
-                    <li class="list-group-item justify-content-between d-flex"><p>1</p>     <button class="btn btn-primary">Delete</button> </li>
-                    <li class="list-group-item justify-content-between d-flex"><p>1</p>     <button class="btn btn-primary">Delete</button> </li>
-                    <li class="list-group-item justify-content-between d-flex"><p>1</p>     <button class="btn btn-primary">Delete</button> </li>
-                    <li class="list-group-item justify-content-between d-flex"><p>1</p>     <button class="btn btn-primary">Delete</button> </li>
-                    <li class="list-group-item justify-content-between d-flex"><p>1</p>     <button class="btn btn-primary">Delete</button> </li>
-                    <li class="list-group-item justify-content-between d-flex"><p>1</p>     <button class="btn btn-primary">Delete</button> </li>
-                    <li class="list-group-item justify-content-between d-flex"><p>1</p>     <button class="btn btn-primary">Delete</button> </li>
-                    <li class="list-group-item justify-content-between d-flex"><p>1</p>     <button class="btn btn-primary">Delete</button> </li>
-                    <li class="list-group-item justify-content-between d-flex"><p>1</p>     <button class="btn btn-primary">Delete</button> </li>
-                    <li class="list-group-item justify-content-between d-flex"><p>1</p>     <button class="btn btn-primary">Delete</button> </li>
-                    <li class="list-group-item justify-content-between d-flex"><p>1</p>     <button class="btn btn-primary">Delete</button> </li>
-                    <li class="list-group-item justify-content-between d-flex"><p>1</p>     <button class="btn btn-primary">Delete</button> </li>
+                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">primer comentario</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
+                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">segundo reminder</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
+                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
+                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
+                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
+                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
+                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
+                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
+                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
+                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
+                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
+                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
+                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
+                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
+                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
 
                 </ul>
             </div>
 
         </div>
+
+
+        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-2  scrollable">
+
+            <div class="border-bottom" style="margin-bottom:15px;">
+
+              <table class="table table-sm p1">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Monday 11 January</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Mark</td>
+                          </tr>
+                          <tr>
+                            <th scope="row" class="warning">•</th>
+                            <td>Mark</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Jacob</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Larry</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Jacob</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Larry</td>
+                          </tr>
+                          <tr>
+                            <th scope="row" class="warning">•</th>
+                            <td>Mark</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Jacob</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Larry</td>
+                          </tr>
+                        </tbody>
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Tuesday 12 January</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row" class="warning">•</th>
+                            <td>Mark</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Jacob</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Larry</td>
+                          </tr>
+                        </tbody>
+                        <thead class="thead today">
+                          <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Wednesday 13 January</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row" class="warning">•</th>
+                            <td>Mark</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Jacob</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Larry</td>
+                          </tr>
+                          <tr>
+                            <th scope="row" class="warning">•</th>
+                            <td>Mark</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Jacob</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Larry</td>
+                          </tr>
+                        </tbody>
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Thursday 15 January</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row" class="warning">•</th>
+                            <td>Mark</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Jacob</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Larry</td>
+                          </tr>
+                        </tbody>
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Friday 16 January</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row" class="warning">•</th>
+                            <td>Mark</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Jacob</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Larry</td>
+                          </tr>
+                          <tr>
+                            <th scope="row" class="warning">•</th>
+                            <td>Mark</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Jacob</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">•</th>
+                            <td>Larry</td>
+                          </tr>
+                        </tbody>
+
+              </table>
+
+
+          </div>
+
+
+
+            </div>
+
 
 
 

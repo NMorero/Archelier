@@ -11,7 +11,7 @@
     @show
     <title>Archelier | @section('title') @show</title>
 </head>
-<body>
+<body class="body">
 
     <header class="header-base p-2">
         <nav class="nav">
