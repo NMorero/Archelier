@@ -9,6 +9,9 @@ Home
 @endsection
 
 @section('content')
+  @include('layouts.formsButtonsHome')
+
+
     <main class="container-fluid row mt-2">
         {{-- Primer Seccion ( Filtros ) --}}
         <div class="col-2">
@@ -20,9 +23,9 @@ Home
                 </div>
                 <select class="custom-select" id="clientSelect">
                   <option selected>All</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  @foreach ($clients as $client)
+                      <option value=" {{$client->id}} "> {{$client->person->name}} </option>
+                  @endforeach
                 </select>
             </div>
 
@@ -30,7 +33,7 @@ Home
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="clientSelect">View:</label>
                 </div>
-                <select class="custom-select" id="clientSelect">
+                <select class="custom-select" id="clientSelect" disabled>
                   <option selected>All</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
@@ -42,7 +45,7 @@ Home
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="clientSelect">Project:</label>
                 </div>
-                <select class="custom-select" id="clientSelect">
+                <select class="custom-select" id="clientSelect" disabled>
                   <option selected>All</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
@@ -69,8 +72,8 @@ Home
         {{-- Tercera seccion ( actions yu reminders ) --}}
         <div class="col-4 justify-content-center">
             <div class="col-12 pt-3 row div-actions justify-content-between">
-                <button class="btn btn-info m-1 col-3 button-actions">Task</button>
-                <button class="btn btn-info m-1 col-3 button-actions">Delivery</button>
+                <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalTasks">Task</button>
+                <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modal2">Delivery</button>
                 <button class="btn btn-info m-1 col-3 button-actions">Feedback</button>
                 <button class="btn btn-info m-1 col-3 button-actions">Event</button>
                 <button class="btn btn-info m-1 col-3 button-actions">New Post</button>

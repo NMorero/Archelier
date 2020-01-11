@@ -24,9 +24,6 @@ class ModifyPersonsTable extends Migration
             $table->unsignedBigInteger('city_id');
             $table->foreign('city_id')->references('id')->on('CITIES');
 
-            $table->unsignedBigInteger('company_id')->nullable();
-            $table->foreign('company_id')->references('id')->on('COMPANIES');
-
             $table->unsignedBigInteger('relationship_id');
             $table->foreign('relationship_id')->references('id')->on('RELATIONSHIP');
             });

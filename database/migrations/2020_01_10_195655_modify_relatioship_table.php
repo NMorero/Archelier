@@ -14,15 +14,14 @@ class ModifyRelatioshipTable extends Migration
     public function up()
     {
         Schema::table('RELATIONSHIP', function (Blueprint $table) {
-
-            $table->unsignedBigInteger('person_id');
-            $table->foreign('person_id')->references('id')->on('PERSONS');
-
             $table->unsignedBigInteger('freelance_id')->nullable();
             $table->foreign('freelance_id')->references('id')->on('FREELANCE_RELATIONSHIP');
 
             $table->unsignedBigInteger('direct_id')->nullable();
             $table->foreign('direct_id')->references('id')->on('DIRECT_RELATIONSHIP');
+
+            $table->unsignedBigInteger('company_id')->nullable();
+            $table->foreign('company_id')->references('id')->on('COMPANIES');
 
             });
     }

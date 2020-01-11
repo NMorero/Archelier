@@ -11,7 +11,7 @@
     font-size: large;
 }
 
-
+/* Home */
 .scroll-post{
     font:16px/26px Georgia, Garamond, Serif;
 }
@@ -56,3 +56,5 @@
     height:85vh;
     overflow-y: scroll;
   }
+
+  /* Fin Home */
