@@ -22,34 +22,34 @@ Home
                   <label class="input-group-text" for="clientSelect">Client:</label>
                 </div>
                 <select class="custom-select" id="clientSelect">
-                  <option selected>All</option>
+                  <option selected class="clientSelectOption" value="All">All</option>
                   @foreach ($clients as $client)
-                      <option value=" {{$client->id}} "> {{$client->person->name}} </option>
+                      <option value="{{$client->id}}" class="clientSelectOption"> {{$client->person->name}} </option>
                   @endforeach
                 </select>
             </div>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="clientSelect">Project:</label>
+                  <label class="input-group-text" for="projectSelect">Project:</label>
                 </div>
-                <select class="custom-select" id="clientSelect" disabled>
-                  <option selected>All</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                <select class="custom-select" id="projectSelect" disabled>
+                  <option selected class="projectSelectOption" value="All">All</option>
+                  <option value="1" class="projectSelectOption">One</option>
+                  <option value="2" class="projectSelectOption">Two</option>
+                  <option value="3" class="projectSelectOption">Three</option>
                 </select>
             </div>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="clientSelect">View:</label>
+                  <label class="input-group-text" for="viewSelect">View:</label>
                 </div>
-                <select class="custom-select" id="clientSelect" disabled>
-                  <option selected>All</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                <select class="custom-select" id="viewSelect" disabled>
+                  <option selected class="viewSelectOption" value="All">All</option>
+                  <option value="1" class="viewSelectOption">One</option>
+                  <option value="2" class="viewSelectOption">Two</option>
+                  <option value="3" class="viewSelectOption">Three</option>
                 </select>
             </div>
 
@@ -274,7 +274,7 @@ Home
 
 @section('scripts')
 
-<script src=" {{asset('js/filterPosts.js')}} "> console.log('hi') </script>
+<script src="{{asset('js/home.js')}}"></script>
 <script>
     // Add the following code if you want the name of the file appear on select
     $(".custom-file-input").on("change", function() {

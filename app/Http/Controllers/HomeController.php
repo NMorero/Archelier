@@ -35,4 +35,9 @@ class HomeController extends Controller
         $vac = compact('projects');
         return view('test', $vac);
     }
+
+    public function getProjectsByClient($client){
+        $projects = Projects::where('client_id', 'LIKE', $client)->get();
+        return $projects;
+    }
 }
