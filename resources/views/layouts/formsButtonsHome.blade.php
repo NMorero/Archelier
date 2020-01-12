@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group col-4">
                     <label for="status">Status</label>
-                    <select name="status" class="form-control" id="status">
+                    <select name="status" class="custom-select" id="status">
                         <option value="1">Ongoing</option>
                         <option value="2">Ready for Test</option>
                         <option value="3">Done</option>
@@ -28,21 +28,21 @@
                 </div>
                 <div class="form-group col-4">
                     <label for="user">User</label>
-                    <select name="user" id="user" class="form-control">
+                    <select name="user" id="user" class="custom-select">
                         <option value="1">User 1</option>
                         <option value="2">User 2</option>
                     </select>
                 </div>
                 <div class="form-group col-4">
                     <label for="client">Client</label>
-                    <select name="client" id="client" class="form-control">
+                    <select name="client" id="client" class="custom-select">
                         <option value="1">Client 1</option>
                         <option value="2">Client 2</option>
                     </select>
                 </div>
                 <div class="form-group col-4" >
                     <label for="project">Project</label>
-                    <select name="project" id="project" class="form-control" disabled>
+                    <select name="project" id="project" class="custom-select" disabled>
                         <option value="1">Project 1</option>
                         <option value="2">Project 2</option>
                     </select>
@@ -50,7 +50,7 @@
 
                 <div class="form-group col-4" >
                     <label for="view">View</label>
-                    <select name="view" id="view" class="form-control" disabled>
+                    <select name="view" id="view" class="custom-select" disabled>
                         <option value="1">View 1</option>
                         <option value="2">View 2</option>
                     </select>
@@ -86,28 +86,28 @@
                 </div>
                 <div class="form-group col-5">
                     <label for="client">Client</label>
-                    <select name="client" id="client" class="form-control">
+                    <select name="client" id="client" class="custom-select">
                         <option value="1">Client 1</option>
                         <option value="2">Client 2</option>
                     </select>
                 </div>
                 <div class="form-group col-5">
                     <label for="project">Project</label>
-                    <select name="project" id="project" class="form-control">
+                    <select name="project" id="project" class="custom-select">
                         <option value="1">Project 1</option>
                         <option value="2">Project 2</option>
                     </select>
                 </div>
                 <div class="form-group col-5">
                     <label for="view">View</label>
-                    <select name="view" id="view" class="form-control">
+                    <select name="view" id="view" class="custom-select">
                         <option value="1">View 1</option>
                         <option value="2">View 2</option>
                     </select>
                 </div>
                 <div class="form-group col-5">
                     <label for="template">Template</label>
-                    <select name="template" id="template" class="form-control">
+                    <select name="template" id="template" class="custom-select">
                         <option value="1">Template 1</option>
                         <option value="2">Template 2</option>
                     </select>
@@ -142,28 +142,28 @@
                 </div>
                 <div class="form-group col-5">
                     <label for="client">Client</label>
-                    <select name="client" id="client" class="form-control">
+                    <select name="client" id="client" class="custom-select">
                         <option value="1">Client 1</option>
                         <option value="2">Client 2</option>
                     </select>
                 </div>
                 <div class="form-group col-5">
                     <label for="project">Project</label>
-                    <select name="project" id="project" class="form-control">
+                    <select name="project" id="project" class="custom-select">
                         <option value="1">Project 1</option>
                         <option value="2">Project 2</option>
                     </select>
                 </div>
                 <div class="form-group col-5">
                     <label for="view">View</label>
-                    <select name="view" id="view" class="form-control">
+                    <select name="view" id="view" class="custom-select">
                         <option value="1">View 1</option>
                         <option value="2">View 2</option>
                     </select>
                 </div>
                 <div class="form-group col-5">
                     <label for="developer">Developer</label>
-                    <select name="developer" id="developer" class="form-control">
+                    <select name="developer" id="developer" class="custom-select">
                         <option value="1">Developer 1</option>
                         <option value="2">Developer 2</option>
                     </select>
@@ -198,21 +198,21 @@
                 </div>
                 <div class="form-group col-5">
                     <label for="client">Client</label>
-                    <select name="client" id="client" class="form-control">
+                    <select name="client" id="client" class="custom-select">
                         <option value="1">Client 1</option>
                         <option value="2">Client 2</option>
                     </select>
                 </div>
                 <div class="form-group col-5">
                     <label for="project">Project</label>
-                    <select name="project" id="project" class="form-control">
+                    <select name="project" id="project" class="custom-select">
                         <option value="1">Project 1</option>
                         <option value="2">Project 2</option>
                     </select>
                 </div>
                 <div class="form-group col-5">
                     <label for="view">View</label>
-                    <select name="view" id="view" class="form-control">
+                    <select name="view" id="view" class="custom-select">
                         <option value="1">View 1</option>
                         <option value="2">View 2</option>
                     </select>
@@ -254,40 +254,37 @@
                 </div>
                 <div class="form-group col-4">
                     <label for="client">Client</label>
-                    <select name="client" id="client" class="form-control">
+                    <select name="client" id="client" class="custom-select">
                         <option value="1">Client 1</option>
                         <option value="2">Client 2</option>
                     </select>
                 </div>
                 <div class="form-group col-4">
                     <label for="project">Project</label>
-                    <select name="project" id="project" class="form-control">
+                    <select name="project" id="project" class="custom-select">
                         <option value="1">Project 1</option>
                         <option value="2">Project 2</option>
                     </select>
                 </div>
                 <div class="form-group col-4">
                     <label for="view">View</label>
-                    <select name="view" id="view" class="form-control">
+                    <select name="view" id="view" class="custom-select">
                         <option value="1">View 1</option>
                         <option value="2">View 2</option>
                     </select>
                 </div>
-                <div class="form-group col-4">
-                    <label for="user">User</label>
-                    <select name="user" id="user" class="form-control">
+                <div class="form-group col-6 mt-3">
+                    <label for="user" class="custom-label">User</label>
+                    <select name="user" id="user" class="custom-select">
                         <option value="1">User 1</option>
                         <option value="2">User 2</option>
                     </select>
                 </div>
-                <div class="form-group col-4">
-                    <label for="image">Image</label>
-                    <select name="image" id="image" class="form-control">
-                        <option value="1">Image 1</option>
-                        <option value="2">Image 2</option>
-                    </select>
-                </div>
+                <div class="custom-file col-6 mt-5">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                    <input type="file" class="custom-file-input" id="customFile">
 
+                </div>
             </form>
         </div>
         <div class="modal-footer">

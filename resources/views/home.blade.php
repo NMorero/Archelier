@@ -81,8 +81,8 @@ Home
 
             </div>
 
-            <div class="col-11 mt-3 ">
-                <h3 class=" justify-content-between row mb-2"><p class="col-5">Reminders</p> <button class="btn btn-success col-2 mr-4 button-add-reminder">Add</button></h3>
+            <div class="col-11 mt-5 ">
+                <h3 class=" justify-content-between row mb-2"><p class="col-5">Reminders</p></h3>
 
                 <ul class="list-group scroll-reminders border-bottom p-0">
                     <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">primer comentario</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
@@ -277,5 +277,11 @@ Home
 @endsection
 
 @section('scripts')
-
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function() {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+    </script>
 @endsection
