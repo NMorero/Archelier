@@ -243,7 +243,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="row justify-content-center">
+            <form class="row justify-content-between p-2">
                 <div class="form-group col-12">
                     <label for="title">Title</label>
                     <input type="text" name="title" id="title" class="form-group">
@@ -280,8 +280,9 @@
                         <option value="2">User 2</option>
                     </select>
                 </div>
-                <div class="custom-file col-6 mt-5">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
+                <div class="custom-file col-5 mt-5">
+
+                    <label class="custom-file-label" for="customFile">Add image</label>
                     <input type="file" class="custom-file-input" id="customFile">
 
                 </div>

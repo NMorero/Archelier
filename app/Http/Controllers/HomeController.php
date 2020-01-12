@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Clients;
+use App\Projects;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,5 +28,11 @@ class HomeController extends Controller
         $clients = Clients::all();
         $vac = compact('clients');
         return view('home', $vac);
+    }
+
+    public function test(){
+        $projects = Projects::find(1);
+        $vac = compact('projects');
+        return view('test', $vac);
     }
 }
