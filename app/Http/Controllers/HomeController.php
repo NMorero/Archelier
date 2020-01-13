@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Clients;
 use App\Projects;
+use App\ProjectViews;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -39,5 +40,10 @@ class HomeController extends Controller
     public function getProjectsByClient($client){
         $projects = Projects::where('client_id', 'LIKE', $client)->get();
         return $projects;
+    }
+
+    public function getViewsByProject($project){
+        $views = ProjectViews::where('project_id', 'LIKE', $project)->get();
+        return $views;
     }
 }

@@ -14,7 +14,10 @@ class AddRelationshipToRelationshipTable extends Migration
     public function up()
     {
         DB::table('RELATIONSHIP')->insert([
-            ['freelance_id' => 1]
+            ['freelance_id' => 1],
+            ['freelance_id' => 2],
+            ['direct_id' => 1],
+            ['direct_id' => 2]
 
         ]);
     }

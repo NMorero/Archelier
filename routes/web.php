@@ -20,3 +20,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test', 'HomeController@test');
 
 Route::get('/getProjectsByClient/{client}', 'HomeController@getProjectsByClient');
+
+Route::get('/getViewsByProject/{project}', 'HomeController@getViewsByProject');

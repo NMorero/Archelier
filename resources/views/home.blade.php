@@ -34,10 +34,8 @@ Home
                   <label class="input-group-text" for="projectSelect">Project:</label>
                 </div>
                 <select class="custom-select" id="projectSelect" disabled>
-                  <option selected class="projectSelectOption" value="All">All</option>
-                  <option value="1" class="projectSelectOption">One</option>
-                  <option value="2" class="projectSelectOption">Two</option>
-                  <option value="3" class="projectSelectOption">Three</option>
+                    <option selected onclick="projectSelect()" value="All">All</option>
+
                 </select>
             </div>
 
@@ -46,10 +44,8 @@ Home
                   <label class="input-group-text" for="viewSelect">View:</label>
                 </div>
                 <select class="custom-select" id="viewSelect" disabled>
-                  <option selected class="viewSelectOption" value="All">All</option>
-                  <option value="1" class="viewSelectOption">One</option>
-                  <option value="2" class="viewSelectOption">Two</option>
-                  <option value="3" class="viewSelectOption">Three</option>
+                    <option selected onclick="viewSelect()" value="All">All</option>
+
                 </select>
             </div>
 

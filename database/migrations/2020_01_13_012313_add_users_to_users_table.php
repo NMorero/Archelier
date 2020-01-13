@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddClientsToClientsTable extends Migration
+class AddUsersToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddClientsToClientsTable extends Migration
      */
     public function up()
     {
-        DB::table('CLIENTS')->insert([
-            ['type' => 'freelance', 'person_id' => 1],
-            ['type' => 'freelance', 'person_id' => 2]
+        DB::table('USERS')->insert([
+            ['person_id' => 3, 'rol_id' => 3],
+            ['person_id' => 4, 'rol_id' => 4]
 
         ]);
     }
@@ -27,7 +27,7 @@ class AddClientsToClientsTable extends Migration
      */
     public function down()
     {
-        Schema::table('clients', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

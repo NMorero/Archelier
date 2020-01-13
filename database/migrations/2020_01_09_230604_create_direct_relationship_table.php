@@ -15,7 +15,7 @@ class CreateDirectRelationshipTable extends Migration
     {
         Schema::create('DIRECT_RELATIONSHIP', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('company_labor_reltionship');
+            $table->string('company_labor_relationship');
             $table->string('social_work');
             $table->string('labor_union');
             $table->string('labor_agreement');
