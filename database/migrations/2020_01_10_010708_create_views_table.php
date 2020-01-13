@@ -26,6 +26,6 @@ class CreateViewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('views');
+        Schema::dropIfExists('VIEWS');
     }
 }

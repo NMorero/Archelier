@@ -26,6 +26,6 @@ class CreateProjectLeaderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_leader');
+        Schema::dropIfExists('PROJECT_LEADERS');
     }
 }

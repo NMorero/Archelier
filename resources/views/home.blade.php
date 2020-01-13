@@ -58,8 +58,8 @@ Home
 
         {{-- Segunda seccion ( Posts ) --}}
 
-        <div class="col-4 scroll-post scrollable">
-            POSTS
+        <div class="col-4 scroll-post scrollable" id="divPosts">
+
         </div>
         {{-- Tercera seccion ( actions yu reminders ) --}}
         <div class="col-4 justify-content-center">
@@ -175,15 +175,15 @@ Home
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
+                          <tr class="bg-success">
                             <th scope="row" class="warning">•</th>
                             <td>Mark</td>
                           </tr>
-                          <tr>
+                          <tr class="bg-warning">
                             <th scope="row">•</th>
                             <td>Jacob</td>
                           </tr>
-                          <tr>
+                          <tr class="bg-info">
                             <th scope="row">•</th>
                             <td>Larry</td>
                           </tr>

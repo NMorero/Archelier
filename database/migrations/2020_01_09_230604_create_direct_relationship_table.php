@@ -37,6 +37,6 @@ class CreateDirectRelationshipTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('direct_relationship');
+        Schema::dropIfExists('DIRECT_RELATIONSHIP');
     }
 }

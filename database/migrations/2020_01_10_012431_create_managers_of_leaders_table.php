@@ -26,6 +26,6 @@ class CreateManagersOfLeadersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('managers_of_leaders');
+        Schema::dropIfExists('MANAGERS_OF_LEADERS');
     }
 }

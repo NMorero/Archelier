@@ -7,6 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    {{$projects->views}}
+    {{$Posts->user->person->name}}
 </body>
 </html>

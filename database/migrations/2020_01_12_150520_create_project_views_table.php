@@ -33,6 +33,6 @@ class CreateProjectViewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_views');
+        Schema::dropIfExists('PROJECT_VIEWS');
     }
 }

@@ -17,13 +17,13 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->longText('message');
-            $table->unsignedBigInteger('image_id');
+            $table->unsignedBigInteger('image_id')->nullable();
             $table->foreign('image_id')->references('id')->on('IMAGES');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('USERS');
-            $table->unsignedBigInteger('client_id')->nullable();
+            $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('CLIENTS');
-            $table->unsignedBigInteger('project_id')->nullable();
+            $table->unsignedBigInteger('project_id');
             $table->foreign('project_id')->references('id')->on('PROJECTS');
             $table->unsignedBigInteger('view_id')->nullable();
             $table->foreign('view_id')->references('id')->on('VIEWS');
@@ -39,6 +39,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('POSTS');
     }
 }

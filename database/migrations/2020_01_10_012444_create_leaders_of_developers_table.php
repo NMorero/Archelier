@@ -26,6 +26,6 @@ class CreateLeadersOfDevelopersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leaders_of_developers');
+        Schema::dropIfExists('LEADERS_OF_DEVELOPERS');
     }
 }

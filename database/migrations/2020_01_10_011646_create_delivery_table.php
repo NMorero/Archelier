@@ -28,6 +28,6 @@ class CreateDeliveryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('delivery');
+        Schema::dropIfExists('DELIVERIES');
     }
 }

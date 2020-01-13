@@ -26,6 +26,6 @@ class CreateProjectManagerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_manager');
+        Schema::dropIfExists('PROJECT_MANAGERS');
     }
 }

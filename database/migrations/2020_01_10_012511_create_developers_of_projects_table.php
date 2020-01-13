@@ -26,6 +26,6 @@ class CreateDevelopersOfProjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('developers_of_projects');
+        Schema::dropIfExists('DEVELOPERS_OF_PROJECTS');
     }
 }

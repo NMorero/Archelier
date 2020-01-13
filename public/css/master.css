@@ -57,4 +57,30 @@
     overflow-y: scroll;
   }
 
+
+.postInfo{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.postTitle{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: small;
+}
+
+.postMessage{
+    font-family: sans-serif;
+    font-size: x-small;
+    line-height: 1.5;
+}
+
+.postFooter{
+    font-family: sans-serif;
+    font-size: xx-small;
+    font-weight: bold;
+}
+
+
+
   /* Fin Home */

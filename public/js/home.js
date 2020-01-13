@@ -1,3 +1,5 @@
+
+getPosts();
 $('.clientSelectOption').click(function(){
     var clientoption = document.getElementById('clientSelect').value;
     console.log('value client: ' + clientoption);
@@ -87,4 +89,35 @@ function projectSelect(){
 function viewSelect(){
     var viewOption = document.getElementById('viewSelect').value;
     console.log('value view: ' + viewOption);
+}
+
+
+function getPosts(){
+    fetch('/getPosts')
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data);
+
+            var divPosts = document.getElementById('divPosts');
+            divPosts.innerHTML = '';
+            data.map(function (post) {
+                const templateLiteral = `
+                <div class="row p-2 border-bottom mb-2">
+                <p class=" col-11 postInfo">Posted by: ${post.user_id} on Tuesday 21 - 13:00 </p>
+                <span class="postTitle">${post.title}</span>
+                <span class="postMessage">${post.message}</span>
+                <p class="postFooter">Project: ${post.project_id}   Client: ${post.client_id} </p>
+            </div>
+                `;
+
+
+            divPosts.innerHTML = divPosts.innerHTML.concat(templateLiteral);
+
+            });
+        })
+        .catch(function(error){
+            console.log(error);
+        })
 }

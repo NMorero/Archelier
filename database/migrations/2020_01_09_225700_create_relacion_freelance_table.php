@@ -33,6 +33,6 @@ class CreateRelacionFreelanceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('relacion_freelance');
+        Schema::dropIfExists('FREELANCE_RELATIONSHIP');
     }
 }

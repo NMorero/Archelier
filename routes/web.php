@@ -22,3 +22,5 @@ Route::get('/test', 'HomeController@test');
 Route::get('/getProjectsByClient/{client}', 'HomeController@getProjectsByClient');
 
 Route::get('/getViewsByProject/{project}', 'HomeController@getViewsByProject');
+
+Route::get('/getPosts', 'HomeController@getPosts');
