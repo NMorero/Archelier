@@ -115,8 +115,8 @@ function getPosts(){
                     const templateLiteral = `
                 <div class="row p-2 border-bottom mb-2">
                 <p class=" col-11 postInfo">Posted by: ${post.user_name} on ${post.date} </p>
-                <span class="postTitle">${post.title}</span>
-                <span class="postMessage">${post.message}</span>
+                <span class="postTitle mb-2">${post.title}</span>
+                <span class="postMessage mb-2">${post.message}</span>
                 <img src="${post.image}" alt="">
                 <p class="postFooter">Project: ${post.project_name}   Client: ${post.client_id} View: ${post.view_id}</p>
 
@@ -128,8 +128,8 @@ function getPosts(){
                     const templateLiteral = `
                 <div class="row p-2 border-bottom mb-2">
                 <p class=" col-11 postInfo">Posted by: ${post.user_name} on ${post.date} </p>
-                <span class="postTitle">${post.title}</span>
-                <span class="postMessage">${post.message}</span>
+                <span class="postTitle mb-2">${post.title}</span>
+                <span class="postMessage mb-2">${post.message}</span>
                 <p class="postFooter">Project: ${post.project_name}   Client: ${post.client_id} </p>
 
             </div>
