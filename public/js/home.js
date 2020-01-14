@@ -3,6 +3,7 @@ getPosts();
 $('.clientSelectOption').click(function(){
     var clientoption = document.getElementById('clientSelect').value;
     console.log('value client: ' + clientoption);
+    getPosts()
     if(clientoption != 'All'){
 
 
@@ -47,6 +48,7 @@ $('.clientSelectOption').click(function(){
 function projectSelect(){
     var projectOption = document.getElementById('projectSelect').value;
     console.log('value project: ' + projectOption);
+    getPosts()
     if(document.getElementById('projectSelect').value != 'All'){
 
 
@@ -89,11 +91,17 @@ function projectSelect(){
 function viewSelect(){
     var viewOption = document.getElementById('viewSelect').value;
     console.log('value view: ' + viewOption);
+    getPosts()
 }
 
 
 function getPosts(){
-    fetch('/getPosts')
+    var client = document.getElementById('clientSelect').value;
+    var project = document.getElementById('projectSelect').value;
+    var view = document.getElementById('viewSelect').value;
+    var route = '/getPosts/'+client+'/'+project+'/'+view;
+    console.log(route);
+    fetch(route)
         .then(function(response){
             return response.json();
         })
@@ -103,17 +111,34 @@ function getPosts(){
             var divPosts = document.getElementById('divPosts');
             divPosts.innerHTML = '';
             data.map(function (post) {
-                const templateLiteral = `
+                if(post.view_id != null){
+                    const templateLiteral = `
                 <div class="row p-2 border-bottom mb-2">
-                <p class=" col-11 postInfo">Posted by: ${post.user_id} on Tuesday 21 - 13:00 </p>
+                <p class=" col-11 postInfo">Posted by: ${post.user_name} on ${post.date} </p>
                 <span class="postTitle">${post.title}</span>
                 <span class="postMessage">${post.message}</span>
-                <p class="postFooter">Project: ${post.project_id}   Client: ${post.client_id} </p>
+                <img src="${post.image}" alt="">
+                <p class="postFooter">Project: ${post.project_name}   Client: ${post.client_id} View: ${post.view_id}</p>
+
             </div>
                 `;
+                divPosts.innerHTML = divPosts.innerHTML.concat(templateLiteral);
+
+                }else{
+                    const templateLiteral = `
+                <div class="row p-2 border-bottom mb-2">
+                <p class=" col-11 postInfo">Posted by: ${post.user_name} on ${post.date} </p>
+                <span class="postTitle">${post.title}</span>
+                <span class="postMessage">${post.message}</span>
+                <p class="postFooter">Project: ${post.project_name}   Client: ${post.client_id} </p>
+
+            </div>
+                `;
+                divPosts.innerHTML = divPosts.innerHTML.concat(templateLiteral);
+                }
 
 
-            divPosts.innerHTML = divPosts.innerHTML.concat(templateLiteral);
+
 
             });
         })

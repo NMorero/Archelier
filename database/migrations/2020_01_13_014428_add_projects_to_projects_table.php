@@ -15,7 +15,8 @@ class AddProjectsToProjectsTable extends Migration
     {
         DB::table('PROJECTS')->insert([
             ['project_name' => 'projecto 1', 'client_id' => 1, 'manager_id' => 1, 'leader_id' => 1],
-            ['project_name' => 'projecto 2', 'client_id' => 1, 'manager_id' => 1, 'leader_id' => 1]
+            ['project_name' => 'projecto 2', 'client_id' => 1, 'manager_id' => 1, 'leader_id' => 1],
+            ['project_name' => 'projecto 3', 'client_id' => 2, 'manager_id' => 1, 'leader_id' => 1]
 
         ]);
     }

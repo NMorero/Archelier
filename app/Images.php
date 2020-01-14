@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Views extends Model
+class Images extends Model
 {
-    public $table = 'VIEWS';
+    public $table = 'IMAGES';
 }
