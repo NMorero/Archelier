@@ -15,7 +15,7 @@ class ModifyUsersTable extends Migration
     {
         Schema::table('USERS', function (Blueprint $table) {
 
-            $table->unsignedBigInteger('person_id');
+            $table->unsignedBigInteger('person_id')->nullable();
             $table->foreign('person_id')->references('id')->on('PERSONS');
 
             $table->unsignedBigInteger('rol_id');

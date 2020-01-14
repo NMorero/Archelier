@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    {{$Posts->user->person->name}}
+    <iframe src="" id="iframe" frameborder="0"></iframe>
+
+
+    <script>
+        var direct = '123var';
+        document.getElementById('iframe').src = direct;
+    </script>
 </body>
 </html>
