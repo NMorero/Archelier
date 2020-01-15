@@ -166,7 +166,7 @@ function getReminders(){
 
             data.map(function (reminder) {
                 const templateLiteral = `
-                <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">${reminder.message}</p>     <button class="p-0 btn button-reminder col-1 btn-danger" onclick="deleteReminder(${reminder.id})">x</button> </li>
+                <li class="list-group-item justify-content-around d-flex row reminder-li p-2 bg-dark"><p class="col-8">${reminder.message}</p>     <button class="p-0 btn button-reminder col-1 btn-danger" onclick="deleteReminder(${reminder.id})">x</button> </li>
                 `;
 
 
@@ -228,8 +228,8 @@ function getTasks(){
                     i++;
 
                     const templateLiteral = `
-                        <thead class="thead today" id="taskDay${i}>
-                            <tr>
+                        <thead class="thead today" id="taskDay${i}">
+                            <tr class="table-secondary">
                                 <th scope"col"></th>
                                 <th scope="col">${task.day}</th>
                             </tr>
@@ -252,7 +252,7 @@ function getTasks(){
 
                         const templateLiteral = `
                             <tbody>
-                                <tr class="bg-${color}">
+                                <tr class="table-${color}">
                                     <th scope="row">•</th>
                                     <td>${project.user.username}</td>
                                 </tr>

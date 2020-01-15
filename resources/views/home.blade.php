@@ -76,7 +76,7 @@ Home
             <div class="col-11 mt-5 ">
                 <h3 class=" justify-content-between row mb-2"><p class="col-5">Reminders</p></h3>
 
-                <ul class="list-group scroll-reminders border-bottom p-0 bg-white" id="remindersBox">
+                <ul class="list-group scroll-reminders text-white p-0 bg-dark rounded" id="remindersBox">
                     <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
                 </ul>
             </div>
@@ -84,23 +84,14 @@ Home
         </div>
 
 
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-2  scrollable">
 
-            <div class="border-bottom" style="margin-bottom:15px;">
-
-              <table class="table table-sm p1" id="tasksBox">
+              <table class="table table-sm p1 col-2" id="tasksBox">
 
 
 
 
               </table>
 
-
-          </div>
-
-
-
-            </div>
 
 
 
