@@ -130,20 +130,38 @@ class HomeController extends Controller
     public function getTasks(){
         $tasksDB = Tasks::all();
         $tasks = [];
-        $fechas = [];
+        $dates = [];
 
         foreach($tasksDB as $task){
-            $endDate = $task['end_date'];
-
-            if (!array_key_exists($endDate, $fechas)) {
-
-
+            $task['user'] = $task->user;
+            $endDate = $task->end_date;
+            if (!array_key_exists($endDate, $dates)) {
+                array_push($dates, $endDate);
             }
         }
 
-        foreach($fechas as $fecha){
-            array_push($fecha, 'si');
+        foreach($dates as $date){
+
+            $dateInfo = $date;
+            //Convert the dateInfo string into a unix timestamp.
+            $unixTimestamp = strtotime($dateInfo);
+            //Get the day of the week using PHP's date function.
+            $dayOfWeek = date("l", $unixTimestamp);
+            $day = date('d', strtotime($date));
+
+
+            $tasks[$date]['day'] = $dayOfWeek . ' ' . $day;
+            $tasks[$date]['projects'] = [];
         }
-        return $fechas;
+        foreach($tasksDB as $taskDB){
+            $endDate = $taskDB->end_date;
+
+            if (array_key_exists($endDate, $tasks)) {
+                array_push($tasks[$endDate]['projects'], $taskDB);
+            }
+        }
+
+
+        return $tasks;
     }
 }

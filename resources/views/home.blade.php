@@ -88,39 +88,9 @@ Home
 
             <div class="border-bottom" style="margin-bottom:15px;">
 
-              <table class="table table-sm p1">
-                        <thead class="thead today">
-                          <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Wednesday 13 January</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr class="bg-success">
-                            <th scope="row" class="warning">•</th>
-                            <td>Mark</td>
-                          </tr>
-                          <tr class="bg-warning">
-                            <th scope="row">•</th>
-                            <td>Jacob</td>
-                          </tr>
-                          <tr class="bg-info">
-                            <th scope="row">•</th>
-                            <td>Larry</td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="warning">•</th>
-                            <td>Mark</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Jacob</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Larry</td>
-                          </tr>
-                        </tbody>
+              <table class="table table-sm p1" id="tasksBox">
+
+
 
 
               </table>

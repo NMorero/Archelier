@@ -1,7 +1,7 @@
 
 getPosts();
 getReminders();
-
+getTasks();
 
 
 
@@ -211,4 +211,63 @@ function deleteReminder(id){
 
         }
       })
+}
+
+function getTasks(){
+
+    fetch('/getTasks')
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                data = Object.values(data)
+                console.log(data);
+                var i = 0;
+                var tasksBox = document.getElementById('tasksBox');
+                data.map(function (task) {
+                    i++;
+
+                    const templateLiteral = `
+                        <thead class="thead today" id="taskDay${i}>
+                            <tr>
+                                <th scope"col"></th>
+                                <th scope="col">${task.day}</th>
+                            </tr>
+                        </thead>
+                    `;
+                    tasksBox.innerHTML = tasksBox.innerHTML.concat(templateLiteral);
+
+                    task.projects.map(function (project) {
+
+                        if(project.status == 'ongoing'){
+                            var color = 'warning';
+                        }else if(project.status == 'done'){
+                            var color = 'success';
+                        }else{
+                            var color = 'info';
+                        }
+
+
+
+
+                        const templateLiteral = `
+                            <tbody>
+                                <tr class="bg-${color}">
+                                    <th scope="row">•</th>
+                                    <td>${project.user.username}</td>
+                                </tr>
+                            </tbody>
+                        `;
+                    tasksBox.innerHTML = tasksBox.innerHTML.concat(templateLiteral);
+
+                    });
+
+
+
+
+                });
+            })
+            .catch(function(error){
+                console.log(error);
+            })
 }
