@@ -123,7 +123,7 @@ function getPosts(){
                 <p class=" col-11 postInfo">Posted by: ${post.user_name} on ${post.date} </p>
                 <span class="postTitle mb-2">${post.title}</span>
                 <span class="postMessage mb-2">${post.message}</span>
-                <img src="${post.image}" alt="">
+                <img src="${post.image}" class="postImage" alt="">
                 <p class="postFooter">Project: ${post.project_name}   Client: ${post.client_id} View: ${post.view_id}</p>
 
             </div>
