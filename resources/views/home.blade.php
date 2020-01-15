@@ -12,7 +12,7 @@ Home
   @include('layouts.formsButtonsHome')
 
 
-    <main class="container-fluid row mt-2">
+    <main class="container-fluid row mt-2 pr-0">
         {{-- Primer Seccion ( Filtros ) --}}
         <div class="col-2">
             {{-- inicio --}}
@@ -84,13 +84,12 @@ Home
         </div>
 
 
+        <div class="scrollable col-2 p-0">
+            <table class="table table-sm p1 " id="tasksBox">
 
-              <table class="table table-sm p1 col-2" id="tasksBox">
+            </table>
+        </div>
 
-
-
-
-              </table>
 
 
 

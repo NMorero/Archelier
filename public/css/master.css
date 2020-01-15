@@ -1,8 +1,8 @@
 
-
-.body{
+body{
     background-color: rgb(242, 244, 248);
     background-size: 100vw;
+    overflow: hidden;
 }
 
 .header-base{
@@ -10,6 +10,10 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: large;
 }
+
+
+
+
 
 /* Home */
 .scroll-post{

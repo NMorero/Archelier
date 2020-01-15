@@ -224,24 +224,24 @@ function getTasks(){
                 console.log(data);
                 var i = 0;
                 var tasksBox = document.getElementById('tasksBox');
-                data.map(function (task) {
+                data.map(function (tasks) {
                     i++;
 
                     const templateLiteral = `
                         <thead class="thead today" id="taskDay${i}">
                             <tr class="table-secondary">
                                 <th scope"col"></th>
-                                <th scope="col">${task.day}</th>
+                                <th scope="col">${tasks.day}</th>
                             </tr>
                         </thead>
                     `;
                     tasksBox.innerHTML = tasksBox.innerHTML.concat(templateLiteral);
 
-                    task.projects.map(function (project) {
+                    tasks.projects.map(function (task) {
 
-                        if(project.status == 'ongoing'){
+                        if(task.status == 'ongoing'){
                             var color = 'warning';
-                        }else if(project.status == 'done'){
+                        }else if(task.status == 'done'){
                             var color = 'success';
                         }else{
                             var color = 'info';
@@ -251,12 +251,28 @@ function getTasks(){
 
 
                         const templateLiteral = `
-                            <tbody>
-                                <tr class="table-${color}">
-                                    <th scope="row">•</th>
-                                    <td>${project.user.username}</td>
-                                </tr>
-                            </tbody>
+                        <tbody>
+                            <tr class="clickable table-${color}" data-toggle="collapse" data-target="#group-of-rows-${task.id}" aria-expanded="false" aria-controls="group-of-rows-${task.id}">
+                                <td>•</td>
+                                <td>${task.user.username}</td>
+
+                            </tr>
+                        </tbody>
+                        <tbody id="group-of-rows-${task.id}" class="collapse">
+                            <tr>
+                                <td>Message:</td>
+                                <td>${task.message}</td>
+                            </tr>
+                            <tr>
+                                <td>Project:</td>
+                                <td>${task.project.project_name}</td>
+                            </tr>
+                            <tr>
+                                <td>Client:</td>
+                                <td>${task.client.person.name}</td>
+
+                            </tr>
+                    </tbody>
                         `;
                     tasksBox.innerHTML = tasksBox.innerHTML.concat(templateLiteral);
 

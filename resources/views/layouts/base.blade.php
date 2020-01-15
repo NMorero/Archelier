@@ -11,7 +11,7 @@
     @show
     <title>Archelier | @section('title') @show</title>
 </head>
-<body class="body">
+<body>
 
     <header class="header-base p-2 justify-content-between row d-flex">
         <nav class="nav col-9">
@@ -21,7 +21,10 @@
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Marketing</a>
 
           </nav>
-        <a class="col-2 p-2 text-white" href="{{route('logout')}}">Log Out</a>
+        <a class="col-2 p-2 text-white" href="/logout">Log Out</a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
     </header>
 
 

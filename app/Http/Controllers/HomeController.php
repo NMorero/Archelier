@@ -134,6 +134,8 @@ class HomeController extends Controller
 
         foreach($tasksDB as $task){
             $task['user'] = $task->user;
+            $task['project'] = $task->project;
+            $task['client'] = $task->client->person;
             $endDate = $task->end_date;
             if (!array_key_exists($endDate, $dates)) {
                 array_push($dates, $endDate);
