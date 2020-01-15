@@ -17,7 +17,7 @@ class CreateTasksTable extends Migration
             $table->bigIncrements('id');
             $table->longText('message');
             $table->string('status');
-            $table->date('end_date')->nullable();
+            $table->date('end_date');
             $table->timestamps();
         });
     }

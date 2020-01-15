@@ -8,10 +8,13 @@ use App\Persons;
 use App\Posts;
 use App\Projects;
 use App\ProjectViews;
+use App\Reminders;
+use App\Tasks;
 use App\User;
 use App\Views;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -107,5 +110,40 @@ class HomeController extends Controller
 
         }
         return $posts;
+    }
+
+
+    public function getReminders(){
+        $id = Auth::user()->id;
+        $reminders = Reminders::where('user_id', 'LIKE', $id)->get();
+        return $reminders;
+
+    }
+    public function deleteReminder($id){
+        $reminder = Reminders::find($id);
+        $reminder->delete();
+
+        return ['status' => 'ok'];
+    }
+
+
+    public function getTasks(){
+        $tasksDB = Tasks::all();
+        $tasks = [];
+        $fechas = [];
+
+        foreach($tasksDB as $task){
+            $endDate = $task['end_date'];
+
+            if (!array_key_exists($endDate, $fechas)) {
+
+
+            }
+        }
+
+        foreach($fechas as $fecha){
+            array_push($fecha, 'si');
+        }
+        return $fechas;
     }
 }

@@ -1,5 +1,11 @@
 
 getPosts();
+getReminders();
+
+
+
+
+
 $('.clientSelectOption').click(function(){
     var clientoption = document.getElementById('clientSelect').value;
     console.log('value client: ' + clientoption);
@@ -145,4 +151,64 @@ function getPosts(){
         .catch(function(error){
             console.log(error);
         })
+}
+
+function getReminders(){
+    fetch('/getReminders')
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data);
+
+            var remindersBox = document.getElementById('remindersBox');
+            remindersBox.innerHTML = '';
+
+            data.map(function (reminder) {
+                const templateLiteral = `
+                <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">${reminder.message}</p>     <button class="p-0 btn button-reminder col-1 btn-danger" onclick="deleteReminder(${reminder.id})">x</button> </li>
+                `;
+
+
+            remindersBox.innerHTML = remindersBox.innerHTML.concat(templateLiteral);
+
+            });
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+}
+
+function deleteReminder(id){
+    Swal.fire({
+        title: 'Delete reminder?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.value) {
+            var route = '/deleteReminder/'+id;
+            console.log(route);
+            fetch(route)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                console.log(data);
+                getReminders();
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+
+            Swal.fire(
+            'Deleted!',
+            'Your reminder has been deleted.',
+            //'success'
+          )
+
+        }
+      })
 }

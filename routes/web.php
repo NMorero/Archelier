@@ -24,3 +24,9 @@ Route::get('/getProjectsByClient/{client}', 'HomeController@getProjectsByClient'
 Route::get('/getViewsByProject/{project}', 'HomeController@getViewsByProject');
 
 Route::get('/getPosts/{client}/{project}/{view}', 'HomeController@getPosts');
+
+Route::get('/getReminders', 'HomeController@getReminders');
+
+Route::get('/deleteReminder/{id}', 'HomeController@deleteReminder');
+
+Route::get('/getTasks', 'HomeController@getTasks');

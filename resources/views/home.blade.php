@@ -76,23 +76,8 @@ Home
             <div class="col-11 mt-5 ">
                 <h3 class=" justify-content-between row mb-2"><p class="col-5">Reminders</p></h3>
 
-                <ul class="list-group scroll-reminders border-bottom p-0">
-                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">primer comentario</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
-                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">segundo reminder</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
+                <ul class="list-group scroll-reminders border-bottom p-0 bg-white" id="remindersBox">
                     <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
-                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
-                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
-                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
-                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
-                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
-                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
-                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
-                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
-                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
-                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
-                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
-                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
-
                 </ul>
             </div>
 
@@ -104,70 +89,6 @@ Home
             <div class="border-bottom" style="margin-bottom:15px;">
 
               <table class="table table-sm p1">
-                        <thead class="thead-light">
-                          <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Monday 11 January</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Mark</td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="warning">•</th>
-                            <td>Mark</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Jacob</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Larry</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Jacob</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Larry</td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="warning">•</th>
-                            <td>Mark</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Jacob</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Larry</td>
-                          </tr>
-                        </tbody>
-                        <thead class="thead-light">
-                          <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Tuesday 12 January</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row" class="warning">•</th>
-                            <td>Mark</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Jacob</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Larry</td>
-                          </tr>
-                        </tbody>
                         <thead class="thead today">
                           <tr>
                             <th scope="col"></th>
@@ -200,58 +121,7 @@ Home
                             <td>Larry</td>
                           </tr>
                         </tbody>
-                        <thead class="thead-light">
-                          <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Thursday 15 January</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row" class="warning">•</th>
-                            <td>Mark</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Jacob</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Larry</td>
-                          </tr>
-                        </tbody>
-                        <thead class="thead-light">
-                          <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Friday 16 January</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row" class="warning">•</th>
-                            <td>Mark</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Jacob</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Larry</td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="warning">•</th>
-                            <td>Mark</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Jacob</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">•</th>
-                            <td>Larry</td>
-                          </tr>
-                        </tbody>
+
 
               </table>
 
