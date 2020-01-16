@@ -169,7 +169,8 @@ function saveButton(button){
             })
             .then(function(data){
                 console.log(data.status);
-
+                getReminders();
+                $("#closeReminder").click()
             })
             .catch(function(error){
                 console.log(error);
