@@ -169,8 +169,12 @@ function saveButton(button){
             })
             .then(function(data){
                 console.log(data.status);
+                getPosts();
                 getReminders();
-                $("#closeReminder").click()
+                getTasks();
+
+
+                $("#close"+button).click()
             })
             .catch(function(error){
                 console.log(error);

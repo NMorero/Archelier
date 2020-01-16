@@ -59,7 +59,7 @@
               </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" id="closeTask" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" onclick="saveButton('Task')">Save</button>
         </div>
       </div>
@@ -113,7 +113,7 @@
             </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" id="closeDelivery" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" onclick="saveButton('Delivery')">Save changes</button>
         </div>
       </div>
@@ -187,7 +187,7 @@
             </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" id="closeEvent" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" onclick="saveButton('Event')">Save changes</button>
         </div>
       </div>
@@ -244,7 +244,7 @@
             </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" id="closePost" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" onclick="saveButton('Post')">Save changes</button>
         </div>
       </div>

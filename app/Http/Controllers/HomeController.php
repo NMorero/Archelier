@@ -188,4 +188,25 @@ class HomeController extends Controller
 
         return ['status' => 'ok'];
     }
+
+    public function addTask($formData){
+        $formData = json_decode($formData, true);
+
+        $task = new Tasks;
+        $task->message = $formData['message'];
+        $task->status = $formData['status'];
+        $task->end_date = $formData['end_date'];
+        $task->user_id = $formData['user'];
+        $task->project_id = $formData['project'];
+        $task->client_id = $formData['client'];
+        if(isset($formData['view']) && !empty($formData['view'])){
+            $task->view_id = $formData['view'];
+        }
+        $task->save();
+
+        return ['status' => 'ok'];
+    }
+
+
+
 }

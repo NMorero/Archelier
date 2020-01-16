@@ -224,6 +224,7 @@ function getTasks(){
                 console.log(data);
                 var i = 0;
                 var tasksBox = document.getElementById('tasksBox');
+                tasksBox.innerHTML = '';
                 data.map(function (tasks) {
                     i++;
 
