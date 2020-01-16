@@ -166,4 +166,10 @@ class HomeController extends Controller
 
         return $tasks;
     }
+
+
+    public function getUsers(){
+        $users = User::all();
+        return $users;
+    }
 }

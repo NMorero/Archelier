@@ -3,8 +3,8 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header bg-info">
-          <h5 class="modal-title" id="modalTasksLabel">New Task</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title" id="modalTasksLabel" >New Task</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -27,10 +27,9 @@
                     <input type="date" id="end_date" class="form-control" name="end_date">
                 </div>
                 <div class="form-group col-4">
-                    <label for="user">User</label>
-                    <select name="user" id="user" class="custom-select">
-                        <option value="1">User 1</option>
-                        <option value="2">User 2</option>
+                    <label for="taskBtnUserSelect">User</label>
+                    <select name="taskBtnUserSelect" id="taskBtnUserSelect" class="custom-select">
+
                     </select>
                 </div>
                 <div class="form-group col-4">

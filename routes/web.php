@@ -32,3 +32,5 @@ Route::get('/getReminders', 'HomeController@getReminders');
 Route::get('/deleteReminder/{id}', 'HomeController@deleteReminder');
 
 Route::get('/getTasks', 'HomeController@getTasks');
+
+Route::get('/getUsers', 'HomeController@getUsers');
