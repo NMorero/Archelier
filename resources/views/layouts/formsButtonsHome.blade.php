@@ -9,14 +9,14 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="row">
+            <form class="row" id="taskBtnForm">
                 <div class="form-group col-12">
                   <label for="message">Message</label>
                   <textarea name="message" id="message" class="form-control" cols="20" rows="3" ></textarea>
                 </div>
                 <div class="form-group col-4">
-                    <label for="status">Status</label>
-                    <select name="status" class="custom-select" id="status">
+                    <label for="taskBtnStatusSelect">Status</label>
+                    <select name="taskBtnStatusSelect" class="custom-select" id="taskBtnStatusSelect">
                         <option value="1">Ongoing</option>
                         <option value="2">Ready for Test</option>
                         <option value="3">Done</option>
@@ -35,23 +35,22 @@
                 <div class="form-group col-4">
                     <label for="client">Client</label>
                     <select name="client" id="client" class="custom-select">
-                        <option value="1">Client 1</option>
-                        <option value="2">Client 2</option>
+                        @foreach ($clients as $client)
+                            <option value="{{$client->id}}" onclick="getProjectsByClient('task', {{$client->id}})"> {{$client->person->name}} </option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group col-4" >
-                    <label for="project">Project</label>
-                    <select name="project" id="project" class="custom-select" disabled>
-                        <option value="1">Project 1</option>
-                        <option value="2">Project 2</option>
+                    <label for="taskBtnProjectSelect">Project</label>
+                    <select name="taskBtnProjectSelect" id="taskBtnProjectSelect" class="custom-select" >
+
                     </select>
                 </div>
 
                 <div class="form-group col-4" >
-                    <label for="view">View</label>
-                    <select name="view" id="view" class="custom-select" disabled>
-                        <option value="1">View 1</option>
-                        <option value="2">View 2</option>
+                    <label for="taskBtnViewSelect">View</label>
+                    <select name="taskBtnViewSelect" id="taskBtnViewSelect" class="custom-select" >
+
                     </select>
                 </div>
 
@@ -61,7 +60,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-primary" onclick="taskBtnSave()">Save</button>
         </div>
       </div>
     </div>
@@ -86,22 +85,21 @@
                 <div class="form-group col-5">
                     <label for="client">Client</label>
                     <select name="client" id="client" class="custom-select">
-                        <option value="1">Client 1</option>
-                        <option value="2">Client 2</option>
+                        @foreach ($clients as $client)
+                            <option value="{{$client->id}}" onclick="getProjectsByClient('delivery', {{$client->id}})"> {{$client->person->name}} </option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group col-5">
-                    <label for="project">Project</label>
-                    <select name="project" id="project" class="custom-select">
-                        <option value="1">Project 1</option>
-                        <option value="2">Project 2</option>
+                    <label for="deliveryBtnProjectSelect">Project</label>
+                    <select name="deliveryBtnProjectSelect" id="deliveryBtnProjectSelect" class="custom-select">
+
                     </select>
                 </div>
                 <div class="form-group col-5">
-                    <label for="view">View</label>
-                    <select name="view" id="view" class="custom-select">
-                        <option value="1">View 1</option>
-                        <option value="2">View 2</option>
+                    <label for="deliveryBtnViewSelect">View</label>
+                    <select name="deliveryBtnViewSelect" id="deliveryBtnViewSelect" class="custom-select">
+
                     </select>
                 </div>
                 <div class="form-group col-5">
@@ -141,10 +139,7 @@
                 </div>
                 <div class="form-group col-5">
                     <label for="client">Client</label>
-                    <select name="client" id="client" class="custom-select">
-                        <option value="1">Client 1</option>
-                        <option value="2">Client 2</option>
-                    </select>
+
                 </div>
                 <div class="form-group col-5">
                     <label for="project">Project</label>
@@ -198,22 +193,21 @@
                 <div class="form-group col-5">
                     <label for="client">Client</label>
                     <select name="client" id="client" class="custom-select">
-                        <option value="1">Client 1</option>
-                        <option value="2">Client 2</option>
+                        @foreach ($clients as $client)
+                            <option value="{{$client->id}}" onclick="getProjectsByClient('event', {{$client->id}})"> {{$client->person->name}} </option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group col-5">
-                    <label for="project">Project</label>
-                    <select name="project" id="project" class="custom-select">
-                        <option value="1">Project 1</option>
-                        <option value="2">Project 2</option>
+                    <label for="eventBtnProjectSelect">Project</label>
+                    <select name="eventBtnProjectSelect" id="eventBtnProjectSelect" class="custom-select">
+
                     </select>
                 </div>
                 <div class="form-group col-5">
-                    <label for="view">View</label>
-                    <select name="view" id="view" class="custom-select">
-                        <option value="1">View 1</option>
-                        <option value="2">View 2</option>
+                    <label for="eventBtnViewSelect">View</label>
+                    <select name="eventBtnViewSelect" id="eventBtnViewSelect" class="custom-select">
+
                     </select>
                 </div>
                 <div class="form-group col-5">
@@ -254,32 +248,25 @@
                 <div class="form-group col-4">
                     <label for="client">Client</label>
                     <select name="client" id="client" class="custom-select">
-                        <option value="1">Client 1</option>
-                        <option value="2">Client 2</option>
+                        @foreach ($clients as $client)
+                            <option value="{{$client->id}}" onclick="getProjectsByClient('post', {{$client->id}})"> {{$client->person->name}} </option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group col-4">
-                    <label for="project">Project</label>
-                    <select name="project" id="project" class="custom-select">
-                        <option value="1">Project 1</option>
-                        <option value="2">Project 2</option>
+                    <label for="postBtnProjectSelect">Project</label>
+                    <select name="postBtnProjectSelect" id="postBtnProjectSelect" class="custom-select">
+
                     </select>
                 </div>
                 <div class="form-group col-4">
-                    <label for="view">View</label>
-                    <select name="view" id="view" class="custom-select">
-                        <option value="1">View 1</option>
-                        <option value="2">View 2</option>
+                    <label for="postBtnViewSelect">View</label>
+                    <select name="postBtnViewSelect" id="postBtnViewSelect" class="custom-select">
+
                     </select>
                 </div>
-                <div class="form-group col-6 mt-3">
-                    <label for="user" class="custom-label">User</label>
-                    <select name="user" id="user" class="custom-select">
-                        <option value="1">User 1</option>
-                        <option value="2">User 2</option>
-                    </select>
-                </div>
-                <div class="custom-file col-5 mt-5">
+
+                <div class="custom-file col-10 mt-5">
 
                     <label class="custom-file-label" for="customFile">Add image</label>
                     <input type="file" class="custom-file-input" id="customFile">
