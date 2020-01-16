@@ -4,10 +4,10 @@ var users = '';
 
 getUsers();
 
-userSelect = document.getElementById('taskBtnUserSelect');
+userSelect = document.getElementById('TaskBtnUserSelect');
 users.map(function (user) {
     const templateLiteral = `
-    <option value="1">${user.username}</option>
+    <option value="${user.id}">${user.username}</option>
     `;
 
 
@@ -80,7 +80,99 @@ function getViewsByProject(button, project){
 
 
 
-function taskBtnSave(){
-    var status = document.getElementById('taskBtnStatusSelect').value;
-    console.log(status);
+function saveButton(button){
+    let formData =  {
+            "status": null,
+            "user": null,
+            "client": null,
+            "project": null,
+            "view": null,
+            "message": null,
+            "end_date": null,
+            "template":null,
+            "developer": null,
+            "title": null,
+            "file": null,
+};
+    if(document.getElementById(button+'BtnStatusSelect')){
+        var status = document.getElementById(button+'BtnStatusSelect').value;
+        formData['status'] = status;
+        // console.log('Status: '+status);
+    }
+    if(document.getElementById(button+'BtnUserSelect')){
+        var user = document.getElementById(button+'BtnUserSelect').value
+        formData['user'] = user;
+        //console.log('User: ' + user);
+    }
+
+    if(document.getElementById(button+'BtnClientSelect')){
+        var client = document.getElementById(button+'BtnClientSelect').value
+        formData['client'] = client;
+        //console.log('Client: ' + client);
+    }
+
+    if(document.getElementById(button+'BtnProjectSelect')){
+        var project = document.getElementById(button+'BtnProjectSelect').value
+        formData['project'] = project;
+        //console.log('Project: ' + project);
+    }
+
+    if(document.getElementById(button+'BtnViewSelect')){
+        var view = document.getElementById(button+'BtnViewSelect').value
+        formData['view'] = view;
+        //console.log('View: ' + view);
+    }
+
+    if(document.getElementById(button+'BtnMessage')){
+        var message = document.getElementById(button+'BtnMessage').value
+        formData['message'] = message;
+        //console.log('Message: ' + message);
+    }
+
+    if(document.getElementById(button+'BtnEndDate')){
+        var endDate = document.getElementById(button+'BtnEndDate').value
+        formData['end_date'] = endDate;
+        //console.log('End date: ' + endDate);
+    }
+
+    if(document.getElementById(button+'BtnTemplate')){
+        var template = document.getElementById(button+'BtnTemplate').value
+        formData['template'] = template;
+        //console.log('Template: ' + template);
+    }
+
+    if(document.getElementById(button+'BtnDeveloperSelect')){
+        var developer = document.getElementById(button+'BtnDeveloperSelect').value
+        formData['developer'] = developer;
+        //console.log('Developer: ' + developer);
+    }
+
+    if(document.getElementById(button+'BtnTitle')){
+        var title = document.getElementById(button+'BtnTitle').value
+        formData['title'] = title;
+        //console.log('Title: ' + title);
+    }
+
+    if(document.getElementById(button+'BtnFile')){
+        var file = document.getElementById(button+'BtnFile').value
+        formData['file'] = file;
+        //console.log('File: ' + file);
+    }
+    formData = JSON.stringify(formData);
+    console.log(formData);
+
+    let route = '/add'+button+'/'+ formData;
+    console.log(route);
+    fetch(route)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                console.log(data.status);
+
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+
 }

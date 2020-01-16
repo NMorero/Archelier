@@ -172,4 +172,20 @@ class HomeController extends Controller
         $users = User::all();
         return $users;
     }
+
+
+    public function addReminder($formData){
+
+        $formData = json_decode($formData, true);
+
+        $reminder = new Reminders;
+        $reminder->message = $formData['message'];
+        $reminder->user_id = Auth::id();
+        if(isset($formData['end_date']) && !empty($formData['end_date'])){
+            $reminder->end_date = $formData['end_date'];
+        }
+        $reminder->save();
+
+        return ['status' => 'ok'];
+    }
 }
