@@ -208,5 +208,22 @@ class HomeController extends Controller
     }
 
 
+    function addPost(Request $request){
+
+
+        if(isset($request['PostBtnFile']) && !empty($request['PostBtnFile'])){
+            $imageName = date("Y-m-d"). '-' . time() .'.'. $request['PostBtnFile']->getClientOriginalExtension();
+            $request['PostBtnFile']->move(
+            base_path() . '/public/upload/posts', $imageName
+            );
+            return 'si';
+        }
+
+
+        return 'no';
+
+    }
+
+
 
 }

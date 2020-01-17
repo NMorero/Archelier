@@ -6,7 +6,8 @@ getTasks();
 
 
 
-$('.clientSelectOption').click(function(){
+$('#clientSelect').change(function(){
+    console.log('si');
     var clientoption = document.getElementById('clientSelect').value;
     console.log('value client: ' + clientoption);
     getPosts()
@@ -25,7 +26,7 @@ $('.clientSelectOption').click(function(){
             selectProjects.innerHTML = `<option selected onclick="projectSelect()" value="All">All</option>`;
             data.map(function (project) {
                 const templateLiteral = `
-                <option value="${project.id}" onclick="projectSelect()"> ${project.project_name} </option>
+                <option value="${project.id}" > ${project.project_name} </option>
                 `;
 
 
@@ -40,9 +41,9 @@ $('.clientSelectOption').click(function(){
 
     }else{
         var selectProject = document.getElementById('projectSelect');
-        selectProject.innerHTML = `<option selected onclick="projectSelect()" value="All">All</option>`
+        selectProject.innerHTML = `<option selected  value="All">All</option>`
         var selectView = document.getElementById('viewSelect');
-        selectView.innerHTML = `<option selected onclick="viewSelect()" value="All">All</option>`;
+        selectView.innerHTML = `<option selected  value="All">All</option>`;
         document.getElementById('projectSelect').value='All';
         document.getElementById('projectSelect').disabled = true;
         document.getElementById('viewSelect').value='All';
@@ -51,7 +52,7 @@ $('.clientSelectOption').click(function(){
     }
 });
 
-function projectSelect(){
+$('#projectSelect').change(function(){
     var projectOption = document.getElementById('projectSelect').value;
     console.log('value project: ' + projectOption);
     getPosts()
@@ -92,13 +93,13 @@ function projectSelect(){
         document.getElementById('viewSelect').disabled = true;
 
     }
-}
+});
 
-function viewSelect(){
+$('#viewSelect').change(function(){
     var viewOption = document.getElementById('viewSelect').value;
     console.log('value view: ' + viewOption);
     getPosts()
-}
+});
 
 
 function getPosts(){

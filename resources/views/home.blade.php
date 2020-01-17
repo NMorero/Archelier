@@ -34,7 +34,7 @@ Home
                   <label class="input-group-text" for="projectSelect">Project:</label>
                 </div>
                 <select class="custom-select" id="projectSelect" disabled>
-                    <option selected onclick="projectSelect()" value="All">All</option>
+                    <option selected value="All">All</option>
 
                 </select>
             </div>
@@ -44,7 +44,7 @@ Home
                   <label class="input-group-text" for="viewSelect">View:</label>
                 </div>
                 <select class="custom-select" id="viewSelect" disabled>
-                    <option selected onclick="viewSelect()" value="All">All</option>
+                    <option selected  value="All">All</option>
 
                 </select>
             </div>
@@ -77,7 +77,7 @@ Home
                 <h3 class=" justify-content-between row mb-2"><p class="col-5">Reminders</p></h3>
 
                 <ul class="list-group scroll-reminders text-white p-0 bg-dark rounded" id="remindersBox">
-                    <li class="list-group-item justify-content-around d-flex row reminder-li p-2"><p class="col-8">1</p>     <button class="p-0 btn button-reminder col-1 btn-danger">x</button> </li>
+
                 </ul>
             </div>
 

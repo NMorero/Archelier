@@ -205,7 +205,8 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="row justify-content-between p-2">
+            <form class="row justify-content-between p-2" id="postBtnForm">
+                @csrf
                 <div class="form-group col-12">
                     <label for="PostBtnTitle">Title</label>
                     <input type="text" name="PostBtnTitle" id="PostBtnTitle" class="form-group">
@@ -238,15 +239,16 @@
                 <div class="custom-file col-10 mt-5">
 
                     <label class="custom-file-label" for="PostBtnFile">Add image</label>
-                    <input type="file" class="custom-file-input" id="PostBtnFile">
+                    <input type="file" class="custom-file-input" name="PostBtnFile" id="PostBtnFile">
 
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="closePost" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                  </div>
             </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="closePost" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="saveButton('Post')">Save changes</button>
-        </div>
+
       </div>
     </div>
   </div>

@@ -1,3 +1,44 @@
+$("#postBtnForm").on("submit", function(e){
+    e.preventDefault();
+    console.log('si')
+    var f = $(this);
+    var formData = new FormData(document.getElementById("postBtnForm"));
+    formData.append("dato", "valor");
+    //formData.append(f.attr("name"), $(this)[0].files[0]);
+    $.ajax({
+        url: "/addPost",
+        type: "post",
+        dataType: "html",
+        data: formData,
+        cache: false,
+        contentType: false,
+ processData: false
+    })
+        .done(function(res){
+            console.log(res);
+        });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var users = '';
 
@@ -81,6 +122,7 @@ function getViewsByProject(button, project){
 
 
 function saveButton(button){
+    console.log('si');
     let formData =  {
             "status": null,
             "user": null,

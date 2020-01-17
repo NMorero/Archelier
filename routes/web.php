@@ -38,3 +38,5 @@ Route::get('/getUsers', 'HomeController@getUsers');
 Route::get('/addReminder/{formData}', 'HomeController@addReminder');
 
 Route::get('/addTask/{formData}', 'HomeController@addTask');
+
+Route::post('/addPost', 'HomeController@addPost');
