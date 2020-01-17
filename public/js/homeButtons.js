@@ -16,6 +16,8 @@ $("#postBtnForm").on("submit", function(e){
     })
         .done(function(res){
             console.log(res);
+            getPosts();
+            $("#closePostBtn").click();
         });
 });
 
@@ -71,7 +73,8 @@ function getUsers(){
 
 }
 
-function getProjectsByClient(button, client){
+function getProjectsByClient(button){
+    let client = document.getElementById(button+'BtnClientSelect').value;
     $.ajax({
         url: '/getProjectsByClient/'+client,
 		type: 'get',
@@ -80,10 +83,12 @@ function getProjectsByClient(button, client){
 
             projects = Object.values(data);
             var projectSelect = document.getElementById(button+'BtnProjectSelect');
-            projectSelect.innerHTML = '';
+            projectSelect.innerHTML = `
+            <option value="none">Select..</option>
+            `;
             projects.map(function (project) {
                 const templateLiteral = `
-                <option value="${project.id}" onclick="getViewsByProject('${button}', ${project.id})">${project.project_name}</option>
+                <option value="${project.id}">${project.project_name}</option>
                 `;
 
 
@@ -95,7 +100,8 @@ function getProjectsByClient(button, client){
 
 }
 
-function getViewsByProject(button, project){
+function getViewsByProject(button){
+    let project = document.getElementById(button+'BtnProjectSelect').value;
     $.ajax({
         url: '/getViewsByProject/'+project,
 		type: 'get',
@@ -104,7 +110,9 @@ function getViewsByProject(button, project){
 
             views = Object.values(data);
             var ViewSelect = document.getElementById(button+'BtnViewSelect');
-            ViewSelect.innerHTML = '';
+            ViewSelect.innerHTML = `
+            <option value="none">Select..</option>
+            `;
             views.map(function (view) {
                 const templateLiteral = `
                 <option value="${view.id}">${view.id}</option>
@@ -117,9 +125,6 @@ function getViewsByProject(button, project){
         }
     });
 }
-
-
-
 
 function saveButton(button){
     console.log('si');
@@ -223,3 +228,5 @@ function saveButton(button){
             })
 
 }
+
+

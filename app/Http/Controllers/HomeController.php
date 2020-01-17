@@ -80,8 +80,7 @@ class HomeController extends Controller
 
         foreach($posts as $post){
             $user = User::find($post['user_id']);
-            $person = Persons::find($user['person_id']);
-            $post['user_name'] = $person['name'];
+            $post['user_name'] = $user['username'];
 
 
 
@@ -89,12 +88,6 @@ class HomeController extends Controller
             $post['project_name'] = $project['project_name'];
 
 
-            if(isset($post['view_id']) && !empty($post['view_id'])){
-                $view = Views::find($post['view_id']);
-                $image = Images::find($view['image_id']);
-                $post['image'] = $image['image_route'];
-
-            }
             $date = $post['created_at'];
 
             //Convert the date string into a unix timestamp.
@@ -211,16 +204,32 @@ class HomeController extends Controller
     function addPost(Request $request){
 
 
+
+        $post = new Posts;
+        $post->title = $request['PostBtnTitle'];
+        $post->message = $request['PostBtnMessage'];
+        $post->user_id = Auth::id();
+        $post->client_id = $request['PostBtnClientSelect'];
+        $post->project_id = $request['PostBtnProjectSelect'];
+
+        if(isset($request['PostBtnViewSelect']) && !empty($request['PostBtnViewSelect']) && $request['PostBtnViewSelect'] != 'none'){
+            $post->view_id = $request['PostBtnViewSelect'];
+        }
+
+
         if(isset($request['PostBtnFile']) && !empty($request['PostBtnFile'])){
             $imageName = date("Y-m-d"). '-' . time() .'.'. $request['PostBtnFile']->getClientOriginalExtension();
             $request['PostBtnFile']->move(
             base_path() . '/public/upload/posts', $imageName
             );
-            return 'si';
+
+            $post->image = '/upload/posts/' . $imageName;
+
         }
+        $post->save();
 
+        return 'se cargo el post';
 
-        return 'no';
 
     }
 

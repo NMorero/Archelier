@@ -34,15 +34,15 @@
                 </div>
                 <div class="form-group col-4">
                     <label for="TaskBtnClientSelect">Client</label>
-                    <select name="TaskBtnClientSelect" id="TaskBtnClientSelect" class="custom-select">
+                    <select name="TaskBtnClientSelect" id="TaskBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Task')">
                         @foreach ($clients as $client)
-                            <option value="{{$client->id}}" onclick="getProjectsByClient('Task', {{$client->id}})"> {{$client->person->name}} </option>
+                            <option value="{{$client->id}}" > {{$client->person->name}} </option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group col-4" >
                     <label for="TaskBtnProjectSelect">Project</label>
-                    <select name="TaskBtnProjectSelect" id="TaskBtnProjectSelect" class="custom-select" >
+                    <select name="TaskBtnProjectSelect" id="TaskBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Task')">
 
                     </select>
                 </div>
@@ -84,15 +84,15 @@
                 </div>
                 <div class="form-group col-5">
                     <label for="DeliveryBtnClientSelect">Client</label>
-                    <select name="DeliveryBtnClientSelect" id="DeliveryBtnClientSelect" class="custom-select">
+                    <select name="DeliveryBtnClientSelect" id="DeliveryBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Delivery')">
                         @foreach ($clients as $client)
-                            <option value="{{$client->id}}" onclick="getProjectsByClient('Delivery', {{$client->id}})"> {{$client->person->name}} </option>
+                            <option value="{{$client->id}}" > {{$client->person->name}} </option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group col-5">
                     <label for="DeliveryBtnProjectSelect">Project</label>
-                    <select name="DeliveryBtnProjectSelect" id="DeliveryBtnProjectSelect" class="custom-select">
+                    <select name="DeliveryBtnProjectSelect" id="DeliveryBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Delivery')">
 
                     </select>
                 </div>
@@ -161,15 +161,15 @@
                 </div>
                 <div class="form-group col-5">
                     <label for="EventBtnClientSelect">Client</label>
-                    <select name="EventBtnClientSelect" id="EventBtnClientSelect" class="custom-select">
+                    <select name="EventBtnClientSelect" id="EventBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Event')">
                         @foreach ($clients as $client)
-                            <option value="{{$client->id}}" onclick="getProjectsByClient('Event', {{$client->id}})"> {{$client->person->name}} </option>
+                            <option value="{{$client->id}}"> {{$client->person->name}} </option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group col-5">
                     <label for="EventBtnProjectSelect">Project</label>
-                    <select name="EventBtnProjectSelect" id="EventBtnProjectSelect" class="custom-select">
+                    <select name="EventBtnProjectSelect" id="EventBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Event')">
 
                     </select>
                 </div>
@@ -217,15 +217,15 @@
                 </div>
                 <div class="form-group col-4">
                     <label for="PostBtnClientSelect">Client</label>
-                    <select name="PostBtnClientSelect" id="PostBtnClientSelect" class="custom-select">
+                    <select name="PostBtnClientSelect" id="PostBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Post')">
                         @foreach ($clients as $client)
-                            <option value="{{$client->id}}" onclick="getProjectsByClient('Post', {{$client->id}})"> {{$client->person->name}} </option>
+                            <option value="{{$client->id}}" > {{$client->person->name}} </option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group col-4">
                     <label for="PostBtnProjectSelect">Project</label>
-                    <select name="PostBtnProjectSelect" id="PostBtnProjectSelect" class="custom-select">
+                    <select name="PostBtnProjectSelect" id="PostBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Post')">
 
                     </select>
                 </div>
@@ -243,7 +243,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="closePost" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" id="closePostBtn" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
                   </div>
             </form>
