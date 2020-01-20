@@ -124,29 +124,31 @@ function getViewsByProject(button){
             });
         }
     });
+    if(document.getElementById(button+'BtnTemplateSelect')){
+      $.ajax({
+          url: '/getTemplates',
+      type: 'get',
+          async   : false,
+          success : function(data) {
 
-    $.ajax({
-        url: '/getTemplates',
-		type: 'get',
-        async   : false,
-        success : function(data) {
-
-            templates = Object.values(data);
-            var TemplateSelect = document.getElementById(button+'BtnTemplateSelect');
-            TemplateSelect.innerHTML = `
-            <option value="none">Select..</option>
-            `;
-            templates.map(function (template) {
-                const templateLiteral = `
-                <option value="${template.id}">${template.template_name}</option>
-                `;
+              templates = Object.values(data);
+              var TemplateSelect = document.getElementById(button+'BtnTemplateSelect');
+              TemplateSelect.innerHTML = `
+              <option value="none">Select..</option>
+              `;
+              templates.map(function (template) {
+                  const templateLiteral = `
+                  <option value="${template.id}">${template.template_name}</option>
+                  `;
 
 
-                TemplateSelect.innerHTML = TemplateSelect.innerHTML.concat(templateLiteral);
+                  TemplateSelect.innerHTML = TemplateSelect.innerHTML.concat(templateLiteral);
 
-            });
-        }
-    });
+              });
+          }
+      });
+
+    }
 
 }
 
