@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Clients;
+use App\Deliveries;
+use App\Events;
 use App\Images;
 use App\Persons;
 use App\Posts;
@@ -10,6 +12,7 @@ use App\Projects;
 use App\ProjectViews;
 use App\Reminders;
 use App\Tasks;
+use App\Templates;
 use App\User;
 use App\Views;
 use Carbon\Carbon;
@@ -167,6 +170,12 @@ class HomeController extends Controller
     }
 
 
+    public function getTemplates(){
+      $templates = Templates::all();
+      return $templates;
+    }
+
+
     public function addReminder($formData){
 
         $formData = json_decode($formData, true);
@@ -230,6 +239,52 @@ class HomeController extends Controller
 
         return 'se cargo el post';
 
+
+    }
+
+    function addEvent($formData){
+      $formData = json_decode($formData, true);
+      $event = new Events;
+      $event->message = $formData['message'];
+      $event->end_date = $formData['end_date'];
+
+      if(isset($formData['client']) && !empty($formData['client'])){
+          $event->client_id = $formData['client'];
+      }
+
+      if(isset($formData['project']) && !empty($formData['project'])){
+          $event->project_id = $formData['project'];
+      }
+
+      if(isset($formData['view']) && !empty($formData['view'])){
+          $event->view_id = $formData['view'];
+      }
+
+      $event->save();
+
+      return ['status' => 'ok'];
+
+    }
+
+    function addDelivery($formData){
+      $formData = json_decode($formData, true);
+      $delivery = new Deliveries;
+
+      if(isset($formData['message']) && !empty($formData['message'])){
+            $delivery->comment = $formData['message'];
+      }
+
+      $delivery->client_id = $formData['client'];
+      $delivery->project_id = $formData['project'];
+
+      if(isset($formData['view']) && !empty($formData['view'])){
+          $delivery->view_id = $formData['view'];
+      }
+
+      $delivery->template_id = $formData['template'];
+      $delivery->save();
+
+      return ['status' => 'ok'];
 
     }
 

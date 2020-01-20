@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDeliveryTable extends Migration
+class AddTemplatesToTemplatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateDeliveryTable extends Migration
      */
     public function up()
     {
-        Schema::create('DELIVERIES', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->longText('comment')->nullable();
-            $table->timestamps();
-        });
+      DB::table('TEMPLATES')->insert([
+          ['template_name' => 'Template 1', 'template_route' => 'Ruta 1'],
+          ['message' => 'Template 2', 'template_route' => 'Ruta 2'],
+
+
+      ]);
     }
 
     /**
@@ -27,6 +28,8 @@ class CreateDeliveryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('DELIVERIES');
+        Schema::table('templates', function (Blueprint $table) {
+            //
+        });
     }
 }

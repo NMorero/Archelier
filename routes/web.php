@@ -29,6 +29,8 @@ Route::get('/getPosts/{client}/{project}/{view}', 'HomeController@getPosts');
 
 Route::get('/getReminders', 'HomeController@getReminders');
 
+Route::get('/getTemplates', 'HomeController@getTemplates');
+
 Route::get('/deleteReminder/{id}', 'HomeController@deleteReminder');
 
 Route::get('/getTasks', 'HomeController@getTasks');
@@ -40,3 +42,7 @@ Route::get('/addReminder/{formData}', 'HomeController@addReminder');
 Route::get('/addTask/{formData}', 'HomeController@addTask');
 
 Route::post('/addPost', 'HomeController@addPost');
+
+Route::get('/addEvent/{formData}', 'HomeController@addEvent');
+
+Route::get('/addDelivery/{formData}', 'HomeController@addDelivery');

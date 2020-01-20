@@ -118,7 +118,7 @@ function getPosts(){
             var divPosts = document.getElementById('divPosts');
             divPosts.innerHTML = '';
             data.map(function (post) {
-                if(post.view_id != null){
+                if(post.image != null){
                     const templateLiteral = `
                 <div class="row p-2 border-bottom mb-2">
                 <p class=" col-12 postInfo">Posted by: ${post.user_name} on ${post.date} </p>

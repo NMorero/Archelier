@@ -103,10 +103,9 @@
                     </select>
                 </div>
                 <div class="form-group col-5">
-                    <label for="DeliveryBtnTemplate">Template</label>
-                    <select name="DeliveryBtnTemplate" id="DeliveryBtnTemplate" class="custom-select">
-                        <option value="1">Template 1</option>
-                        <option value="2">Template 2</option>
+                    <label for="DeliveryBtnTemplateSelect">Template</label>
+                    <select name="DeliveryBtnTemplateSelect" id="DeliveryBtnTemplateSelect" class="custom-select">
+                        
                     </select>
                 </div>
 

@@ -124,6 +124,30 @@ function getViewsByProject(button){
             });
         }
     });
+
+    $.ajax({
+        url: '/getTemplates',
+		type: 'get',
+        async   : false,
+        success : function(data) {
+
+            templates = Object.values(data);
+            var TemplateSelect = document.getElementById(button+'BtnTemplateSelect');
+            TemplateSelect.innerHTML = `
+            <option value="none">Select..</option>
+            `;
+            templates.map(function (template) {
+                const templateLiteral = `
+                <option value="${template.id}">${template.template_name}</option>
+                `;
+
+
+                TemplateSelect.innerHTML = TemplateSelect.innerHTML.concat(templateLiteral);
+
+            });
+        }
+    });
+
 }
 
 function saveButton(button){
@@ -182,8 +206,8 @@ function saveButton(button){
         //console.log('End date: ' + endDate);
     }
 
-    if(document.getElementById(button+'BtnTemplate')){
-        var template = document.getElementById(button+'BtnTemplate').value
+    if(document.getElementById(button+'BtnTemplateSelect')){
+        var template = document.getElementById(button+'BtnTemplateSelect').value
         formData['template'] = template;
         //console.log('Template: ' + template);
     }
@@ -228,5 +252,3 @@ function saveButton(button){
             })
 
 }
-
-
