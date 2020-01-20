@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="row" id="taskBtnForm">
+            <form class="row" id="TaskBtnForm">
                 <div class="form-group col-12">
                   <label for="TaskBtnMessage">Message</label>
                   <textarea name="TaskBtnMessage" id="TaskBtnMessage" class="form-control" cols="20" rows="3" ></textarea>
@@ -77,7 +77,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="row">
+            <form class="row" id="DeliveryBtnForm">
                 <div class="form-group col-12">
                     <label for="DeliveryBtnMessage">Comment</label>
                     <textarea name="DeliveryBtnMessage" id="DeliveryBtnMessage" class="form-control" cols="20" rows="3" ></textarea>
@@ -105,7 +105,7 @@
                 <div class="form-group col-5">
                     <label for="DeliveryBtnTemplateSelect">Template</label>
                     <select name="DeliveryBtnTemplateSelect" id="DeliveryBtnTemplateSelect" class="custom-select">
-                        
+
                     </select>
                 </div>
 
@@ -153,7 +153,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="row">
+            <form class="row" id="EventBtnForm">
                 <div class="form-group col-12">
                     <label for="EventBtnMessage">Message</label>
                     <textarea name="EventBtnMessage" id="EventBtnMessage" class="form-control" cols="20" rows="3" ></textarea>
@@ -264,7 +264,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="row">
+            <form class="row" id="ReminderBtnForm">
                 <div class="form-group col-12">
                     <label for="ReminderBtnMessage">Message</label>
                     <textarea name="ReminderBtnMessage" id="ReminderBtnMessage" class="form-control" cols="20" rows="3" ></textarea>

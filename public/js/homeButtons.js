@@ -16,6 +16,7 @@ $("#postBtnForm").on("submit", function(e){
     })
         .done(function(res){
             console.log(res);
+            document.getElementById("postBtnForm").reset();
             getPosts();
             $("#closePostBtn").click();
         });
@@ -241,6 +242,7 @@ function saveButton(button){
                 return response.json();
             })
             .then(function(data){
+              document.getElementById(button+"BtnForm").reset();
                 console.log(data.status);
                 getPosts();
                 getReminders();
