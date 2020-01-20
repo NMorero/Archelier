@@ -44,8 +44,8 @@ class HomeController extends Controller
     }
 
     public function test(){
-        $Posts = Posts::find(1);
-        $vac = compact('Posts');
+        $clients = Clients::all();
+        $vac = compact('clients');
         return view('test', $vac);
     }
 

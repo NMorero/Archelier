@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <header class="header-base p-2 justify-content-between row d-flex">
+    <header class="header-base p-2 justify-content-between row d-none d-lg-flex">
         <nav class="nav col-9">
             <a class="nav-link active   text-white" href="#">Home</a>
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Administration</a>
