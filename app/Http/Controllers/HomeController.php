@@ -63,15 +63,15 @@ class HomeController extends Controller
 
 
         if($client === 'All'){
-            $posts = Posts::all();
+            $posts = Posts::orderBy('id', 'DESC')->get();
         }else{
             if($project === 'All'){
-                $posts = Posts::where('client_id', 'LIKE', $client)->get();
+                $posts = Posts::where('client_id', 'LIKE', $client)->orderBy('id','DESC')->get();
             }else{
                 if($view === 'All'){
-                    $posts = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->get();
+                    $posts = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->orderBy('id','DESC')->get();
                 }else{
-                    $posts = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->where('view_id', 'LIKE', $view)->get();
+                    $posts = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->where('view_id', 'LIKE', $view)->orderBy('id','DESC')->get();
                 }
 
             }
