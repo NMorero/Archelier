@@ -153,7 +153,10 @@ function getViewsByProject(button){
 
 }
 
+
+
 function saveButton(button){
+
     console.log('si');
     let formData =  {
             "status": null,

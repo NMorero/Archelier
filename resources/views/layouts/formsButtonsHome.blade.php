@@ -57,11 +57,12 @@
 
 
               </form>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="closeTask" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" onclick="saveButton('Task')">Save</button>
+              </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="closeTask" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="saveButton('Task')">Save</button>
-        </div>
+
       </div>
     </div>
   </div>
@@ -267,7 +268,7 @@
             <form class="row" id="ReminderBtnForm">
                 <div class="form-group col-12">
                     <label for="ReminderBtnMessage">Message</label>
-                    <textarea name="ReminderBtnMessage" id="ReminderBtnMessage" class="form-control" cols="20" rows="3" required></textarea>
+                    <textarea name="ReminderBtnMessage" id="ReminderBtnMessage" class="form-control" cols="20" rows="3" required ></textarea>
                 </div>
                 <div class="form-group col-4">
                     <label for="ReminderBtnEndDate">End date</label>
