@@ -3,7 +3,7 @@ $("#postBtnForm").on("submit", function(e){
     console.log('si')
     var f = $(this);
     var formData = new FormData(document.getElementById("postBtnForm"));
-    formData.append("dato", "valor");
+    console.log('data:'+formData);
     //formData.append(f.attr("name"), $(this)[0].files[0]);
     $.ajax({
         url: "/addPost",

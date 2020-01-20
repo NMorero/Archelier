@@ -12,11 +12,11 @@
             <form class="row" id="TaskBtnForm">
                 <div class="form-group col-12">
                   <label for="TaskBtnMessage">Message</label>
-                  <textarea name="TaskBtnMessage" id="TaskBtnMessage" class="form-control" cols="20" rows="3" ></textarea>
+                  <textarea name="TaskBtnMessage" id="TaskBtnMessage" class="form-control" cols="20" rows="3" required></textarea>
                 </div>
                 <div class="form-group col-4">
                     <label for="TaskBtnStatusSelect">Status</label>
-                    <select name="TaskBtnStatusSelect" class="custom-select" id="TaskBtnStatusSelect">
+                    <select name="TaskBtnStatusSelect" class="custom-select" id="TaskBtnStatusSelect" required>
                         <option value="1">Ongoing</option>
                         <option value="2">Ready for Test</option>
                         <option value="3">Done</option>
@@ -24,17 +24,17 @@
                 </div>
                 <div class="form-group col-4">
                     <label for="TaskBtnEndDate">End Date</label>
-                    <input type="date" id="TaskBtnEndDate" class="form-control" name="TaskBtnEndDate">
+                    <input type="date" id="TaskBtnEndDate" class="form-control" name="TaskBtnEndDate" required>
                 </div>
                 <div class="form-group col-4">
                     <label for="TaskBtnUserSelect">User</label>
-                    <select name="TaskBtnUserSelect" id="TaskBtnUserSelect" class="custom-select">
+                    <select name="TaskBtnUserSelect" id="TaskBtnUserSelect" class="custom-select" required>
 
                     </select>
                 </div>
                 <div class="form-group col-4">
                     <label for="TaskBtnClientSelect">Client</label>
-                    <select name="TaskBtnClientSelect" id="TaskBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Task')">
+                    <select name="TaskBtnClientSelect" id="TaskBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Task')" required>
                         @foreach ($clients as $client)
                             <option value="{{$client->id}}" > {{$client->person->name}} </option>
                         @endforeach
@@ -42,7 +42,7 @@
                 </div>
                 <div class="form-group col-4" >
                     <label for="TaskBtnProjectSelect">Project</label>
-                    <select name="TaskBtnProjectSelect" id="TaskBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Task')">
+                    <select name="TaskBtnProjectSelect" id="TaskBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Task')" required>
 
                     </select>
                 </div>
@@ -84,7 +84,7 @@
                 </div>
                 <div class="form-group col-5">
                     <label for="DeliveryBtnClientSelect">Client</label>
-                    <select name="DeliveryBtnClientSelect" id="DeliveryBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Delivery')">
+                    <select name="DeliveryBtnClientSelect" id="DeliveryBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Delivery')" required>
                         @foreach ($clients as $client)
                             <option value="{{$client->id}}" > {{$client->person->name}} </option>
                         @endforeach
@@ -92,7 +92,7 @@
                 </div>
                 <div class="form-group col-5">
                     <label for="DeliveryBtnProjectSelect">Project</label>
-                    <select name="DeliveryBtnProjectSelect" id="DeliveryBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Delivery')">
+                    <select name="DeliveryBtnProjectSelect" id="DeliveryBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Delivery')" required
 
                     </select>
                 </div>
@@ -104,7 +104,7 @@
                 </div>
                 <div class="form-group col-5">
                     <label for="DeliveryBtnTemplateSelect">Template</label>
-                    <select name="DeliveryBtnTemplateSelect" id="DeliveryBtnTemplateSelect" class="custom-select">
+                    <select name="DeliveryBtnTemplateSelect" id="DeliveryBtnTemplateSelect" class="custom-select" required>
 
                     </select>
                 </div>
@@ -156,7 +156,7 @@
             <form class="row" id="EventBtnForm">
                 <div class="form-group col-12">
                     <label for="EventBtnMessage">Message</label>
-                    <textarea name="EventBtnMessage" id="EventBtnMessage" class="form-control" cols="20" rows="3" ></textarea>
+                    <textarea name="EventBtnMessage" id="EventBtnMessage" class="form-control" cols="20" rows="3" required></textarea>
                 </div>
                 <div class="form-group col-5">
                     <label for="EventBtnClientSelect">Client</label>
@@ -180,7 +180,7 @@
                 </div>
                 <div class="form-group col-5">
                     <label for="EventBtnEndDate">End date</label>
-                    <input type="date" name="EventBtnEndDate" id="EventBtnEndDate" class="form-control">
+                    <input type="date" name="EventBtnEndDate" id="EventBtnEndDate" class="form-control" required>
                 </div>
 
             </form>
@@ -208,15 +208,15 @@
                 @csrf
                 <div class="form-group col-12">
                     <label for="PostBtnTitle">Title</label>
-                    <input type="text" name="PostBtnTitle" id="PostBtnTitle" class="form-group">
+                    <input type="text" name="PostBtnTitle" id="PostBtnTitle" class="form-group" required>
                 </div>
                 <div class="form-group col-12">
                     <label for="PostBtnMessage">Message</label>
-                    <textarea name="PostBtnMessage" id="PostBtnMessage" class="form-control" cols="20" rows="3" ></textarea>
+                    <textarea name="PostBtnMessage" id="PostBtnMessage" class="form-control" cols="20" rows="3" required></textarea>
                 </div>
                 <div class="form-group col-4">
                     <label for="PostBtnClientSelect">Client</label>
-                    <select name="PostBtnClientSelect" id="PostBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Post')">
+                    <select name="PostBtnClientSelect" id="PostBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Post')" required>
                         @foreach ($clients as $client)
                             <option value="{{$client->id}}" > {{$client->person->name}} </option>
                         @endforeach
@@ -224,7 +224,7 @@
                 </div>
                 <div class="form-group col-4">
                     <label for="PostBtnProjectSelect">Project</label>
-                    <select name="PostBtnProjectSelect" id="PostBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Post')">
+                    <select name="PostBtnProjectSelect" id="PostBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Post')" required>
 
                     </select>
                 </div>
@@ -267,7 +267,7 @@
             <form class="row" id="ReminderBtnForm">
                 <div class="form-group col-12">
                     <label for="ReminderBtnMessage">Message</label>
-                    <textarea name="ReminderBtnMessage" id="ReminderBtnMessage" class="form-control" cols="20" rows="3" ></textarea>
+                    <textarea name="ReminderBtnMessage" id="ReminderBtnMessage" class="form-control" cols="20" rows="3" required></textarea>
                 </div>
                 <div class="form-group col-4">
                     <label for="ReminderBtnEndDate">End date</label>

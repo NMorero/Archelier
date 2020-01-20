@@ -158,7 +158,7 @@ Home
 
 
 
-    <main class="container-fluid row mt-2 pr-0 d-lg-flex d-none">
+    <main class="container-fluid row mt-2 pr-0 d-lg-flex d-none" id="mainLG">
         {{-- Primer Seccion ( Filtros ) --}}
         <div class="col-2">
             {{-- inicio --}}
@@ -247,11 +247,13 @@ Home
 @section('scripts')
 <script type="text/javascript">
 if (window.matchMedia("(max-width: 700px)").matches) {
-console.log('menor a 700');
+
+  document.getElementById('mainLG').innerHTML = '';
+
 } else {
   document.getElementById('headerMobile').innerHTML = '';
   document.getElementById('mainMobile').innerHTML = '';
-console.log('mayor a 700');
+
 }
 </script>
 
