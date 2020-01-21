@@ -14,7 +14,7 @@
                   <label for="TaskBtnMessage" class="text-muted">Message</label>
                   <textarea name="TaskBtnMessage" id="TaskBtnMessage" class="form-control" cols="20" rows="3" required></textarea>
                 </div>
-                <div class="form-group col-4">
+                <div class="form-group col-6">
                     <label for="TaskBtnStatusSelect" class="text-muted">Status</label>
                     <select name="TaskBtnStatusSelect" class="custom-select" id="TaskBtnStatusSelect" required>
                         <option value="1">Ongoing</option>
@@ -22,17 +22,17 @@
                         <option value="3">Done</option>
                     </select>
                 </div>
-                <div class="form-group col-4">
+                <div class="form-group col-6">
                     <label for="TaskBtnEndDate" class="text-muted">End Date</label>
                     <input type="date" id="TaskBtnEndDate" class="form-control" name="TaskBtnEndDate" required>
                 </div>
-                <div class="form-group col-4">
+                <div class="form-group col-6">
                     <label for="TaskBtnUserSelect" class="text-muted">User</label>
                     <select name="TaskBtnUserSelect" id="TaskBtnUserSelect" class="custom-select" required>
 
                     </select>
                 </div>
-                <div class="form-group col-4">
+                <div class="form-group col-6">
                     <label for="TaskBtnClientSelect" class="text-muted">Client</label>
                     <select name="TaskBtnClientSelect" id="TaskBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Task')" required>
                         @foreach ($clients as $client)
@@ -40,14 +40,14 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group col-4" >
+                <div class="form-group col-6" >
                     <label for="TaskBtnProjectSelect" class="text-muted">Project</label>
                     <select name="TaskBtnProjectSelect" id="TaskBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Task')" required>
 
                     </select>
                 </div>
 
-                <div class="form-group col-4" >
+                <div class="form-group col-6" >
                     <label for="TaskBtnViewSelect" class="text-muted">View</label>
                     <select name="TaskBtnViewSelect" id="TaskBtnViewSelect" class="custom-select" >
 
@@ -275,7 +275,7 @@
                     <label for="ReminderBtnMessage" class="text-muted">Message</label>
                     <textarea name="ReminderBtnMessage" id="ReminderBtnMessage" class="form-control" cols="20" rows="3" required ></textarea>
                 </div>
-                <div class="form-group col-4">
+                <div class="form-group col-6">
                     <label for="ReminderBtnEndDate" class="text-muted">End date</label>
                     <input type="date" id="ReminderBtnEndDate" name="end_date" class="form-control">
                 </div>
