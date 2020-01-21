@@ -11,4 +11,14 @@ class Events extends Model
     protected $fillable = [
       'message', 'end_date', 'client_id', 'project_id', 'view_id'
     ];
+
+
+    public function client(){
+      return $this->belongsTo('App\Clients', 'client_id');
+    }
+
+    public function project(){
+      return $this->belongsTo('App\Projects', 'project_id');
+    }
+
 }

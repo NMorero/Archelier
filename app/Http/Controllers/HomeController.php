@@ -93,7 +93,7 @@ class HomeController extends Controller
 
             $date = $post['created_at'];
 
-          
+
             $date = date('h-m-d',strtotime($post['created_at']));
             //Print out the day that our date fell on.
             $post['date'] = $date;
@@ -119,6 +119,7 @@ class HomeController extends Controller
 
     public function getTasks(){
         $tasksDB = Tasks::all();
+        $events = Events::all();
         $tasks = [];
         $dates = [];
 
@@ -132,6 +133,13 @@ class HomeController extends Controller
             }
         }
 
+
+        foreach ($events as $event) {
+          $event['client'] = $event->client;
+          $event['project'] = $event->project;
+        }
+
+
         foreach($dates as $date){
 
             $dateInfo = $date;
@@ -144,15 +152,25 @@ class HomeController extends Controller
 
             $tasks[$date]['day'] = $dayOfWeek . ' ' . $day;
             $tasks[$date]['projects'] = [];
+            $tasks[$date]['events'] = [];
         }
+
         foreach($tasksDB as $taskDB){
             $endDate = $taskDB->end_date;
 
             if (array_key_exists($endDate, $tasks)) {
                 array_push($tasks[$endDate]['projects'], $taskDB);
             }
+
+
         }
 
+        foreach ($events as $event) {
+          $endDateEvent = $event->end_date;
+          if (array_key_exists($endDateEvent, $tasks)) {
+              array_push($tasks[$endDateEvent]['events'], $event);
+          }
+        }
 
         return $tasks;
     }
