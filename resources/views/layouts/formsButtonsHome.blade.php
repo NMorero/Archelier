@@ -9,13 +9,13 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="row" id="TaskBtnForm">
+            <form class="row" id="TaskBtnForm" >
                 <div class="form-group col-12">
-                  <label for="TaskBtnMessage">Message</label>
+                  <label for="TaskBtnMessage" class="text-muted">Message</label>
                   <textarea name="TaskBtnMessage" id="TaskBtnMessage" class="form-control" cols="20" rows="3" required></textarea>
                 </div>
                 <div class="form-group col-4">
-                    <label for="TaskBtnStatusSelect">Status</label>
+                    <label for="TaskBtnStatusSelect" class="text-muted">Status</label>
                     <select name="TaskBtnStatusSelect" class="custom-select" id="TaskBtnStatusSelect" required>
                         <option value="1">Ongoing</option>
                         <option value="2">Ready for Test</option>
@@ -23,17 +23,17 @@
                     </select>
                 </div>
                 <div class="form-group col-4">
-                    <label for="TaskBtnEndDate">End Date</label>
+                    <label for="TaskBtnEndDate" class="text-muted">End Date</label>
                     <input type="date" id="TaskBtnEndDate" class="form-control" name="TaskBtnEndDate" required>
                 </div>
                 <div class="form-group col-4">
-                    <label for="TaskBtnUserSelect">User</label>
+                    <label for="TaskBtnUserSelect" class="text-muted">User</label>
                     <select name="TaskBtnUserSelect" id="TaskBtnUserSelect" class="custom-select" required>
 
                     </select>
                 </div>
                 <div class="form-group col-4">
-                    <label for="TaskBtnClientSelect">Client</label>
+                    <label for="TaskBtnClientSelect" class="text-muted">Client</label>
                     <select name="TaskBtnClientSelect" id="TaskBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Task')" required>
                         @foreach ($clients as $client)
                             <option value="{{$client->id}}" > {{$client->person->name}} </option>
@@ -41,26 +41,26 @@
                     </select>
                 </div>
                 <div class="form-group col-4" >
-                    <label for="TaskBtnProjectSelect">Project</label>
+                    <label for="TaskBtnProjectSelect" class="text-muted">Project</label>
                     <select name="TaskBtnProjectSelect" id="TaskBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Task')" required>
 
                     </select>
                 </div>
 
                 <div class="form-group col-4" >
-                    <label for="TaskBtnViewSelect">View</label>
+                    <label for="TaskBtnViewSelect" class="text-muted">View</label>
                     <select name="TaskBtnViewSelect" id="TaskBtnViewSelect" class="custom-select" >
 
                     </select>
                 </div>
 
 
-
+                <div class="modal-footer col-12">
+                  <button type="button" class="btn btn-secondary" id="closeTask" data-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn btn-primary" >Done</button>
+                </div>
               </form>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="closeTask" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" onclick="saveButton('Task')">Save</button>
-              </div>
+
         </div>
 
       </div>
@@ -80,11 +80,11 @@
         <div class="modal-body">
             <form class="row" id="DeliveryBtnForm">
                 <div class="form-group col-12">
-                    <label for="DeliveryBtnMessage">Comment</label>
+                    <label for="DeliveryBtnMessage" class="text-muted">Comment</label>
                     <textarea name="DeliveryBtnMessage" id="DeliveryBtnMessage" class="form-control" cols="20" rows="3" ></textarea>
                 </div>
                 <div class="form-group col-5">
-                    <label for="DeliveryBtnClientSelect">Client</label>
+                    <label for="DeliveryBtnClientSelect" class="text-muted">Client</label>
                     <select name="DeliveryBtnClientSelect" id="DeliveryBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Delivery')" required>
                         @foreach ($clients as $client)
                             <option value="{{$client->id}}" > {{$client->person->name}} </option>
@@ -92,30 +92,32 @@
                     </select>
                 </div>
                 <div class="form-group col-5">
-                    <label for="DeliveryBtnProjectSelect">Project</label>
+                    <label for="DeliveryBtnProjectSelect" class="text-muted">Project</label>
                     <select name="DeliveryBtnProjectSelect" id="DeliveryBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Delivery')" required
 
                     </select>
                 </div>
                 <div class="form-group col-5">
-                    <label for="DeliveryBtnViewSelect">View</label>
+                    <label for="DeliveryBtnViewSelect" class="text-muted">View</label>
                     <select name="DeliveryBtnViewSelect" id="DeliveryBtnViewSelect" class="custom-select">
 
                     </select>
                 </div>
                 <div class="form-group col-5">
-                    <label for="DeliveryBtnTemplateSelect">Template</label>
+                    <label for="DeliveryBtnTemplateSelect" class="text-muted">Template</label>
                     <select name="DeliveryBtnTemplateSelect" id="DeliveryBtnTemplateSelect" class="custom-select" required>
 
                     </select>
                 </div>
 
+                <div class="modal-footer col-12">
+                  <button type="button" class="btn btn-secondary" id="closeDelivery" data-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn btn-primary" >Done</button>
+                </div>
+
             </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="closeDelivery" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="saveButton('Delivery')">Save changes</button>
-        </div>
+
       </div>
     </div>
   </div>
@@ -126,7 +128,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header bg-info">
-          <h5 class="modal-title" id="modalFeedbackLabel">New Feedback</h5>
+          <h5 class="modal-title" id="modalFeedbackLabel" >New Feedback</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -135,8 +137,8 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" >Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" >Done</button>
         </div>
       </div>
     </div>
@@ -156,11 +158,11 @@
         <div class="modal-body">
             <form class="row" id="EventBtnForm">
                 <div class="form-group col-12">
-                    <label for="EventBtnMessage">Message</label>
+                    <label for="EventBtnMessage" class="text-muted">Message</label>
                     <textarea name="EventBtnMessage" id="EventBtnMessage" class="form-control" cols="20" rows="3" required></textarea>
                 </div>
                 <div class="form-group col-5">
-                    <label for="EventBtnClientSelect">Client</label>
+                    <label for="EventBtnClientSelect" class="text-muted">Client</label>
                     <select name="EventBtnClientSelect" id="EventBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Event')">
                         @foreach ($clients as $client)
                             <option value="{{$client->id}}"> {{$client->person->name}} </option>
@@ -168,28 +170,28 @@
                     </select>
                 </div>
                 <div class="form-group col-5">
-                    <label for="EventBtnProjectSelect">Project</label>
+                    <label for="EventBtnProjectSelect" class="text-muted">Project</label>
                     <select name="EventBtnProjectSelect" id="EventBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Event')">
 
                     </select>
                 </div>
                 <div class="form-group col-5">
-                    <label for="EventBtnViewSelect">View</label>
+                    <label for="EventBtnViewSelect" class="text-muted">View</label>
                     <select name="EventBtnViewSelect" id="EventBtnViewSelect" class="custom-select">
 
                     </select>
                 </div>
                 <div class="form-group col-5">
-                    <label for="EventBtnEndDate">End date</label>
+                    <label for="EventBtnEndDate" class="text-muted">End date</label>
                     <input type="date" name="EventBtnEndDate" id="EventBtnEndDate" class="form-control" required>
                 </div>
-
+                <div class="modal-footer col-12">
+                  <button type="button" class="btn btn-secondary" id="closeEvent" data-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn btn-primary" >Done</button>
+                </div>
             </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="closeEvent" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="saveButton('Event')">Save changes</button>
-        </div>
+
       </div>
     </div>
   </div>
@@ -208,15 +210,15 @@
             <form class="row justify-content-between p-2" id="postBtnForm">
                 @csrf
                 <div class="form-group col-12">
-                    <label for="PostBtnTitle">Title</label>
-                    <input type="text" name="PostBtnTitle" id="PostBtnTitle" class="form-group" required>
+                    <label for="PostBtnTitle" class="text-muted">Title</label>
+                    <input type="text" name="PostBtnTitle" id="PostBtnTitle" class="form-control" required>
                 </div>
                 <div class="form-group col-12">
-                    <label for="PostBtnMessage">Message</label>
+                    <label for="PostBtnMessage" class="text-muted">Message</label>
                     <textarea name="PostBtnMessage" id="PostBtnMessage" class="form-control" cols="20" rows="3" required></textarea>
                 </div>
                 <div class="form-group col-4">
-                    <label for="PostBtnClientSelect">Client</label>
+                    <label for="PostBtnClientSelect" class="text-muted">Client</label>
                     <select name="PostBtnClientSelect" id="PostBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Post')" required>
                         @foreach ($clients as $client)
                             <option value="{{$client->id}}" > {{$client->person->name}} </option>
@@ -224,27 +226,30 @@
                     </select>
                 </div>
                 <div class="form-group col-4">
-                    <label for="PostBtnProjectSelect">Project</label>
+                    <label for="PostBtnProjectSelect" class="text-muted">Project</label>
                     <select name="PostBtnProjectSelect" id="PostBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Post')" required>
 
                     </select>
                 </div>
                 <div class="form-group col-4">
-                    <label for="PostBtnViewSelect">View</label>
+                    <label for="PostBtnViewSelect"class="text-muted">View</label>
                     <select name="PostBtnViewSelect" id="PostBtnViewSelect" class="custom-select">
 
                     </select>
                 </div>
 
-                <div class="custom-file col-10 mt-5">
-
-                    <label class="custom-file-label" for="PostBtnFile">Add image</label>
+                <div class="form-group col-12">
+                  <div class="custom-file col-12 px-5">
                     <input type="file" class="custom-file-input" name="PostBtnFile" id="PostBtnFile">
-
+                    <label class="custom-file-label text-muted" for="PostBtnFile">Choose file</label>
+                  </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="closePostBtn" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+
+
+
+                <div class="modal-footer col-12">
+                    <button type="button" class="btn btn-secondary" id="closePostBtn" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Done</button>
                   </div>
             </form>
         </div>
@@ -267,20 +272,20 @@
         <div class="modal-body">
             <form class="row" id="ReminderBtnForm">
                 <div class="form-group col-12">
-                    <label for="ReminderBtnMessage">Message</label>
+                    <label for="ReminderBtnMessage" class="text-muted">Message</label>
                     <textarea name="ReminderBtnMessage" id="ReminderBtnMessage" class="form-control" cols="20" rows="3" required ></textarea>
                 </div>
                 <div class="form-group col-4">
-                    <label for="ReminderBtnEndDate">End date</label>
+                    <label for="ReminderBtnEndDate" class="text-muted">End date</label>
                     <input type="date" id="ReminderBtnEndDate" name="end_date" class="form-control">
                 </div>
-
+                <div class="modal-footer col-12">
+                  <button type="button" class="btn btn-secondary" id="closeReminder" data-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn btn-primary" >Done</button>
+                </div>
             </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="closeReminder" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="saveButton('Reminder')">Save changes</button>
-        </div>
+
       </div>
     </div>
   </div>

@@ -14,8 +14,8 @@ class AddClientsToClientsTable extends Migration
     public function up()
     {
         DB::table('CLIENTS')->insert([
-            ['type' => 'freelance', 'person_id' => 1],
-            ['type' => 'freelance', 'person_id' => 2]
+            ['type' => 'freelance', 'person_id' => 1, 'client_name' => 'FALCONER'],
+            ['type' => 'freelance', 'person_id' => 2, 'client_name' => 'LUCAS']
 
         ]);
     }

@@ -120,12 +120,11 @@ function getPosts(){
             data.map(function (post) {
                 if(post.image != null){
                     const templateLiteral = `
-                <div class="row p-2 border-bottom mb-2">
-                <p class=" col-12 postInfo">Posted by: ${post.user_name} on ${post.date} </p>
-                <span class="postTitle mb-2 col-12">${post.title}</span>
-                <span class="postMessage mb-2 col-12">${post.message}</span>
+                <div class="row border-bottom">
+                <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
+                <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
                 <img src="${post.image}" class="postImage" alt="">
-                <p class="postFooter">Project: ${post.project_name}   Client: ${post.client_id} View: ${post.view_id}</p>
+
 
             </div>
                 `;
@@ -133,11 +132,10 @@ function getPosts(){
 
                 }else{
                     const templateLiteral = `
-                <div class="row p-2 border-bottom mb-2">
-                <p class=" col-12 postInfo">Posted by: ${post.user_name} on ${post.date} </p>
-                <span class="postTitle mb-2 col-12">${post.title}</span>
-                <span class="postMessage mb-2 col-12">${post.message}</span>
-                <p class="postFooter">Project: ${post.project_name}   Client: ${post.client_id} </p>
+                <div class="row border-bottom">
+                <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
+                <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
+
 
             </div>
                 `;
@@ -230,17 +228,16 @@ function getTasks(){
                     i++;
 
                     const templateLiteral = `
-                        <thead class="thead today" id="taskDay${i}">
-                            <tr class="table-secondary">
-                                <th scope"col"></th>
-                                <th scope="col">${tasks.day}</th>
-                            </tr>
-                        </thead>
+                        <div class="row px-2 mb-1">
+                            <h6 class="col-12 text-right">${tasks.day}</h6>
+                            <div class="col-12" id="tasks${i}">
+                            </div>
+                        </div>
                     `;
                     tasksBox.innerHTML = tasksBox.innerHTML.concat(templateLiteral);
 
                     tasks.projects.map(function (task) {
-
+                      let tasksBox2 = document.getElementById('tasks'+i);
                         if(task.status == 'ongoing'){
                             var color = 'warning';
                         }else if(task.status == 'done'){
@@ -253,30 +250,12 @@ function getTasks(){
 
 
                         const templateLiteral = `
-                        <tbody>
-                            <tr class="clickable table-${color}" data-toggle="collapse" data-target="#group-of-rows-${task.id}" aria-expanded="false" aria-controls="group-of-rows-${task.id}">
-                                <td>•</td>
-                                <td>${task.user.username}</td>
-
-                            </tr>
-                        </tbody>
-                        <tbody id="group-of-rows-${task.id}" class="collapse">
-                            <tr>
-                                <td>Message:</td>
-                                <td>${task.message}</td>
-                            </tr>
-                            <tr>
-                                <td>Project:</td>
-                                <td>${task.project.project_name}</td>
-                            </tr>
-                            <tr>
-                                <td>Client:</td>
-                                <td>${task.client.person.name}</td>
-
-                            </tr>
-                    </tbody>
+                        <div class="row border-bottom">
+                            <p class="taskMessage col-12 mb-1">${task.message}</p>
+                            <p class="taskFooter text-right col-12">${task.client.client_name} // ${task.project.project_name} // ${task.user.username}</p>
+                        </div>
                         `;
-                    tasksBox.innerHTML = tasksBox.innerHTML.concat(templateLiteral);
+                    tasksBox2.innerHTML = tasksBox2.innerHTML.concat(templateLiteral);
 
                     });
 

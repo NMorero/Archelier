@@ -93,16 +93,10 @@ class HomeController extends Controller
 
             $date = $post['created_at'];
 
-            //Convert the date string into a unix timestamp.
-            $unixTimestamp = strtotime($date);
-
-            //Get the day of the week using PHP's date function.
-            $dayOfWeek = date("l", $unixTimestamp);
-
-            $day = date('d', strtotime($post['created_at']));
-            $time = date('H:i', strtotime($post['created_at']));
+          
+            $date = date('h-m-d',strtotime($post['created_at']));
             //Print out the day that our date fell on.
-            $post['date'] = $dayOfWeek . ' '.  $day  . ' - ' . $time;
+            $post['date'] = $date;
 
         }
         return $posts;
@@ -201,7 +195,8 @@ class HomeController extends Controller
         $task->user_id = $formData['user'];
         $task->project_id = $formData['project'];
         $task->client_id = $formData['client'];
-        if(isset($formData['view']) && !empty($formData['view'])){
+
+        if(isset($formData['view']) && !empty($formData['view'])) {
             $task->view_id = $formData['view'];
         }
         $task->save();

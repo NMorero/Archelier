@@ -85,7 +85,7 @@ function getProjectsByClient(button){
             projects = Object.values(data);
             var projectSelect = document.getElementById(button+'BtnProjectSelect');
             projectSelect.innerHTML = `
-            <option value="none">Select..</option>
+            <option value="">Select..</option>
             `;
             projects.map(function (project) {
                 const templateLiteral = `
@@ -103,28 +103,32 @@ function getProjectsByClient(button){
 
 function getViewsByProject(button){
     let project = document.getElementById(button+'BtnProjectSelect').value;
-    $.ajax({
-        url: '/getViewsByProject/'+project,
-		type: 'get',
-        async   : false,
-        success : function(data) {
 
-            views = Object.values(data);
-            var ViewSelect = document.getElementById(button+'BtnViewSelect');
-            ViewSelect.innerHTML = `
-            <option value="none">Select..</option>
-            `;
-            views.map(function (view) {
-                const templateLiteral = `
-                <option value="${view.id}">${view.id}</option>
-                `;
+    if(document.getElementById(button+'BtnViewSelect')){
+      $.ajax({
+          url: '/getViewsByProject/'+project,
+  		type: 'get',
+          async   : false,
+          success : function(data) {
+
+              views = Object.values(data);
+              var ViewSelect = document.getElementById(button+'BtnViewSelect');
+              ViewSelect.innerHTML = `
+              <option value="">Select..</option>
+              `;
+              views.map(function (view) {
+                  const templateLiteral = `
+                  <option value="${view.id}">${view.id}</option>
+                  `;
 
 
-                ViewSelect.innerHTML = ViewSelect.innerHTML.concat(templateLiteral);
+                  ViewSelect.innerHTML = ViewSelect.innerHTML.concat(templateLiteral);
 
-            });
-        }
-    });
+              });
+          }
+      });
+    }
+
     if(document.getElementById(button+'BtnTemplateSelect')){
       $.ajax({
           url: '/getTemplates',
@@ -135,7 +139,7 @@ function getViewsByProject(button){
               templates = Object.values(data);
               var TemplateSelect = document.getElementById(button+'BtnTemplateSelect');
               TemplateSelect.innerHTML = `
-              <option value="none">Select..</option>
+              <option value="">Select..</option>
               `;
               templates.map(function (template) {
                   const templateLiteral = `
@@ -152,6 +156,32 @@ function getViewsByProject(button){
     }
 
 }
+
+
+
+
+$("#TaskBtnForm").submit(function(e){
+    e.preventDefault();
+    saveButton('Task');
+});
+
+$("#DeliveryBtnForm").submit(function(e){
+    e.preventDefault();
+    saveButton('Delivery');
+});
+
+$("#ReminderBtnForm").submit(function(e){
+    e.preventDefault();
+    saveButton('Reminder');
+});
+
+$("#EventBtnForm").submit(function(e){
+    e.preventDefault();
+    saveButton('Event');
+});
+
+
+
 
 
 
@@ -196,8 +226,11 @@ function saveButton(button){
 
     if(document.getElementById(button+'BtnViewSelect')){
         var view = document.getElementById(button+'BtnViewSelect').value
-        formData['view'] = view;
-        //console.log('View: ' + view);
+        if (view != null){
+          formData['view'] = view;
+          //console.log('View: ' + view);
+        }
+
     }
 
     if(document.getElementById(button+'BtnMessage')){

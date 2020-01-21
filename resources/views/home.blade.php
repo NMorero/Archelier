@@ -37,7 +37,7 @@ Home
                       <button class="btn btn-info m-1 col-12 button-actions dropdown-item" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
                       <button class="btn btn-info m-1 col-12 button-actions dropdown-item" data-toggle="modal" data-target="#modalFeedback">Feedback</button>
                       <button class="btn btn-info m-1 col-12 button-actions dropdown-item" data-toggle="modal" data-target="#modalEvent">Event</button>
-                      <button class="btn btn-info m-1 col-12 button-actions dropdown-item" data-toggle="modal" data-target="#modalPosts">New Post</button>
+                      <button class="btn btn-info m-1 col-12 button-actions dropdown-item" data-toggle="modal" data-target="#modalPosts">Post</button>
                       <button class="btn btn-info m-1 col-12 button-actions dropdown-item" data-toggle="modal" data-target="#modalReminder">Reminder</button>
                     </div>
                     <a class="col-8 mb-2 btn text-white" href="/home" tabindex="-1" aria-disabled="true">Home</a>
@@ -214,7 +214,7 @@ Home
                 <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
                 <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalFeedback">Feedback</button>
                 <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalEvent">Event</button>
-                <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalPosts">New Post</button>
+                <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalPosts">Post</button>
                 <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalReminder">Reminder</button>
 
             </div>
@@ -230,10 +230,8 @@ Home
         </div>
 
 
-        <div class="scrollable col-2 p-0">
-            <table class="table table-sm p1 " id="tasksBox">
+        <div class="scrollable col-2 p-0" id="tasksBox">
 
-            </table>
         </div>
 
 

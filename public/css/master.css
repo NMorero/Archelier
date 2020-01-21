@@ -59,35 +59,44 @@ body{
 .scrollable {
     height:85vh;
     overflow-y: scroll;
+    overflow-x: hidden;
+    word-break: break-all;
   }
 
 
 .postInfo{
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
+    font-size: 10px;
+    font-style: italic;
 }
 
-.postTitle{
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: small;
-}
+
 
 .postMessage{
     font-family: sans-serif;
-    font-size: x-small;
-    line-height: 1.5;
+    font-size: 12px;
+    line-height: 1.1;
 }
 
-.postFooter{
-    font-family: sans-serif;
-    font-size: xx-small;
-    font-weight: bold;
-}
+
 
 .postImage{
   width: 100%;
 }
+
+
+.taskMessage{
+  font-family: sans-serif;
+  font-size: 13px;
+}
+
+.taskFooter{
+  font-family: sans-serif;
+  font-size: 8px;
+  text-transform: uppercase;
+}
+
+
 
 @media (max-width: 700px) {
   .scrollable {
