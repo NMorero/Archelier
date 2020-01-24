@@ -12,8 +12,10 @@ $("#postBtnForm").on("submit", function(e){
         data: formData,
         cache: false,
         contentType: false,
+
  processData: false
     })
+
         .done(function(res){
             console.log(res);
             document.getElementById("postBtnForm").reset();

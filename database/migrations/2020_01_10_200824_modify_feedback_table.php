@@ -18,7 +18,7 @@ class ModifyFeedbackTable extends Migration
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('CLIENTS');
 
-            $table->unsignedBigInteger('project_id')->nullable();
+            $table->unsignedBigInteger('project_id');
             $table->foreign('project_id')->references('id')->on('PROJECTS');
 
             $table->unsignedBigInteger('view_id')->nullable();

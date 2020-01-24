@@ -46,3 +46,11 @@ Route::post('/addPost', 'HomeController@addPost');
 Route::get('/addEvent/{formData}', 'HomeController@addEvent');
 
 Route::get('/addDelivery/{formData}', 'HomeController@addDelivery');
+
+Route::get('/feedback/create', 'FeedbackController@create');
+
+Route::post('/addFeedback', 'FeedbackController@addFeedback');
+
+Route::get('/feedback/getProjectsByClient/{client}', 'HomeController@getProjectsByClient');
+
+Route::get('/feedback/getViewsByProject/{project}', 'HomeController@getViewsByProject');

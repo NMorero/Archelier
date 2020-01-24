@@ -16,6 +16,7 @@ class CreateFeedbacksTable extends Migration
         Schema::create('FEEDBACKS', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->longText('message');
+            $table->string('image');
             $table->timestamps();
         });
     }
