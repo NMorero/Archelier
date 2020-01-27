@@ -118,8 +118,8 @@ class HomeController extends Controller
 
 
     public function getTasks(){
-        $tasksDB = Tasks::all();
-        $events = Events::all();
+        $tasksDB = Tasks::orderBy('end_date')->get();
+        $events = Events::orderBy('end_date')->get();
         $tasks = [];
         $dates = [];
 
@@ -137,7 +137,24 @@ class HomeController extends Controller
         foreach ($events as $event) {
           $event['client'] = $event->client;
           $event['project'] = $event->project;
+            $endDate = $event->end_date;
+          if (!array_key_exists($endDate, $dates)) {
+            array_push($dates, $endDate);
         }
+        }
+
+        $compare_function = function($a,$b) {
+
+            $a_timestamp = strtotime($a); // convert a (string) date/time to a (int) timestamp
+            $b_timestamp = strtotime($b);
+
+            // new feature in php 7
+            return $a_timestamp <=> $b_timestamp;
+
+                    };
+        usort($dates, $compare_function);
+
+
 
 
         foreach($dates as $date){
@@ -231,6 +248,7 @@ class HomeController extends Controller
         $post->title = $request['PostBtnTitle'];
         $post->message = $request['PostBtnMessage'];
         $post->user_id = Auth::id();
+        $post->type = 'post';
         $post->client_id = $request['PostBtnClientSelect'];
         $post->project_id = $request['PostBtnProjectSelect'];
 

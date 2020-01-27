@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Clients;
 use Illuminate\Http\Request;
 use App\Feedbacks;
+use App\Posts;
+use Illuminate\Support\Facades\Auth;
+
 class FeedbackController extends Controller
 {
     public function create(){
@@ -29,11 +32,25 @@ class FeedbackController extends Controller
     $feedback->message = json_encode($request['comments']);
     $feedback->client_id = $request['client'];
     $feedback->project_id = $request['project'];
-    if(isset($request['view']) && $request['view'] != 'All'){
+    if(isset($request['view']) && $request['view'] != 'none'){
         $feedback->view_id = $request['view'];
     }
     $feedback->image = $file;
     $feedback->save();
+
+    $post = new Posts();
+
+    $post->title = 'New Feedback';
+    $post->message = ' ';
+    $post->image = $file;
+    $post->user_id = Auth::id();
+    $post->client_id = $request['client'];
+    $post->project_id = $request['project'];
+    $post->type = 'feedback';
+    if(isset($request['view']) && $request['view'] != 'none'){
+        $post->view_id = $request['view'];
+    }
+    $post->save();
 
 
         return ['status' => 'ok'];

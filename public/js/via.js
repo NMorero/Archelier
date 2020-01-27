@@ -399,6 +399,9 @@ function _via_init_mouse_handlers() {
 //
 
 function download_as_image() {
+
+
+
   if ( _via_display_area_content_name !== VIA_DISPLAY_AREA_CONTENT_NAME['IMAGE'] ) {
     show_message('This functionality is only available in single image view mode');
     return;
@@ -9837,6 +9840,18 @@ function polygon_to_bbox(pts) {
 
 
 function save(pointCount, a){
+
+    var client = document.getElementById('clientSelect') ;
+    var project = document.getElementById('projectSelect');
+    if(client.value == 'none'){
+        client.classList.add("border-danger");
+        return console.log('Debe seleccionar el campo el cliente');
+    }
+    if(project.value == 'none'){
+        project.classList.add("border-danger");
+        return console.log('Debe seleccionar el campo el projecto');
+    }
+
     var i;
     var comments = [];
     for (i = 1; i <= pointCount; i++) {
@@ -9846,8 +9861,7 @@ function save(pointCount, a){
     console.log('Comments: '+comments);
     console.log('a:'+a.href); //.substr(23)
 
-    var client = document.getElementById('clientSelect').value;
-    var project = document.getElementById('projectSelect').value;
+
     var view = document.getElementById('viewSelect').value;
     var image = a.href; // to create a image read the previous example
 
@@ -9857,8 +9871,8 @@ $.ajax({
   data:{
     base64: image,
     comments: comments,
-    client: client,
-    project: project,
+    client: client.value,
+    project: project.value,
     view: view
   },
   headers: {
@@ -9868,6 +9882,8 @@ $.ajax({
   type:"post",
   complete:function(res){
     console.log(res.status);
+    $(window).off('beforeunload');
+    window.location.replace("/home");
   }
 });
 
@@ -9876,3 +9892,94 @@ $.ajax({
 
 
 }
+$('#clientSelect').change(function(){
+    console.log('si');
+    var clientoption = document.getElementById('clientSelect').value;
+    console.log('value client: ' + clientoption);
+
+    if(clientoption != 'All'){
+
+
+
+        fetch('/getProjectsByClient/'+clientoption)
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data);
+            document.getElementById('projectSelect').disabled = false;
+            var selectProjects = document.getElementById('projectSelect');
+            selectProjects.innerHTML = `<option selected onclick="projectSelect()" value="none">All</option>`;
+            data.map(function (project) {
+                const templateLiteral = `
+                <option value="${project.id}" > ${project.project_name} </option>
+                `;
+
+
+            selectProjects.innerHTML = selectProjects.innerHTML.concat(templateLiteral);
+
+            });
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+
+
+    }else{
+        var selectProject = document.getElementById('projectSelect');
+        selectProject.innerHTML = `<option selected  value="none">All</option>`
+        var selectView = document.getElementById('viewSelect');
+        selectView.innerHTML = `<option selected  value="none">All</option>`;
+        document.getElementById('projectSelect').value='none';
+        document.getElementById('projectSelect').disabled = true;
+        document.getElementById('viewSelect').value='none';
+        document.getElementById('viewSelect').disabled = true;
+
+    }
+});
+
+$('#projectSelect').change(function(){
+    var projectOption = document.getElementById('projectSelect').value;
+    console.log('value project: ' + projectOption);
+
+    if(document.getElementById('projectSelect').value != 'All'){
+
+
+        fetch('/getViewsByProject/'+projectOption)
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data);
+            document.getElementById('viewSelect').disabled = false;
+            var selectView = document.getElementById('viewSelect');
+            selectView.innerHTML = '';
+            selectView.innerHTML = `<option selected " value="none">All</option>`;
+            data.map(function (view) {
+                const templateLiteral = `
+                <option value="${view.id}"> ${view.id} </option>
+                `;
+
+
+            selectView.innerHTML = selectView.innerHTML.concat(templateLiteral);
+
+            });
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+
+
+
+
+    }else{
+        var selectView = document.getElementById('viewSelect');
+        selectView.innerHTML = `<option selected onclick="viewSelect()" value="All">All</option>`;
+        document.getElementById('viewSelect').value='none';
+        document.getElementById('viewSelect').disabled = true;
+
+    }
+});
+
+
+

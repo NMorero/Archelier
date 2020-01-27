@@ -54,3 +54,4 @@ Route::post('/addFeedback', 'FeedbackController@addFeedback');
 Route::get('/feedback/getProjectsByClient/{client}', 'HomeController@getProjectsByClient');
 
 Route::get('/feedback/getViewsByProject/{project}', 'HomeController@getViewsByProject');
+

@@ -118,30 +118,44 @@ function getPosts(){
             var divPosts = document.getElementById('divPosts');
             divPosts.innerHTML = '';
             data.map(function (post) {
-                if(post.image != null){
-                    const templateLiteral = `
-                <div class="row border-bottom">
-                <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
-                <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
-                <img src="${post.image}" class="postImage" alt="">
+                if(post.type == 'post'){
+                    if(post.image != null){
+                        const templateLiteral = `
+                    <div class="row border-bottom">
+                    <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
+                    <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
+                    <img src="${post.image}" class="postImage" alt="">
 
 
-            </div>
-                `;
-                divPosts.innerHTML = divPosts.innerHTML.concat(templateLiteral);
+                </div>
+                    `;
+                    divPosts.innerHTML = divPosts.innerHTML.concat(templateLiteral);
+
+                    }else{
+                        const templateLiteral = `
+                    <div class="row border-bottom">
+                    <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
+                    <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
+
+
+                </div>
+                    `;
+                    divPosts.innerHTML = divPosts.innerHTML.concat(templateLiteral);
+                    }
 
                 }else{
                     const templateLiteral = `
-                <div class="row border-bottom">
-                <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
-                <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
+                    <div class="row border-bottom p-1">
+                    <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
+                    <img src="${post.image}"  height="70" width="70" alt="">
+                    <p class="col-4 postMessage pt-3" ><b>${post.title}</p>
 
 
-            </div>
-                `;
-                divPosts.innerHTML = divPosts.innerHTML.concat(templateLiteral);
+
+                </div>
+                    `;
+                    divPosts.innerHTML = divPosts.innerHTML.concat(templateLiteral);
                 }
-
 
 
 

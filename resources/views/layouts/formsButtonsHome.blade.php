@@ -17,6 +17,7 @@
                 <div class="form-group col-6">
                     <label for="TaskBtnStatusSelect" class="text-muted">Status</label>
                     <select name="TaskBtnStatusSelect" class="custom-select" id="TaskBtnStatusSelect" required>
+                        <option value="null">Select...</option>
                         <option value="1">Ongoing</option>
                         <option value="2">Ready for Test</option>
                         <option value="3">Done</option>
@@ -29,12 +30,13 @@
                 <div class="form-group col-6">
                     <label for="TaskBtnUserSelect" class="text-muted">User</label>
                     <select name="TaskBtnUserSelect" id="TaskBtnUserSelect" class="custom-select" required>
-
+                        <option value="null">Select...</option>
                     </select>
                 </div>
                 <div class="form-group col-6">
                     <label for="TaskBtnClientSelect" class="text-muted">Client</label>
                     <select name="TaskBtnClientSelect" id="TaskBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Task')" required>
+                        <option value="null">Select...</option>
                         @foreach ($clients as $client)
                             <option value="{{$client->id}}" > {{$client->person->name}} </option>
                         @endforeach
@@ -86,6 +88,7 @@
                 <div class="form-group col-5">
                     <label for="DeliveryBtnClientSelect" class="text-muted">Client</label>
                     <select name="DeliveryBtnClientSelect" id="DeliveryBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Delivery')" required>
+                        <option value="null">Select...</option>
                         @foreach ($clients as $client)
                             <option value="{{$client->id}}" > {{$client->person->name}} </option>
                         @endforeach
@@ -93,7 +96,7 @@
                 </div>
                 <div class="form-group col-5">
                     <label for="DeliveryBtnProjectSelect" class="text-muted">Project</label>
-                    <select name="DeliveryBtnProjectSelect" id="DeliveryBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Delivery')" required
+                    <select name="DeliveryBtnProjectSelect" id="DeliveryBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Delivery')" required>
 
                     </select>
                 </div>
@@ -164,6 +167,7 @@
                 <div class="form-group col-5">
                     <label for="EventBtnClientSelect" class="text-muted">Client</label>
                     <select name="EventBtnClientSelect" id="EventBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Event')">
+                        <option value="null">Select...</option>
                         @foreach ($clients as $client)
                             <option value="{{$client->id}}"> {{$client->person->name}} </option>
                         @endforeach
@@ -220,6 +224,7 @@
                 <div class="form-group col-4">
                     <label for="PostBtnClientSelect" class="text-muted">Client</label>
                     <select name="PostBtnClientSelect" id="PostBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Post')" required>
+                        <option value="null">Select...</option>
                         @foreach ($clients as $client)
                             <option value="{{$client->id}}" > {{$client->person->name}} </option>
                         @endforeach

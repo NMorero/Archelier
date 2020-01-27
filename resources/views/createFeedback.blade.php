@@ -327,7 +327,7 @@
                   <label class="input-group-text" for="clientSelect">Client:</label>
                 </div>
                 <select class="custom-select" id="clientSelect">
-                  <option selected class="clientSelectOption" value="All">All</option>
+                  <option selected class="clientSelectOption" value="none">Select..</option>
                   @foreach ($clients as $client)
                       <option value="{{$client->id}}" class="clientSelectOption"> {{$client->person->name}} </option>
                   @endforeach
@@ -339,7 +339,7 @@
                   <label class="input-group-text" for="projectSelect">Project:</label>
                 </div>
                 <select class="custom-select" id="projectSelect" disabled>
-                    <option selected value="All">All</option>
+                    <option selected value="none">Select..</option>
 
                 </select>
             </div>
@@ -349,7 +349,7 @@
                   <label class="input-group-text" for="viewSelect">View:</label>
                 </div>
                 <select class="custom-select" id="viewSelect" disabled>
-                    <option selected  value="All">All</option>
+                    <option selected  value="none">Select..</option>
 
                 </select>
             </div>
@@ -793,7 +793,7 @@
     <!-- DEMO SCRIPT AUTOMATICALLY INSERTED BY VIA PACKER SCRIPT -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{asset('/js/via.js')}}"></script>
-    <script src="{{asset('/js/home.js')}}"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
