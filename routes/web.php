@@ -55,3 +55,14 @@ Route::get('/feedback/getProjectsByClient/{client}', 'HomeController@getProjects
 
 Route::get('/feedback/getViewsByProject/{project}', 'HomeController@getViewsByProject');
 
+Route::get('/Admin', 'AdminController@home');
+
+Route::get('/Admin/Clients/Person', 'AdminController@pageClientsPersons');
+
+Route::get('/Admin/Clients/Person/getClientsPersons', 'AdminController@getClientsPersons');
+
+Route::post('/Admin/addClientsPersons', 'AdminController@addClientsPersons');
+
+Route::get('/Admin/Clients/Company', 'AdminController@pageClientsCompany');
+
+Route::post('/Admin/addClientsCompany', 'AdminController@addClientsCompany');

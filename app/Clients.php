@@ -16,4 +16,8 @@ class Clients extends Model
         return $this->belongsTo('App\Persons', 'person_id');
     }
 
+    public function company(){
+        return $this->belongsTo('App\Companies', 'company_id');
+    }
+
 }
