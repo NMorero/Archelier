@@ -66,3 +66,8 @@ Route::post('/Admin/addClientsPersons', 'AdminController@addClientsPersons');
 Route::get('/Admin/Clients/Company', 'AdminController@pageClientsCompany');
 
 Route::post('/Admin/addClientsCompany', 'AdminController@addClientsCompany');
+
+Route::get('/Admin/Companies', 'AdminController@getCompaniesTable');
+
+Route::post('/Admin/Companies/addCompany', 'AdminController@addCompany');
+

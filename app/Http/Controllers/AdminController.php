@@ -2,17 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use App\Cities;
 use App\Clients;
 use App\Companies;
+use App\Countries;
 use App\Persons;
+use App\States;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+
+
+
+
     public function home(){
         $persons = Persons::all();
         $companies = Companies::all();
-        $vac = compact('persons', 'companies');
+        $countries = Countries::all();
+        $cities = Cities::all();
+        $states = States::all();
+        $vac = compact('persons', 'companies', 'countries', 'cities', 'states');
         return view('adminHome', $vac);
     }
 
@@ -49,6 +74,35 @@ class AdminController extends Controller
         $client->company_id = $request['company'];
         $client->save();
         return redirect('/Admin/Clients/Company');
+    }
+
+    public function getCompaniesTable(){
+        $companies = Companies::all();
+        $vac = compact('companies');
+        return view('layouts.admin.companiesTable', $vac);
+    }
+
+
+    public function addCompany(Request $request){
+        $company = new Companies;
+        $company->name = $request['name'];
+        $company->cuit = $request['cuit'];
+        $company->alias = $request['alias'];
+        $company->website = $request['website'];
+        $company->administrator_name = $request['adminName'];
+        $company->administrator_email = $request['adminEmail'];
+        $company->production_manager_name = $request['prodmanName'];
+        $company->production_email = $request['prodEmail'];
+        $company->phone_number = $request['phoneNumber'];
+        $company->addrerss = $request['address'];
+        $company->postal_code = $request['postalCode'];
+        $company->identification_code = $request['identificationCode'];
+        $company->country = $request['country'];
+        $company->state = $request['state'];
+        $company->city = $request['city'];
+
+        $company->save();
+        return redirect('/Admin/Companies');
     }
 
 }

@@ -16,14 +16,14 @@ class CreateCompanyTable extends Migration
         Schema::create('COMPANIES', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('cuit');
+            $table->string('cuit');
             $table->string('alias');
             $table->string('website');
             $table->string('administrator_name');
             $table->string('administrator_email');
             $table->string('production_manager_name');
             $table->string('production_email');
-            $table->integer('phone_number');
+            $table->string('phone_number');
             $table->string('address');
             $table->integer('postal_code');
             $table->integer('identification_code');
