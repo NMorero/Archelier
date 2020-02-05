@@ -35,7 +35,7 @@ Home
                     <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
                       <button class="btn btn-info m-1 col-12 button-actions dropdown-item" data-toggle="modal" data-target="#modalTasks">Task</button>
                       <button class="btn btn-info m-1 col-12 button-actions dropdown-item" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
-                      <button class="btn btn-info m-1 col-12 button-actions dropdown-item" data-toggle="modal" data-target="#modalFeedback">Feedback</button>
+                      <a href="/Feedback/Create" class="btn btn-info m-1 col-12">Feedback</a>
                       <button class="btn btn-info m-1 col-12 button-actions dropdown-item" data-toggle="modal" data-target="#modalEvent">Event</button>
                       <button class="btn btn-info m-1 col-12 button-actions dropdown-item" data-toggle="modal" data-target="#modalPosts">Post</button>
                       <button class="btn btn-info m-1 col-12 button-actions dropdown-item" data-toggle="modal" data-target="#modalReminder">Reminder</button>
@@ -212,7 +212,7 @@ Home
             <div class="col-12 pt-3 row div-actions justify-content-between">
                 <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalTasks">Task</button>
                 <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
-                <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalFeedback">Feedback</button>
+                <a href="/Feedback/Create" class="btn btn-info m-1 col-3">Feedback</a>
                 <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalEvent">Event</button>
                 <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalPosts">Post</button>
                 <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalReminder">Reminder</button>

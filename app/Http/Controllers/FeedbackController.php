@@ -29,7 +29,20 @@ class FeedbackController extends Controller
 	print $success ? $file : 'Unable to save the file.';
 
     $feedback = new Feedbacks;
-    $feedback->message = json_encode($request['comments']);
+    $comentaries = [];
+    $i = 0;
+    foreach($request['comments'] as $comment){
+        $i++;
+        $commentary = [
+            'comment' => $comment,
+            'status' => 'undone',
+            'id' => $i
+        ];
+        array_push($comentaries, $commentary);
+    }
+
+
+    $feedback->message = json_encode($comentaries);
     $feedback->client_id = $request['client'];
     $feedback->project_id = $request['project'];
     if(isset($request['view']) && $request['view'] != 'none'){
@@ -56,5 +69,18 @@ class FeedbackController extends Controller
         return ['status' => 'ok'];
     }
 
+
+
+
+
+    public function edit($id){
+        $feedback = Feedbacks::find($id);
+        $feedback['comments'] = json_decode($feedback->message, true);
+
+
+
+        $vac = compact('feedback');
+        return view('feedbackEdit', $vac);
+    }
 
 }

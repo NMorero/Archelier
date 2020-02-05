@@ -47,7 +47,9 @@ Route::get('/addEvent/{formData}', 'HomeController@addEvent');
 
 Route::get('/addDelivery/{formData}', 'HomeController@addDelivery');
 
-Route::get('/feedback/create', 'FeedbackController@create');
+Route::get('/Feedback/Create', 'FeedbackController@create');
+
+Route::get('/Feedback/Edit/{id}', 'FeedbackController@edit');
 
 Route::post('/addFeedback', 'FeedbackController@addFeedback');
 
