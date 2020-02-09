@@ -6,8 +6,10 @@ use App\Clients;
 use App\Deliveries;
 use App\Events;
 use App\Images;
+use App\LeaderOfDeveloper;
 use App\Persons;
 use App\Posts;
+use App\PRLeaders;
 use App\Projects;
 use App\ProjectViews;
 use App\Reminders;
@@ -118,7 +120,19 @@ class HomeController extends Controller
 
 
     public function getTasks(){
-        $tasksDB = Tasks::orderBy('end_date')->get();
+
+        $user = User::find(Auth::id());
+        if($user->rol_id == 4){
+            $taskDB = Tasks::where('user_id', 'LIKE', Auth::id());
+            $PRLeader = PRLeaders::where('user_id', 'LIKE', Auth::id())->get();
+            $developersOfLeader = LeaderOfDeveloper::where('leader_id', 'LIKE', $PRLeader->id);
+            foreach($developersOfLeader as $dev){
+                $taskDB->orWhere('user_id', 'LIKE', $dev->id);
+            }
+            $taskDB->orderBy('end_date')->get();
+        }else{
+            $tasksDB = Tasks::orderBy('end_date')->get();
+        }
         $events = Events::orderBy('end_date')->get();
         $tasks = [];
         $dates = [];
