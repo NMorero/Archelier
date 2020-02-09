@@ -123,15 +123,12 @@ class HomeController extends Controller
 
         $user = User::find(Auth::id());
         if($user->rol_id == 4){
-            $taskDB = Tasks::where('user_id', 'LIKE', Auth::id());
-            $PRLeader = PRLeaders::where('user_id', 'LIKE', Auth::id())->get();
-            $developersOfLeader = LeaderOfDeveloper::where('leader_id', 'LIKE', $PRLeader->id);
-            foreach($developersOfLeader as $dev){
-                $taskDB->orWhere('user_id', 'LIKE', $dev->id);
-            }
-            $taskDB->orderBy('end_date')->get();
+            $tasksDB = Tasks::where('user_id', 'LIKE', Auth::id())->orWhere('user_id', 'LIKE', '4')->orderBy('end_date')->get();
+
+
+
         }else{
-            $tasksDB = Tasks::orderBy('end_date')->get();
+            $tasksDB = Tasks::where('user_id', 'LIKE', Auth::id())->orderBy('end_date')->get();
         }
         $events = Events::orderBy('end_date')->get();
         $tasks = [];

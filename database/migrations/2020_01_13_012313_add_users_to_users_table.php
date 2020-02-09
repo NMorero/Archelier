@@ -14,9 +14,10 @@ class AddUsersToUsersTable extends Migration
     public function up()
     {
         DB::table('USERS')->insert([
-            ['username' => 'nmorero', 'password' => '$2y$12$JCG5kZ7WIfzUE8s4VJjkweLIcaFt0Q3KLzKYGGCTqf4iZWayq2TQG', 'email' => 'nmorero00@gmail.com', 'rol_id' => 1],
-            ['username' => 'adaniele', 'password' => '$2y$12$fqVGW79VCMoYgbgXHKtPx.L5OYQcvuGXT6NhNqfTyZXoUG0.0u4bu', 'email' => 'adaniele@gmail.com', 'rol_id' => 2],
-
+            ['username' => 'ljagodnik', 'password' => '$2y$12$fqVGW79VCMoYgbgXHKtPx.L5OYQcvuGXT6NhNqfTyZXoUG0.0u4bu', 'email' => 'ljagodnik@gmail.com', 'rol_id' => 1],
+            ['username' => 'adaniele', 'password' => '$2y$12$fqVGW79VCMoYgbgXHKtPx.L5OYQcvuGXT6NhNqfTyZXoUG0.0u4bu', 'email' => 'adaniele@gmail.com', 'rol_id' => 3],
+            ['username' => 'lurquiza', 'password' => '$2y$12$fqVGW79VCMoYgbgXHKtPx.L5OYQcvuGXT6NhNqfTyZXoUG0.0u4bu', 'email' => 'lurquiza@gmail.com', 'rol_id' => 4],
+            ['username' => 'nmorero', 'password' => '$2y$12$fqVGW79VCMoYgbgXHKtPx.L5OYQcvuGXT6NhNqfTyZXoUG0.0u4bu', 'email' => 'nmorero00@gmail.com', 'rol_id' => 2],
 
         ]);
     }
