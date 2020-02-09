@@ -28,6 +28,8 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('view_id')->nullable();
             $table->foreign('view_id')->references('id')->on('VIEWS');
 
+            $table->unsignedBigInteger('feedback_id')->nullable();
+            $table->foreign('feedback_id')->references('id')->on('FEEDBACKS');
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });

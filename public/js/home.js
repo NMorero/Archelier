@@ -145,14 +145,14 @@ function getPosts(){
 
                 }else{
                     const templateLiteral = `
-                    <div class="row border-bottom p-1">
+                    <a href="/Feedback/Edit/${post.feedback_id}" class="row border-bottom p-1 text-decoration-none text-dark">
                     <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
                     <img src="${post.image}"  height="70" width="70" alt="">
                     <p class="col-4 postMessage pt-3" ><b>${post.title}</p>
 
 
 
-                </div>
+                </a>
                     `;
                     divPosts.innerHTML = divPosts.innerHTML.concat(templateLiteral);
                 }

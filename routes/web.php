@@ -51,6 +51,8 @@ Route::get('/Feedback/Create', 'FeedbackController@create');
 
 Route::get('/Feedback/Edit/{id}', 'FeedbackController@edit');
 
+Route::post('/Feedback/Edit/saveFeedback', 'FeedbackController@saveFeedbackChange');
+
 Route::post('/addFeedback', 'FeedbackController@addFeedback');
 
 Route::get('/feedback/getProjectsByClient/{client}', 'HomeController@getProjectsByClient');

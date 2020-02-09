@@ -8,7 +8,9 @@ use App\Companies;
 use App\Countries;
 use App\Persons;
 use App\States;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -20,6 +22,18 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+            $userId = Auth::id();
+            $user = User::find($userId);
+
+            if($user->roles->rol !== 'admin'){
+                return abort(401);
+            }
+            return $next($request);
+        });
+
+
+
     }
 
     /**
@@ -32,6 +46,7 @@ class AdminController extends Controller
 
 
     public function home(){
+
         $persons = Persons::all();
         $companies = Companies::all();
         $countries = Countries::all();

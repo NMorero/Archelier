@@ -50,7 +50,6 @@ class FeedbackController extends Controller
     }
     $feedback->image = $file;
     $feedback->save();
-
     $post = new Posts();
 
     $post->title = 'New Feedback';
@@ -63,6 +62,7 @@ class FeedbackController extends Controller
     if(isset($request['view']) && $request['view'] != 'none'){
         $post->view_id = $request['view'];
     }
+    $post->feedback_id = $feedback->id;
     $post->save();
 
 
@@ -76,11 +76,39 @@ class FeedbackController extends Controller
     public function edit($id){
         $feedback = Feedbacks::find($id);
         $feedback['comments'] = json_decode($feedback->message, true);
+        $id = $id;
 
 
-
-        $vac = compact('feedback');
+        $vac = compact('feedback', 'id');
         return view('feedbackEdit', $vac);
+    }
+
+    public function saveFeedbackChange(Request $request){
+        $feedback = Feedbacks::find($request['id']);
+        $feedback->message = $request['comments'];
+        $feedback->save();
+
+
+        $post = new Posts();
+
+        $post->title = 'New Feedback';
+        $post->message = ' ';
+        $post->image = $feedback->image;
+        $post->user_id = Auth::id();
+        $post->client_id = $feedback->client_id;
+        $post->project_id = $feedback->project_id;
+        $post->type = 'feedback';
+        if(isset($feedback->view_id) && $feedback->view_id != 'none'){
+            $post->view_id = $feedback->view_id;
+        }
+        $post->feedback_id = $request['id'];
+        $post->save();
+
+
+
+
+
+        return ['status' => 'Listo'];
     }
 
 }
