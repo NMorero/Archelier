@@ -75,3 +75,10 @@ Route::get('/Admin/Companies', 'AdminController@getCompaniesTable');
 
 Route::post('/Admin/Companies/addCompany', 'AdminController@addCompany');
 
+Route::get('/Admin/Developers', 'AdminController@pageDevelopers');
+
+Route::post('/Admin/Developers/addDeveloper', 'AdminController@addDeveloper');
+
+Route::get('/Admin/Persons', 'AdminController@pagePersons');
+
+Route::post('/Admin/Persons/addPersons', 'AdminController@addPerson');

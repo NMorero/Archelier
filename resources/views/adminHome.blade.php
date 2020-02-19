@@ -29,7 +29,7 @@
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body"> 
                             <form action="/Admin/Companies/addCompany" id="clientPersonForm" method="post">
                                 @csrf
                                 <div class="form-group">
@@ -254,25 +254,58 @@
 
         <div class="col-xl-4 col-lg-4">
             <div class="card" style="margin-top:10px">
-                <div class="card-header">
+                    <div class="card-header">
                     <h5 class="card-title">Developers</h5>
-                </div>
+            </div>
                 <div class="card" style="margin:8px">
                     <div class="card-body">
-                        <a href="#" class="text-decoration-none text-dark">
-                            <h5 class="card-title">Person</h5>
-                            <p class="card-text">Could be a direct develop, a freelance or a person who represent a Dev Company.</p>
-                        </a>
+                        <div >
+
+                            <p class="card-text">Add or see all the developers..</p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Developers">
+                    Add
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="Developers" tabindex="-1" role="dialog" aria-labelledby="DevelopersTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="DevelopersTitle">New Developer</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
                         </div>
-                </div>
-                <div class="card" style="margin:8px">
-                    <div class="card-body">
-                        <h5 class="card-title">Company</h5>
-                        <p class="card-text">Create or edit developers as company, such as a provider.</p>
+                        <div class="modal-body"> 
+                            <form action="/Admin/Developers/addDeveloper" id="developerForm" method="post">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" class="form-control" id="name" aria-describedby="name" required>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="user">User</label>
+                                    <select class="custom-select" name="user" id="user">
+                                        <option value="none">Select..</option>
+                                        @foreach ($users as $user)
+                                            <option value="{{$user->id}}">{{$user->username}}</option>
+                                        @endforeach
+                                    </select>
+                                  </div>
+                                
+                            </form>
+                        </div>
+
+                      </div>
                     </div>
-                </div>
+                  </div>
+                <a href="/Admin/Developers" class="btn btn-secondary text-decoration-none text-white">View</a>
             </div>
         </div>
+    </div>
+</div>
+</div>
 
 
         <div class="col-xl-4 col-lg-4">
@@ -298,7 +331,128 @@
             </div>
         </div>
 
+        <div class="col-xl-4 col-lg-4">
+            <div class="card" style="margin-top:10px">
+                    <div class="card-header">
+                    <h5 class="card-title">Persons</h5>
+            </div>
+                <div class="card" style="margin:8px">
+                    <div class="card-body">
+                        <div >
+                        
+                            <p class="card-text">Add or see all the Persons..</p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Persons">
+                    Add
+                  </button>
 
+                  <!-- Modal -->
+                  <div class="modal fade" id="Persons" tabindex="-1" role="dialog" aria-labelledby="PersonsTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="PersonsTitle">New Persons</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body"> 
+                            <form action="/Admin/Persons/addPersons" id="developerForm" method="post">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" class="form-control" id="name" aria-describedby="name" required>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="last_name">Last name</label>
+                                    <input type="text" name="last_name" class="form-control" id="last_name" aria-describedby="last_name" required>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="dni">DNI</label>
+                                    <input type="number" name="dni" class="form-control" id="dni" aria-describedby="dni" required>
+
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="alias">Alias</label>
+                                    <input type="text" name="alias" class="form-control" id="alias" aria-describedby="alias" required>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" class="form-control" id="email" aria-describedby="email" required>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="phone_number">Phone number</label>
+                                    <input type="number" name="phone_number" class="form-control" id="phone_number" aria-describedby="phone_number" required>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input type="text" name="address" class="form-control" id="address" aria-describedby="address" required>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="identification_code">Identification code</label>
+                                    <input type="number" name="identification_code" class="form-control" id="identification_code" aria-describedby="identification_code" required>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="country">Country</label>
+                                    <select class="custom-select" name="country" id="">
+                                        <option value="none">Select..</option>
+                                        @foreach ($countries as $country)
+                                            <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="state">State</label>
+                                    <select class="custom-select" name="state" id="">
+                                        <option value="none">Select..</option>
+                                        @foreach ($states as $state)
+                                            <option value="{{$state->id}}">{{$state->state_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="city">City</label>
+                                    <select class="custom-select" name="city" id="">
+                                        <option value="none">Select..</option>
+                                        @foreach ($cities as $city)
+                                            <option value="{{$city->id}}">{{$city->city_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                
+
+
+
+
+
+                            </form>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                <a href="/Admin/Persons" class="btn btn-secondary text-decoration-none text-white">View</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
     </main>
 @endsection
