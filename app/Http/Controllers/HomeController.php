@@ -45,37 +45,40 @@ class HomeController extends Controller
         return view('home', $vac);
     }
 
-    public function test(){
+    public function test()
+    {
         $clients = Clients::all();
         $vac = compact('clients');
         return view('test', $vac);
     }
 
-    public function getProjectsByClient($client){
+    public function getProjectsByClient($client)
+    {
         $projects = Projects::where('client_id', 'LIKE', $client)->get();
         return $projects;
     }
 
-    public function getViewsByProject($project){
+    public function getViewsByProject($project)
+    {
         $views = ProjectViews::where('project_id', 'LIKE', $project)->get();
         return $views;
     }
 
-    public function getPosts($client, $project, $view){
+    public function getPosts($client, $project, $view)
+    {
 
 
-        if($client === 'All'){
+        if ($client === 'All') {
             $posts = Posts::orderBy('id', 'DESC')->get();
-        }else{
-            if($project === 'All'){
-                $posts = Posts::where('client_id', 'LIKE', $client)->orderBy('id','DESC')->get();
-            }else{
-                if($view === 'All'){
-                    $posts = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->orderBy('id','DESC')->get();
-                }else{
-                    $posts = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->where('view_id', 'LIKE', $view)->orderBy('id','DESC')->get();
+        } else {
+            if ($project === 'All') {
+                $posts = Posts::where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->get();
+            } else {
+                if ($view === 'All') {
+                    $posts = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->orderBy('id', 'DESC')->get();
+                } else {
+                    $posts = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->where('view_id', 'LIKE', $view)->orderBy('id', 'DESC')->get();
                 }
-
             }
         }
 
@@ -83,7 +86,7 @@ class HomeController extends Controller
 
 
 
-        foreach($posts as $post){
+        foreach ($posts as $post) {
             $user = User::find($post['user_id']);
             $post['user_name'] = $user['username'];
 
@@ -96,22 +99,22 @@ class HomeController extends Controller
             $date = $post['created_at'];
 
 
-            $date = date('h-m-d',strtotime($post['created_at']));
+            $date = date('h-m-d', strtotime($post['created_at']));
             //Print out the day that our date fell on.
             $post['date'] = $date;
-
         }
         return $posts;
     }
 
 
-    public function getReminders(){
+    public function getReminders()
+    {
         $id = Auth::user()->id;
         $reminders = Reminders::where('user_id', 'LIKE', $id)->get();
         return $reminders;
-
     }
-    public function deleteReminder($id){
+    public function deleteReminder($id)
+    {
         $reminder = Reminders::find($id);
         $reminder->delete();
 
@@ -119,22 +122,20 @@ class HomeController extends Controller
     }
 
 
-    public function getTasks(){
+    public function getTasks()
+    {
 
         $user = User::find(Auth::id());
-        if($user->rol_id == 4){
+        if ($user->rol_id == 4) {
             $tasksDB = Tasks::where('user_id', 'LIKE', Auth::id())->orWhere('user_id', 'LIKE', '4')->orderBy('end_date')->get();
-
-
-
-        }else{
+        } else {
             $tasksDB = Tasks::where('user_id', 'LIKE', Auth::id())->orderBy('end_date')->get();
         }
         $events = Events::orderBy('end_date')->get();
         $tasks = [];
         $dates = [];
 
-        foreach($tasksDB as $task){
+        foreach ($tasksDB as $task) {
             $task['user'] = $task->user;
             $task['project'] = $task->project;
             $task['client'] = $task->client->person;
@@ -146,29 +147,28 @@ class HomeController extends Controller
 
 
         foreach ($events as $event) {
-          $event['client'] = $event->client;
-          $event['project'] = $event->project;
+            $event['client'] = $event->client;
+            $event['project'] = $event->project;
             $endDate = $event->end_date;
-          if (!array_key_exists($endDate, $dates)) {
-            array_push($dates, $endDate);
-        }
+            if (!array_key_exists($endDate, $dates)) {
+                array_push($dates, $endDate);
+            }
         }
 
-        $compare_function = function($a,$b) {
+        $compare_function = function ($a, $b) {
 
             $a_timestamp = strtotime($a); // convert a (string) date/time to a (int) timestamp
             $b_timestamp = strtotime($b);
 
             // new feature in php 7
             return $a_timestamp <=> $b_timestamp;
-
-                    };
+        };
         usort($dates, $compare_function);
 
 
 
 
-        foreach($dates as $date){
+        foreach ($dates as $date) {
 
             $dateInfo = $date;
             //Convert the dateInfo string into a unix timestamp.
@@ -183,47 +183,48 @@ class HomeController extends Controller
             $tasks[$date]['events'] = [];
         }
 
-        foreach($tasksDB as $taskDB){
+        foreach ($tasksDB as $taskDB) {
             $endDate = $taskDB->end_date;
 
             if (array_key_exists($endDate, $tasks)) {
                 array_push($tasks[$endDate]['projects'], $taskDB);
             }
-
-
         }
 
         foreach ($events as $event) {
-          $endDateEvent = $event->end_date;
-          if (array_key_exists($endDateEvent, $tasks)) {
-              array_push($tasks[$endDateEvent]['events'], $event);
-          }
+            $endDateEvent = $event->end_date;
+            if (array_key_exists($endDateEvent, $tasks)) {
+                array_push($tasks[$endDateEvent]['events'], $event);
+            }
         }
 
         return $tasks;
     }
 
 
-    public function getUsers(){
+    public function getUsers()
+    {
         $users = User::all();
         return $users;
     }
 
 
-    public function getTemplates(){
-      $templates = Templates::all();
-      return $templates;
+    public function getTemplates()
+    {
+        $templates = Templates::all();
+        return $templates;
     }
 
 
-    public function addReminder($formData){
+    public function addReminder($formData)
+    {
 
         $formData = json_decode($formData, true);
 
         $reminder = new Reminders;
         $reminder->message = $formData['message'];
         $reminder->user_id = Auth::id();
-        if(isset($formData['end_date']) && !empty($formData['end_date'])){
+        if (isset($formData['end_date']) && !empty($formData['end_date'])) {
             $reminder->end_date = $formData['end_date'];
         }
         $reminder->save();
@@ -231,7 +232,8 @@ class HomeController extends Controller
         return ['status' => 'ok'];
     }
 
-    public function addTask($formData){
+    public function addTask($formData)
+    {
         $formData = json_decode($formData, true);
 
         $task = new Tasks;
@@ -242,7 +244,7 @@ class HomeController extends Controller
         $task->project_id = $formData['project'];
         $task->client_id = $formData['client'];
 
-        if(isset($formData['view']) && !empty($formData['view'])) {
+        if (isset($formData['view']) && !empty($formData['view'])) {
             $task->view_id = $formData['view'];
         }
         $task->save();
@@ -251,7 +253,8 @@ class HomeController extends Controller
     }
 
 
-    function addPost(Request $request){
+    function addPost(Request $request)
+    {
 
 
 
@@ -263,73 +266,68 @@ class HomeController extends Controller
         $post->client_id = $request['PostBtnClientSelect'];
         $post->project_id = $request['PostBtnProjectSelect'];
 
-        if(isset($request['PostBtnViewSelect']) && !empty($request['PostBtnViewSelect']) && $request['PostBtnViewSelect'] != 'none'){
+        if (isset($request['PostBtnViewSelect']) && !empty($request['PostBtnViewSelect']) && $request['PostBtnViewSelect'] != 'none') {
             $post->view_id = $request['PostBtnViewSelect'];
         }
 
 
-        if(isset($request['PostBtnFile']) && !empty($request['PostBtnFile'])){
-            $imageName = date("Y-m-d"). '-' . time() .'.'. $request['PostBtnFile']->getClientOriginalExtension();
+        if (isset($request['PostBtnFile']) && !empty($request['PostBtnFile'])) {
+            $imageName = date("Y-m-d") . '-' . time() . '.' . $request['PostBtnFile']->getClientOriginalExtension();
             $request['PostBtnFile']->move(
-            base_path() . '/public/upload/posts', $imageName
+                base_path() . '/public/upload/posts',
+                $imageName
             );
 
             $post->image = '/upload/posts/' . $imageName;
-
         }
         $post->save();
 
         return 'se cargo el post';
-
-
     }
 
-    function addEvent($formData){
-      $formData = json_decode($formData, true);
-      $event = new Events;
-      $event->message = $formData['message'];
-      $event->end_date = $formData['end_date'];
+    function addEvent($formData)
+    {
+        $formData = json_decode($formData, true);
+        $event = new Events;
+        $event->message = $formData['message'];
+        $event->end_date = $formData['end_date'];
 
-      if(isset($formData['client']) && !empty($formData['client'])){
-          $event->client_id = $formData['client'];
-      }
+        if (isset($formData['client']) && !empty($formData['client'])) {
+            $event->client_id = $formData['client'];
+        }
 
-      if(isset($formData['project']) && !empty($formData['project'])){
-          $event->project_id = $formData['project'];
-      }
+        if (isset($formData['project']) && !empty($formData['project'])) {
+            $event->project_id = $formData['project'];
+        }
 
-      if(isset($formData['view']) && !empty($formData['view'])){
-          $event->view_id = $formData['view'];
-      }
+        if (isset($formData['view']) && !empty($formData['view'])) {
+            $event->view_id = $formData['view'];
+        }
 
-      $event->save();
+        $event->save();
 
-      return ['status' => 'ok'];
-
+        return ['status' => 'ok'];
     }
 
-    function addDelivery($formData){
-      $formData = json_decode($formData, true);
-      $delivery = new Deliveries;
+    function addDelivery($formData)
+    {
+        $formData = json_decode($formData, true);
+        $delivery = new Deliveries;
 
-      if(isset($formData['message']) && !empty($formData['message'])){
+        if (isset($formData['message']) && !empty($formData['message'])) {
             $delivery->comment = $formData['message'];
-      }
+        }
 
-      $delivery->client_id = $formData['client'];
-      $delivery->project_id = $formData['project'];
+        $delivery->client_id = $formData['client'];
+        $delivery->project_id = $formData['project'];
 
-      if(isset($formData['view']) && !empty($formData['view'])){
-          $delivery->view_id = $formData['view'];
-      }
+        if (isset($formData['view']) && !empty($formData['view'])) {
+            $delivery->view_id = $formData['view'];
+        }
 
-      $delivery->template_id = $formData['template'];
-      $delivery->save();
+        $delivery->template_id = $formData['template'];
+        $delivery->save();
 
-      return ['status' => 'ok'];
-
+        return ['status' => 'ok'];
     }
-
-
-
 }
