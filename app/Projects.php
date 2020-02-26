@@ -15,14 +15,14 @@ class Projects extends Model
 
 
     public function manager(){
-        return $this->hasOne('App\Managers', 'manager_id');
+        return $this->belongsTo ('App\ProjectManagers', 'manager_id');
     }
 
     public function leader(){
-        return $this->hasOne('App\Leaders', 'leader_id');
+        return $this->belongsTo ('App\ProjectLeaders', 'leader_id');
     }
     public function client(){
-        return $this->hasOne('App\Clients', 'client_id}');
+        return $this->belongsTo('App\Clients', 'client_id}');
     }
     public function views(){
         return $this->hasMany('App\ProjectViews', 'id', 'project_id');

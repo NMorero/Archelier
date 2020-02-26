@@ -16,9 +16,9 @@
     <header class="header-base p-2 justify-content-between row d-none d-lg-flex">
         <nav class="nav col-9">
             <a class="nav-link active   text-white" href="/Admin">Home</a>
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Administration</a>
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Production</a>
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Marketing</a>
+            <a class="nav-link active   text-white" href="/Admin/Projects" tabindex="-1" aria-disabled="true">Projects</a>
+
+
 
           </nav>
         <a class="col-2 p-2 text-white" href="/logout">Log Out</a>

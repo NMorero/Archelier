@@ -82,3 +82,27 @@ Route::post('/Admin/Developers/addDeveloper', 'AdminController@addDeveloper');
 Route::get('/Admin/Persons', 'AdminController@pagePersons');
 
 Route::post('/Admin/Persons/addPersons', 'AdminController@addPerson');
+
+Route::post('/Admin/Managers/addProjectManager', 'AdminController@addPRManager');
+
+Route::post('/Admin/Managers/addProjectLeader', 'AdminController@addPRLeader');
+
+Route::get('/Admin/Projects/Managers', 'AdminController@pagePRManagers');
+
+Route::get('/Admin/Projects/Leaders', 'AdminController@pagePRLeaders');
+
+Route::post('/Admin/Projects/addProject', 'AdminController@addProject');
+
+Route::post('/Admin/Projects/addView/{id}', 'AdminController@addView');
+
+Route::post('/Admin/Users/addUser', 'AdminController@addUser');
+
+Route::get('/Admin/Users', 'AdminController@pageUsers');
+
+Route::get('/Admin/Projects', 'AdminController@pageProjects');
+
+Route::get('/Admin/Projects/Views/{id}', 'AdminController@pageViews');
+
+Route::post('/Admin/Roles/addRol', 'AdminController@addRol');
+
+Route::get('Admin/Roles', 'AdminController@pageRoles');
