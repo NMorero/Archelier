@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-     /**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -35,14 +35,11 @@ class AdminController extends Controller
             $userId = Auth::id();
             $user = User::find($userId);
 
-            if($user->roles->rol !== 'admin'){
+            if ($user->roles->rol !== 'admin') {
                 return abort(401);
             }
             return $next($request);
         });
-
-
-
     }
 
     /**
@@ -54,7 +51,8 @@ class AdminController extends Controller
 
 
 
-    public function home(){
+    public function home()
+    {
 
         $persons = Persons::all();
         $companies = Companies::all();
@@ -67,12 +65,12 @@ class AdminController extends Controller
         $managers = ProjectManagers::all();
         $leaders = ProjectLeaders::all();
 
-        foreach($managers as $manager){
+        foreach ($managers as $manager) {
             $user = User::find($manager->user_id);
             $manager['name'] = $user->username;
         }
 
-        foreach($leaders as $leader){
+        foreach ($leaders as $leader) {
             $user = User::find($leader->user_id);
             $leader['name'] = $user->username;
         }
@@ -82,21 +80,24 @@ class AdminController extends Controller
         return view('adminHome', $vac);
     }
 
-    public function pageClientsPersons(){
+    public function pageClientsPersons()
+    {
         $clients = Clients::whereNotNull('person_id')->get();
 
         $vac = compact('clients');
         return view('layouts.admin.clientsPersons', $vac);
     }
 
-    public function pageClientsCompany(){
+    public function pageClientsCompany()
+    {
         $clients = Clients::whereNotNull('company_id')->get();
         $vac = compact('clients');
         return view('layouts.admin.clientsCompanyTable', $vac);
     }
 
 
-    public function addClientsPersons(Request $request){
+    public function addClientsPersons(Request $request)
+    {
 
         $client = new Clients;
         $client->client_name = $request['name'];
@@ -107,7 +108,8 @@ class AdminController extends Controller
         return redirect('/Admin/Clients/Person');
     }
 
-    public function addClientsCompany(Request $request){
+    public function addClientsCompany(Request $request)
+    {
         $client = new Clients;
         $client->client_name = $request['name'];
         $client->type = 'Company';
@@ -117,14 +119,16 @@ class AdminController extends Controller
         return redirect('/Admin/Clients/Company');
     }
 
-    public function getCompaniesTable(){
+    public function getCompaniesTable()
+    {
         $companies = Companies::all();
         $vac = compact('companies');
         return view('layouts.admin.companiesTable', $vac);
     }
 
 
-    public function addCompany(Request $request){
+    public function addCompany(Request $request)
+    {
         $company = new Companies;
         $company->name = $request['name'];
         $company->cuit = $request['cuit'];
@@ -146,9 +150,10 @@ class AdminController extends Controller
         return redirect('/Admin/Companies');
     }
 
-    public function pageDevelopers(){
+    public function pageDevelopers()
+    {
         $developers = Developers::all();
-        foreach($developers as $developer){
+        foreach ($developers as $developer) {
             $user = User::find($developer->user_id);
             $person = Persons::find($user->person_id);
             $developer['person'] = $person;
@@ -160,7 +165,8 @@ class AdminController extends Controller
     }
 
 
-    public function addDeveloper(Request $request){
+    public function addDeveloper(Request $request)
+    {
         $developer = new Developers;
         $developer->user_id = $request['user'];
 
@@ -169,13 +175,15 @@ class AdminController extends Controller
         return redirect('/Admin/Developers');
     }
 
-    public function pagePersons(){
+    public function pagePersons()
+    {
         $persons = Persons::all();
         $vac = compact('persons');
         return view('layouts.admin.personsTable', $vac);
     }
 
-    public function addperson(Request $request){
+    public function addPerson(Request $request)
+    {
         $person = new Persons;
         $person->name = $request['name'];
         $person->last_name = $request['last_name'];
@@ -191,7 +199,8 @@ class AdminController extends Controller
     }
 
 
-    public function addPRManager(Request $request){
+    public function addPRManager(Request $request)
+    {
         $PRManager = new ProjectManagers;
         $PRManager->user_id = $request['user'];
         $PRManager->save();
@@ -199,7 +208,8 @@ class AdminController extends Controller
         return redirect('/Admin/Projects/Managers');
     }
 
-    public function addPRLeader(Request $request){
+    public function addPRLeader(Request $request)
+    {
         $PRLeader = new ProjectLeaders;
         $PRLeader->user_id = $request['user'];
         $PRLeader->save();
@@ -207,10 +217,11 @@ class AdminController extends Controller
         return redirect('/Admin/Projects/Leaders');
     }
 
-    public function pagePRLeaders(){
+    public function pagePRLeaders()
+    {
         $PRLeaders = ProjectLeaders::all();
 
-        foreach($PRLeaders as $leader){
+        foreach ($PRLeaders as $leader) {
             $user = User::find($leader->user_id);
             $person = Persons::find($user->person_id);
             $leader['user'] = $user;
@@ -223,10 +234,11 @@ class AdminController extends Controller
         return view('layouts.admin.PRLeadersTable', $vac);
     }
 
-    public function pagePRManagers(){
+    public function pagePRManagers()
+    {
         $PRManagers = ProjectManagers::all();
 
-        foreach($PRManagers as $manager){
+        foreach ($PRManagers as $manager) {
             $user = User::find($manager->user_id);
             $person = Persons::find($user->person_id);
             $manager['user'] = $user;
@@ -238,12 +250,13 @@ class AdminController extends Controller
         return view('layouts.admin.PRManagersTable', $vac);
     }
 
-    public function addUser(Request $request){
+    public function addUser(Request $request)
+    {
         $user = new User;
         $user->username = $request['username'];
         $user->email = $request['email'];
         $user->password = Hash::make($request['password']);
-        if(isset($request['person']) && !empty($request['person'])){
+        if (isset($request['person']) && !empty($request['person'])) {
             $user->person_id = $request['person'];
         }
         $user->rol_id = $request['rol'];
@@ -252,10 +265,11 @@ class AdminController extends Controller
         return redirect('/Admin/Users');
     }
 
-    public function pageUsers(){
+    public function pageUsers()
+    {
         $users = User::all();
 
-        foreach($users as $user){
+        foreach ($users as $user) {
             $person = Persons::find($user->person_id);
             $rol = Roles::find($user->rol_id);
             $user['person'] = $person;
@@ -268,9 +282,10 @@ class AdminController extends Controller
     }
 
 
-    public function pageProjects(){
+    public function pageProjects()
+    {
         $projects = Projects::all();
-        foreach($projects as $project){
+        foreach ($projects as $project) {
             $client = Clients::find($project->client_id);
             $manager = ProjectManagers::find($project->manager_id);
             $user1 = User::find($manager->user_id);
@@ -284,9 +299,10 @@ class AdminController extends Controller
         return view('layouts.admin.projects', $vac);
     }
 
-    public function pageViews($id){
+    public function pageViews($id)
+    {
         $views = ProjectViews::where('project_id', 'LIKE', $id)->get();
-        foreach($views as $view){
+        foreach ($views as $view) {
             $image1 = Views::find($view->view_id);
             $image2 = Images::find($image1['image_id']);
             $view['image'] = $image2['image_route'];
@@ -295,7 +311,8 @@ class AdminController extends Controller
         return view('layouts.admin.projectViews', $vac);
     }
 
-    public function addProject(Request $request){
+    public function addProject(Request $request)
+    {
         $project = new Projects;
         $project->project_name = $request['projectName'];
         $project->delivery_date = $request['deliveryDate'];
@@ -307,16 +324,18 @@ class AdminController extends Controller
         return redirect('/Admin/Projects');
     }
 
-    public function addView(Request $request, $id){
+    public function addView(Request $request, $id)
+    {
 
         $image = new Images;
-        $imageName = date("Y-m-d"). '-' . time() .'.'. $request['image']->getClientOriginalExtension();
-            $request['image']->move(
-            base_path() . '/public/upload/views', $imageName
-            );
+        $imageName = date("Y-m-d") . '-' . time() . '.' . $request['image']->getClientOriginalExtension();
+        $request['image']->move(
+            base_path() . '/public/upload/views',
+            $imageName
+        );
 
-            $image->image_route = '/upload/views/' . $imageName;
-            $image->save();
+        $image->image_route = '/upload/views/' . $imageName;
+        $image->save();
 
         $view = new Views;
         $view->image_id = $image->id;
@@ -330,13 +349,15 @@ class AdminController extends Controller
         return back();
     }
 
-    public function pageRoles(){
+    public function pageRoles()
+    {
         $roles = Roles::all();
         $vac = compact('roles');
         return view('layouts.admin.roles', $vac);
     }
 
-    public function addRol(Request $request){
+    public function addRol(Request $request)
+    {
         $rol = new Roles;
         $rol->rol = $request['name'];
         $rol->save();
