@@ -196,6 +196,9 @@ class AdminController extends Controller
         $person->country_id = $request['country'];
         $person->state_id = $request['state'];
         $person->city_id = $request['city'];
+        $persons->save();
+
+        return redirect('/Admin');
     }
 
 
