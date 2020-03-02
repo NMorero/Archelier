@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/Admin/Delete/All/DB', 'AdminController@deleteDb');
+
 Route::get('/', 'HomeController@index');
 
 Auth::routes();

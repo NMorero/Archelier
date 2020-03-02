@@ -19,7 +19,9 @@ use App\User;
 use App\Views;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 
 class AdminController extends Controller
 {
@@ -40,7 +42,13 @@ class AdminController extends Controller
             }
             return $next($request);
         });
+
+        Schema::enableForeignKeyConstraints();
     }
+
+
+
+
 
     /**
      * Show the application dashboard.
@@ -48,7 +56,18 @@ class AdminController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-
+    public function deleteDB()
+    {
+        $tableNames = Schema::getConnection()->getDoctrineSchemaManager()->listTableNames();
+        Schema::disableForeignKeyConstraints();
+        foreach ($tableNames as $name) {
+            //if you don't want to truncate migrations
+            if ($name == 'migrations') {
+                continue;
+            }
+            DB::table($name)->truncate();
+        }
+    }
 
 
     public function home()
