@@ -75,9 +75,13 @@ Route::post('/Admin/addClientsCompany', 'AdminController@addClientsCompany');
 
 Route::get('/Admin/Companies', 'AdminController@getCompaniesTable');
 
+Route::get('/Admin/Companies/Delete/{id}', 'AdminController@deleteCompany');
+
 Route::post('/Admin/Companies/addCompany', 'AdminController@addCompany');
 
 Route::get('/Admin/Developers', 'AdminController@pageDevelopers');
+
+Route::get('/Admin/Developers/Delete/{id}/', 'AdminController@deleteDeveloper');
 
 Route::post('/Admin/Developers/addDeveloper', 'AdminController@addDeveloper');
 
@@ -93,7 +97,11 @@ Route::post('/Admin/Managers/addProjectLeader', 'AdminController@addPRLeader');
 
 Route::get('/Admin/Projects/Managers', 'AdminController@pagePRManagers');
 
+Route::get('/Admin/Projects/Managers/Delete/{id}', 'AdminController@deletePRManager');
+
 Route::get('/Admin/Projects/Leaders', 'AdminController@pagePRLeaders');
+
+Route::get('/Admin/Projects/Leaders/Delete/{id}', 'AdminController@deleteLeader');
 
 Route::post('/Admin/Projects/addProject', 'AdminController@addProject');
 
@@ -112,3 +120,5 @@ Route::get('/Admin/Projects/Views/{id}', 'AdminController@pageViews');
 Route::post('/Admin/Roles/addRol', 'AdminController@addRol');
 
 Route::get('Admin/Roles', 'AdminController@pageRoles');
+
+Route::get('/Admin/Roles/Delete/{id}', 'AdminController@deleteRol');

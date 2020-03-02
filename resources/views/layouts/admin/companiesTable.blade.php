@@ -18,7 +18,8 @@
                 <th scope="col">Address</th>
                 <th scope="col">Postal code</th>
                 <th scope="col">Identification code</th>
-                
+                <th scope="col">Delete</th>
+
               </tr>
             </thead>
             <tbody>
@@ -37,11 +38,12 @@
                   <td>{{$company->address}}</td>
                   <td>{{$company->postal_code}}</td>
                   <td>{{$company->identification_code}}</td>
-                  
+                  <td class="btn btn-primary py-1 px-2 mt-1 ml-4"><a href="/Admin/Companies/Delete/{{$company->id}}" class="text-white">X</a></td>
+
 
                 </tr>
               @endforeach
-             
+
             </tbody>
           </table>
     </main>

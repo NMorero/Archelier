@@ -631,7 +631,7 @@
 
 
 
-        <a href="/Admin/Projecvts/Leaders" class="btn btn-secondary text-decoration-none text-white">View</a>
+        <a href="/Admin/Projects/Leaders" class="btn btn-secondary text-decoration-none text-white">View</a>
                 </div>
             </div>
         </div>

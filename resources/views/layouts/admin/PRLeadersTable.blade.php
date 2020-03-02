@@ -9,7 +9,7 @@
                 <th scope="col">#</th>
                 <th scope="col">User</th>
                 <th scope="col">Person</th>
-
+                <th scope="col">Delete</th>
             </tr>
             </thead>
             <tbody>
@@ -20,7 +20,7 @@
                     <th scope="row">{{$leader->id}}</th>
                     <td>{{$leader->user->username}}</td>
                     <td data-toggle="collapse" data-target="#accordion{{$leader->id}}" class="clickable">Info</td>
-
+                    <td class="btn btn-primary py-1 px-2 mt-1 ml-4"><a href="/Admin/Projects/Leaders/Delete/{{$leader->id}}" class="text-white">X</a></td>
                 </tr>
 
                 <tr id="accordion{{$leader->id}}" class="collapse">

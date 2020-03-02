@@ -9,6 +9,7 @@ use App\Countries;
 use App\Persons;
 use App\Developers;
 use App\Images;
+use App\PRLeaders;
 use App\ProjectLeaders;
 use App\ProjectManagers;
 use App\Projects;
@@ -144,6 +145,13 @@ class AdminController extends Controller
         return view('layouts.admin.companiesTable', $vac);
     }
 
+    public function deleteCompany($id)
+    {
+        $company = Companies::find($id);
+        $company->delete();
+
+        return redirect('/Admin/Companies');
+    }
 
     public function addCompany(Request $request)
     {
@@ -182,6 +190,12 @@ class AdminController extends Controller
         return view('layouts.admin.developersTable', $vac);
     }
 
+    public function deleteDeveloper($id)
+    {
+        $dev = Developers::find($id);
+        $dev->delete();
+        return redirect('/Admin/Developers');
+    }
 
     public function addDeveloper(Request $request)
     {
@@ -245,6 +259,15 @@ class AdminController extends Controller
         return redirect('/Admin/Projects/Leaders');
     }
 
+    public function deleteLeader($id)
+    {
+        $leader = PRLeaders::find($id);
+        $leader->delete();
+
+        return redirect('/Admin/Projects/Leaders');
+    }
+
+
     public function pagePRLeaders()
     {
         $PRLeaders = ProjectLeaders::all();
@@ -276,6 +299,14 @@ class AdminController extends Controller
 
         $vac = compact('PRManagers');
         return view('layouts.admin.PRManagersTable', $vac);
+    }
+
+    public function deletePRManager($id)
+    {
+        $manager = ProjectManagers::find($id);
+        $manager->delete();
+
+        return redirect('/Admin/Managers/Delete/{id}');
     }
 
     public function addUser(Request $request)
@@ -389,6 +420,14 @@ class AdminController extends Controller
         $roles = Roles::all();
         $vac = compact('roles');
         return view('layouts.admin.roles', $vac);
+    }
+
+    public function deleteRol($id)
+    {
+        $rol = Roles::find($id);
+        $rol->delete();
+
+        return redirect('/Admin/Roles');
     }
 
     public function addRol(Request $request)
