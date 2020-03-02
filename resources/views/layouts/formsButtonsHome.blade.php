@@ -38,7 +38,7 @@
                     <select name="TaskBtnClientSelect" id="TaskBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Task')" required>
                         <option value="null">Select...</option>
                         @foreach ($clients as $client)
-                            <option value="{{$client->id}}" > {{$client->person->name}} </option>
+                            <option value="{{$client->id}}" > {{$client->client_name}} </option>
                         @endforeach
                     </select>
                 </div>
@@ -90,7 +90,7 @@
                     <select name="DeliveryBtnClientSelect" id="DeliveryBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Delivery')" required>
                         <option value="null">Select...</option>
                         @foreach ($clients as $client)
-                            <option value="{{$client->id}}" > {{$client->person->name}} </option>
+                            <option value="{{$client->id}}" > {{$client->client_name}} </option>
                         @endforeach
                     </select>
                 </div>
@@ -169,7 +169,7 @@
                     <select name="EventBtnClientSelect" id="EventBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Event')">
                         <option value="null">Select...</option>
                         @foreach ($clients as $client)
-                            <option value="{{$client->id}}"> {{$client->person->name}} </option>
+                            <option value="{{$client->id}}"> {{$client->client_name}} </option>
                         @endforeach
                     </select>
                 </div>
@@ -226,7 +226,7 @@
                     <select name="PostBtnClientSelect" id="PostBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Post')" required>
                         <option value="null">Select...</option>
                         @foreach ($clients as $client)
-                            <option value="{{$client->id}}" > {{$client->person->name}} </option>
+                            <option value="{{$client->id}}" > {{$client->client_name}} </option>
                         @endforeach
                     </select>
                 </div>

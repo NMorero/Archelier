@@ -265,6 +265,7 @@ class AdminController extends Controller
         $leader->delete();
 
         return redirect('/Admin/Projects/Leaders');
+        
     }
 
 
