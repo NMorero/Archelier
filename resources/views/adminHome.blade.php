@@ -59,7 +59,7 @@
                                 <div class="form-group">
                                     <label for="person">Person</label>
                                     <select class="custom-select" name="person" id="">
-                                        <option value="none">Select..</option>
+                                        <option value="">Select..</option>
                                         @foreach ($persons as $person)
                                             <option value="{{$person->id}}">{{$person->name}}</option>
                                         @endforeach

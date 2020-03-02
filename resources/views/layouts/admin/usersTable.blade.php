@@ -12,6 +12,7 @@
                 <th scope="col">Password</th>
                 <th scope="col">Person</th>
                 <th scope="col">Rol</th>
+                <th scope="col">Delete</th>
 
             </tr>
             </thead>
@@ -27,6 +28,7 @@
 
                     <td data-toggle="collapse" data-target="#accordion{{$user->id}}" class="clickable">Info</td>
                     <td>{{$user['rol']['rol']}}</td>
+                    <td class="btn btn-primary py-1 px-2 mt-1 ml-4"><a href="/Admin/Users/Delete/{{$user->id}}" class="text-white">X</a></td>
                 </tr>
 
                 <tr id="accordion{{$user->id}}" class="collapse">
@@ -42,6 +44,7 @@
                                 <th>Phone Number</th>
                                 <th>Address</th>
                                 <th>Identification Code</th>
+
 
                             </thead>
                             <tbody>

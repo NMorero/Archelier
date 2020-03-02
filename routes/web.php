@@ -83,6 +83,8 @@ Route::post('/Admin/Developers/addDeveloper', 'AdminController@addDeveloper');
 
 Route::get('/Admin/Persons', 'AdminController@pagePersons');
 
+Route::get('/Admin/Persons/Delete/{id}', 'AdminController@deletePerson');
+
 Route::post('/Admin/Persons/addPersons', 'AdminController@addPerson');
 
 Route::post('/Admin/Managers/addProjectManager', 'AdminController@addPRManager');
@@ -98,6 +100,8 @@ Route::post('/Admin/Projects/addProject', 'AdminController@addProject');
 Route::post('/Admin/Projects/addView/{id}', 'AdminController@addView');
 
 Route::post('/Admin/Users/addUser', 'AdminController@addUser');
+
+Route::get('/Admin/Users/Delete/{id}', 'AdminController@deleteUser');
 
 Route::get('/Admin/Users', 'AdminController@pageUsers');
 

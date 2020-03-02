@@ -19,6 +19,7 @@
                     <th scope="col">Country</th>
                     <th scope="col">State</th>
                     <th scope="col">City</th>
+                    <th scope="col">Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,7 +38,7 @@
                         <td>{{$person->country->country_name}}</td>
                         <td>{{$person->state->state_name}}</td>
                         <td>{{$person->city->city_name}}</td>
-
+                        <td class="btn btn-primary py-1 px-2 mt-1 ml-4"><a href="/Admin/Persons/Delete/{{$person->id}}" class="text-white">X</a></td>
 
                     </tr>
 

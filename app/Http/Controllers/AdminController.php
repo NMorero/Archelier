@@ -42,8 +42,6 @@ class AdminController extends Controller
             }
             return $next($request);
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
 
@@ -67,6 +65,7 @@ class AdminController extends Controller
             }
             DB::table($name)->truncate();
         }
+        Schema::enableForeignKeyConstraints();
     }
 
 
@@ -201,6 +200,13 @@ class AdminController extends Controller
         return view('layouts.admin.personsTable', $vac);
     }
 
+    public function deletePerson($id)
+    {
+        $person = Persons::find($id);
+        $person->delete();
+        return redirect('/Admin/Persons');
+    }
+
     public function addPerson(Request $request)
     {
         $person = new Persons;
@@ -301,6 +307,13 @@ class AdminController extends Controller
 
         $vac = compact('users');
         return view('layouts.admin.usersTable', $vac);
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/Admin/Users');
     }
 
 
