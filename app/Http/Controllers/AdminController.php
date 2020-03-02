@@ -198,7 +198,7 @@ class AdminController extends Controller
         $person->city_id = $request['city'];
         $person->save();
 
-        return redirect('/Admin');
+        return redirect('/Admin/Persons');
     }
 
 
