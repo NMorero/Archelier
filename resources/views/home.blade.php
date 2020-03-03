@@ -204,11 +204,11 @@ Home
 
         {{-- Segunda seccion ( Posts ) --}}
 
-        <div class="col-4 scroll-post scrollable" id="divPosts">
+        <div class="col-3 scroll-post scrollable" id="divPosts">
 
         </div>
         {{-- Tercera seccion ( actions yu reminders ) --}}
-        <div class="col-4 justify-content-center">
+        <div class="col-5 justify-content-center m-0 p-3">
             <div class="col-12 pt-3 row div-actions justify-content-between">
                 <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalTasks">Task</button>
                 <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
@@ -219,8 +219,8 @@ Home
 
             </div>
 
-            <div class="col-11 mt-5 ">
-                <h3 class=" justify-content-between row mb-2"><p class="col-5">Reminders</p></h3>
+            <div class="col-12 mt-5 mx-0 p-0  ">
+
 
                 <ul class="list-group scroll-reminders text-white p-0 bg-dark rounded" id="remindersBox">
 
