@@ -17,10 +17,10 @@ class CreateRelacionFreelanceTable extends Migration
             $table->bigIncrements('id');
             $table->string('iva_condition');
             $table->string('account_bank');
-            $table->integer('account_number');
-            $table->integer('cbu_number');
+            $table->string('account_number');
+            $table->string('cbu_number');
             $table->string('familyContact_name');
-            $table->integer('familyContact_phoneNumber');
+            $table->string('familyContact_phoneNumber');
             $table->string('familyContact_address');
             $table->timestamps();
         });

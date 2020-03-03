@@ -17,10 +17,10 @@ class CreatePersonsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('last_name');
-            $table->integer('dni');
+            $table->string('dni');
             $table->string('alias');
             $table->string('email');
-            $table->integer('phone_number');
+            $table->string('phone_number');
             $table->string('address');
             $table->integer('identification_code');
             $table->timestamps();
