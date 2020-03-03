@@ -114,6 +114,34 @@ class AdminController extends Controller
         return view('layouts.admin.clientsCompanyTable', $vac);
     }
 
+    public function updateCompany(Request $request, $id)
+    {
+        $company = Companies::find($id);
+        $company->name = $request['name'];
+        $company->cuit = $request['cuit'];
+        $company->alias = $request['alias'];
+        $company->website = $request['website'];
+        $company->administrator_name = $request['adminName'];
+        $company->administrator_email = $request['adminEmail'];
+        $company->production_manager_name = $request['prodManName'];
+        $company->production_email = $request['prodEmail'];
+        $company->phone_number = $request['phoneNumber'];
+        $company->address = $request['address'];
+        $company->postal_code = $request['postalCode'];
+        $company->identification_code = $request['identificationCode'];
+        $company->save();
+        return redirect('/Admin/Companies');
+    }
+
+
+    public function updateClientperson(Request $request, $id)
+    {
+        $client = Clients::find($id);
+        $client->client_name = $request['client_name'];
+        $client->type = $request['client_type'];
+        $client->save();
+        return redirect('/Admin/Clients/Person');
+    }
 
     public function addClientsPersons(Request $request)
     {
@@ -214,6 +242,23 @@ class AdminController extends Controller
         return view('layouts.admin.personsTable', $vac);
     }
 
+    public function updatePerson(Request $request, $id)
+    {
+        $person = Persons::find($id);
+        $person->name = $request['name'];
+        $person->last_name = $request['last_name'];
+        $person->dni = $request['dni'];
+        $person->alias = $request['alias'];
+        $person->email = $request['email'];
+        $person->phone_number = $request['phone_number'];
+        $person->address = $request['address'];
+        $person->identification_code = $request['identification_code'];
+
+        $person->save();
+
+        return redirect('/Admin/Persons');
+    }
+
     public function deletePerson($id)
     {
         $person = Persons::find($id);
@@ -265,7 +310,6 @@ class AdminController extends Controller
         $leader->delete();
 
         return redirect('/Admin/Projects/Leaders');
-        
     }
 
 
@@ -320,6 +364,17 @@ class AdminController extends Controller
             $user->person_id = $request['person'];
         }
         $user->rol_id = $request['rol'];
+        $user->save();
+
+        return redirect('/Admin/Users');
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->username = $request['username'];
+        $user->email = $request['email'];
+        $user->password = $request['password'];
         $user->save();
 
         return redirect('/Admin/Users');

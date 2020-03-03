@@ -2,9 +2,10 @@
 
 
 @section('content')
-    <main class="container">
-        <main class="  p-3 d-flex">
-            <table class="table">
+
+        <main class="justify-content-center d-flex p-2">
+
+            <table class="table table-sm">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -20,32 +21,36 @@
                     <th scope="col">State</th>
                     <th scope="col">City</th>
                     <th scope="col">Delete</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
                     @foreach ($persons as $person)
+                    <form action="/Admin/Persons/Update/{{$person->id}}" method="POST">
+                        @csrf
+                        <tr>
+                            <td>{{$person->id}}</td>
+                            <td class="align-middle"><input class="border-0 rounded bg-transparent" type="text" name="name" id="" value="{{$person->name}}"></td>
+                            <td class="align-middle"><input class="border-0 rounded bg-transparent" type="text" name="last_name" id="" value="{{$person->last_name}}"></td>
+                            <td class="align-middle"><input class="border-0 rounded bg-transparent" type="number" name="dni" id="" value="{{$person->dni}}"></td>
+                            <td class="align-middle"><input class="border-0 rounded bg-transparent" type="text" name="alias" id=""  value="{{$person->alias}}"></td>
+                            <td class="align-middle"><input class="border-0 rounded bg-transparent" type="email" name="email" id="" value="{{$person->email}}"></td>
+                            <td class="align-middle"><input class="border-0 rounded bg-transparent" type="number" name="phone_number" id="" value="{{$person->phone_number}}"></td>
+                            <td class="align-middle"><input class="border-0 rounded bg-transparent" type="text" name="address" id="" value="{{$person->address}}"></td>
+                            <td class="align-middle"><input class="border-0 rounded bg-transparent" type="number" name="identification_code" id="" value="{{$person->identification_code}}"></td>
+                            <td class="align-middle">{{$person->country->country_name}}</td>
+                            <td class="align-middle">{{$person->state->state_name}}</td>
+                            <td class="align-middle">{{$person->city->city_name}}</td>
+                            <td class="btn btn-primary py-1 px-2 mt-1 ml-4"><a href="/Admin/Persons/Delete/{{$person->id}}" class="text-white">X</a></td>
+                            <td><button class="btn btn-dark" type="submit">Update</button></td>
+                        </tr>
+                    </form>
 
-                    <tr>
-                        <th scope="row">{{$person->id}}</th>
-                        <td>{{$person->name}}</td>
-                        <td>{{$person->last_name}}</td>
-                        <td>{{$person->dni}}</td>
-                        <td>{{$person->alias}}</td>
-                        <td>{{$person->email}}</td>
-                        <td>{{$person->phone_number}}</td>
-                        <td>{{$person->address}}</td>
-                        <td>{{$person->identification_code}}</td>
-                        <td>{{$person->country->country_name}}</td>
-                        <td>{{$person->state->state_name}}</td>
-                        <td>{{$person->city->city_name}}</td>
-                        <td class="btn btn-primary py-1 px-2 mt-1 ml-4"><a href="/Admin/Persons/Delete/{{$person->id}}" class="text-white">X</a></td>
-
-                    </tr>
 
                     @endforeach
 
                 </tbody>
             </table>
         </main>
-    </main>
+
 @endsection

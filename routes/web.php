@@ -65,9 +65,13 @@ Route::get('/Admin', 'AdminController@home');
 
 Route::get('/Admin/Clients/Person', 'AdminController@pageClientsPersons');
 
+Route::post('/Admin/Clients/Person/Update/{id}', 'AdminController@updateClientperson');
+
 Route::get('/Admin/Clients/Person/getClientsPersons', 'AdminController@getClientsPersons');
 
 Route::post('/Admin/addClientsPersons', 'AdminController@addClientsPersons');
+
+Route::post('/Admin/Company/Update/{id}', 'AdminController@updateCompany');
 
 Route::get('/Admin/Clients/Company', 'AdminController@pageClientsCompany');
 
@@ -86,6 +90,8 @@ Route::get('/Admin/Developers/Delete/{id}/', 'AdminController@deleteDeveloper');
 Route::post('/Admin/Developers/addDeveloper', 'AdminController@addDeveloper');
 
 Route::get('/Admin/Persons', 'AdminController@pagePersons');
+
+Route::post('/Admin/Persons/Update/{id}', 'AdminController@updatePerson');
 
 Route::get('/Admin/Persons/Delete/{id}', 'AdminController@deletePerson');
 
@@ -108,6 +114,8 @@ Route::post('/Admin/Projects/addProject', 'AdminController@addProject');
 Route::post('/Admin/Projects/addView/{id}', 'AdminController@addView');
 
 Route::post('/Admin/Users/addUser', 'AdminController@addUser');
+
+Route::post('/Admin/Users/Update/{id}', 'AdminController@updateUser');
 
 Route::get('/Admin/Users/Delete/{id}', 'AdminController@deleteUser');
 
