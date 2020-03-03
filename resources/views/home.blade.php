@@ -209,13 +209,13 @@ Home
         </div>
         {{-- Tercera seccion ( actions yu reminders ) --}}
         <div class="col-5 justify-content-center m-0 p-3">
-            <div class="col-12 pt-3 row div-actions justify-content-between">
-                <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalTasks">Task</button>
-                <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
-                <a href="/Feedback/Create" class="btn btn-info m-1 col-3">Feedback</a>
-                <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalEvent">Event</button>
+            <div class="col-12 pt-3 row div-actions justify-content-between pr-0">
+                <button class="btn btn-info mr-1 my-1 ml-0 col-3 button-actions" data-toggle="modal" data-target="#modalTasks">Task</button>
+                <button class="btn btn-info mr-1 col-3 button-actions" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
+                <a href="/Feedback/Create" class="btn btn-info mr-0 my-1 ml-11 col-3">Feedback</a>
+                <button class="btn btn-info mr-1 my-1 ml-0 col-3 button-actions" data-toggle="modal" data-target="#modalEvent">Event</button>
                 <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalPosts">Post</button>
-                <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalReminder">Reminder</button>
+                <button class="btn btn-info mr-0 my-1 ml-1 button-actions col-3" data-toggle="modal" data-target="#modalReminder">Reminder</button>
 
             </div>
 
