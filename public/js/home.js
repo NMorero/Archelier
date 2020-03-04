@@ -132,14 +132,35 @@ function getPosts() {
                     <a href="/Feedback/Edit/${post.feedback_id}" class="row border-bottom p-1 text-decoration-none text-dark">
                         <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
                         <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
-                        <img src="${post.image}" class="postImage" alt="">
-                    </a>
-
+                        <ul>
 
                     `;
-                    divPosts.innerHTML = divPosts.innerHTML.concat(
-                        templateLiteral
-                    );
+
+                    var comments = JSON.parse(post.feedback.message);
+                    var templatelit3 = ``;
+                    comments.map(function(comm) {
+                        console.log(comm);
+                        if (comm.status == "done") {
+                            var temp = `<li><strike>
+                            ${comm.comment}
+                            </strike>
+                        </li>`;
+                        } else {
+                            var temp = `<li>
+                            ${comm.comment}
+                        </li>`;
+                        }
+
+                        templatelit3 = templatelit3 + temp;
+                    });
+                    const templatelit2 = `
+                    </ul>
+                    <img src="${post.image}" class="postImage" alt="">
+                </a>`;
+                    const template =
+                        templateLiteral + templatelit3 + templatelit2;
+                    divPosts.innerHTML = divPosts.innerHTML.concat(template);
+                    console.log("template:" + template);
                 } else {
                     const templateLiteral = `
                     <a href="/Feedback/Edit/${post.feedback_id}" class="row border-bottom p-1 text-decoration-none text-dark">

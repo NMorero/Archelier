@@ -13,8 +13,8 @@
 </head>
 <body>
 
-    <header class="header-base p-2 justify-content-between row d-none d-lg-flex">
-        <nav class="nav col-9">
+    <header class="header-base p-2 justify-content-between row d-none d-lg-flex" style="height:70px">
+        <nav class="nav col-8">
             <a class="nav-link active   text-white" href="#">Home</a>
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Administration</a>
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Production</a>
@@ -24,10 +24,17 @@
             @endif
 
           </nav>
-        <a class="col-2 p-2 text-white" href="/logout">Log Out</a>
+        <nav class="nav col-3 row justify-content-center d-flex align-center">
+            <div class="row col-5">
+                <img class="col-5 rounded-circle mt-2" src="{{asset('/upload/users/user.jfif')}}" alt="" height="33">
+                <p class="col-5 p-2 text-white">{{auth()->user()->username}}</p>
+            </div>
+            <a class="col-5 p-2 text-white" href="/logout">Log Out</a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
         </form>
+
+        </nav>
     </header>
 
 
