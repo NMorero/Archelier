@@ -8,6 +8,17 @@ function autoRefreshPage() {
     getTasks();
 }
 setInterval("autoRefreshPage()", 30000);
+var i = 2;
+function addcommentTask() {
+    const commentDiv = document.getElementById("commentTaskBtn");
+    var cant = document.getElementById("commentsCant");
+    templateLiteral = `<input type="text" name="TaskBtnMessage${i}" id="TaskBtnMessage${i}" class="form-control mt-1" placeholder="Task ${i}" required>`;
+    commentDiv.innerHTML = commentDiv.innerHTML.concat(templateLiteral);
+    cant.setAttribute("value", i);
+    i++;
+
+    console.log(cant);
+}
 
 $("#clientSelect").change(function() {
     console.log("si");
@@ -324,7 +335,7 @@ function getTasks() {
                         const templateLiteral = `
                         <div class="row border-bottom table-warning">
                             <p class="taskMessage col-12 mb-1">${event.message}</p>
-                            <p class="taskFooter text-right col-12">${event.client.client_name} // ${event.project.project_name} // ${event.end_date}</p>
+
                         </div>
                         `;
                         tasksBox3.innerHTML = tasksBox3.innerHTML.concat(

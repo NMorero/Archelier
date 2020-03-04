@@ -10,9 +10,15 @@
         </div>
         <div class="modal-body">
             <form class="row" id="TaskBtnForm" >
-                <div class="form-group col-12">
-                  <label for="TaskBtnMessage" class="text-muted">Message</label>
-                  <textarea name="TaskBtnMessage" id="TaskBtnMessage" class="form-control" cols="20" rows="3" required></textarea>
+                <div class="form-group col-12" id="commentTaskBtn">
+                  <label for="TaskBtnMessage" class="text-muted">Tasks</label>
+                  <input type="text" name="TaskBtnMessage1" id="TaskBtnMessage1" class="form-control" placeholder="Task 1" required>
+
+
+                </div>
+                <input type="number" name="commentsCant" id="commentsCant" value="1" hidden>
+                <div class="form-group col-12 justify-content-center row">
+                    <button class="btn btn-primary col-6" onclick="addcommentTask()">Add task</button>
                 </div>
                 <div class="form-group col-6">
                     <label for="TaskBtnStatusSelect" class="text-muted">Status</label>
