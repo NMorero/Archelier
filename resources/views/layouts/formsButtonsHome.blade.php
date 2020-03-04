@@ -167,7 +167,7 @@
                 <div class="form-group col-5">
                     <label for="EventBtnClientSelect" class="text-muted">Client</label>
                     <select name="EventBtnClientSelect" id="EventBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Event')">
-                        <option value="null">Select...</option>
+                        <option value="">Select...</option>
                         @foreach ($clients as $client)
                             <option value="{{$client->id}}"> {{$client->client_name}} </option>
                         @endforeach

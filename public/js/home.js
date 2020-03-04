@@ -303,17 +303,34 @@ function getTasks() {
                 });
 
                 tasks.events.map(function(event) {
-                    let tasksBox3 = document.getElementById("tasks" + i);
+                    if (
+                        typeof event.client == "undefined" ||
+                        event.client == null
+                    ) {
+                        let tasksBox3 = document.getElementById("tasks" + i);
 
-                    const templateLiteral = `
+                        const templateLiteral = `
+                        <div class="row border-bottom table-warning">
+                            <p class="taskMessage col-12 mb-1 mt-3 pl-4">${event.message}</p>
+                            <p class="taskFooter text-right col-12"></p>
+                        </div>
+                        `;
+                        tasksBox3.innerHTML = tasksBox3.innerHTML.concat(
+                            templateLiteral
+                        );
+                    } else {
+                        let tasksBox3 = document.getElementById("tasks" + i);
+
+                        const templateLiteral = `
                         <div class="row border-bottom table-warning">
                             <p class="taskMessage col-12 mb-1">${event.message}</p>
                             <p class="taskFooter text-right col-12">${event.client.client_name} // ${event.project.project_name} // ${event.end_date}</p>
                         </div>
                         `;
-                    tasksBox3.innerHTML = tasksBox3.innerHTML.concat(
-                        templateLiteral
-                    );
+                        tasksBox3.innerHTML = tasksBox3.innerHTML.concat(
+                            templateLiteral
+                        );
+                    }
                 });
             });
         })

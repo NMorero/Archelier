@@ -299,11 +299,11 @@ class HomeController extends Controller
             $event->client_id = $formData['client'];
         }
 
-        if (isset($formData['project']) && !empty($formData['project'])) {
+        if (isset($formData['project']) && !empty($formData['project']) && $formData['project'] != 'All') {
             $event->project_id = $formData['project'];
         }
 
-        if (isset($formData['view']) && !empty($formData['view'])) {
+        if (isset($formData['view']) && !empty($formData['view']) && $formData['view'] != 'All') {
             $event->view_id = $formData['view'];
         }
 
