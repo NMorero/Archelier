@@ -2,6 +2,13 @@ getPosts();
 getReminders();
 getTasks();
 
+function autoRefreshPage() {
+    getPosts();
+    getReminders();
+    getTasks();
+}
+setInterval("autoRefreshPage()", 30000);
+
 $("#clientSelect").change(function() {
     console.log("si");
     var clientoption = document.getElementById("clientSelect").value;
