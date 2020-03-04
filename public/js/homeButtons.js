@@ -250,20 +250,4 @@ function saveButton(button) {
 
     let route = "/add" + button + "/" + formData;
     console.log(route);
-    fetch(route)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(data) {
-            document.getElementById(button + "BtnForm").reset();
-            console.log(data.status);
-            getPosts();
-            getReminders();
-            getTasks();
-
-            $("#close" + button).click();
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
 }
