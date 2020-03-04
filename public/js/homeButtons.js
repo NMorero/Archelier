@@ -165,7 +165,7 @@ function saveButton(button) {
         file: null
     };
 
-    if ((button = "Task")) {
+    if (button == "Task") {
         let array = [];
         let cantComments = document.getElementById("commentsCant").value;
         for (var i = 1; i <= cantComments; i++) {
