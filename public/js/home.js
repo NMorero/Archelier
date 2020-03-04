@@ -129,7 +129,7 @@ function getPosts() {
                     }
                 } else if (post.type == "feedbackCreate") {
                     const templateLiteral = `
-                    <a href="/Feedback/Edit/${post.feedback_id}" class="row border-bottom p-1 text-decoration-none text-dark">
+                    <a href="/Feedback/Edit/${post.feedback_id}" class="row border-bottom p-1 text-decoration-none text-dark justify-content-between">
                         <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
                         <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
                         <ul>
@@ -139,7 +139,6 @@ function getPosts() {
                     var comments = JSON.parse(post.feedback.message);
                     var templatelit3 = ``;
                     comments.map(function(comm) {
-                        console.log(comm);
                         if (comm.status == "done") {
                             var temp = `<li><strike>
                             ${comm.comment}
@@ -160,21 +159,38 @@ function getPosts() {
                     const template =
                         templateLiteral + templatelit3 + templatelit2;
                     divPosts.innerHTML = divPosts.innerHTML.concat(template);
-                    console.log("template:" + template);
                 } else {
                     const templateLiteral = `
                     <a href="/Feedback/Edit/${post.feedback_id}" class="row border-bottom p-1 text-decoration-none text-dark">
-                    <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
-                    <img src="${post.image}"  height="70" width="70" alt="">
-                    <p class="col-4 postMessage pt-3" ><b>${post.title}</p>
+                        <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
+                        <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
+                        <ul class="col-9">
 
-
-
-                </a>
                     `;
-                    divPosts.innerHTML = divPosts.innerHTML.concat(
-                        templateLiteral
-                    );
+
+                    var comments = JSON.parse(post.feedback.message);
+                    var templatelit3 = ``;
+                    comments.map(function(comm) {
+                        if (comm.status == "done") {
+                            var temp = `<li><strike>
+                            ${comm.comment}
+                            </strike>
+                        </li>`;
+                        } else {
+                            var temp = `<li>
+                            ${comm.comment}
+                        </li>`;
+                        }
+
+                        templatelit3 = templatelit3 + temp;
+                    });
+                    const templatelit2 = `
+                    </ul>
+                    <img class="col-3 mb-1" src="${post.image}"  alt="" height"50" width="60">
+                </a>`;
+                    const template =
+                        templateLiteral + templatelit3 + templatelit2;
+                    divPosts.innerHTML = divPosts.innerHTML.concat(template);
                 }
             });
         })

@@ -97,7 +97,7 @@ class FeedbackController extends Controller
 
         $post = new Posts();
 
-        $post->title = 'New Feedback';
+        $post->title = 'Feedback edited';
         $post->message = ' ';
         $post->image = $feedback->image;
         $post->user_id = Auth::id();
