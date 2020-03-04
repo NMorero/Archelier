@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('head')
-
+<meta http-equiv="pragma" content="no-cache" />
 @endsection
 
 @section('title')
