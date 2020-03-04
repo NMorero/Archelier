@@ -303,13 +303,22 @@ function getTasks() {
                     let tasksBox2 = document.getElementById("tasks" + i);
 
                     const templateLiteral = `
-                        <div class="row border-bottom">
-                            <p class="taskMessage col-12 mb-1">${task.message}</p>
-                            <p class="taskFooter text-right col-12">${task.client.client_name} // ${task.project.project_name} // ${task.user.username}</p>
+                        <div class="row border-bottom"><ul>`;
+                    let comments = task.message.split(",");
+                    let templatelit2 = ``;
+                    comments.map(function(comm) {
+                        let temp = `<li>
+                            ${comm}
+                        </li>`;
+
+                        templatelit2 = templatelit2 + temp;
+                    });
+
+                    const templatelit3 = `</ul><p class="taskFooter text-right col-12">${task.client.client_name} // ${task.project.project_name} // ${task.user.username}</p>
                         </div>
                         `;
                     tasksBox2.innerHTML = tasksBox2.innerHTML.concat(
-                        templateLiteral
+                        templateLiteral + templatelit2 + templatelit3
                     );
                 });
 
