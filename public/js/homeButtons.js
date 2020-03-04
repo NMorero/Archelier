@@ -172,7 +172,8 @@ function saveButton(button) {
             let comment = document.getElementById("TaskBtnMessage" + i);
             array.push(comment.value);
         }
-        console.log(array);
+        formData["message"] = array.join();
+        console.log(array.join());
     }
 
     if (document.getElementById(button + "BtnStatusSelect")) {
@@ -207,7 +208,7 @@ function saveButton(button) {
         }
     }
 
-    if (document.getElementById(button + "BtnMessage")) {
+    if (document.getElementById(button + "BtnMessage") && button !== "Task") {
         var message = document.getElementById(button + "BtnMessage").value;
         formData["message"] = message;
         //console.log('Message: ' + message);
