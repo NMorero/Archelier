@@ -21,6 +21,8 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/changeTask/{task}/{comment}', 'HomeController@changeTask');
+
 Route::get('/test', 'HomeController@test');
 
 Route::get('/getProjectsByClient/{client}', 'HomeController@getProjectsByClient');

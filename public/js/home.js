@@ -303,18 +303,30 @@ function getTasks() {
                     let tasksBox2 = document.getElementById("tasks" + i);
 
                     const templateLiteral = `
-                        <div class="row border-bottom"><ul>`;
-                    let comments = task.message.split(",");
+                        <div class="row border-bottom"><dl >`;
+                    let comments = JSON.parse(task.message);
                     let templatelit2 = ``;
                     comments.map(function(comm) {
-                        let temp = `<li>
-                            ${comm}
+                        if (comm.status == 1) {
+                            let temp = `<li>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})">
+                        <label class="form-check-label" for="task${task.id}Check${comm.id}">${comm.data}</label>
+                      </div>
                         </li>`;
-
-                        templatelit2 = templatelit2 + temp;
+                            templatelit2 = templatelit2 + temp;
+                        } else {
+                            let temp = `<li>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})" checked>
+                        <label class="form-check-label" for="task${task.id}Check${comm.id}"><strike>${comm.data}</strike></label>
+                      </div>
+                        </li>`;
+                            templatelit2 = templatelit2 + temp;
+                        }
                     });
 
-                    const templatelit3 = `</ul><p class="taskFooter text-right col-12">${task.client.client_name} // ${task.project.project_name} // ${task.user.username}</p>
+                    const templatelit3 = `</dl><p class="taskFooter text-right col-12">${task.client.client_name} // ${task.project.project_name} // ${task.user.username}</p>
                         </div>
                         `;
                     tasksBox2.innerHTML = tasksBox2.innerHTML.concat(
@@ -353,6 +365,20 @@ function getTasks() {
                     }
                 });
             });
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+}
+
+function test(taskId, commId) {
+    console.log("task:" + taskId + "comm: " + commId);
+    fetch("/changeTask/" + taskId + "/" + commId)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            getTasks();
         })
         .catch(function(error) {
             console.log(error);

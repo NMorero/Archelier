@@ -125,6 +125,34 @@ class HomeController extends Controller
     }
 
 
+    public function changeTask($task, $comment)
+    {
+        $taskDB = Tasks::find($task);
+        $comments = json_decode($taskDB->message);
+        foreach ($comments as $comm) {
+            if ($comm->id == $comment) {
+                if ($comm->status == 1) {
+                    $comm->status = 2;
+
+                    $taskDB->message = json_encode($comments);
+                    $taskDB->save();
+                    return $comments;
+                } else if ($comm->status == 2) {
+                    $comm->status = 1;
+                    $taskDB->message = json_encode($comments);
+                    $taskDB->save();
+                    return $comments;
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
     public function getTasks()
     {
 
@@ -240,7 +268,23 @@ class HomeController extends Controller
         $formData = json_decode($formData, true);
 
         $task = new Tasks;
-        $task->message = $formData['message'];
+
+        $message = [];
+
+        $data = explode(',', $formData['message']);
+        $i = 0;
+        foreach ($data as $comment) {
+            $i++;
+            $temp = [
+                'id' => $i,
+                'data' => $comment,
+                'status' => 1
+            ];
+            array_push($message, $temp);
+        }
+
+
+        $task->message = json_encode($message);
         $task->status = $formData['status'];
         $task->end_date = $formData['end_date'];
         $task->user_id = $formData['user'];
