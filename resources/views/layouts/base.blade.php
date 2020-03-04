@@ -19,6 +19,9 @@
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Administration</a>
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Production</a>
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Marketing</a>
+            @if (auth()->user()->roles->rol == 'admin')
+            <a class="nav-link active   text-white" href="/Admin" tabindex="-1" aria-disabled="true">Resources</a>
+            @endif
 
           </nav>
         <a class="col-2 p-2 text-white" href="/logout">Log Out</a>

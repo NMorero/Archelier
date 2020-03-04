@@ -14,7 +14,13 @@ class Posts extends Model
 
 
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\User', 'user_id');
+    }
+
+    public function feedback()
+    {
+        return $this->belongsTo('App\Feedbacks', 'feedback_id');
     }
 }

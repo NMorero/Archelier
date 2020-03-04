@@ -329,7 +329,7 @@
                 <select class="custom-select" id="clientSelect">
                   <option selected class="clientSelectOption" value="none">Select..</option>
                   @foreach ($clients as $client)
-                      <option value="{{$client->id}}" class="clientSelectOption"> {{$client->person->name}} </option>
+                      <option value="{{$client->id}}" class="clientSelectOption"> {{$client->client_name}} </option>
                   @endforeach
                 </select>
             </div>

@@ -90,6 +90,9 @@ class HomeController extends Controller
             $user = User::find($post['user_id']);
             $post['user_name'] = $user['username'];
 
+            if (isset($post->feedback)) {
+                $post['feedback'] = $post->feedback;
+            }
 
 
             $project = Projects::find($post['project_id']);
@@ -99,7 +102,7 @@ class HomeController extends Controller
             $date = $post['created_at'];
 
 
-            $date = date('h-m-d', strtotime($post['created_at']));
+            $date = date('d-m-y', strtotime($post['created_at']));
             //Print out the day that our date fell on.
             $post['date'] = $date;
         }
