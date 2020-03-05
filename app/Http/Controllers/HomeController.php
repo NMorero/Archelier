@@ -7,9 +7,12 @@ use App\Deliveries;
 use App\Events;
 use App\Images;
 use App\LeaderOfDeveloper;
+use App\ManagerOfLeaders;
 use App\Persons;
 use App\Posts;
 use App\PRLeaders;
+use App\ProjectLeaders;
+use App\ProjectManagers;
 use App\Projects;
 use App\ProjectViews;
 use App\Reminders;
@@ -157,11 +160,64 @@ class HomeController extends Controller
     {
 
         $user = User::find(Auth::id());
-        if ($user->rol_id == 4) {
-            $tasksDB = Tasks::where('user_id', 'LIKE', Auth::id())->orWhere('user_id', 'LIKE', '4')->orderBy('end_date')->get();
-        } else {
+        if ($user->rol_id == 1) {
+            $tasksDB = Tasks::orderBy('end_date')->get();
+        } else if ($user->rol_id == 2) {
             $tasksDB = Tasks::where('user_id', 'LIKE', Auth::id())->orderBy('end_date')->get();
+        } else if ($user->rol_id == 3) {
+
+            $leaders = [];
+
+            $manager = ProjectManagers::where('user_id', 'LIKE', Auth::id())->get();
+            $mleaders = $manager[0]->MLeaders;
+            foreach ($mleaders as $mleader) {
+                array_push($leaders, $mleader->leader);
+            }
+            $tasksDB = [];
+            foreach ($leaders as $leader) {
+                $tasksleader = Tasks::where('user_id', 'LIKE', $leader->user_id)->get();
+                foreach ($tasksleader as $taskleader) {
+                    $tasksDB[] = $taskleader;
+                }
+                $developers = [];
+                $LDevelopers = $leader->LDevelopers;
+                foreach ($LDevelopers as $LDeveloper) {
+                    array_push($developers, $LDeveloper->developer);
+                }
+
+                foreach ($developers as $developer) {
+                    $tasksDeveloper = Tasks::where('user_id', 'LIKE', $developer->user_id)->get();
+                    foreach ($tasksDeveloper as $taskDev) {
+                        $tasksDB[] = $taskDev;
+                    }
+                }
+            }
+
+            $tasksManager = Tasks::where('user_id', 'LIKE', $manager[0]->user_id)->get();
+            foreach ($tasksManager as $taskManager) {
+                $tasksDB[] = $taskManager;
+            }
+        } else if ($user->rol_id == 4) {
+            $leader = ProjectLeaders::where('user_id', 'LIKE', Auth::id())->get();
+            $leader = $leader[0];
+            $developers = [];
+            $LDevelopers = $leader->LDevelopers;
+            foreach ($LDevelopers as $LDeveloper) {
+                array_push($developers, $LDeveloper->developer);
+            }
+            $tasksDB = [];
+            foreach ($developers as $developer) {
+                $tasksDeveloper = Tasks::where('user_id', 'LIKE', $developer->user_id)->get();
+                foreach ($tasksDeveloper as $taskDev) {
+                    $tasksDB[] = $taskDev;
+                }
+            }
+            $tasksLeader = Tasks::where('user_id', 'LIKE', $leader->user_id)->get();
+            foreach ($tasksLeader as $taskLeader) {
+                $tasksDB[] = $taskLeader;
+            }
         }
+
         $events = Events::orderBy('end_date')->get();
         $tasks = [];
         $dates = [];
