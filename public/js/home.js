@@ -8,16 +8,32 @@ function autoRefreshPage() {
     getTasks();
 }
 setInterval("autoRefreshPage()", 30000);
-var i = 2;
+var comments = [];
+let cantComments = 1;
 function addcommentTask() {
-    const commentDiv = document.getElementById("commentTaskBtn");
-    var cant = document.getElementById("commentsCant");
-    templateLiteral = `<input type="text" name="TaskBtnMessage${i}" id="TaskBtnMessage${i}" class="form-control mt-1" placeholder="Task ${i}" required>`;
-    commentDiv.innerHTML = commentDiv.innerHTML.concat(templateLiteral);
-    cant.setAttribute("value", i);
-    i++;
+    let commentDiv = document.getElementById("commentTaskBtn");
+    let cantInp = document.getElementById("commentsCant");
+    let prevComment = document.getElementById("TaskBtnMessage" + cantInp.value);
+    console.log(prevComment);
 
-    console.log(cant);
+    comments.push({
+        name: prevComment.name,
+        value: prevComment.value,
+        placeholder: prevComment.placeholder,
+        id: prevComment.id
+    });
+    console.log(comments);
+    comments.forEach(comm => {
+        let input = document.getElementById(comm.id);
+        input.setAttribute("value", comm.value);
+        input.setAttribute("name", comm.name);
+        input.setAttribute("placeholder", comm.placeholder);
+    });
+    cantComments++;
+    cantInp.setAttribute("value", cantComments);
+
+    let template1 = `<input type="text" name="TaskBtnMessage${cantComments}" id="TaskBtnMessage${cantComments}" class="form-control" placeholder="Task ${cantComments}" required>`;
+    commentDiv.innerHTML = commentDiv.innerHTML.concat(template1);
 }
 
 $("#clientSelect").change(function() {
