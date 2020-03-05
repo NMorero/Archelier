@@ -42,7 +42,7 @@ class AdminController extends Controller
                 return abort(401);
             }
             return $next($request);
-        });
+        })->except(['pageProjects', 'pageViews']);
     }
 
 

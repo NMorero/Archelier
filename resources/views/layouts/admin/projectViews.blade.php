@@ -8,11 +8,13 @@
 
         <div class="col-12 row">
 
+                @if (auth()->user()->roles->rol == 'admin' || auth()->user()->roles->rol == 'PRmanager' || auth()->user()->roles->rol == 'PRleader')
                 <div class="col-12 justify-content-center row mb-4">
                     <button type="button" class="btn btn-primary col-4" data-toggle="modal" data-target="#view">
                         Add
                       </button>
                 </div>
+                @endif
 
                   <!-- Modal -->
                   <div class="modal fade" id="view" tabindex="-1" role="dialog" aria-labelledby="viewTitle" aria-hidden="true">
