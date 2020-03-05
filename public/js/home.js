@@ -291,7 +291,7 @@ function getTasks() {
                 i++;
 
                 const templateLiteral = `
-                        <div class="row px-2 mb-1">
+                        <div class="col-12 row px-2 mb-1">
                             <h6 class="col-12 text-right">${tasks.day}</h6>
                             <div class="col-12" id="tasks${i}">
                             </div>
@@ -303,12 +303,12 @@ function getTasks() {
                     let tasksBox2 = document.getElementById("tasks" + i);
 
                     const templateLiteral = `
-                        <div class="row border-bottom"><dl >`;
+                        <div class="row border-bottom "><ul style="list-style-type: none;">`;
                     let comments = JSON.parse(task.message);
                     let templatelit2 = ``;
                     comments.map(function(comm) {
                         if (comm.status == 1) {
-                            let temp = `<li>
+                            let temp = `<li >
                         <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})">
                         <label class="form-check-label" for="task${task.id}Check${comm.id}">${comm.data}</label>
@@ -326,7 +326,7 @@ function getTasks() {
                         }
                     });
 
-                    const templatelit3 = `</dl><p class="taskFooter text-right col-12">${task.client.client_name} // ${task.project.project_name} // ${task.user.username}</p>
+                    const templatelit3 = `</ul><p class="taskFooter text-right col-12">${task.client.client_name} // ${task.project.project_name} // ${task.user.username}</p>
                         </div>
                         `;
                     tasksBox2.innerHTML = tasksBox2.innerHTML.concat(
