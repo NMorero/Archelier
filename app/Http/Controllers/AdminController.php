@@ -8,6 +8,8 @@ use App\Companies;
 use App\Countries;
 use App\Persons;
 use App\Developers;
+use App\DirectRelationships;
+use App\FreelanceRelationships;
 use App\Images;
 use App\PRLeaders;
 use App\ProjectLeaders;
@@ -356,13 +358,61 @@ class AdminController extends Controller
 
     public function addUser(Request $request)
     {
+        //return $request;
+        if ($request['relationship'] == 1) {
+            $directRel = new DirectRelationships;
+            $directRel->company_labor_relationship = $request['company_labor_relationship'];
+            $directRel->social_work = $request['social_work'];
+            $directRel->labor_union = $request['labor_union'];
+            $directRel->labor_agreement = $request['labor_agreement'];
+            $directRel->iva_condition = $request['ivaCondition'];
+            $directRel->account_bank = $request['account_bank'];
+            $directRel->account_number = $request['account_number'];
+            $directRel->cbu_number = $request['cbu_number'];
+            $directRel->familyContact_name = $request['familyContact_name'];
+            $directRel->familyContact_phoneNumber = ['familyContact_phoneNumber'];
+            $directRel->familyContact_address = $request['familyContact_address'];
+            $directRel->save();
+
+            $idRelation = $directRel->id;
+        } else if ($request['relationship'] == 2) {
+            $freelanceRel = new FreelanceRelationships;
+            $freelanceRel->iva_condition = $request['ivaCondition'];
+            $freelanceRel->account_bank = $request['account_bank'];
+            $freelanceRel->account_number = $request['account_number'];
+            $freelanceRel->cbu_number = $request['cbu_number'];
+            $freelanceRel->familyContact_name = $request['familyContact_name'];
+            $freelanceRel->familyContact_phoneNumber = ['familyContact_phoneNumber'];
+            $freelanceRel->familyContact_address = $request['familyContact_address'];
+            $freelanceRel->save();
+            return $freelanceRel;
+            $idRelation = $freelanceRel->id;
+        }
+
+
+
+
+        $person = new Persons;
+        $person->name = $request['name'];
+        $person->last_name = $request['last_name'];
+        $person->dni = $request['dni'];
+        $person->alias = $request['alias'];
+        $person->email = $request['email'];
+        $person->phone_number = $request['phone_number'];
+        $person->address = $request['address'];
+        $person->identification_code = $request['identification_code'];
+        $person->country_id = $request['country'];
+        $person->state_id = $request['state'];
+        $person->city_id = $request['city'];
+        $person->relationship_id = $idRelation;
+        $person->save();
+
+
         $user = new User;
         $user->username = $request['username'];
         $user->email = $request['email'];
         $user->password = Hash::make($request['password']);
-        if (isset($request['person']) && !empty($request['person'])) {
-            $user->person_id = $request['person'];
-        }
+        $user->person_id = $person->id;
         $user->rol_id = $request['rol'];
         $user->save();
 

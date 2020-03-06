@@ -1,5 +1,31 @@
 @extends('layouts.adminBase')
+@section('head')
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Droid+Serif);
+        /* Above line is to import google font style */
 
+        .active{
+        color:red;
+        }
+        fieldset{
+        display:none;
+
+        }
+        #first{
+        display:block;
+
+
+        }
+
+        li{
+
+display:inline;
+color:#c1c5cc;
+font-family: 'Droid Serif', serif;
+}
+
+        </style>
+@endsection
 @section('content')
     <main class="p-3 d-flex row justify-content-between">
 
@@ -28,47 +54,155 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                            <form action="/Admin/Users/addUser" id="userForm" method="post">
+                            <form action="/Admin/Users/addUser" class="regform" method="POST">
                                 @csrf
+                                <!-- Progress Bar -->
+                                <ul id="progressbar" class="justify-content-around d-flex">
+                                    <li class="active">Create person</li>
+                                    <li>Person relationship</li>
+                                    <li>Create user</li>
 
-                                <div class="form-group">
-                                    <label for="username">Username</label>
-                                    <input type="text" name="username" class="form-control" id="username" aria-describedby="username" required>
-                                </div>
+                                </ul>
+                                <!-- Fieldsets -->
+                                <fieldset id="first">
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="text" name="name" class="form-control" id="name" aria-describedby="name" required>
 
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" name="email" class="form-control" id="email" aria-describedby="email" required>
-                                </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="last_name">Last name</label>
+                                        <input type="text" name="last_name" class="form-control" id="last_name" aria-describedby="last_name" required>
 
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="text" name="password" class="form-control" id="password" aria-describedby="password" required>
-                                </div>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="rol">Rol</label>
-                                    <select class="custom-select" name="rol" id="" required>
-                                        <option value="none">Select..</option>
-                                        @foreach ($roles as $rol)
-                                            <option value="{{$rol->id}}">{{$rol->rol}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="dni">DNI</label>
+                                        <input type="number" name="dni" class="form-control" id="dni" aria-describedby="dni" required>
 
-                                <div class="form-group">
-                                    <label for="person">Person</label>
-                                    <select class="custom-select" name="person" id="">
-                                        <option value="">Select..</option>
-                                        @foreach ($persons as $person)
-                                            <option value="{{$person->id}}">{{$person->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                    </div>
 
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <div class="form-group">
+                                        <label for="alias">Alias</label>
+                                        <input type="text" name="alias" class="form-control" id="alias" aria-describedby="alias" required>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" name="email" class="form-control" id="email" aria-describedby="email" required>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="phone_number">Phone number</label>
+                                        <input type="number" name="phone_number" class="form-control" id="phone_number" aria-describedby="phone_number" required>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <input type="text" name="address" class="form-control" id="address" aria-describedby="address" required>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="identification_code">Identification code</label>
+                                        <input type="number" name="identification_code" class="form-control" id="identification_code" aria-describedby="identification_code" required>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="country">Country</label>
+                                        <select class="custom-select" name="country" id="">
+                                            <option value="none">Select..</option>
+                                            @foreach ($countries as $country)
+                                                <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="state">State</label>
+                                        <select class="custom-select" name="state" id="">
+                                            <option value="none">Select..</option>
+                                            @foreach ($states as $state)
+                                                <option value="{{$state->id}}">{{$state->state_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <select class="custom-select" name="city" id="">
+                                            <option value="none">Select..</option>
+                                            @foreach ($cities as $city)
+                                                <option value="{{$city->id}}">{{$city->city_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+                                    <input class="next_btn btn btn-info" name="next" type="button" value="Next">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="relationship">Relationship</label>
+                                        <select class="custom-select" name="relationship" id="relationshipSelect">
+                                            <option value="none">Select..</option>
+                                            <option value="1">Direct</option>
+                                            <option value="2">Freelance</option>
+                                        </select>
+                                    </div>
+
+
+
+
+
+                                    <div id="relationForm">
+
+
+
+
+
+
+                                    </div>
+
+
+
+                                    <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+                                    <input class="next_btn btn btn-info" name="next" type="button" value="Next">
+
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" name="username" class="form-control" id="username" aria-describedby="username" required>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="text" name="password" class="form-control" id="password" aria-describedby="password" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="rol">Rol</label>
+                                        <select class="custom-select" name="rol" id="" required>
+                                            <option value="none">Select..</option>
+                                            @foreach ($roles as $rol)
+                                                <option value="{{$rol->id}}">{{$rol->rol}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+
                                     <button type="submit" class="btn btn-primary">Add</button>
-                            </form>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                                </fieldset>
+
+                                </form>
                         </div>
 
                       </div>
@@ -757,4 +891,51 @@
 
 @section('scripts')
     <script src="{{asset('js/adminFunctions.js')}}"></script>
+    <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $(document).ready(function() {
+var count = 0; // To Count Blank Fields
+
+/*---------------------------------------------------------*/
+$(".next_btn").click(function() { // Function Runs On NEXT Button Click
+$(this).parent().next().fadeIn('slow');
+$(this).parent().css({
+'display': 'none'
+});
+// Adding Class Active To Show Steps Forward;
+$('.active').next().addClass('active');
+});
+$(".pre_btn").click(function() { // Function Runs On PREVIOUS Button Click
+$(this).parent().prev().fadeIn('slow');
+$(this).parent().css({
+'display': 'none'
+});
+// Removing Class Active To Show Steps Backward;
+$('.active:last').removeClass('active');
+});
+// Validating All Input And Textarea Fields
+$(".submit_btn").click(function(e) {
+if ($('input').val() == "" || $('textarea').val() == "") {
+alert("*All Fields are mandatory*");
+return false;
+} else {
+return true;
+}
+});
+});
+    </script>
 @endsection

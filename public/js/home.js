@@ -7,6 +7,7 @@ function autoRefreshPage() {
     getReminders();
     getTasks();
 }
+
 setInterval("autoRefreshPage()", 30000);
 var comments = [];
 let cantComments = 1;
