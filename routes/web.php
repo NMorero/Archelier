@@ -132,3 +132,11 @@ Route::post('/Admin/Roles/addRol', 'AdminController@addRol');
 Route::get('Admin/Roles', 'AdminController@pageRoles');
 
 Route::get('/Admin/Roles/Delete/{id}', 'AdminController@deleteRol');
+
+Route::post('/Admin/Relationships/Direct/Add', 'AdminController@addRelationDirect');
+
+Route::post('/Admin/Relationships/Freelance/Add', 'AdminController@addRelationFreelance');
+
+Route::get('/Admin/Relationships/Direct', 'AdminController@pageRelationDirect');
+
+Route::get('/Admin/Relationships/Freelance', 'AdminController@pageRelationFreelance');

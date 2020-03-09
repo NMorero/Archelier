@@ -149,10 +149,51 @@ class AdminController extends Controller
     public function addClientsPersons(Request $request)
     {
 
+
+        $freelanceRel = new FreelanceRelationships;
+        $freelanceRel->iva_condition = $request['ivaCondition2'];
+        $freelanceRel->account_bank = $request['account_bank2'];
+        $freelanceRel->account_number = $request['account_number2'];
+        $freelanceRel->cbu_number = $request['cbu_number2'];
+        $freelanceRel->familyContact_name = $request['familyContact_name2'];
+        $freelanceRel->familyContact_phoneNumber = $request['familyContact_phoneNumber2'];
+        $freelanceRel->familyContact_address = $request['familyContact_address2'];
+
+        $freelanceRel->save();
+        $relation = new Relationships;
+        $relation->freelance_id = $freelanceRel->id;
+        $relation->save();
+        $idRelation = $relation->id;
+
+
+
+
+
+        $person = new Persons;
+        $person->name = $request['name'];
+        $person->last_name = $request['last_name'];
+        $person->dni = $request['dni'];
+        $person->alias = $request['alias'];
+        $person->email = $request['email'];
+        $person->phone_number = $request['phone_number'];
+        $person->address = $request['address'];
+        $person->identification_code = $request['identification_code'];
+        $person->country_id = $request['country'];
+        $person->state_id = $request['state'];
+        $person->city_id = $request['city'];
+        $person->relationship_id = $idRelation;
+        $person->save();
+
+
+
+
+
+
+
         $client = new Clients;
-        $client->client_name = $request['name'];
+        $client->client_name = $request['clientName'];
         $client->type = 'Freelancer';
-        $client->person_id = $request['person'];
+        $client->person_id = $person->id;
         $client->company_id = NULL;
         $client->save();
         return redirect('/Admin/Clients/Person');
@@ -569,5 +610,77 @@ class AdminController extends Controller
         $rol->save();
 
         return redirect('/Admin/Roles');
+    }
+
+
+    public function addRelationDirect(Request $request)
+    {
+        $directRel = new DirectRelationships;
+        $directRel->company_labor_relationship = $request['company_labor_relationship'];
+        $directRel->social_work = $request['social_work'];
+        $directRel->labor_union = $request['labor_union'];
+        $directRel->labor_agreement = $request['labor_agreement'];
+        $directRel->iva_condition = $request['ivaCondition'];
+        $directRel->account_bank = $request['account_bank'];
+        $directRel->account_number = $request['account_number'];
+        $directRel->cbu_number = $request['cbu_number'];
+        $directRel->familyContact_name = $request['familyContact_name'];
+        $directRel->familyContact_phoneNumber = $request['familyContact_phoneNumber'];
+        $directRel->familyContact_address = $request['familyContact_address'];
+        $directRel->save();
+        $relation = new Relationships;
+        $relation->direct_id = $directRel->id;
+        $relation->save();
+        $idRelation = $relation->id;
+
+        $person = Persons::find($request['person']);
+        $person->relationship_id = $idRelation;
+        $person->save();
+        return redirect('/Admin/Persons');
+    }
+
+    public function addRelationFreelance(Request $request)
+    {
+        $freelanceRel = new FreelanceRelationships;
+        $freelanceRel->iva_condition = $request['ivaCondition2'];
+        $freelanceRel->account_bank = $request['account_bank2'];
+        $freelanceRel->account_number = $request['account_number2'];
+        $freelanceRel->cbu_number = $request['cbu_number2'];
+        $freelanceRel->familyContact_name = $request['familyContact_name2'];
+        $freelanceRel->familyContact_phoneNumber = $request['familyContact_phoneNumber2'];
+        $freelanceRel->familyContact_address = $request['familyContact_address2'];
+
+        $freelanceRel->save();
+        $relation = new Relationships;
+        $relation->freelance_id = $freelanceRel->id;
+        $relation->save();
+        $idRelation = $relation->id;
+        $person = Persons::find($request['person']);
+        $person->relationship_id = $idRelation;
+        $person->save();
+        return redirect('/Admin/Persons');
+    }
+
+    public function pageRelationFreelance()
+    {
+        $relations = Relationships::whereNotNull('freelance_id')->get();
+        foreach ($relations as $relation) {
+            $person = Persons::where('relationship_id', 'LIKE', $relation->id)->get();
+
+            $relation['person'] = $person[0]->name;
+        }
+        $vac = compact('relations');
+        return view('layouts.admin.freelanceRelationships', $vac);
+    }
+    public function pageRelationDirect()
+    {
+        $relations = Relationships::whereNotNull('direct_id')->get();
+        foreach ($relations as $relation) {
+            $person = Persons::where('relationship_id', 'LIKE', $relation->id)->get();
+
+            $relation['person'] = $person[0]->name;
+        }
+        $vac = compact('relations');
+        return view('layouts.admin.directRelationships', $vac);
     }
 }

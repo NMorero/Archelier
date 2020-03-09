@@ -1329,6 +1329,214 @@ font-family: 'Droid Serif', serif;
 
 
 
+
+
+
+
+<div class="col-xl-4 col-lg-4">
+    <div class="card" style="margin-top:10px">
+            <div class="card-header">
+            <h5 class="card-title">Relationships</h5>
+    </div>
+        <div class="card" style="margin:8px">
+            <div class="card-body">
+                <div >
+                    <h5>Freelance</h5>
+                    <p class="card-text">Add or see all the Freelance Persons..</p>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#relationships">
+            Add
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="relationships" tabindex="-1" role="dialog" aria-labelledby="relationshipsTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="relationshipsTitle">New Freelance relationship</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/Admin/Relationships/Freelance/Add" method="POST">
+                        @csrf
+                    <div class="form-group">
+                        <label for="person">Person</label>
+                        <select class="custom-select" name="person" id="">
+                            <option value="none">Select..</option>
+                            @foreach ($persons as $person)
+                                <option value="{{$person->id}}">{{$person->name}}</option>
+                            @endforeach
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="company_labor_relationship">Company labor relationship</label>
+                        <input type="text" name="company_labor_relationship" class="form-control" id="company_labor_relationship" aria-describedby="company_labor_relationship" >
+
+                    </div>
+                    <div class="form-group">
+                        <label for="social_work">Social work</label>
+                        <input type="text" name="social_work" class="form-control" id="social_work" aria-describedby="social_work" >
+
+                    </div>
+                    <div class="form-group">
+                        <label for="labor_union">Labor union</label>
+                        <input type="text" name="labor_union" class="form-control" id="labor_union" aria-describedby="labor_union" >
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="labor_agreement">Labor agreement</label>
+                        <input type="text" name="labor_agreement" class="form-control" id="labor_agreement" aria-describedby="labor_agreement" >
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ivaCondition">IVA Condition</label>
+                        <input type="text" name="ivaCondition" class="form-control" id="ivaCondition" aria-describedby="ivaCondition" >
+
+                    </div>
+                    <div class="form-group">
+                        <label for="account_bank">Account bank</label>
+                        <input type="text" name="account_bank" class="form-control" id="account_bank" aria-describedby="account_bank" >
+
+                    </div>
+                    <div class="form-group">
+                        <label for="account_number">Account number</label>
+                        <input type="text" name="account_number" class="form-control" id="account_number" aria-describedby="account_number" >
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cbu_number">CBU</label>
+                        <input type="text" name="cbu_number" class="form-control" id="cbu_number" aria-describedby="cbu_number" >
+
+                    </div>
+                    <div class="form-group">
+                        <label for="familyContact_name">Family contact name</label>
+                        <input type="text" name="familyContact_name" class="form-control" id="familyContact_name" aria-describedby="familyContact_name" >
+
+                    </div>
+                    <div class="form-group">
+                        <label for="familyContact_phoneNumber">Family contact phone number</label>
+                        <input type="text" name="familyContact_phoneNumber" class="form-control" id="familyContact_phoneNumber" aria-describedby="familyContact_phoneNumber" >
+
+                    </div>
+                    <div class="form-group">
+                        <label for="familyContact_address">Family contact address</label>
+                        <input type="text" name="familyContact_address" class="form-control" id="familyContact_address" aria-describedby="familyContact_address" >
+
+                    </div>
+                </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+
+        <a href="/Admin/Relationships/Freelance" class="btn btn-secondary text-decoration-none text-white">View</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin:8px">
+            <div class="card-body">
+                <div >
+                    <h5>Direct relattionship</h5>
+                    <p class="card-text">Add or see all the Direct relation persons..</p>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#directRelation">
+            Add
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="directRelation" tabindex="-1" role="dialog" aria-labelledby="directRelationTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="directRelationTitle">New direct relation</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <form action="/Admin/Relationships/Direct/Add">
+                            @csrf
+                        <label for="person">Person</label>
+                        <select class="custom-select" name="person" id="">
+                            <option value="none">Select..</option>
+                            @foreach ($persons as $person)
+                                <option value="{{$person->id}}">{{$person->name}}</option>
+                            @endforeach
+                        </select>
+                      </div>
+                    <div class="form-group">
+                        <label for="ivaCondition2">IVA Condition</label>
+                        <input type="text" name="ivaCondition2" class="form-control" id="ivaCondition2" aria-describedby="ivaCondition2" >
+
+                    </div>
+                    <div class="form-group">
+                        <label for="account_bank2">Account bank</label>
+                        <input type="text" name="account_bank2" class="form-control" id="account_bank2" aria-describedby="account_bank2" >
+
+                    </div>
+                    <div class="form-group">
+                        <label for="account_number2">Account number</label>
+                        <input type="text" name="account_number2" class="form-control" id="account_number2" aria-describedby="account_number2" >
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cbu_number2">CBU</label>
+                        <input type="text" name="cbu_number2" class="form-control" id="cbu_number2" aria-describedby="cbu_number2" >
+
+                    </div>
+                    <div class="form-group">
+                        <label for="familyContact_name2">Family contact name</label>
+                        <input type="text" name="familyContact_name2" class="form-control" id="familyContact_name2" aria-describedby="familyContact_name2" >
+
+                    </div>
+                    <div class="form-group">
+                        <label for="familyContact_phoneNumber2">Family contact phone number</label>
+                        <input type="text" name="familyContact_phoneNumber2" class="form-control" id="familyContact_phoneNumber2" aria-describedby="familyContact_phoneNumber2" >
+
+                    </div>
+                    <div class="form-group">
+                        <label for="familyContact_address">Family contact address</label>
+                        <input type="text" name="familyContact_address2" class="form-control" id="familyContact_address2" aria-describedby="familyContact_address2" >
+
+                    </div>
+                </form>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+
+
+
+        <a href="/Admin/Relationships/Direct" class="btn btn-secondary text-decoration-none text-white">View</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 <div class="col-xl-4 col-lg-4">
     <div class="card" style="margin-top:10px">
             <div class="card-header">
@@ -1355,10 +1563,10 @@ font-family: 'Droid Serif', serif;
                             </div>
                             <div class="modal-body">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#clientNPerson">
-                                    New User
+                                    New Person
                                   </button>
                                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#clientFPerson">
-                                    From User
+                                    From Person
                                   </button>
                             </div>
 
@@ -1420,8 +1628,8 @@ font-family: 'Droid Serif', serif;
                                     <!-- Progress Bar -->
                                     <ul id="progressbar" class="justify-content-around d-flex">
                                         <li class="active">Create person</li>
-                                        <li>Person relationship</li>
-                                        <li>Create user</li>
+                                        <li>Freelance info</li>
+                                        <li>Create client</li>
 
                                     </ul>
                                     <!-- Fieldsets -->
@@ -1506,21 +1714,49 @@ font-family: 'Droid Serif', serif;
                                         <input class="next_btn btn btn-info" name="next" type="button" value="Next">
                                     </fieldset>
                                     <fieldset>
-                                        <div class="form-group">
-                                            <label for="relationship">Relationship</label>
-                                            <select class="custom-select" name="relationship" id="relationshipSelect5">
-                                                <option value="none">Select..</option>
-                                                <option value="1">Direct</option>
-                                                <option value="2">Freelance</option>
-                                            </select>
-                                        </div>
 
 
 
 
 
-                                        <div id="relationForm5">
 
+                                        <div id="relationship">
+                                            <div class="form-group">
+                                                <label for="ivaCondition2">IVA Condition</label>
+                                                <input type="text" name="ivaCondition2" class="form-control" id="ivaCondition2" aria-describedby="ivaCondition2" >
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="account_bank2">Account bank</label>
+                                                <input type="text" name="account_bank2" class="form-control" id="account_bank2" aria-describedby="account_bank2" >
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="account_number2">Account number</label>
+                                                <input type="text" name="account_number2" class="form-control" id="account_number2" aria-describedby="account_number2" >
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="cbu_number2">CBU</label>
+                                                <input type="text" name="cbu_number2" class="form-control" id="cbu_number2" aria-describedby="cbu_number2" >
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="familyContact_name2">Family contact name</label>
+                                                <input type="text" name="familyContact_name2" class="form-control" id="familyContact_name2" aria-describedby="familyContact_name2" >
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="familyContact_phoneNumber2">Family contact phone number</label>
+                                                <input type="text" name="familyContact_phoneNumber2" class="form-control" id="familyContact_phoneNumber2" aria-describedby="familyContact_phoneNumber2" >
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="familyContact_address">Family contact address</label>
+                                                <input type="text" name="familyContact_address2" class="form-control" id="familyContact_address2" aria-describedby="familyContact_address2" >
+
+                                            </div>
 
 
 
