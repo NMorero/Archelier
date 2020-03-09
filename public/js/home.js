@@ -333,7 +333,7 @@ function getTasks() {
                         </li>`;
                             templatelit2 = templatelit2 + temp;
                         } else {
-                            let temp = `<li class=" border-bottom mb-2">
+                            let temp = `<li class=" border-bottom mb-2" >
                         <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})" checked>
                         <label class="form-check-label" for="task${task.id}Check${comm.id}"><strike>${comm.data}</strike></label>
