@@ -16,6 +16,7 @@ use App\ProjectLeaders;
 use App\ProjectManagers;
 use App\Projects;
 use App\ProjectViews;
+use App\Relationships;
 use App\Roles;
 use App\States;
 use App\User;
@@ -370,23 +371,28 @@ class AdminController extends Controller
             $directRel->account_number = $request['account_number'];
             $directRel->cbu_number = $request['cbu_number'];
             $directRel->familyContact_name = $request['familyContact_name'];
-            $directRel->familyContact_phoneNumber = ['familyContact_phoneNumber'];
+            $directRel->familyContact_phoneNumber = $request['familyContact_phoneNumber'];
             $directRel->familyContact_address = $request['familyContact_address'];
             $directRel->save();
-
-            $idRelation = $directRel->id;
+            $relation = new Relationships;
+            $relation->direct_id = $directRel->id;
+            $relation->save();
+            $idRelation = $relation->id;
         } else if ($request['relationship'] == 2) {
             $freelanceRel = new FreelanceRelationships;
-            $freelanceRel->iva_condition = $request['ivaCondition'];
-            $freelanceRel->account_bank = $request['account_bank'];
-            $freelanceRel->account_number = $request['account_number'];
-            $freelanceRel->cbu_number = $request['cbu_number'];
-            $freelanceRel->familyContact_name = $request['familyContact_name'];
-            $freelanceRel->familyContact_phoneNumber = ['familyContact_phoneNumber'];
-            $freelanceRel->familyContact_address = $request['familyContact_address'];
+            $freelanceRel->iva_condition = $request['ivaCondition2'];
+            $freelanceRel->account_bank = $request['account_bank2'];
+            $freelanceRel->account_number = $request['account_number2'];
+            $freelanceRel->cbu_number = $request['cbu_number2'];
+            $freelanceRel->familyContact_name = $request['familyContact_name2'];
+            $freelanceRel->familyContact_phoneNumber = $request['familyContact_phoneNumber2'];
+            $freelanceRel->familyContact_address = $request['familyContact_address2'];
+
             $freelanceRel->save();
-            return $freelanceRel;
-            $idRelation = $freelanceRel->id;
+            $relation = new Relationships;
+            $relation->freelance_id = $freelanceRel->id;
+            $relation->save();
+            $idRelation = $relation->id;
         }
 
 
@@ -415,6 +421,26 @@ class AdminController extends Controller
         $user->person_id = $person->id;
         $user->rol_id = $request['rol'];
         $user->save();
+
+
+        if ($request['rol'] == '2') {
+            $dev = new Developers;
+            $dev->user_id = $user->id;
+            $dev->save();
+            return redirect('/Admin/Developers');
+        } else if ($request['rol'] == 3) {
+            $manager = new ProjectManagers;
+            $manager->user_id = $user->id;
+            $manager->save();
+            return redirect('/Admin/Projects/Managers');
+        } else if ($request['rol'] == 4) {
+            $leader = new ProjectLeaders;
+            $leader->user_id = $user->id;
+            $leader->save();
+            return redirect('/Admin/Projects/Leaders');
+        }
+
+
 
         return redirect('/Admin/Users');
     }

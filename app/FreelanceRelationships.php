@@ -8,8 +8,6 @@ class FreelanceRelationships extends Model
 
 
 {
-    protected $fillable = ['iva_condition', 'account_bank', 'account_number', 'cbu_number', 'familyContact_name', 'familyContact_phoneNumber', 'familyContact_address'];
-
-
     public $table = 'FREELANCE_RELATIONSHIP';
+    protected $fillable = ['iva_condition', 'account_bank', 'account_number', 'cbu_number', 'familyContact_name', 'familyContact_phoneNumber', 'familyContact_address'];
 }

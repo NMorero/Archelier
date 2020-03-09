@@ -147,7 +147,7 @@ font-family: 'Droid Serif', serif;
                                 <fieldset>
                                     <div class="form-group">
                                         <label for="relationship">Relationship</label>
-                                        <select class="custom-select" name="relationship" id="relationshipSelect">
+                                        <select class="custom-select" name="relationship" id="relationshipSelect1">
                                             <option value="none">Select..</option>
                                             <option value="1">Direct</option>
                                             <option value="2">Freelance</option>
@@ -158,7 +158,7 @@ font-family: 'Droid Serif', serif;
 
 
 
-                                    <div id="relationForm">
+                                    <div id="relationForm1">
 
 
 
@@ -464,6 +464,28 @@ font-family: 'Droid Serif', serif;
                           </button>
                         </div>
                         <div class="modal-body">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#DevelopersNUser">
+                                New User
+                              </button>
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#DevelopersFUser">
+                                From User
+                              </button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal fade" id="DevelopersFUser" tabindex="-1" role="dialog" aria-labelledby="DevelopersFUserTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="DevelopersFUserTitle">New Developer</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
                             <form action="/Admin/Developers/addDeveloper" id="developerForm" method="post">
                                 @csrf
 
@@ -484,6 +506,180 @@ font-family: 'Droid Serif', serif;
                       </div>
                     </div>
                   </div>
+
+                  <div class="modal fade" id="DevelopersNUser" tabindex="-1" role="dialog" aria-labelledby="DevelopersNUserTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="DevelopersNUserTitle">New Developer</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/Admin/Users/addUser" class="regform" method="POST">
+                                @csrf
+                                <!-- Progress Bar -->
+                                <ul id="progressbar" class="justify-content-around d-flex">
+                                    <li class="active">Create person</li>
+                                    <li>Person relationship</li>
+                                    <li>Create user</li>
+
+                                </ul>
+                                <!-- Fieldsets -->
+                                <fieldset id="first">
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="text" name="name" class="form-control" id="name" aria-describedby="name" required>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="last_name">Last name</label>
+                                        <input type="text" name="last_name" class="form-control" id="last_name" aria-describedby="last_name" required>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="dni">DNI</label>
+                                        <input type="number" name="dni" class="form-control" id="dni" aria-describedby="dni" required>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="alias">Alias</label>
+                                        <input type="text" name="alias" class="form-control" id="alias" aria-describedby="alias" required>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" name="email" class="form-control" id="email" aria-describedby="email" required>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="phone_number">Phone number</label>
+                                        <input type="number" name="phone_number" class="form-control" id="phone_number" aria-describedby="phone_number" required>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <input type="text" name="address" class="form-control" id="address" aria-describedby="address" required>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="identification_code">Identification code</label>
+                                        <input type="number" name="identification_code" class="form-control" id="identification_code" aria-describedby="identification_code" required>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="country">Country</label>
+                                        <select class="custom-select" name="country" id="">
+                                            <option value="none">Select..</option>
+                                            @foreach ($countries as $country)
+                                                <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="state">State</label>
+                                        <select class="custom-select" name="state" id="">
+                                            <option value="none">Select..</option>
+                                            @foreach ($states as $state)
+                                                <option value="{{$state->id}}">{{$state->state_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <select class="custom-select" name="city" id="">
+                                            <option value="none">Select..</option>
+                                            @foreach ($cities as $city)
+                                                <option value="{{$city->id}}">{{$city->city_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+                                    <input class="next_btn btn btn-info" name="next" type="button" value="Next">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="relationship">Relationship</label>
+                                        <select class="custom-select" name="relationship" id="relationshipSelect2">
+                                            <option value="none">Select..</option>
+                                            <option value="1">Direct</option>
+                                            <option value="2">Freelance</option>
+                                        </select>
+                                    </div>
+
+
+
+
+
+                                    <div id="relationForm2">
+
+
+
+
+
+
+                                    </div>
+
+
+
+                                    <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+                                    <input class="next_btn btn btn-info" name="next" type="button" value="Next">
+
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" name="username" class="form-control" id="username" aria-describedby="username" required>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="text" name="password" class="form-control" id="password" aria-describedby="password" required>
+                                    </div>
+
+                                    <input type="text" name="rol" id="rol" value="2" hidden>
+
+                                    <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+
+                                    <button type="submit" class="btn btn-primary">Add</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                                </fieldset>
+
+                                </form>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <a href="/Admin/Developers" class="btn btn-secondary text-decoration-none text-white">View</a>
             </div>
         </div>
@@ -692,7 +888,30 @@ font-family: 'Droid Serif', serif;
                   </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/Admin/Managers/addProjectManager" id="PRManagerForm" method="post">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PRManagerNUser">
+                        New User
+                      </button>
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PRManagerFUser">
+                        From User
+                      </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+             <!-- Modal -->
+          <div class="modal fade" id="PRManagerFUser" tabindex="-1" role="dialog" aria-labelledby="PRManagerFUserrTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="PRManagerFUserrTitle">New PR manager</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/Admin/Managers/addProjectManager" id="PRManagerFUserForm" method="post">
                         @csrf
 
                         <div class="form-group">
@@ -712,7 +931,161 @@ font-family: 'Droid Serif', serif;
               </div>
             </div>
           </div>
+           <!-- Modal -->
+           <div class="modal fade" id="PRManagerNUser" tabindex="-1" role="dialog" aria-labelledby="PRManagerNUserTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="PRManagerNUserTitle">New PR manager</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/Admin/Users/addUser" class="regform" method="POST">
+                        @csrf
+                        <!-- Progress Bar -->
+                        <ul id="progressbar" class="justify-content-around d-flex">
+                            <li class="active">Create person</li>
+                            <li>Person relationship</li>
+                            <li>Create user</li>
 
+                        </ul>
+                        <!-- Fieldsets -->
+                        <fieldset id="first">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" class="form-control" id="name" aria-describedby="name" required>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Last name</label>
+                                <input type="text" name="last_name" class="form-control" id="last_name" aria-describedby="last_name" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dni">DNI</label>
+                                <input type="number" name="dni" class="form-control" id="dni" aria-describedby="dni" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="alias">Alias</label>
+                                <input type="text" name="alias" class="form-control" id="alias" aria-describedby="alias" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" class="form-control" id="email" aria-describedby="email" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone_number">Phone number</label>
+                                <input type="number" name="phone_number" class="form-control" id="phone_number" aria-describedby="phone_number" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" name="address" class="form-control" id="address" aria-describedby="address" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="identification_code">Identification code</label>
+                                <input type="number" name="identification_code" class="form-control" id="identification_code" aria-describedby="identification_code" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <select class="custom-select" name="country" id="">
+                                    <option value="none">Select..</option>
+                                    @foreach ($countries as $country)
+                                        <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <select class="custom-select" name="state" id="">
+                                    <option value="none">Select..</option>
+                                    @foreach ($states as $state)
+                                        <option value="{{$state->id}}">{{$state->state_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <select class="custom-select" name="city" id="">
+                                    <option value="none">Select..</option>
+                                    @foreach ($cities as $city)
+                                        <option value="{{$city->id}}">{{$city->city_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+                            <input class="next_btn btn btn-info" name="next" type="button" value="Next">
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="relationship">Relationship</label>
+                                <select class="custom-select" name="relationship" id="relationshipSelect3">
+                                    <option value="none">Select..</option>
+                                    <option value="1">Direct</option>
+                                    <option value="2">Freelance</option>
+                                </select>
+                            </div>
+
+
+
+
+
+                            <div id="relationForm3">
+
+
+
+
+
+
+                            </div>
+
+
+
+                            <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+                            <input class="next_btn btn btn-info" name="next" type="button" value="Next">
+
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" name="username" class="form-control" id="username" aria-describedby="username" required>
+                            </div>
+
+                            <input type="text" name="rol" id="rol" value="3" hidden>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="text" name="password" class="form-control" id="password" aria-describedby="password" required>
+                            </div>
+
+                            <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                        </fieldset>
+
+                        </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
 
 
 
@@ -741,7 +1114,32 @@ font-family: 'Droid Serif', serif;
                   </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/Admin/Managers/addProjectLeader" id="PRLeaderForm" method="post">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PRLeaderNUser">
+                        New User
+                      </button>
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PRLeaderFUser">
+                        From User
+                      </button>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+
+           <!-- Modal -->
+           <div class="modal fade" id="PRLeaderFUser" tabindex="-1" role="dialog" aria-labelledby="PRLeaderFUserTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="PRLeaderFUserTitle">New PR Leader</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/Admin/Managers/addProjectLeader" id="PRLeaderFUserForm" method="post">
                         @csrf
 
                         <div class="form-group">
@@ -758,11 +1156,166 @@ font-family: 'Droid Serif', serif;
                     </form>
                 </div>
 
+
               </div>
             </div>
           </div>
+           <!-- Modal -->
+           <div class="modal fade" id="PRLeaderNUser" tabindex="-1" role="dialog" aria-labelledby="PRLeaderNUserTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="PRLeaderNUserTitle">New PR Leader</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/Admin/Users/addUser" class="regform" method="POST">
+                        @csrf
+                        <!-- Progress Bar -->
+                        <ul id="progressbar" class="justify-content-around d-flex">
+                            <li class="active">Create person</li>
+                            <li>Person relationship</li>
+                            <li>Create user</li>
+
+                        </ul>
+                        <!-- Fieldsets -->
+                        <fieldset id="first">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" class="form-control" id="name" aria-describedby="name" required>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Last name</label>
+                                <input type="text" name="last_name" class="form-control" id="last_name" aria-describedby="last_name" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dni">DNI</label>
+                                <input type="number" name="dni" class="form-control" id="dni" aria-describedby="dni" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="alias">Alias</label>
+                                <input type="text" name="alias" class="form-control" id="alias" aria-describedby="alias" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" class="form-control" id="email" aria-describedby="email" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone_number">Phone number</label>
+                                <input type="number" name="phone_number" class="form-control" id="phone_number" aria-describedby="phone_number" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" name="address" class="form-control" id="address" aria-describedby="address" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="identification_code">Identification code</label>
+                                <input type="number" name="identification_code" class="form-control" id="identification_code" aria-describedby="identification_code" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <select class="custom-select" name="country" id="">
+                                    <option value="none">Select..</option>
+                                    @foreach ($countries as $country)
+                                        <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <select class="custom-select" name="state" id="">
+                                    <option value="none">Select..</option>
+                                    @foreach ($states as $state)
+                                        <option value="{{$state->id}}">{{$state->state_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <select class="custom-select" name="city" id="">
+                                    <option value="none">Select..</option>
+                                    @foreach ($cities as $city)
+                                        <option value="{{$city->id}}">{{$city->city_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+                            <input class="next_btn btn btn-info" name="next" type="button" value="Next">
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="relationship">Relationship</label>
+                                <select class="custom-select" name="relationship" id="relationshipSelect4">
+                                    <option value="none">Select..</option>
+                                    <option value="1">Direct</option>
+                                    <option value="2">Freelance</option>
+                                </select>
+                            </div>
 
 
+
+
+
+                            <div id="relationForm4">
+
+
+
+
+
+
+                            </div>
+
+
+
+                            <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+                            <input class="next_btn btn btn-info" name="next" type="button" value="Next">
+
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" name="username" class="form-control" id="username" aria-describedby="username" required>
+                            </div>
+
+                            <input type="text" name="rol" id="rol" value="4" hidden>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="text" name="password" class="form-control" id="password" aria-describedby="password" required>
+                            </div>
+
+                            <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                        </fieldset>
+
+                        </form>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
 
 
         <a href="/Admin/Projects/Leaders" class="btn btn-secondary text-decoration-none text-white">View</a>
@@ -801,6 +1354,30 @@ font-family: 'Droid Serif', serif;
                               </button>
                             </div>
                             <div class="modal-body">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#clientNPerson">
+                                    New User
+                                  </button>
+                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#clientFPerson">
+                                    From User
+                                  </button>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                       <!-- Modal -->
+                       <div class="modal fade" id="clientFPerson" tabindex="-1" role="dialog" aria-labelledby="clientFPersonTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="clientFPersonTitle">New Person CLient</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
                                 <form action="/Admin/addClientsPersons" id="clientPersonForm" method="post">
                                     @csrf
                                     <div class="form-group">
@@ -827,6 +1404,161 @@ font-family: 'Droid Serif', serif;
                           </div>
                         </div>
                       </div>
+                       <!-- Modal -->
+                       <div class="modal fade" id="clientNPerson" tabindex="-1" role="dialog" aria-labelledby="clientNPersonTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="clientNPersonTitle">New Person CLient</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/Admin/addClientsPersons" class="regform" method="POST">
+                                    @csrf
+                                    <!-- Progress Bar -->
+                                    <ul id="progressbar" class="justify-content-around d-flex">
+                                        <li class="active">Create person</li>
+                                        <li>Person relationship</li>
+                                        <li>Create user</li>
+
+                                    </ul>
+                                    <!-- Fieldsets -->
+                                    <fieldset id="first">
+                                        <div class="form-group">
+                                            <label for="name">Name</label>
+                                            <input type="text" name="name" class="form-control" id="name" aria-describedby="name" required>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="last_name">Last name</label>
+                                            <input type="text" name="last_name" class="form-control" id="last_name" aria-describedby="last_name" required>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="dni">DNI</label>
+                                            <input type="number" name="dni" class="form-control" id="dni" aria-describedby="dni" required>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="alias">Alias</label>
+                                            <input type="text" name="alias" class="form-control" id="alias" aria-describedby="alias" required>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" name="email" class="form-control" id="email" aria-describedby="email" required>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="phone_number">Phone number</label>
+                                            <input type="number" name="phone_number" class="form-control" id="phone_number" aria-describedby="phone_number" required>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="address">Address</label>
+                                            <input type="text" name="address" class="form-control" id="address" aria-describedby="address" required>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="identification_code">Identification code</label>
+                                            <input type="number" name="identification_code" class="form-control" id="identification_code" aria-describedby="identification_code" required>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="country">Country</label>
+                                            <select class="custom-select" name="country" id="">
+                                                <option value="none">Select..</option>
+                                                @foreach ($countries as $country)
+                                                    <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="state">State</label>
+                                            <select class="custom-select" name="state" id="">
+                                                <option value="none">Select..</option>
+                                                @foreach ($states as $state)
+                                                    <option value="{{$state->id}}">{{$state->state_name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="city">City</label>
+                                            <select class="custom-select" name="city" id="">
+                                                <option value="none">Select..</option>
+                                                @foreach ($cities as $city)
+                                                    <option value="{{$city->id}}">{{$city->city_name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+                                        <input class="next_btn btn btn-info" name="next" type="button" value="Next">
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <label for="relationship">Relationship</label>
+                                            <select class="custom-select" name="relationship" id="relationshipSelect5">
+                                                <option value="none">Select..</option>
+                                                <option value="1">Direct</option>
+                                                <option value="2">Freelance</option>
+                                            </select>
+                                        </div>
+
+
+
+
+
+                                        <div id="relationForm5">
+
+
+
+
+
+
+                                        </div>
+
+
+
+                                        <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+                                        <input class="next_btn btn btn-info" name="next" type="button" value="Next">
+
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <label for="clientName">Client name</label>
+                                            <input type="text" name="clientName" class="form-control" id="clientName" aria-describedby="clientName" required>
+                                        </div>
+
+
+
+
+                                        <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+
+                                        <button type="submit" class="btn btn-primary">Add</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                                    </fieldset>
+
+                                    </form>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+
+
                     <a href="/Admin/Clients/Person" class="btn btn-secondary text-decoration-none text-white">View</a>
                 </div>
             </div>
