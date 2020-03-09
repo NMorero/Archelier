@@ -281,7 +281,7 @@ class AdminController extends Controller
 
     public function pagePersons()
     {
-        $persons = Persons::orderBy('identification_code');
+        $persons = Persons::orderBy('identification_code')->get();
         $vac = compact('persons');
         return view('layouts.admin.personsTable', $vac);
     }
