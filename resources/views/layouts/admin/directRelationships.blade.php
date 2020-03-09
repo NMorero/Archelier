@@ -11,7 +11,7 @@
             <th scope="col">Company labor relationship</th>
             <th scope="col">Social work</th>
             <th scope="col">Labor union</th>
-            <th scope="col">Labor agreement</th>
+
             <th scope="col">IVA condition</th>
             <th scope="col">Account bank</th>
             <th scope="col">Account number</th>
@@ -33,7 +33,7 @@
                 <td>{{$relation->directRelation->company_labor_relationship}}</td>
                 <td>{{$relation->directRelation->social_work}}</td>
                 <td>{{$relation->directRelation->labor_union}}</td>
-                <td>{{$relation->directRelation->labor_agreement}}</td>
+
                 <td>{{$relation->directRelation->iva_condition}}</td>
                 <td>{{$relation->directRelation->account_bank}}</td>
                 <td>{{$relation->directRelation->account_number}}</td>
