@@ -1365,7 +1365,7 @@ font-family: 'Droid Serif', serif;
                         <select class="custom-select" name="person" id="">
                             <option value="none">Select..</option>
                             @foreach ($persons as $person)
-                                <option value="{{$person->id}}">{{$person->name}}</option>
+                                <option value="{{$person->id}}">{{$person->alias}}</option>
                             @endforeach
                         </select>
                       </div>
@@ -1468,7 +1468,7 @@ font-family: 'Droid Serif', serif;
                         <select class="custom-select" name="person" id="">
                             <option value="none">Select..</option>
                             @foreach ($persons as $person)
-                                <option value="{{$person->id}}">{{$person->name}}</option>
+                                <option value="{{$person->id}}">{{$person->alias}}</option>
                             @endforeach
                         </select>
                       </div>
@@ -1598,7 +1598,7 @@ font-family: 'Droid Serif', serif;
                                         <select class="custom-select" name="person" id="">
                                             <option value="none">Select..</option>
                                             @foreach ($persons as $person)
-                                                <option value="{{$person->id}}">{{$person->name}}</option>
+                                                <option value="{{$person->id}}">{{$person->alias}}</option>
                                             @endforeach
                                         </select>
                                       </div>
