@@ -50,10 +50,15 @@
 </div>
 
 
-        <div class="col-12 justify-content-between row">
+        <div class="col-12 justify-content-between d-flex row">
             @foreach ($views as $view)
-            <img class="col-3" src="{{$view->image}}" alt="img" >
-        @endforeach
+                <div class="col-3 row">
+                        <img class="col-11" src="{{$view->image}}" alt="img" >
+                        @if (auth()->user()->roles->rol == 'admin' || auth()->user()->roles->rol == 'PRmanager' || auth()->user()->roles->rol == 'PRleader')
+                        <a href="/Admin/Project/Views/Delete/{{$view->id}}" class="btn btn-danger col-11">Delete</a>
+                        @endif
+                </div>
+            @endforeach
         </div>
 
     </main>

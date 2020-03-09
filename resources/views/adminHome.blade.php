@@ -1833,6 +1833,7 @@ font-family: 'Droid Serif', serif;
                                             @foreach ($companies as $company)
                                                 <option value="{{$company->id}}">{{$company->name}}</option>
                                             @endforeach
+
                                         </select>
                                       </div>
                                       <div class="modal-footer">
@@ -1851,7 +1852,6 @@ font-family: 'Droid Serif', serif;
         </div>
     </div>
 </div>
-
 
 
     </main>

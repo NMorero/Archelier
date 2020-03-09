@@ -73,6 +73,24 @@ class AdminController extends Controller
     }
 
 
+    public function deleteProject($id)
+    {
+        $project = Projects::find($id);
+        $project->delete();
+        return redirect('/Admin/Projects');
+    }
+
+    public function deleteView($id)
+    {
+        $viewProject = ProjectViews::where('view_id', 'LIKE', $id)->get();
+        $view = Views::find($id);
+        $viewProject[0]->delete();
+        $view->delete();
+        return  back();
+    }
+
+
+
     public function home()
     {
 

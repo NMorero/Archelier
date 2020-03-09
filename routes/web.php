@@ -113,7 +113,11 @@ Route::get('/Admin/Projects/Leaders/Delete/{id}', 'AdminController@deleteLeader'
 
 Route::post('/Admin/Projects/addProject', 'AdminController@addProject');
 
+Route::get('/Admin/Projects/Delete/{id}', 'AdminController@deleteProject');
+
 Route::post('/Admin/Projects/addView/{id}', 'AdminController@addView');
+
+Route::get('/Admin/Project/Views/Delete/{id}', 'AdminController@deleteView');
 
 Route::post('/Admin/Users/addUser', 'AdminController@addUser');
 
