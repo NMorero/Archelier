@@ -1427,6 +1427,8 @@ font-family: 'Droid Serif', serif;
                         <input type="text" name="familyContact_address" class="form-control" id="familyContact_address" aria-describedby="familyContact_address" >
 
                     </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
                 </form>
                 </div>
 
@@ -1462,7 +1464,7 @@ font-family: 'Droid Serif', serif;
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <form action="/Admin/Relationships/Freelance/Add">
+                        <form action="/Admin/Relationships/Freelance/Add" method="POST">
                             @csrf
                         <label for="person">Person</label>
                         <select class="custom-select" name="person" id="">
@@ -1508,6 +1510,8 @@ font-family: 'Droid Serif', serif;
                         <input type="text" name="familyContact_address2" class="form-control" id="familyContact_address2" aria-describedby="familyContact_address2" >
 
                     </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
                 </form>
                 </div>
 
