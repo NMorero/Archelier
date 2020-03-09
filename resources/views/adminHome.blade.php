@@ -1385,11 +1385,7 @@ font-family: 'Droid Serif', serif;
 
                     </div>
 
-                    <div class="form-group">
-                        <label for="labor_agreement">Labor agreement</label>
-                        <input type="text" name="labor_agreement" class="form-control" id="labor_agreement" aria-describedby="labor_agreement" >
 
-                    </div>
 
                     <div class="form-group">
                         <label for="ivaCondition">IVA Condition</label>

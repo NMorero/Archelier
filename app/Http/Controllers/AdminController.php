@@ -424,7 +424,7 @@ class AdminController extends Controller
             $directRel->company_labor_relationship = $request['company_labor_relationship'];
             $directRel->social_work = $request['social_work'];
             $directRel->labor_union = $request['labor_union'];
-            $directRel->labor_agreement = $request['labor_agreement'];
+
             $directRel->iva_condition = $request['ivaCondition'];
             $directRel->account_bank = $request['account_bank'];
             $directRel->account_number = $request['account_number'];
@@ -637,7 +637,7 @@ class AdminController extends Controller
         $directRel->company_labor_relationship = $request['company_labor_relationship'];
         $directRel->social_work = $request['social_work'];
         $directRel->labor_union = $request['labor_union'];
-        $directRel->labor_agreement = $request['labor_agreement'];
+
         $directRel->iva_condition = $request['ivaCondition'];
         $directRel->account_bank = $request['account_bank'];
         $directRel->account_number = $request['account_number'];
