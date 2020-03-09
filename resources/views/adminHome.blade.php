@@ -1352,13 +1352,13 @@ font-family: 'Droid Serif', serif;
             <div class="modal-dialog modal-dialog-scrollable" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="relationshipsTitle">New Freelance relationship</h5>
+                  <h5 class="modal-title" id="relationshipsTitle">New Direct relationship</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/Admin/Relationships/Freelance/Add" method="POST">
+                    <form action="/Admin/Relationships/Direct/Add" method="POST">
                         @csrf
                     <div class="form-group">
                         <label for="person">Person</label>
@@ -1436,7 +1436,7 @@ font-family: 'Droid Serif', serif;
 
 
 
-        <a href="/Admin/Relationships/Freelance" class="btn btn-secondary text-decoration-none text-white">View</a>
+        <a href="/Admin/Relationships/Direct" class="btn btn-secondary text-decoration-none text-white">View</a>
                 </div>
             </div>
         </div>
@@ -1462,7 +1462,7 @@ font-family: 'Droid Serif', serif;
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <form action="/Admin/Relationships/Direct/Add">
+                        <form action="/Admin/Relationships/Freelance/Add">
                             @csrf
                         <label for="person">Person</label>
                         <select class="custom-select" name="person" id="">
@@ -1519,7 +1519,7 @@ font-family: 'Droid Serif', serif;
 
 
 
-        <a href="/Admin/Relationships/Direct" class="btn btn-secondary text-decoration-none text-white">View</a>
+        <a href="/Admin/Relationships/Freelance" class="btn btn-secondary text-decoration-none text-white">View</a>
                 </div>
             </div>
         </div>
