@@ -1341,8 +1341,8 @@ font-family: 'Droid Serif', serif;
         <div class="card" style="margin:8px">
             <div class="card-body">
                 <div >
-                    <h5>Freelance</h5>
-                    <p class="card-text">Add or see all the Freelance Persons..</p>
+                    <h5>Direct</h5>
+                    <p class="card-text">Add or see all the Direct Persons..</p>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#relationships">
             Add
           </button>
@@ -1444,8 +1444,8 @@ font-family: 'Droid Serif', serif;
         <div class="card" style="margin:8px">
             <div class="card-body">
                 <div >
-                    <h5>Direct relattionship</h5>
-                    <p class="card-text">Add or see all the Direct relation persons..</p>
+                    <h5>Freelance relattionship</h5>
+                    <p class="card-text">Add or see all the freelance relation persons..</p>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#directRelation">
             Add
           </button>
@@ -1455,7 +1455,7 @@ font-family: 'Droid Serif', serif;
             <div class="modal-dialog modal-dialog-scrollable" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="directRelationTitle">New direct relation</h5>
+                  <h5 class="modal-title" id="directRelationTitle">New Freelance relation</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
