@@ -27,8 +27,8 @@
                 @endif
             </div>
             <div class="col-3 row justify-content-around">
-                <button class="col-lg-4 col-md-6 buttons-header text-center text-center text-decoration-none shadow" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
-            <a href="/Feedback/Create" class="col-lg-4 col-md-6 buttons-header text-center text-center text-decoration-none shadow px-2">Feedback</a>
+                <button class="col-xl-4 col-lg-6 buttons-header text-center text-center text-decoration-none shadow" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
+            <a href="/Feedback/Create" class="col-xl-4 col-lg-6 buttons-header text-center text-center text-decoration-none shadow px-2">Feedback</a>
             </div>
           </nav>
 
