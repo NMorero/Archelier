@@ -260,11 +260,11 @@ Home
                     </div>
 
 
-                    <div class="col-5 justify-content-between row  shadow rounded-lg d-inline border p-0 pt-2 bg-white Tasks" >
+                    <div class="col-5 justify-content-between row  shadow rounded-lg d-inline border p-1 pt-2 bg-white Tasks" >
                         <div class="col-12 scrollable " id="tasksBox">
 
                         </div>
-                        <div class="col-12 row justify-content-around p-0 m-0 pr-">
+                        <div class="col-12 row justify-content-around p-0 m-0 ">
 
                             <button class="btn-sm rounded-pill button-actions col-5 bg-white py-0" data-toggle="modal" data-target="#modalEvent">+ Event</button>
                             <button class="btn-sm rounded-pill button-actions col-5 bg-white py-0" data-toggle="modal" data-target="#modalTasks">+ Task</button>
