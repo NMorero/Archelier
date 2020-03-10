@@ -76,22 +76,22 @@ ul {
 }
 
 .chat {
-    height: 39vh;
+    height: 34vh;
 }
 
 .Tasks {
-    height: 90vh;
+    height: 85vh;
 }
 .reminderBox {
     height: 50vh;
     overflow-x: hidden;
 }
 
-.reminder-li {
+li {
     font-size: 13px;
 }
 .posts {
-    height: 90vh;
+    height: 85vh;
 }
 
 .scroll-reminders {
