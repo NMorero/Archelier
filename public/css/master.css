@@ -165,7 +165,7 @@ li {
     text-transform: uppercase;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1400px) {
     #tasksBox {
         height: 90%;
     }
