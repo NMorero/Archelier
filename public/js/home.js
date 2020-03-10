@@ -247,7 +247,7 @@ function getReminders() {
 
             data.map(function(reminder) {
                 const templateLiteral = `
-                <li class="border-botBlue justify-content-between d-flex row reminder-li text-dark"><p class="col-8">${reminder.message}</p>     <button class="p-0 btn button-reminder col-1 " onclick="deleteReminder(${reminder.id})">x</button> </li>
+                <li class="border-botBlue justify-content-between d-flex row reminder-li text-dark align-center"><p class="col-8 pt-2"><i class="far fa-square " ></i> ${reminder.message}</p>     <button class=" btn button-reminder col-1 " onclick="deleteReminder(${reminder.id})">x</button> </li>
                 `;
 
                 remindersBox.innerHTML = remindersBox.innerHTML.concat(

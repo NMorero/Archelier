@@ -2,17 +2,24 @@ body {
     background-color: rgb(239, 241, 244);
     background-size: 100vw;
     overflow: hidden;
+    font-family: "Muli", sans-serif;
+    font-weight: 500;
+    font-size: 13px !important ;
+    font-weight: bold;
 }
 
 .admin {
     overflow: scroll !important;
 }
 
+.filtros {
+    height: 50vh;
+}
+
 .header-base {
     background-color: rgb(239, 241, 244);
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
-    font-size: large;
+    font-family: "Muli", sans-serif;
+    font-weight: 500;
 }
 
 #mainLG {
@@ -31,25 +38,28 @@ body {
 
 .buttons-header {
     background-color: rgb(255, 255, 255);
-    border-color: rgb(64, 221, 185);
+    border-color: rgb(98, 224, 195);
     border-style: solid;
-    border-width: 1px;
+    border-width: 2px;
     border-radius: 30px;
     padding: 1px;
-
-    color: rgb(36, 216, 174);
+    font-weight: 500;
+    color: rgb(58, 193, 162);
 }
 
 .border-turq {
-    border-color: rgb(36, 216, 174);
+    border-color: rgb(98, 224, 195);
 }
 
 .bg-lightGrey {
     background-color: rgb(239, 241, 244);
 }
+.color-lightGrey {
+    color: rgb(98, 224, 195);
+}
 /* Home */
 .scroll-post {
-    font: 16px/26px Georgia, Garamond, Serif;
+    font-family: "Muli", sans-serif;
 }
 
 .border-botBlue {
@@ -57,21 +67,33 @@ body {
 }
 
 .chat {
-    height: 35vh;
+    height: 39vh;
 }
 
-.remindersTasks {
+.Tasks {
+    height: 90vh;
+}
+.reminderBox {
     height: 50vh;
-}
-
-.scroll-reminders {
-    height: 50vh !important;
-    overflow-y: scroll;
     overflow-x: hidden;
 }
 
-.scroll-post {
+.reminder-li {
+    font-size: 13px;
+}
+.posts {
     height: 90vh;
+}
+
+.scroll-reminders {
+    height: 85%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    word-break: break-all;
+}
+
+.scroll-post {
+    height: 97%;
 }
 
 .button-add-reminder {
@@ -79,6 +101,7 @@ body {
 }
 
 .button-actions {
+    border: solid 2px rgb(120, 188, 173);
     height: 40px;
 }
 
@@ -90,12 +113,14 @@ body {
     background-color: rgb(233, 236, 239);
 }
 
-.reminder-li {
-    height: 40px;
+.button-reminder {
+    color: rgb(98, 224, 195);
+
+    height: 25px;
 }
 
-.button-reminder {
-    height: 25px;
+#tasksBox {
+    height: 94%;
 }
 
 .scrollable {
@@ -105,13 +130,13 @@ body {
 }
 
 .postInfo {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Muli", sans-serif;
     font-size: 10px;
     font-style: italic;
 }
 
 .postMessage {
-    font-family: sans-serif;
+    font-family: "Muli", sans-serif;
     font-size: 12px;
     line-height: 1.1;
 }
@@ -121,12 +146,12 @@ body {
 }
 
 .taskMessage {
-    font-family: sans-serif;
+    font-family: "Muli", sans-serif;
     font-size: 13px;
 }
 
 .taskFooter {
-    font-family: sans-serif;
+    font-family: "Muli", sans-serif;
     font-size: 8px;
     text-transform: uppercase;
 }
