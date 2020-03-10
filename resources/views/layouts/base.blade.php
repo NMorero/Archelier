@@ -26,9 +26,9 @@
                 <a class="col-3 buttons-header text-center text-decoration-none shadow" href="/Admin" tabindex="-1" aria-disabled="true">Resources</a>
                 @endif
             </div>
-            <div class="col-2 row justify-content-between">
-                <button class="col-5 buttons-header text-center text-center text-decoration-none shadow" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
-            <a href="/Feedback/Create" class="col-5 buttons-header text-center text-center text-decoration-none shadow">Feedback</a>
+            <div class="col-3 row justify-content-around">
+                <button class="col-lg-4 col-md-6 buttons-header text-center text-center text-decoration-none shadow" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
+            <a href="/Feedback/Create" class="col-lg-4 col-md-6 buttons-header text-center text-center text-decoration-none shadow px-2">Feedback</a>
             </div>
           </nav>
 
