@@ -51,7 +51,8 @@ ul {
     border-style: solid;
     border-width: 2px;
     border-radius: 30px;
-    padding: 1px;
+    height: 28px;
+
     font-weight: 500;
     color: rgb(58, 193, 162);
 }

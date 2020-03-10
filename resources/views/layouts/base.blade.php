@@ -16,17 +16,20 @@
 
 @show>
 
-    <header class="header-base p-2 px-5 mt-2 justify-content-between row d-none d-lg-block" style="height:50px">
+    <header class="header-base p-2 px-5 mt-2 justify-content-between row d-none d-lg-block align-center" style="height:40px">
         <nav class="col-12 row justify-content-between">
-            <div class="col-4 row">
-                <a class="col-3 buttons-header text-center text-center text-decoration-none shadow" href="/">Home</a>
-                <a class="col-3 buttons-header mx-1 text-center text-decoration-none shadow" href="/Admin/Projects" tabindex="-1" aria-disabled="true">Projects</a>
+            <div class="col-1 "><img src="{{asset('/upload/users/user.png')}}" class="rounded-circle" alt="" height="35" width="35 pb-3"></div>
+            <div class="col-3 row">
+
+                <a class="col-3 buttons-header text-center text-center text-decoration-none shadow pb-3" href="/">Home</a>
+                <a class="col-3 buttons-header mx-1 text-center text-decoration-none shadow pb-3" href="/Admin/Projects" tabindex="-1" aria-disabled="true">Projects</a>
 
                 @if (auth()->user()->roles->rol == 'admin')
                 <a class="col-3 buttons-header text-center text-decoration-none shadow" href="/Admin" tabindex="-1" aria-disabled="true">Resources</a>
                 @endif
             </div>
-            <div class="col-3 row justify-content-around">
+            <div class="col-6"></div>
+            <div class="col-2 row justify-content-around">
                 <button class="col-xl-4 col-lg-6 buttons-header text-center text-center text-decoration-none shadow" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
             <a href="/Feedback/Create" class="col-xl-4 col-lg-6 buttons-header text-center text-center text-decoration-none shadow px-2">Feedback</a>
             </div>
