@@ -11,31 +11,21 @@
     @show
     <title>Archelier | @section('title') @show</title>
 </head>
-<body>
+<body @section('body')
 
-    <header class="header-base p-2 justify-content-between row d-none d-lg-flex" style="height:70px">
-        <nav class="nav col-8">
-            <a class="nav-link active   text-white" href="/">Home</a>
-            <a class="nav-link active   text-white" href="/Admin/Projects" tabindex="-1" aria-disabled="true">Projects</a>
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Administration</a>
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Production</a>
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Marketing</a>
+@show>
+
+    <header class="header-base p-2 justify-content-between row d-none d-lg-block" style="height:50px">
+        <nav class="col-3 row justify-content-center">
+            <a class="col-3 buttons-header text-center text-center text-decoration-none shadow" href="/">Home</a>
+            <a class="col-3 buttons-header mx-1 text-center text-decoration-none shadow" href="/Admin/Projects" tabindex="-1" aria-disabled="true">Projects</a>
+
             @if (auth()->user()->roles->rol == 'admin')
-            <a class="nav-link active   text-white" href="/Admin" tabindex="-1" aria-disabled="true">Resources</a>
+            <a class="col-3 buttons-header text-center text-decoration-none shadow" href="/Admin" tabindex="-1" aria-disabled="true">Resources</a>
             @endif
 
           </nav>
-        <nav class="nav col-3 row justify-content-center d-flex align-center">
-            <div class="row col-5">
-                <img class="col-5 rounded-circle mt-2" src="{{asset('/upload/users/user.jfif')}}" alt="" height="33">
-                <p class="col-5 p-2 text-white">{{auth()->user()->username}}</p>
-            </div>
-            <a class="col-5 p-2 text-white" href="/logout">Log Out</a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
 
-        </nav>
     </header>
 
 

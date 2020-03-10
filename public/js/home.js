@@ -138,7 +138,7 @@ function getPosts() {
                 if (post.type == "post") {
                     if (post.image != null) {
                         const templateLiteral = `
-                    <div class="row border-bottom">
+                    <div class="row border-botBlue">
                     <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
                     <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
                     <img src="${post.image}" class="postImage" alt="">
@@ -151,7 +151,7 @@ function getPosts() {
                         );
                     } else {
                         const templateLiteral = `
-                    <div class="row border-bottom">
+                    <div class="row border-botBlue">
                     <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
                     <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
 
@@ -164,7 +164,7 @@ function getPosts() {
                     }
                 } else if (post.type == "feedbackCreate") {
                     const templateLiteral = `
-                    <a href="/Feedback/Edit/${post.feedback_id}" class="row border-bottom p-1 text-decoration-none text-dark justify-content-between">
+                    <a href="/Feedback/Edit/${post.feedback_id}" class="row border-botBlue p-1 text-decoration-none text-dark justify-content-between">
                         <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
                         <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
                         <ul>
@@ -196,7 +196,7 @@ function getPosts() {
                     divPosts.innerHTML = divPosts.innerHTML.concat(template);
                 } else {
                     const templateLiteral = `
-                    <a href="/Feedback/Edit/${post.feedback_id}" class="row border-bottom p-1 text-decoration-none text-dark">
+                    <a href="/Feedback/Edit/${post.feedback_id}" class="row border-botBlue p-1 text-decoration-none text-dark">
                         <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
                         <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
                         <ul class="col-9">
@@ -247,7 +247,7 @@ function getReminders() {
 
             data.map(function(reminder) {
                 const templateLiteral = `
-                <li class="list-group-item justify-content-around d-flex row reminder-li p-2 bg-dark"><p class="col-8">${reminder.message}</p>     <button class="p-0 btn button-reminder col-1 btn-danger" onclick="deleteReminder(${reminder.id})">x</button> </li>
+                <li class="border-botBlue justify-content-between d-flex row reminder-li text-dark"><p class="col-8">${reminder.message}</p>     <button class="p-0 btn button-reminder col-1 " onclick="deleteReminder(${reminder.id})">x</button> </li>
                 `;
 
                 remindersBox.innerHTML = remindersBox.innerHTML.concat(

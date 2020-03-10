@@ -10,6 +10,11 @@
 Home
 @endsection
 
+
+@section('body')
+    class="bg-lightGrey"
+@endsection
+
 @section('content')
   @include('layouts.formsButtonsHome')
 
@@ -62,7 +67,7 @@ Home
 
 
 
-    <main class="container mt-3 d-block d-lg-none" id="mainMobile">
+    <main class="container mt-3 d-block d-lg-none " id="mainMobile">
 
       <ul class="nav nav-pills mb-4 justify-content-between" id="pills-tab" role="tablist">
         <li class="nav-item">
@@ -80,7 +85,7 @@ Home
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 
 
-          <div class=" row ">
+          <div class=" row  ">
               {{-- inicio --}}
 
               <div class="input-group mb-3 col-12">
@@ -160,82 +165,96 @@ Home
 
 
 
-    <main class="container-fluid row mt-2 pr-0 d-lg-flex d-none" id="mainLG">
+    <main class="container-fluid row mt-2 d-lg-flex d-none justify-content-around px-2 m-0 bg-lightGrey" id="mainLG">
         {{-- Primer Seccion ( Filtros ) --}}
-        <div class="col-2">
-            {{-- inicio --}}
+        <div class="col-6 row justify-content-between p-0 m-0 bg-lightGrey">
+            <div class="col-4 row p-0 m-0 rounded-lg d-inline ">
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="clientSelect">Client:</label>
+
+
+
+                <div class="col-12 p-2 m-0 shadow border rounded-lg bg-white">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <label class="input-group-text" for="clientSelect">Client:</label>
+                        </div>
+                        <select class="custom-select" id="clientSelect">
+                          <option selected class="clientSelectOption" value="All">All</option>
+                          @foreach ($clients as $client)
+                              <option value="{{$client->id}}" class="clientSelectOption"> {{$client->client_name}} </option>
+                          @endforeach
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3  ">
+                        <div class="input-group-prepend">
+                          <label class="input-group-text" for="projectSelect">Project:</label>
+                        </div>
+                        <select class="custom-select" id="projectSelect" disabled>
+                            <option selected value="All">All</option>
+
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <label class="input-group-text" for="viewSelect">View:</label>
+                        </div>
+                        <select class="custom-select" id="viewSelect" disabled>
+                            <option selected  value="All">All</option>
+
+                        </select>
+                    </div>
                 </div>
-                <select class="custom-select" id="clientSelect">
-                  <option selected class="clientSelectOption" value="All">All</option>
-                  @foreach ($clients as $client)
-                      <option value="{{$client->id}}" class="clientSelectOption"> {{$client->client_name}} </option>
-                  @endforeach
-                </select>
+
             </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="projectSelect">Project:</label>
-                </div>
-                <select class="custom-select" id="projectSelect" disabled>
-                    <option selected value="All">All</option>
 
-                </select>
+
+
+            <div class="col-7 scroll-post scrollable shadow border rounded-lg d-inline p-5 bg-white posts" id="divPosts">
+
             </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="viewSelect">View:</label>
-                </div>
-                <select class="custom-select" id="viewSelect" disabled>
-                    <option selected  value="All">All</option>
-
-                </select>
+                {{-- fin --}}
             </div>
 
 
+            {{-- Segunda seccion ( Posts ) --}}
 
-
-            {{-- fin --}}
-        </div>
-
-
-        {{-- Segunda seccion ( Posts ) --}}
-
-        <div class="col-3 scroll-post scrollable" id="divPosts">
 
         </div>
         {{-- Tercera seccion ( actions yu reminders ) --}}
-        <div class="col-5 justify-content-center m-0 p-3">
-            <div class="col-12 pt-3 row div-actions justify-content-between pr-0">
-                <button class="btn btn-info mr-1 my-1 ml-0 col-3 button-actions" data-toggle="modal" data-target="#modalTasks">Task</button>
-                <button class="btn btn-info mr-1 col-3 button-actions" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
-                <a href="/Feedback/Create" class="btn btn-info mr-0 my-1 ml-11 col-3">Feedback</a>
-                <button class="btn btn-info mr-1 my-1 ml-0 col-3 button-actions" data-toggle="modal" data-target="#modalEvent">Event</button>
-                <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalPosts">Post</button>
-                <button class="btn btn-info mr-0 my-1 ml-1 button-actions col-3" data-toggle="modal" data-target="#modalReminder">Reminder</button>
+        <div class="col-6 justify-content-between row bg-lightGrey pl-3 pr-5">
+            <div class="col-6 justify-content-center m-0 shadow d-inline rounded-lg row bg-white remindersTasks">
+               {{-- <div class="col-12 pt-3 row div-actions justify-content-between pr-0">
+                    <button class="btn btn-info mr-1 my-1 ml-0 col-3 button-actions" data-toggle="modal" data-target="#modalTasks">Task</button>
+                    <button class="btn btn-info mr-1 col-3 button-actions" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
+                    <a href="/Feedback/Create" class="btn btn-info mr-0 my-1 ml-11 col-3">Feedback</a>
+                    <button class="btn btn-info mr-1 my-1 ml-0 col-3 button-actions" data-toggle="modal" data-target="#modalEvent">Event</button>
+                    <button class="btn btn-info m-1 col-3 button-actions" data-toggle="modal" data-target="#modalPosts">Post</button>
+                    <button class="btn btn-info mr-0 my-1 ml-1 button-actions col-3" data-toggle="modal" data-target="#modalReminder">Reminder</button>
+
+                </div>
+                --}}
+                <div class="col-12 bg-white ">
+                    <ul class="list-group scroll-reminders text-white p-3" id="remindersBox">
+
+                    </ul>
+                </div>
 
             </div>
 
-            <div class="col-12 mt-5 mx-0 p-0  ">
 
+            <div class="scrollable col-5 shadow rounded-lg d-inline border p-4 bg-white remindersTasks" id="tasksBox">
 
-                <ul class="list-group scroll-reminders text-white p-0 bg-dark rounded" id="remindersBox">
+            </div>
 
-                </ul>
+            <div class="col-12 bg-white shadow rounded-lg border d-inline chat row p-0 m-0">
+
             </div>
 
         </div>
-
-
-        <div class="scrollable col-2 p-0" id="tasksBox">
-
-        </div>
-
 
 
 
