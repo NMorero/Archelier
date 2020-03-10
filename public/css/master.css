@@ -129,7 +129,7 @@ li {
 }
 
 #tasksBox {
-    height: 94%;
+    height: 96%;
 }
 
 .scrollable {
@@ -165,6 +165,11 @@ li {
     text-transform: uppercase;
 }
 
+@media (max-width: 1300px) {
+    #tasksBox {
+        height: 90%;
+    }
+}
 @media (max-width: 700px) {
     .scrollable {
         height: 60vh;
