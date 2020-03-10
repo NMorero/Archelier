@@ -247,7 +247,7 @@ function getReminders() {
 
             data.map(function(reminder) {
                 const templateLiteral = `
-                <li class="border-botBlue justify-content-between d-flex row reminder-li text-dark align-center"><p class="col-8 pt-2"><i class="far fa-square " ></i> ${reminder.message}</p>     <button class=" btn button-reminder col-1 " onclick="deleteReminder(${reminder.id})">x</button> </li>
+                <li class="border-botBlue justify-content-between d-flex row reminder-li text-dark align-center "><p class="col-8 pt-2"><i class="far fa-square " ></i> ${reminder.message}</p>     <button class=" btn button-reminder col-1 " onclick="deleteReminder(${reminder.id})">x</button> </li>
                 `;
 
                 remindersBox.innerHTML = remindersBox.innerHTML.concat(
@@ -308,9 +308,9 @@ function getTasks() {
                 i++;
 
                 const templateLiteral = `
-                        <div class="col-12 row px-2 mb-1">
+                        <div class="col-12 row  mb-1 m-0 p-0">
                             <h6 class="col-12 text-right">${tasks.day}</h6>
-                            <div class="col-12" id="tasks${i}">
+                            <div class="col-12 p-0 m-0" id="tasks${i}">
                             </div>
                         </div>
                     `;
@@ -320,21 +320,21 @@ function getTasks() {
                     let tasksBox2 = document.getElementById("tasks" + i);
 
                     const templateLiteral = `
-                        <div class="row border-bottom "><ul style="list-style-type: none;">`;
+                        <div class="row border-bottom m-0 p-0"><ul class="p-0 m-0" style="list-style-type: none;">`;
                     let comments = JSON.parse(task.message);
                     let templatelit2 = ``;
                     comments.map(function(comm) {
                         if (comm.status == 1) {
-                            let temp = `<li class=" border-bottom mb-2">
-                        <div class="form-check form-check-inline">
+                            let temp = `<li class=" border-bottom mb-2 m-0 p-0">
+                        <div class="form-check form-check-inline m-0 p-0">
                         <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})">
                         <label class="form-check-label" for="task${task.id}Check${comm.id}">${comm.data}</label>
                       </div>
                         </li>`;
                             templatelit2 = templatelit2 + temp;
                         } else {
-                            let temp = `<li class=" border-bottom mb-2" >
-                        <div class="form-check form-check-inline">
+                            let temp = `<li class=" border-bottom mb-2 m-0 p-0" >
+                        <div class="form-check form-check-inline p-0 m-0">
                         <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})" checked>
                         <label class="form-check-label" for="task${task.id}Check${comm.id}"><strike>${comm.data}</strike></label>
                       </div>

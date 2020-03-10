@@ -214,12 +214,12 @@ Home
 
             <div class="col-8 row justify-content-between  ">
 
-                <div class="col-12 row p-0 pb-3 m-0 shadow rounded-lg bg-white reminderBox">
-                    <ul class="col-12  scroll-reminders p-3 px-4 " id="remindersBox">
+                <div class="col-12 row p-0 pb-3 pr-1 m-0 shadow rounded-lg bg-white reminderBox">
+                    <ul class="col-12  scroll-reminders p-3 px-4 list-group" id="remindersBox">
 
                     </ul>
-                    <div class="col-8"></div>
-                    <button class="btn-sm rounded-pill button-actions col-3 bg-white mb-5" data-toggle="modal" data-target="#modalReminder">+ Reminder</button>
+                    <div class="col-9"></div>
+                    <button class="btn-sm rounded-pill button-actions col-3 bg-white py-0 " data-toggle="modal" data-target="#modalReminder">+ Reminder</button>
 
                 </div>
 
@@ -254,20 +254,20 @@ Home
                         </div>
                         <div class="col-12 row justify-content-between p-0 m-0">
                             <div class="col-9"></div>
-                            <button class="btn-sm rounded-pill button-actions col-3 bg-white" data-toggle="modal" data-target="#modalPosts">+ Post</button>
+                            <button class="btn-sm rounded-pill button-actions col-3 bg-white py-0" data-toggle="modal" data-target="#modalPosts">+ Post</button>
                         </div>
 
                     </div>
 
 
-                    <div class="col-5 justify-content-between row  shadow rounded-lg d-inline border p-0 pt-1 pl-1 bg-white Tasks" >
+                    <div class="col-5 justify-content-between row  shadow rounded-lg d-inline border p-0 pt-2 bg-white Tasks" >
                         <div class="col-12 scrollable " id="tasksBox">
 
                         </div>
                         <div class="col-12 row justify-content-between p-0 m-0 pr-2">
                             <div class="col-5"></div>
-                            <button class="btn-sm rounded-pill button-actions col-3 bg-white" data-toggle="modal" data-target="#modalEvent">+ Event</button>
-                            <button class="btn-sm rounded-pill button-actions col-3 bg-white" data-toggle="modal" data-target="#modalTasks">+ Task</button>
+                            <button class="btn-sm rounded-pill button-actions col-3 bg-white py-0" data-toggle="modal" data-target="#modalEvent">+ Event</button>
+                            <button class="btn-sm rounded-pill button-actions col-3 bg-white py-0" data-toggle="modal" data-target="#modalTasks">+ Task</button>
                         </div>
 
                     </div>
