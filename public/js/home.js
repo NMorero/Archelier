@@ -315,9 +315,9 @@ function getTasks() {
                         let tasksBox3 = document.getElementById("tasks" + i);
 
                         const templateLiteral = `
-                        <div class="row border-bottom table-warning">
-                            <p class="taskMessage col-12 mb-1 mt-3 pl-4">${event.message}</p>
-                            <p class="taskFooter text-right col-12"></p>
+                        <div class="row border-bottom ev-green p-0">
+                        <p class="taskMessage col-12 mb-0 ">${event.message}</p>
+
                         </div>
                         `;
                         tasksBox3.innerHTML = tasksBox3.innerHTML.concat(
@@ -327,8 +327,8 @@ function getTasks() {
                         let tasksBox3 = document.getElementById("tasks" + i);
 
                         const templateLiteral = `
-                        <div class="row border-bottom table-warning">
-                            <p class="taskMessage col-12 mb-1">${event.message}</p>
+                        <div class="row border-bottom ev-green p-0">
+                            <p class="taskMessage col-12 mb-0 ">${event.message}</p>
 
                         </div>
                         `;

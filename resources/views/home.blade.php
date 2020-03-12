@@ -210,7 +210,7 @@ Home
                 --}}
 
                     <div class="col-7 row  shadow border rounded-lg d-inline p-3 pb-4 m-0 bg-white posts">
-                        <div class="col-12 p-2 m-0 row">
+                        <div class="col-12 p-2 m-0 row border-botBlue">
                             <button class="btn-sm rounded-pill button-actions  bg-white py-0 col-2 mt-2" onclick="getPosts()">Filter</button>
                             <div class="input-group  bg-transparent col-5">
 
@@ -236,10 +236,10 @@ Home
                         <div class="col-12 scroll-post scrollable  " id="divPosts">
 
                         </div>
-                        <div class="col-12 row justify-content-between p-0 m-0">
+                        <div class="col-12 row justify-content-between p-0 m-0 pt-1">
 
                             <div class="col-9"></div>
-                            <button class="btn-sm rounded-pill button-actions col-3 bg-white py-0" data-toggle="modal" data-target="#modalPosts">+ Post</button>
+                            <button class="btn-sm rounded-pill button-actions col-3 bg-white py-0 mt-2" data-toggle="modal" data-target="#modalPosts">+ Post</button>
                         </div>
 
                     </div>
