@@ -30,8 +30,8 @@
             </div>
             <div class="col-6"></div>
             <div class="col-2 row justify-content-around">
-                <button class="col-xl-4 col-lg-6 buttons-header text-center text-center text-decoration-none shadow" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
-            <a href="/Feedback/Create" class="col-xl-4 col-lg-6 buttons-header text-center text-center text-decoration-none shadow px-2">Feedback</a>
+                <button class="col-xl-5 col-lg-6 buttons-header text-center text-center text-decoration-none shadow" data-toggle="modal" data-target="#modalDelivery">Delivery</button>
+            <a href="/Feedback/Create" class="col-xl-5 col-lg-6 buttons-header text-center text-center text-decoration-none shadow px-2">Feedback</a>
             </div>
           </nav>
 

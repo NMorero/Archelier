@@ -88,7 +88,7 @@ Home
           <div class=" row  ">
               {{-- inicio --}}
 
-              <div class="input-group mb-3 col-12">
+              <div class="input-group mb-3 col-12 bg-transparent">
                   <div class="input-group-prepend">
                     <label class="input-group-text" for="clientSelect">Client:</label>
                   </div>
@@ -110,15 +110,6 @@ Home
                   </select>
               </div>
 
-              <div class="input-group mb-3 col-12">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" for="viewSelect">View:</label>
-                  </div>
-                  <select class="custom-select" id="viewSelect" disabled>
-                      <option selected  value="All">All</option>
-
-                  </select>
-              </div>
 
 
 
@@ -175,44 +166,10 @@ Home
 
 
 
-                <div class="col-12 p-2 m-0 ">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <label class="input-group-text" for="clientSelect">Client:</label>
-                        </div>
-                        <select class="custom-select" id="clientSelect">
-                          <option selected class="clientSelectOption" value="All">All</option>
-                          @foreach ($clients as $client)
-                              <option value="{{$client->id}}" class="clientSelectOption"> {{$client->client_name}} </option>
-                          @endforeach
-                        </select>
-                    </div>
 
-                    <div class="input-group mb-3  ">
-                        <div class="input-group-prepend">
-                          <label class="input-group-text" for="projectSelect">Project:</label>
-                        </div>
-                        <select class="custom-select" id="projectSelect" disabled>
-                            <option selected value="All">All</option>
-
-                        </select>
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <label class="input-group-text" for="viewSelect">View:</label>
-                        </div>
-                        <select class="custom-select" id="viewSelect" disabled>
-                            <option selected  value="All">All</option>
-
-                        </select>
-                    </div>
-                </div>
 
             </div>
-
-
-            <div class="col-8 row justify-content-between  ">
+            <div class="col-8 row justify-content-between  pl-0">
 
                 <div class="col-12 row p-0 pb-3 pr-1 m-0 shadow rounded-lg bg-white reminderBox">
                     <ul class="col-12  scroll-reminders p-3 px-4 list-group" id="remindersBox">
@@ -227,6 +184,10 @@ Home
 
                 {{-- fin --}}
             </div>
+
+
+
+
             <div class="col-12 bg-white shadow rounded-lg border d-inline chat row p-0 m-0 mt-2">
 
             </div>
@@ -249,10 +210,34 @@ Home
                 --}}
 
                     <div class="col-7 row  shadow border rounded-lg d-inline p-3 pb-4 m-0 bg-white posts">
+                        <div class="col-12 p-2 m-0 row">
+                            <button class="btn-sm rounded-pill button-actions  bg-white py-0 col-2 mt-2" onclick="getPosts()">Filter</button>
+                            <div class="input-group  bg-transparent col-5">
+
+                                <select class="custom-select border-0" id="clientSelect">
+                                  <option selected class="clientSelectOption" value="All">Client</option>
+                                  @foreach ($clients as $client)
+                                      <option value="{{$client->id}}" class="clientSelectOption"> {{$client->client_name}} </option>
+                                  @endforeach
+                                </select>
+                            </div>
+
+                            <div class="input-group   bg-transparent col-5">
+
+                                <select class="custom-select border-0" id="projectSelect" disabled>
+                                    <option selected value="All">Project</option>
+
+                                </select>
+                            </div>
+
+
+
+                        </div>
                         <div class="col-12 scroll-post scrollable  " id="divPosts">
 
                         </div>
                         <div class="col-12 row justify-content-between p-0 m-0">
+
                             <div class="col-9"></div>
                             <button class="btn-sm rounded-pill button-actions col-3 bg-white py-0" data-toggle="modal" data-target="#modalPosts">+ Post</button>
                         </div>

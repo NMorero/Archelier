@@ -13,18 +13,29 @@
 </head>
 <body class="admin">
 
-    <header class="header-base p-2 justify-content-between row d-none d-lg-flex">
-        <nav class="nav col-9">
-            <a class="nav-link active   text-white" href="/">Home</a>
-            <a class="nav-link active   text-white" href="/Admin/Projects" tabindex="-1" aria-disabled="true">Projects</a>
-            <a class="nav-link active   text-white" href="/Admin" tabindex="-1" aria-disabled="true">Resources</a>
+    <header class="header-base p-2 justify-content-center row d-none d-lg-flex">
+        <nav class="col-12 row justify-content-between">
+            <div class="col-1 "><img src="{{asset('/upload/users/user.png')}}" class="rounded-circle" alt="" height="35" width="35 pb-3"></div>
+            <div class="col-3 row">
 
+                <a class="col-3 buttons-header text-center text-center text-decoration-none shadow pb-3" href="/">Home</a>
+                <a class="col-3 buttons-header mx-1 text-center text-decoration-none shadow pb-3" href="/Admin/Projects" tabindex="-1" aria-disabled="true">Projects</a>
 
+                @if (auth()->user()->roles->rol == 'admin')
+                <a class="col-3 buttons-header text-center text-decoration-none shadow" href="/Admin" tabindex="-1" aria-disabled="true">Resources</a>
+                @endif
+            </div>
+            <div class="col-6"></div>
+            <div class="col-2 row justify-content-around">
+                <a class="col-8 buttons-header text-center text-center text-decoration-none shadow pb-3" href="/logout">Log Out</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+
+            </div>
           </nav>
-        <a class="col-2 p-2 text-white" href="/logout">Log Out</a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
+
+
     </header>
 
 
