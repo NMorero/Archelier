@@ -20,15 +20,7 @@
                 <div class="form-group col-12 justify-content-center row">
                     <button class="btn btn-primary col-6" onclick="addcommentTask()">Add task</button>
                 </div>
-                <div class="form-group col-6">
-                    <label for="TaskBtnStatusSelect" class="text-muted">Status</label>
-                    <select name="TaskBtnStatusSelect" class="custom-select" id="TaskBtnStatusSelect" required>
-                        <option value="null">Select...</option>
-                        <option value="1">Ongoing</option>
-                        <option value="2">Ready for Test</option>
-                        <option value="3">Done</option>
-                    </select>
-                </div>
+                <input type="text" name="TaskBtnStatusSelect" id="TaskBtnStatusSelect" hidden>
                 <div class="form-group col-6">
                     <label for="TaskBtnEndDate" class="text-muted">End Date</label>
                     <input type="date" id="TaskBtnEndDate" class="form-control" name="TaskBtnEndDate" required>
@@ -41,7 +33,7 @@
                 </div>
                 <div class="form-group col-6">
                     <label for="TaskBtnClientSelect" class="text-muted">Client</label>
-                    <select name="TaskBtnClientSelect" id="TaskBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Task')" required>
+                    <select name="TaskBtnClientSelect" id="TaskBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Task')" >
                         <option value="null">Select...</option>
                         @foreach ($clients as $client)
                             <option value="{{$client->id}}" > {{$client->client_name}} </option>
@@ -50,7 +42,7 @@
                 </div>
                 <div class="form-group col-6" >
                     <label for="TaskBtnProjectSelect" class="text-muted">Project</label>
-                    <select name="TaskBtnProjectSelect" id="TaskBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Task')" required>
+                    <select name="TaskBtnProjectSelect" id="TaskBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Task')" >
 
                     </select>
                 </div>

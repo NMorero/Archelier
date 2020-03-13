@@ -224,8 +224,10 @@ class HomeController extends Controller
 
         foreach ($tasksDB as $task) {
             $task['user'] = $task->user;
-            $task['project'] = $task->project;
-            $task['client'] = $task->client->person;
+            if (isset($task->client_id) && !empty($task->client_id)) {
+                $task['project'] = $task->project;
+                $task['client'] = $task->client->person;
+            }
             $endDate = $task->end_date;
             if (!array_key_exists($endDate, $dates)) {
                 array_push($dates, $endDate);
@@ -344,8 +346,15 @@ class HomeController extends Controller
         $task->status = $formData['status'];
         $task->end_date = $formData['end_date'];
         $task->user_id = $formData['user'];
-        $task->project_id = $formData['project'];
-        $task->client_id = $formData['client'];
+
+        if (isset($formData['project']) && !empty($formData['project'])) {
+            $task->project_id = $formData['project'];
+        }
+
+        if (isset($formData['client']) && !empty($formData['client'])) {
+            $task->client_id = $formData['client'];
+        }
+
 
         if (isset($formData['view']) && !empty($formData['view'])) {
             $task->view_id = $formData['view'];
@@ -368,6 +377,12 @@ class HomeController extends Controller
         $post->type = 'post';
         $post->client_id = $request['PostBtnClientSelect'];
         $post->project_id = $request['PostBtnProjectSelect'];
+
+        if (isset($request['PostBtnViewSelect']) && !empty($request['PostBtnViewSelect']) && $request['PostBtnViewSelect'] != 'none') {
+            $post->view_id = $request['PostBtnViewSelect'];
+        }
+
+
 
         if (isset($request['PostBtnViewSelect']) && !empty($request['PostBtnViewSelect']) && $request['PostBtnViewSelect'] != 'none') {
             $post->view_id = $request['PostBtnViewSelect'];

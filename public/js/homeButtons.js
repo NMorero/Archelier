@@ -187,13 +187,19 @@ function saveButton(button) {
         //console.log('User: ' + user);
     }
 
-    if (document.getElementById(button + "BtnClientSelect")) {
+    if (
+        document.getElementById(button + "BtnClientSelect") &&
+        document.getElementById(button + "BtnClientSelect").value != "null"
+    ) {
         var client = document.getElementById(button + "BtnClientSelect").value;
         formData["client"] = client;
         //console.log('Client: ' + client);
     }
 
-    if (document.getElementById(button + "BtnProjectSelect")) {
+    if (
+        document.getElementById(button + "BtnProjectSelect") &&
+        document.getElementById(button + "BtnProjectSelect").value != "null"
+    ) {
         var project = document.getElementById(button + "BtnProjectSelect")
             .value;
         formData["project"] = project;

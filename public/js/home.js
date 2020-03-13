@@ -94,9 +94,9 @@ function getPosts() {
                 if (post.type == "post") {
                     if (post.image != null) {
                         const templateLiteral = `
-                    <div class="row border-botBlue">
+                    <div class="row border-botBlue my-2">
                     <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
-                    <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
+                    <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
                     <img src="${post.image}" class="postImage" alt="">
 
 
@@ -107,9 +107,9 @@ function getPosts() {
                         );
                     } else {
                         const templateLiteral = `
-                    <div class="row border-botBlue">
+                    <div class="row border-botBlue my-2">
                     <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
-                    <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
+                    <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
 
 
                 </div>
@@ -120,9 +120,9 @@ function getPosts() {
                     }
                 } else if (post.type == "feedbackCreate") {
                     const templateLiteral = `
-                    <a href="/Feedback/Edit/${post.feedback_id}" class="row border-botBlue p-1 text-decoration-none text-dark justify-content-between">
+                    <a href="/Feedback/Edit/${post.feedback_id}" class="row border-botBlue p-1 text-decoration-none text-dark justify-content-between my-2">
                         <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
-                        <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
+                        <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
                         <ul>
 
                     `;
@@ -152,9 +152,9 @@ function getPosts() {
                     divPosts.innerHTML = divPosts.innerHTML.concat(template);
                 } else {
                     const templateLiteral = `
-                    <a href="/Feedback/Edit/${post.feedback_id}" class="row border-botBlue p-1 text-decoration-none text-dark">
+                    <a href="/Feedback/Edit/${post.feedback_id}" class="row border-botBlue p-1 text-decoration-none text-dark my-2">
                         <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
-                        <p class="col-12 postMessage" ><b>${post.title}:</b> ${post.message}</p>
+                        <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
                         <ul class="col-9">
 
                     `;
@@ -299,12 +299,18 @@ function getTasks() {
                         }
                     });
 
-                    const templatelit3 = `</ul><p class="taskFooter text-right col-12">${task.client.client_name} // ${task.project.project_name} // ${task.user.username}</p>
+                    if (task.client && task.client.length) {
+                        const templatelit3 = `</ul><p class="taskFooter text-right col-12">${task.client.client_name} // ${task.project.project_name} // ${task.user.username}</p>
                         </div>
                         `;
-                    tasksBox2.innerHTML = tasksBox2.innerHTML.concat(
-                        templateLiteral + templatelit2 + templatelit3
-                    );
+                        tasksBox2.innerHTML = tasksBox2.innerHTML.concat(
+                            templateLiteral + templatelit2 + templatelit3
+                        );
+                    } else {
+                        tasksBox2.innerHTML = tasksBox2.innerHTML.concat(
+                            templateLiteral + templatelit2
+                        );
+                    }
                 });
 
                 tasks.events.map(function(event) {
