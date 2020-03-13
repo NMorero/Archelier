@@ -94,7 +94,7 @@ function getPosts() {
                 if (post.type == "post") {
                     if (post.image != null) {
                         const templateLiteral = `
-                    <div class="row border-botBlue my-2">
+                    <div class="row border-botBlue my-2 py-2">
                     <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
                     <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
                     <img src="${post.image}" class="postImage" alt="">
@@ -107,7 +107,7 @@ function getPosts() {
                         );
                     } else {
                         const templateLiteral = `
-                    <div class="row border-botBlue my-2">
+                    <div class="row border-botBlue my-2 py-2">
                     <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
                     <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
 
@@ -120,7 +120,7 @@ function getPosts() {
                     }
                 } else if (post.type == "feedbackCreate") {
                     const templateLiteral = `
-                    <a href="/Feedback/Edit/${post.feedback_id}" class="row border-botBlue p-1 text-decoration-none text-dark justify-content-between my-2">
+                    <a href="/Feedback/Edit/${post.feedback_id}" class="row border-botBlue p-1 text-decoration-none text-dark justify-content-between my-2 py-2">
                         <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
                         <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
                         <ul>
@@ -152,7 +152,7 @@ function getPosts() {
                     divPosts.innerHTML = divPosts.innerHTML.concat(template);
                 } else {
                     const templateLiteral = `
-                    <a href="/Feedback/Edit/${post.feedback_id}" class="row border-botBlue p-1 text-decoration-none text-dark my-2">
+                    <a href="/Feedback/Edit/${post.feedback_id}" class="row border-botBlue p-1 text-decoration-none text-dark my-2 py-2">
                         <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
                         <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
                         <ul class="col-9">
