@@ -17,7 +17,7 @@ body::-webkit-scrollbar {
     overflow: scroll !important;
 }
 
-.filtros {
+.infoBox {
     height: 50vh;
 }
 
@@ -131,6 +131,48 @@ li {
     background-color: rgb(233, 236, 239);
 }
 
+.dropdownFiltersPost{
+    display: none;
+    transition: 2;
+}
+
+.filtersContent{
+    display: none;
+
+}
+
+.dropdownFiltersPost:hover .filtersContent{
+    opacity: 1;
+}
+
+
+
+.dropdownBox {
+    position: relative;
+    display: inline-block;
+    transition: 2;
+  }
+
+  /* Dropdown Content (Hidden by Default) */
+  .dropdownContent {
+      visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s, opacity 0.2s linear;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+
+  /*
+   Change color of dropdown links on hover
+  .dropdownContent a:hover {background-color: #ddd;} */
+
+  /* Show the dropdown menu on hover */
+  .dropdownBox:hover .dropdownContent {opacity: 1;visibility: visible;}
+
 .button-reminder {
     color: rgb(98, 224, 195);
 
@@ -179,6 +221,40 @@ li {
     #tasksBox {
         height: 94%;
     }
+    .buttons-header {
+        background-color: rgb(255, 255, 255);
+        border-color: rgb(98, 224, 195);
+        border-style: solid;
+        border-width: 2px;
+        border-radius: 30px;
+        height: 25px;
+        font-size: 15px;
+        font-weight: 500;
+
+        color: rgb(58, 193, 162);
+        margin-bottom: 30px !important;
+    }
+
+    .posts {
+        height: 90vh;
+    }
+    .scroll-post {
+        height: 89%;
+    }
+    .Tasks {
+        height: 90vh;
+    }
+    .reminderBox {
+        height: 55vh;
+        overflow-x: hidden;
+    }
+
+    .infoBox {
+        height: 55vh;
+    }
+
+
+
 }
 @media (max-width: 700px) {
     .scrollable {

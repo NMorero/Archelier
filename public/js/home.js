@@ -51,7 +51,7 @@ $("#clientSelect").change(function() {
                 console.log(data);
                 document.getElementById("projectSelect").disabled = false;
                 var selectProjects = document.getElementById("projectSelect");
-                selectProjects.innerHTML = `<option selected onclick="projectSelect()" value="All">Project...</option>`;
+                selectProjects.innerHTML = `<option selected onclick="projectSelect()" value="All">All</option>`;
                 data.map(function(project) {
                     const templateLiteral = `
                 <option value="${project.id}" > ${project.project_name} </option>
@@ -71,15 +71,26 @@ $("#clientSelect").change(function() {
         var selectView = document.getElementById("viewSelect");
         selectView.innerHTML = `<option selected  value="All">All</option>`;
         document.getElementById("projectSelect").value = "All";
-        document.getElementById("projectSelect").disabled = true;
+
     }
 });
 
+function filter(){
+    document.getElementById('btnFilters').click();
+    getPosts();
+}
 function getPosts() {
-    var client = document.getElementById("clientSelect").value;
-    var project = document.getElementById("projectSelect").value;
+
+    var pFiltersPost = document.getElementById("textFilterPosts");
+    var client = document.getElementById("clientSelect");
+    var project = document.getElementById("projectSelect");
+    var clientText = $("#clientSelect option:selected").html();
+    var projectText = $("#projectSelect option:selected").html();
+    pFiltersPost.innerHTML = `${clientText} - ${projectText}`;
+
+
     var view = "All";
-    var route = "/getPosts/" + client + "/" + project + "/" + view;
+    var route = "/getPosts/" + client.value + "/" + project.value + "/" + view;
     console.log(route);
     fetch(route)
         .then(function(response) {

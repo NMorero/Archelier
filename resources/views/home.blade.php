@@ -159,10 +159,10 @@ Home
 
 
 
-    <main class="container-fluid row mt-2 d-lg-flex d-none justify-content-around px-2 m-0 bg-lightGrey" id="mainLG">
+    <main class="container-fluid row d-lg-flex d-none justify-content-around px-2 m-0 bg-lightGrey" id="mainLG">
         {{-- Primer Seccion ( Filtros ) --}}
         <div class="col-6 row justify-content-between p-0 m-0 bg-lightGrey">
-            <div class="col-4 row p-0 m-0  d-inline filtros shadow border rounded-lg bg-white">
+            <div class="col-4 row p-0 m-0  d-inline infoBox shadow border rounded-lg bg-white">
 
 
 
@@ -210,24 +210,29 @@ Home
                 --}}
 
                     <div class="col-7 row  shadow border rounded-lg d-inline p-3 pb-4 m-0 bg-white posts">
-                        <div class="col-12 p-2 m-0 row border-botBlue">
-                            <button class="btn-sm rounded-pill button-actions  bg-white py-0 col-2 mt-2" onclick="getPosts()">Filter</button>
-                            <div class="input-group  bg-transparent col-5">
+                        <div class="col-12 p-0   m-0 row border-botBlue justify-content-center" >
 
-                                <select class="custom-select border-0" id="clientSelect">
-                                  <option selected class="clientSelectOption" value="All">Client</option>
-                                  @foreach ($clients as $client)
-                                      <option value="{{$client->id}}" class="clientSelectOption"> {{$client->client_name}} </option>
-                                  @endforeach
-                                </select>
-                            </div>
-
-                            <div class="input-group   bg-transparent col-5">
-
-                                <select class="custom-select border-0" id="projectSelect" disabled>
-                                    <option selected value="All">Project</option>
-
-                                </select>
+                            <p class="col-12 p-0 m-0 text-center" id="textFilterPosts">Projecto ssssss  -  clienteeeeee</p>
+                            <a class="col-4 text-decoration-none text-center p-0 m-0" id="btnFilters" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <div class="collapse col-12" id="collapseExample">
+                                <div class="row p-0">
+                                    <button class="btn-sm rounded-pill button-actions  bg-white py-0 col-2 mt-2" onclick="filter()">Filter</button>
+                                    <div class="input-group  bg-transparent col-5">
+                                        <select class="custom-select border-0" id="clientSelect">
+                                        <option selected class="clientSelectOption" value="All">All</option>
+                                        @foreach ($clients as $client)
+                                            <option value="{{$client->id}}" class="clientSelectOption"> {{$client->client_name}} </option>
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="input-group   bg-transparent col-5">
+                                        <select class="custom-select border-0" id="projectSelect" >
+                                            <option selected value="All">All</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
 
 
@@ -239,7 +244,7 @@ Home
                         <div class="col-12 row justify-content-between p-0 m-0 pt-1">
 
                             <div class="col-9"></div>
-                            <button class="btn-sm rounded-pill button-actions col-3 bg-white py-0 mt-2" data-toggle="modal" data-target="#modalPosts">+ Post</button>
+                            <button class="btn-sm rounded-pill button-actions col-3 bg-white py-0 " data-toggle="modal" data-target="#modalPosts">+ Post</button>
                         </div>
 
                     </div>
@@ -249,7 +254,7 @@ Home
                         <div class="col-12 scrollable " id="tasksBox">
 
                         </div>
-                        <div class="col-12 row justify-content-around p-0 m-0 ">
+                        <div class="col-12 row justify-content-around p-0 m-0 mt-1">
 
                             <button class="btn-sm rounded-pill button-actions col-5 bg-white py-0" data-toggle="modal" data-target="#modalEvent">+ Event</button>
                             <button class="btn-sm rounded-pill button-actions col-5 bg-white py-0" data-toggle="modal" data-target="#modalTasks">+ Task</button>
