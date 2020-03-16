@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Questrial&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/1c8538c20e.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <style>
+      /* The side navigation menu */
+      .sidenav {
+        height: 100%; /* 100% Full-height */
+        width: 0; /* 0 width - change this with JavaScript */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Stay on top */
+        top: 40; /* Stay at the top */
+        right: 0;
+        background-color: white; /* Black*/
+        overflow-x: hidden; /* Disable horizontal scroll */
+        padding-top: 60px; /* Place content 60px from the top */
+        transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+      }
+
+      /* The navigation menu links */
+      .sidenav a {
+        padding-left: 10px;
+        padding-top: 10px;
+        text-decoration: none;
+        font-size: 16px;
+        font-family: "Questrial", sans-serif;
+        color: #a5978a;
+        display: block;
+        transition: 0.3s;
+        height: 40px;
+      }
+
+      /* When you mouse over the navigation links, change their color */
+      .sidenav a:hover {
+        color: #f1f1f1;
+      }
+
+      /* Position and style the close button (top right corner) */
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+
+      /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+      #main {
+        transition: margin-left 0.5s;
+        padding: 20px;
+      }
+
+      /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
+      p {
+        margin-bottom: 1px !important;
+      }
+      .bg-menu {
+        background-color: #a5978a;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <header
+      class="bg-menu p-2 row justify-content-center"
+      style="height: 50px; z-index: 999;"
+    >
+      <span onclick="openNav()" class="text-white p-2 col-11 text-right pr-4"
+        ><i class="fas fa-bars " style="font-size: 25px;"></i
+      ></span>
+    </header>
+
+    <div id="mySidenav" class="sidenav pt-0 mt-0">
+      <img src="ARCHE.jpg" alt="" width="100%" height="20%" />
+
+      <p class="">
+        <a
+          class=" bg-menu text-white "
+          data-toggle="collapse"
+          href="#collapseExample"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+          onclick="setClass(1)"
+        >
+          <span class=" pl-3 row">
+            <i class="carets fas fa-caret-left col-3 pt-1" id="caret1"></i>
+            <span class="col-9">LOCALISATION</span>
+          </span>
+        </a>
+      </p>
+      <div class="collapse" id="collapseExample">
+        <div class="panel-body">
+          <a href="">Plan de Masse</a>
+          <a href="">Cyclorama</a>
+        </div>
+      </div>
+
+      <!-- Segundo nav -->
+      <p class="">
+        <a
+          class=" bg-menu text-white"
+          data-toggle="collapse"
+          href="#collapseExample2"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample2"
+          onclick="setClass(2)"
+        >
+          <span class=" pl-3 row">
+            <i class="carets fas fa-caret-left col-3 pt-1" id="caret2"></i>
+            <span class="col-9">MAQUETTE 3D</span>
+          </span>
+        </a>
+      </p>
+      <div class="collapse" id="collapseExample2">
+        <div class="panel-body">
+          <a href="">Vue générale</a>
+          <a href="">Vue piétonne</a>
+          <a href="">Villa Auguste</a>
+          <a href="">Villa Antoine</a>
+          <a href="">Villa Masso</a>
+          <a href="">Villa Ivoire</a>
+          <a href="">Villa Boscoreale</a>
+        </div>
+      </div>
+      <!-- Tercer nav -->
+      <p class="">
+        <a
+          class=" bg-menu text-white"
+          data-toggle="collapse"
+          href="#collapseExample3"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample3"
+          onclick="setClass(3)"
+        >
+          <span class=" pl-3 row">
+            <i class="carets fas fa-caret-left col-3 pt-1" id="caret3"></i>
+            <span class="col-9">VISITE 360</span>
+          </span>
+        </a>
+      </p>
+      <div class="collapse" id="collapseExample3">
+        <div class="panel-body">
+          <a href="">Allée</a>
+          <a href="">Vergers partagés</a>
+        </div>
+      </div>
+      <!-- Cuarto nav -->
+      <p class="">
+        <a
+          class=" bg-menu text-white"
+          data-toggle="collapse"
+          href="#collapseExample4"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample4"
+          onclick="setClass(4)"
+        >
+          <span class=" pl-3 row">
+            <i class="carets fas fa-caret-left col-3 pt-1" id="caret4"></i>
+            <span class="col-9">MEDIA</span>
+          </span>
+        </a>
+      </p>
+      <div class="collapse" id="collapseExample4">
+        <div class="panel-body">
+          <a href="">Illustrations</a>
+          <a href="">Photographies</a>
+          <a href="">Plaquette</a>
+        </div>
+      </div>
+      <!-- Quinto nav -->
+      <p class="">
+        <a
+          class=" bg-menu text-white"
+          data-toggle="collapse"
+          href="#collapseExample5"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample5"
+          onclick="setClass(5)"
+        >
+          <span class=" pl-3 row">
+            <i class="carets fas fa-caret-left col-3 pt-1" id="caret5"></i>
+            <span class="col-9">VIDEOS</span>
+          </span>
+        </a>
+      </p>
+      <div class="collapse" id="collapseExample5">
+        <div class="panel-body">
+          <a href="">Vidéo</a>
+          <a href="">Phasage</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Use any element to open the sidenav -->
+
+    <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+    <div id="main">
+      ...
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function setClass(id) {
+        for (var i = 1; i < 6; i++) {
+          let caret = document.getElementById("caret" + i);
+          caret.classList.remove("fa-rotate-270");
+          caret.classList.add("pt-1");
+          caret.classList.remove("pr-2");
+          caret.classList.remove("pt-0");
+          caret.classList.remove("pl-4");
+        }
+
+        let caret = document.getElementById("caret" + id);
+        caret.classList.add("fa-rotate-270");
+        caret.classList.remove("pt-1");
+        caret.classList.add("pr-2");
+        caret.classList.add("pt-0");
+        caret.classList.add("pl-4");
+      }
+      /* Set the width of the side navigation to 250px */
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "200px";
+      }
+
+      $(document).click(function(e) {
+        if (!$(e.target).is(".panel-body")) {
+          $(".collapse").collapse("hide");
+        }
+      });
+
+      /* Set the width of the side navigation to 0 */
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+
+      const $menu = $(".sidenav");
+
+      $(document).mouseup(e => {
+        if (
+          !$menu.is(e.target) && // if the target of the click isn't the container...
+          $menu.has(e.target).length === 0
+        ) {
+          // ... nor a descendant of the container
+          closeNav();
+        }
+      });
+    </script>
+  </body>
+</html>
