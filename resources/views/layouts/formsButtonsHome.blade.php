@@ -278,10 +278,7 @@
                     <label for="ReminderBtnMessage" class="text-muted">Message</label>
                     <textarea name="ReminderBtnMessage" id="ReminderBtnMessage" class="form-control" cols="20" rows="3" required ></textarea>
                 </div>
-                <div class="form-group col-6">
-                    <label for="ReminderBtnEndDate" class="text-muted">End date</label>
-                    <input type="date" id="ReminderBtnEndDate" name="end_date" class="form-control">
-                </div>
+
                 <div class="modal-footer col-12">
                   <button type="button" class="btn btn-secondary" id="closeReminder" data-dismiss="modal">Cancel</button>
                   <button type="submit" class="btn btn-primary" >Done</button>

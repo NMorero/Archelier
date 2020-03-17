@@ -256,7 +256,6 @@ class HomeController extends Controller
 
 
 
-
         foreach ($dates as $date) {
 
             $dateInfo = $date;
@@ -264,10 +263,23 @@ class HomeController extends Controller
             $unixTimestamp = strtotime($dateInfo);
             //Get the day of the week using PHP's date function.
             $dayOfWeek = date("l", $unixTimestamp);
-            $day = date('d', strtotime($date));
+            $month = date('m', strtotime($date));
+            $monthName =date('F', mktime(0, 0, 0, $month, 10));
+            $day = date('j', strtotime($date));
+
+            if($date == date('Y-m-d')){
+                $tasks[$date]['today'] = 'si';
+            }
+
+            $ends = array('th','st','nd','rd','th','th','th','th','th','th');
+            if (($day %100) >= 11 && ($day%100) <= 13)
+            $abbreviation = $day. 'th';
+            else
+            $abbreviation = $day. $ends[$day % 10];
 
 
-            $tasks[$date]['day'] = $dayOfWeek . ' ' . $day;
+
+            $tasks[$date]['day'] = $monthName . ' ' . $abbreviation;
             $tasks[$date]['projects'] = [];
             $tasks[$date]['events'] = [];
         }
@@ -305,6 +317,21 @@ class HomeController extends Controller
     }
 
 
+    public function updateReminder($id){
+        $reminder = Reminders::find($id);
+
+        if($reminder->status == 1){
+            $reminder->status = 0;
+            $reminder->save();
+            return $reminder->status;
+        }else{
+            $reminder->status = 1;
+            $reminder->save();
+            return $reminder->status;
+        }
+
+    }
+
     public function addReminder($formData)
     {
 
@@ -313,9 +340,7 @@ class HomeController extends Controller
         $reminder = new Reminders;
         $reminder->message = $formData['message'];
         $reminder->user_id = Auth::id();
-        if (isset($formData['end_date']) && !empty($formData['end_date'])) {
-            $reminder->end_date = $formData['end_date'];
-        }
+        $reminder->status = 1;
         $reminder->save();
 
         return ['status' => 'ok'];

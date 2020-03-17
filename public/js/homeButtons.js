@@ -172,6 +172,10 @@ function saveButton(button) {
             let comment = document.getElementById("TaskBtnMessage" + i);
             array.push(comment.value);
         }
+        document.getElementById('commentTaskBtn').innerHTML = ` <label for="TaskBtnMessage1" class="text-muted">Tasks</label>
+        <input type="text" name="TaskBtnMessage1" id="TaskBtnMessage1" class="form-control" placeholder="Task 1" required>`
+        document.getElementById('commentsCant').setAttribute('value', 1);
+
         formData["message"] = array.join();
         console.log(array.join());
     }

@@ -1,6 +1,14 @@
 getPosts();
 getReminders();
 getTasks();
+setTimeout('scroll()', 200);
+function scroll(){
+    var elmnt = document.getElementById("actualAgenda");
+console.log('Dia:'+elmnt);
+elmnt.scrollIntoView();
+}
+
+
 
 function autoRefreshPage() {
     getPosts();
@@ -12,8 +20,14 @@ setInterval("autoRefreshPage()", 30000);
 var comments = [];
 let cantComments = 1;
 function addcommentTask() {
+
     let commentDiv = document.getElementById("commentTaskBtn");
     let cantInp = document.getElementById("commentsCant");
+    if (cantInp.value == 1){
+        comments = [];
+        cantComments = 1;
+    }
+
     let prevComment = document.getElementById("TaskBtnMessage" + cantInp.value);
     console.log(prevComment);
 
@@ -31,10 +45,11 @@ function addcommentTask() {
         input.setAttribute("placeholder", comm.placeholder);
     });
     cantComments++;
-    cantInp.setAttribute("value", cantComments);
+
 
     let template1 = `<input type="text" name="TaskBtnMessage${cantComments}" id="TaskBtnMessage${cantComments}" class="form-control" placeholder="Task ${cantComments}" required>`;
     commentDiv.innerHTML = commentDiv.innerHTML.concat(template1);
+    cantInp.setAttribute("value", cantComments);
 }
 
 $("#clientSelect").change(function() {
@@ -201,6 +216,43 @@ function getPosts() {
         });
 }
 
+function reminderNext(){
+    var actualPage = document.getElementById('actualPage');
+    let nextPage = parseInt(actualPage.value) + 1;
+    var pages = document.getElementsByClassName('page');
+    console.log(nextPage);
+    console.log(pages.length);
+    if(nextPage > pages.length){
+        return console.log('No hay pagina siguiente');
+    }
+    actualPage.setAttribute('value', nextPage);
+    document.getElementById('pageId').innerHTML = nextPage;
+    var pages = document.getElementsByClassName('page');
+    for(var i = 0; i < pages.length; i++) {
+        pages[i].style.display = 'none';
+    }
+
+    document.getElementById('Page'+nextPage).style.display = 'block';
+}
+
+function reminderPrev(){
+    var actualPage = document.getElementById('actualPage');
+    let prevPage = actualPage.value - 1;
+    if(prevPage <= 0){
+        return console.log('No hay pagina previa');
+    }
+    actualPage.setAttribute('value', prevPage);
+    document.getElementById('pageId').innerHTML = prevPage;
+
+    var pages = document.getElementsByClassName('page');
+    for(var i = 0; i < pages.length; i++) {
+        pages[i].style.display = 'none';
+    }
+
+    document.getElementById('Page'+prevPage).style.display = 'block';
+}
+
+
 function getReminders() {
     fetch("/getReminders")
         .then(function(response) {
@@ -211,16 +263,72 @@ function getReminders() {
 
             var remindersBox = document.getElementById("remindersBox");
             remindersBox.innerHTML = "";
+            remindersBox.innerHTML = remindersBox.innerHTML.concat(
+                `<div id="Page1" class="page" style="">
 
-            data.map(function(reminder) {
-                const templateLiteral = `
-                <li class="border-botBlue justify-content-between d-flex row reminder-li text-dark align-center "><p class="col-8 pt-2"><i class="far fa-square " ></i> ${reminder.message}</p>     <button class=" btn button-reminder col-1 " onclick="deleteReminder(${reminder.id})">x</button> </li>
-                `;
+            </div>`
+            );
+            var page = 1;
+            let reminderPage = document.getElementById('Page1');
+            for(var i = 1; i <= data.length; i++) {
+                if((i-1 )% 8 === 0 && i-1 != 0){
+                    page++;
+                    remindersBox.innerHTML = remindersBox.innerHTML.concat(
+                        `<div id="Page${page}" class="page" style="">
 
-                remindersBox.innerHTML = remindersBox.innerHTML.concat(
-                    templateLiteral
-                );
-            });
+                    </div>`
+                    );
+                    reminderPage = document.getElementById('Page'+page);
+                }
+                if(data[i-1].status == 1){
+                        let templateLiteral = `
+                                <li class="border-botBlue justify-content-between d-flex row reminder-li text-dark align-center ">
+                                    <div class="form-check form-check-inline p-0 m-0 col-6">
+                                        <input class="form-check-input" type="checkbox" value="" onclick="updateReminder(${data[i-1].id})">
+                                        <label class="form-check-label" for="">${data[i-1].message}</label>
+                                    </div>
+                                    <button class=" btn button-reminder col-1 " onclick="deleteReminder(${data[i-1].id})">x</button>
+                                </li>
+                    `;
+                    reminderPage.innerHTML = reminderPage.innerHTML.concat(
+                        templateLiteral
+                    );
+                }else {
+                    let templateLiteral = `
+                                <li class="border-botBlue justify-content-between d-flex row reminder-li text-dark align-center ">
+                                    <div class="form-check form-check-inline p-0 m-0 col-6">
+                                        <input class="form-check-input" type="checkbox" value="" onclick="updateReminder(${data[i-1].id})" checked>
+                                        <label class="form-check-label" for=""><strike>${data[i-1].message}</strike></label>
+                                    </div>
+                                    <button class=" btn button-reminder col-1 " onclick="deleteReminder(${data[i-1].id})">x</button>
+                                </li>
+                    `;
+                    reminderPage.innerHTML = reminderPage.innerHTML.concat(
+                        templateLiteral
+                    );
+                }
+
+
+
+            }
+            var pages = document.getElementsByClassName('page');
+            for(var i = 0; i < pages.length; i++) {
+                pages[i].style.display = 'none';
+            }
+            document.getElementById('Page1').style.display = 'block';
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+}
+
+function updateReminder(id){
+    fetch("/UpdateReminder/" + id)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            getReminders();
         })
         .catch(function(error) {
             console.log(error);
@@ -251,11 +359,7 @@ function deleteReminder(id) {
                     console.log(error);
                 });
 
-            Swal.fire(
-                "Deleted!",
-                "Your reminder has been deleted."
-                //'success'
-            );
+
         }
     });
 }
@@ -273,15 +377,27 @@ function getTasks() {
             tasksBox.innerHTML = "";
             data.map(function(tasks) {
                 i++;
-
-                const templateLiteral = `
-                        <div class="col-12 row  mb-1 m-0 p-0">
+                if(typeof tasks.today !== 'undefined' && tasks.today == 'si'){
+                    console.log(tasks);
+                    const templateLiteral = `
+                        <div class="col-12 row  mb-1 m-0 p-0" >
+                            <h6 class="col-12 text-right" id="actualAgenda">${tasks.day}</h6>
+                            <div class="col-12 p-0 m-0" id="tasks${i}">
+                            </div>
+                        </div>
+                    `;
+                tasksBox.innerHTML = tasksBox.innerHTML.concat(templateLiteral);
+                }else{
+                    const templateLiteral = `
+                        <div class="col-12 row  mb-1 m-0 p-0 ">
                             <h6 class="col-12 text-right">${tasks.day}</h6>
                             <div class="col-12 p-0 m-0" id="tasks${i}">
                             </div>
                         </div>
                     `;
                 tasksBox.innerHTML = tasksBox.innerHTML.concat(templateLiteral);
+                }
+
 
                 tasks.projects.map(function(task) {
                     let tasksBox2 = document.getElementById("tasks" + i);
@@ -354,11 +470,16 @@ function getTasks() {
                         );
                     }
                 });
+
             });
+
+
         })
         .catch(function(error) {
             console.log(error);
         });
+
+
 }
 
 function test(taskId, commId) {

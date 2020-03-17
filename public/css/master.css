@@ -18,7 +18,7 @@ body::-webkit-scrollbar {
 }
 
 .infoBox {
-    height: 50vh;
+    height: 58vh;
 }
 
 .header-base {
@@ -89,10 +89,10 @@ ul {
 }
 
 .Tasks {
-    height: 85vh;
+    height: 93vh;
 }
 .reminderBox {
-    height: 50vh;
+    height: 58vh;
     overflow-x: hidden;
 }
 
@@ -100,18 +100,19 @@ li {
     font-size: 13px;
 }
 .posts {
-    height: 85vh;
+    height: 93vh;
 }
 
 .scroll-reminders {
-    height: 95%;
+    height: 92%;
     overflow-y: scroll;
     overflow-x: hidden;
     word-break: break-all;
 }
 
+
 .scroll-post {
-    height: 90%;
+    height: 92%;
 }
 
 .button-add-reminder {
@@ -251,6 +252,12 @@ li {
 
     .infoBox {
         height: 55vh;
+    }
+    .scroll-reminders {
+        height: 92%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        word-break: break-all;
     }
 
 

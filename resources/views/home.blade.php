@@ -170,12 +170,16 @@ Home
 
             </div>
             <div class="col-8 row justify-content-between  pl-0">
-
-                <div class="col-12 row p-0 pb-3 pr-1 m-0 shadow rounded-lg bg-white reminderBox">
+                <input type="number" value="1" id="actualPage" hidden >
+                <div class="col-12 row p-0  pr-1 m-0 shadow rounded-lg bg-white reminderBox">
                     <ul class="col-12  scroll-reminders p-3 px-4 list-group" id="remindersBox">
 
                     </ul>
-                    <div class="col-9"></div>
+                    <div class="col-9 mb-0 text-center">
+                        <p class="mb-0"><a onclick="reminderPrev()" style="cursor:pointer;"><i class="fas fa-arrow-circle-left"></i></a>  Page <span id="pageId">1</span>  <a onclick="reminderNext()" style="cursor:pointer;"><i class="fas fa-arrow-circle-right"></i></a>
+                        </p>
+
+                    </div>
                     <button class="btn-sm rounded-pill button-actions col-3 bg-white py-0 " data-toggle="modal" data-target="#modalReminder">+ Reminder</button>
 
                 </div>

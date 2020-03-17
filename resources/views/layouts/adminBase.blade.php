@@ -11,30 +11,33 @@
     @show
     <title>Archelier | @section('title') @show</title>
 </head>
-<body class="admin">
+<body >
 
-    <header class="header-base p-2 justify-content-center row d-none d-lg-flex">
+    <header class="header-base px-5 pt-1 justify-content-between row d-none d-lg-block align-center" style="height:40px">
         <nav class="col-12 row justify-content-between">
-            <div class="col-1 "><img src="{{asset('/upload/users/user.png')}}" class="rounded-circle" alt="" height="35" width="35 pb-3"></div>
-            <div class="col-3 row">
 
-                <a class="col-3 buttons-header text-center text-center text-decoration-none shadow pb-3" href="/">Home</a>
-                <a class="col-3 buttons-header mx-1 text-center text-decoration-none shadow pb-3" href="/Admin/Projects" tabindex="-1" aria-disabled="true">Projects</a>
+            <div class="col-4 row justify-content-between">
+                <div class="col-1  pt-0 dropdownBox">
+                    <img src="{{asset('/upload/users/user.png')}}" class="rounded-circle dropBtn" alt="" height="30" >
+                    <div class="dropdownContent text-center rounded" >
+                        <a class="text-center text-decoration-none color-lightGrey" href="/logout">Log Out</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
+                <div class="row col-11 justify-content-around pt-1">
+                    <a class="col-3 buttons-header text-center text-center text-decoration-none shadow" href="/">Home</a>
+                    <a class="col-3 buttons-header  text-center text-decoration-none shadow m-0 p-0" href="/Admin/Projects" tabindex="-1" aria-disabled="true">Projects</a>
 
-                @if (auth()->user()->roles->rol == 'admin')
-                <a class="col-3 buttons-header text-center text-decoration-none shadow" href="/Admin" tabindex="-1" aria-disabled="true">Resources</a>
-                @endif
+                    @if (auth()->user()->roles->rol == 'admin')
+                    <a class="col-4 buttons-header text-center text-decoration-none shadow px-1" href="/Admin" tabindex="-1" aria-disabled="true">Resources</a>
+                    @endif
+                </div>
             </div>
-            <div class="col-6"></div>
-            <div class="col-2 row justify-content-around">
-                <a class="col-8 buttons-header text-center text-center text-decoration-none shadow pb-3" href="/logout">Log Out</a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
+            <div class="col-5"></div>
 
-            </div>
           </nav>
-
 
     </header>
 

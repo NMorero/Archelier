@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <main class="p-4 " >
+    <main class="p-4 bg-lightGrey" >
         <div class="carousel1 px-5">
 
 

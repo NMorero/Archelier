@@ -27,7 +27,7 @@ font-family: 'Droid Serif', serif;
         </style>
 @endsection
 @section('content')
-    <main class="p-3 d-flex row justify-content-between">
+    <main class="p-3 d-flex row justify-content-between bg-lightGrey">
 
         <div class="col-xl-4 col-lg-4">
             <div class="card" style="margin-top:10px">
