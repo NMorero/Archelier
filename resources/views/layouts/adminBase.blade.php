@@ -17,8 +17,8 @@
         <nav class="col-12 row justify-content-between">
 
             <div class="col-4 row justify-content-between">
-                <div class="col-1  pt-0 dropdownBox">
-                    <img src="{{asset('/upload/users/user.png')}}" class="rounded-circle dropBtn" alt="" height="30" >
+                <div class="col-2  pt-1 dropdownBox ">
+                    <span class=" dropBtn rounded-circle bg-secondary p-2 text-white" style="cursor:pointer;">{{substr(auth()->user()->person->name, 0, 1)}}{{substr(auth()->user()->person->last_name, 0, 1)}}</span>
                     <div class="dropdownContent text-center rounded" >
                         <a class="text-center text-decoration-none color-lightGrey" href="/logout">Log Out</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -26,7 +26,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="row col-11 justify-content-around pt-1">
+                <div class="row col-10 justify-content-around pt-1">
                     <a class="col-3 buttons-header text-center text-center text-decoration-none shadow" href="/">Home</a>
                     <a class="col-3 buttons-header  text-center text-decoration-none shadow m-0 p-0" href="/Admin/Projects" tabindex="-1" aria-disabled="true">Projects</a>
 
