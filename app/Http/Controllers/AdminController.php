@@ -555,7 +555,7 @@ class AdminController extends Controller
 
             $personLea = Persons::find($user2->person_id);
             $nameLea = $personLea->name;
-            $lastnameLea = $personLea->lastname;
+            $lastnameLea = $personLea->last_name;
 
 
             $project['client'] = $client->client_name;
@@ -568,6 +568,7 @@ class AdminController extends Controller
                 'lastname' => $lastnameLea
             ];
         }
+
         $vac = compact('projects');
         return view('layouts.admin.projects', $vac);
     }

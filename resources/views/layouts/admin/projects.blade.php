@@ -27,9 +27,9 @@
                 </div>
                 <p class="row justify-content-between mt-1" style="text-transform:uppercase"><span class="col-5">{{$project->status}}</span> <span class="col-6 text-right">{{$project->delivery_date}}</span></p>
                 <div class="row">
-                    <p class="rounded-cicle col-3 " onmouseover="document.getElementById('div'+{{$project->id}}).style.display = 'block';" onmouseout="document.getElementById('div'+{{$project->id}}).style.display = 'none';">{{substr($project['manager']['name'], 0,1)}}{{substr($project['manager']['lastname'], 0,1)}}</p>
+                    <p class=" col-3" onmouseover="document.getElementById('div'+{{$project->id}}).style.display = 'block';" onmouseout="document.getElementById('div'+{{$project->id}}).style.display = 'none';"><span class="rounded-circle p-2 bg-secondary text-white">{{substr($project['manager']['name'], 0,1)}}{{substr($project['manager']['lastname'], 0,1)}}</span></p>
                 <div class="rounded bg-white mt-3 ml-2" id="div{{$project->id}}" style="position:absolute;display:none">{{$project['manager']['name']}}{{$project['manager']['lastname']}}</div>
-                <p class="rounded-cicle col-3" onmouseover="document.getElementById('leader'+{{$project->id}}).style.display = 'block';" onmouseout="document.getElementById('leader'+{{$project->id}}).style.display = 'none';">{{substr($project['leader']['name'], 0,1)}}{{substr($project['leader']['lastname'], 0,1)}}</p>
+                <p class="col-3" onmouseover="document.getElementById('leader'+{{$project->id}}).style.display = 'block';" onmouseout="document.getElementById('leader'+{{$project->id}}).style.display = 'none';"><span class="rounded-circle p-2 bg-secondary text-white">{{substr($project['leader']['name'], 0,1)}}{{substr($project['leader']['lastname'], 0,1)}}</span></p>
                 <div class="rounded bg-white mt-3 ml-5" id="leader{{$project->id}}" style="position:absolute;display:none">{{$project['leader']['name']}}{{$project['leader']['lastname']}}</div>
 
                 </div>
