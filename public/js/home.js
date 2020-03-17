@@ -1,7 +1,7 @@
 getPosts();
 getReminders();
 getTasks();
-setTimeout('scroll()', 200);
+setTimeout('scroll()', 400);
 function scroll(){
     var elmnt = document.getElementById("actualAgenda");
 console.log('Dia:'+elmnt);
