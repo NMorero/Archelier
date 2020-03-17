@@ -1,7 +1,7 @@
 getPosts();
 getReminders();
 getTasks();
-setTimeout('scroll()', 400);
+
 function scroll(){
     var elmnt = document.getElementById("actualAgenda");
 console.log('Dia:'+elmnt);
@@ -478,7 +478,7 @@ function getTasks() {
         .catch(function(error) {
             console.log(error);
         });
-
+        setTimeout('scroll()', 1000);
 
 }
 
