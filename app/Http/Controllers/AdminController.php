@@ -548,9 +548,25 @@ class AdminController extends Controller
             $user1 = User::find($manager->user_id);
             $leader = ProjectLeaders::find($project->leader_id);
             $user2 = User::find($leader->user_id);
+
+            $personMan = Persons::find($user1->person_id);
+            $nameMan = $personMan->name;
+            $lastnameMan = $personMan->last_name;
+
+            $personLea = Persons::find($user2->person_id);
+            $nameLea = $personLea->name;
+            $lastnameLea = $personLea->lastname;
+
+
             $project['client'] = $client->client_name;
-            $project['manager'] = $user1->username;
-            $project['leader'] = $user2->username;
+            $project['manager'] = [
+                'name' => $nameMan,
+                'lastname' => $lastnameMan
+            ];
+            $project['leader'] = [
+                'name' => $nameLea,
+                'lastname' => $lastnameLea
+            ];
         }
         $vac = compact('projects');
         return view('layouts.admin.projects', $vac);

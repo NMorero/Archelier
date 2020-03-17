@@ -11,7 +11,7 @@
     @show
     <title>Archelier | @section('title') @show</title>
 </head>
-<body >
+<body  class="admin">
 
     <header class="header-base px-5 pt-1 justify-content-between row d-none d-lg-block align-center" style="height:40px">
         <nav class="col-12 row justify-content-between">
