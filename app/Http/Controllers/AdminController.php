@@ -538,6 +538,54 @@ class AdminController extends Controller
         return redirect('/Admin/Users');
     }
 
+    public function getProjects(){
+        $projects = Projects::all();
+        foreach ($projects as $project) {
+            $client = Clients::find($project->client_id);
+            $manager = ProjectManagers::find($project->manager_id);
+            $user1 = User::find($manager->user_id);
+            $leader = ProjectLeaders::find($project->leader_id);
+            $user2 = User::find($leader->user_id);
+
+            $personMan = Persons::find($user1->person_id);
+            $nameMan = $personMan->name;
+            $lastnameMan = $personMan->last_name;
+
+            $personLea = Persons::find($user2->person_id);
+            $nameLea = $personLea->name;
+            $lastnameLea = $personLea->last_name;
+
+
+            $project['client'] = $client->client_name;
+            $project['manager'] = [
+                'name' => $nameMan,
+                'lastname' => $lastnameMan
+            ];
+            $project['leader'] = [
+                'name' => $nameLea,
+                'lastname' => $lastnameLea
+            ];
+        }
+        return $projects;
+    }
+
+
+    public function acProject($id){
+        $project = Projects::find($id);
+        $project->status = 'ongoing';
+        $project->save();
+
+        return ['status'=>'ok'];
+    }
+
+    public function desProject($id){
+        $project = Projects::find($id);
+        $project->status = 'pause';
+        $project->save();
+
+        return ['status'=>'ok'];
+    }
+
 
     public function pageProjects()
     {
@@ -568,7 +616,6 @@ class AdminController extends Controller
                 'lastname' => $lastnameLea
             ];
         }
-
         $vac = compact('projects');
         return view('layouts.admin.projects', $vac);
     }

@@ -13,8 +13,8 @@
 </head>
 <body  class="admin">
 
-    <header class="header-base px-5 pt-1 justify-content-between row d-none d-lg-block align-center" style="height:40px">
-        <nav class="col-12 row justify-content-between">
+    <header class="header-base px-5 pt-1 justify-content-between row d-none d-lg-block align-center" style="height:2vh;">
+        <nav class="col-12 row justify-content-between p-0">
 
             <div class="col-4 row justify-content-between">
                 <div class="col-2  pt-1 dropdownBox ">
@@ -54,6 +54,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/1c8538c20e.js" crossorigin="anonymous"></script>
     @section('scripts')
 
     @show
