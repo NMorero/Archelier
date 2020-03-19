@@ -229,19 +229,29 @@ class HomeController extends Controller
                 $task['client'] = $task->client->person;
             }
             $endDate = $task->end_date;
-            if (!array_key_exists($endDate, $dates)) {
-                array_push($dates, $endDate);
+
+        }
+        $year = '2020';
+        $ranges = array();
+        $start = strtotime($year.'-01-01');
+        $end = strtotime($year.'-12-31');
+
+        do {
+         $ranges[] = date('Y-m-d',$start);
+         $start = strtotime("+ 1 day",$start);
+        } while ( $start <= $end );
+
+        foreach($ranges as $range){
+            if (!array_key_exists($range, $dates)) {
+                array_push($dates, $range);
             }
         }
-
 
         foreach ($events as $event) {
             $event['client'] = $event->client;
             $event['project'] = $event->project;
             $endDate = $event->end_date;
-            if (!array_key_exists($endDate, $dates)) {
-                array_push($dates, $endDate);
-            }
+
         }
 
         $compare_function = function ($a, $b) {

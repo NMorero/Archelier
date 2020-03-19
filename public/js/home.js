@@ -380,8 +380,8 @@ function getTasks() {
                 if(typeof tasks.today !== 'undefined' && tasks.today == 'si'){
                     console.log(tasks);
                     const templateLiteral = `
-                        <div class="col-12 row  mb-1 m-0 p-0" >
-                            <h6 class="col-12 text-right" id="actualAgenda">${tasks.day}</h6>
+                        <div class="col-12 row  mb-1 m-0 p-0 border-bottom" >
+                            <h6 class="col-12 text-right mb-2" id="actualAgenda">${tasks.day}</h6>
                             <div class="col-12 p-0 m-0" id="tasks${i}">
                             </div>
                         </div>
@@ -389,8 +389,8 @@ function getTasks() {
                 tasksBox.innerHTML = tasksBox.innerHTML.concat(templateLiteral);
                 }else{
                     const templateLiteral = `
-                        <div class="col-12 row  mb-1 m-0 p-0 ">
-                            <h6 class="col-12 text-right">${tasks.day}</h6>
+                        <div class="col-12 row  mb-1 m-0 p-0 border-bottom">
+                            <h6 class="col-12 text-right mb-2">${tasks.day}</h6>
                             <div class="col-12 p-0 m-0" id="tasks${i}">
                             </div>
                         </div>
@@ -403,12 +403,12 @@ function getTasks() {
                     let tasksBox2 = document.getElementById("tasks" + i);
 
                     const templateLiteral = `
-                        <div class="row border-bottom m-0 p-0"><ul class="p-0 m-0" style="list-style-type: none;">`;
+                        <div class="row m-0 p-0"><ul class="p-0 m-0" style="list-style-type: none;">`;
                     let comments = JSON.parse(task.message);
                     let templatelit2 = ``;
                     comments.map(function(comm) {
                         if (comm.status == 1) {
-                            let temp = `<li class=" border-bottom mb-2 m-0 p-0">
+                            let temp = `<li class=" mb-2 m-0 p-0">
                         <div class="form-check form-check-inline m-0 p-0">
                         <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})">
                         <label class="form-check-label" for="task${task.id}Check${comm.id}">${comm.data}</label>
@@ -416,7 +416,7 @@ function getTasks() {
                         </li>`;
                             templatelit2 = templatelit2 + temp;
                         } else {
-                            let temp = `<li class=" border-bottom mb-2 m-0 p-0" >
+                            let temp = `<li class=" mb-2 m-0 p-0" >
                         <div class="form-check form-check-inline p-0 m-0">
                         <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})" checked>
                         <label class="form-check-label" for="task${task.id}Check${comm.id}"><strike>${comm.data}</strike></label>
@@ -448,7 +448,7 @@ function getTasks() {
                         let tasksBox3 = document.getElementById("tasks" + i);
 
                         const templateLiteral = `
-                        <div class="row border-bottom ev-green p-0">
+                        <div class="row ev-green p-0">
                         <p class="taskMessage col-12 mb-0 ">${event.message}</p>
 
                         </div>
