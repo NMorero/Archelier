@@ -3,7 +3,6 @@ getCarousel();
 
 
 
-
 function getCarousel(){
     fetch("/Admin/Projects/get")
         .then(function(response) {
@@ -18,8 +17,8 @@ function getCarousel(){
                 console.log(project.client);
 
                 if(project.status == 'ongoing'){
-                    var templateLiteral = `<div class="p-2">
-                <div class="rounded bg-white p-2" style="height:48vh;">
+                    var templateLiteral = `<div class="p-2" id="myBtn${project.id}">
+                <div class="rounded bg-white p-2" style="height:48vh;" >
                     <h6 class="" style="height:10%">${project.project_name}</h6>
                     <p class="m-0 p-0">${project.client}</p>
                     <div class="row mt-0 pt-0">
@@ -52,7 +51,7 @@ function getCarousel(){
 
                 carrusel1.innerHTML = carrusel1.innerHTML.concat(templateLiteral);
                 }else{
-                    var templateLiteral = `<div class="p-2 ">
+                    var templateLiteral = `<div class="p-2 " id="myBtn${project.id}">
 
                 <div class="rounded p-2 pauseProject border" style="height:40vh;">
                 <button class="bg-transparent border-0 p-0 m-0 col-12 ml-1 text-center"  onclick="acProject(${project.id})"><i class="fas fa-chevron-up"></i></button>
@@ -87,15 +86,16 @@ function getCarousel(){
             });
             $('.carousel1').slick({
 
-                prevArrow: $('.prev'),
-                  nextArrow: $('.next'),
+                arrows:true,
+                nextArrow: $('.next'),
+                prevArrow: '<button class="prevBtn rounded-circle bg-dark text-white border-0"><i class="fas fa-chevron-left"></i></button>',
                 slidesToShow: 6,
                 slidesToScroll: 1
               });
               $('.carousel2').slick({
-
-                prevArrow: $('.prev2'),
-                  nextArrow: $('.next2'),
+                arrows:true,
+                prevArrow: '<button class="prevBtn2 rounded-circle bg-dark text-white border-0"><i class="fas fa-chevron-left"></i></button>',
+                  nextArrow: '<button class="next2 rounded-circle bg-dark text-white border-0" ><i class="fas fa-chevron-right"></i></button>',
                 slidesToShow: 6,
                 slidesToScroll: 1
               });

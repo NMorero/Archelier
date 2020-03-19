@@ -27,235 +27,227 @@ font-family: 'Droid Serif', serif;
         </style>
 @endsection
 @section('content')
-    <main class="container bg-lightGrey ">
+    <main class="container bg-lightGrey justify-content-between ">
 
 
+        <div class="row mt-5">
 
+    <div class="col-xl-4 col-lg-4">
+        <div class="card" style="margin-top:10px">
+                <div class="card-header">
+                <h5 class="card-title text-center">Users</h5>
+        </div>
+            <div class="card" style="margin:8px">
+                <div class="card-body">
+                    <div >
 
-          <div class="row jsutify-content-center text-center bg-white rounded col-3">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PRManager">
+                        <p class="card-text">Add or see all the users..</p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Users">
                 Add
               </button>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PRLeader">
-                Add
-              </button>
-          </div>
-
-
-
-
-
-
-        {{-- <div class="col-xl-4 col-lg-4">
-            <div class="card" style="margin-top:10px">
-                    <div class="card-header">
-                    <h5 class="card-title text-center">Users</h5>
+              <a href="/Admin/Users" class="btn btn-secondary text-decoration-none text-white">View</a>
             </div>
-                <div class="card" style="margin:8px">
-                    <div class="card-body">
-                        <div >
 
-                            <p class="card-text">Add or see all the users..</p>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Users">
+    </div>
+</div>
+</div>
+</div>
+
+
+<div class="col-xl-4 col-lg-4">
+<div class="card" style="margin-top:10px">
+    <div class="card-header">
+        <h5 class="card-title">Projects</h5>
+    </div>
+    <div class="card" style="margin:8px">
+        <div class="card-body">
+            <div >
+                <p class="card-text">Add or see all the projects..</p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Projects">
                     Add
-                  </button>
-                  <a href="/Admin/Users" class="btn btn-secondary text-decoration-none text-white">View</a>
-                </div>
-
+                </button>
+                <a href="/Admin/Projects" class="btn btn-secondary text-decoration-none text-white">View</a>
+            </div>
         </div>
     </div>
 </div>
 </div>
 
 
+    <div class="col-xl-4 col-lg-4">
+        <div class="card" style="margin-top:10px">
+                <div class="card-header">
+                <h5 class="card-title">Companies</h5>
+        </div>
+            <div class="card" style="margin:8px">
+                <div class="card-body">
+                    <div >
+                        <p class="card-text">Add or see all the companies on the DB.</p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Companies">
+                Add
+              </button>
+            <a href="/Admin/Companies" class="btn btn-secondary text-decoration-none text-white">View</a>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+    <div class="col-xl-4 col-lg-4">
+        <div class="card" style="margin-top:10px">
+                <div class="card-header">
+                <h5 class="card-title">Developers</h5>
+        </div>
+            <div class="card" style="margin:8px">
+                <div class="card-body">
+                    <div >
+
+                        <p class="card-text">Add or see all the developers..</p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Developers">
+                Add
+              </button>
+
+
+            <a href="/Admin/Developers" class="btn btn-secondary text-decoration-none text-white">View</a>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
 <div class="col-xl-4 col-lg-4">
-    <div class="card" style="margin-top:10px">
+<div class="card" style="margin-top:10px">
         <div class="card-header">
-            <h5 class="card-title">Projects</h5>
-        </div>
-        <div class="card" style="margin:8px">
-            <div class="card-body">
-                <div >
-                    <p class="card-text">Add or see all the projects..</p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Projects">
-                        Add
-                    </button>
-                    <a href="/Admin/Projects" class="btn btn-secondary text-decoration-none text-white">View</a>
-                </div>
-            </div>
-        </div>
-    </div>
+        <h5 class="card-title">Roles</h5>
+</div>
+    <div class="card" style="margin:8px">
+        <div class="card-body">
+            <div >
+
+                <p class="card-text">Add or see all the roles..</p>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Roles">
+        Add
+      </button>
+    <a href="/Admin/Roles" class="btn btn-secondary text-decoration-none text-white">View</a>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 
-        <div class="col-xl-4 col-lg-4">
-            <div class="card" style="margin-top:10px">
-                    <div class="card-header">
-                    <h5 class="card-title">Companies</h5>
+<div class="col-xl-4 col-lg-4">
+<div class="card" style="margin-top:10px">
+        <div class="card-header">
+        <h5 class="card-title">Persons</h5>
+</div>
+    <div class="card" style="margin:8px">
+        <div class="card-body">
+            <div >
+
+                <p class="card-text">Add or see all the Persons..</p>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Persons">
+        Add
+      </button>
+
+
+    <a href="/Admin/Persons" class="btn btn-secondary text-decoration-none text-white">View</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div class="col-xl-4 col-lg-4">
+<div class="card" style="margin-top:10px">
+        <div class="card-header">
+        <h5 class="card-title">Relationships</h5>
+</div>
+    <div class="card" style="margin:8px">
+        <div class="card-body">
+            <div >
+                <h5>Direct</h5>
+                <p class="card-text">Add or see all the Direct Persons..</p>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#relationships">
+        Add
+      </button>
+
+
+
+    <a href="/Admin/Relationships/Direct" class="btn btn-secondary text-decoration-none text-white">View</a>
             </div>
-                <div class="card" style="margin:8px">
-                    <div class="card-body">
-                        <div >
-                            <p class="card-text">Add or see all the companies on the DB.</p>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Companies">
+        </div>
+    </div>
+
+    <div class="card" style="margin:8px">
+        <div class="card-body">
+            <div >
+                <h5>Freelance relattionship</h5>
+                <p class="card-text">Add or see all the freelance relation persons..</p>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#directRelation">
+        Add
+      </button>
+
+
+
+    <a href="/Admin/Relationships/Freelance" class="btn btn-secondary text-decoration-none text-white">View</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+
+
+
+<div class="col-xl-4 col-lg-4">
+<div class="card" style="margin-top:10px">
+        <div class="card-header">
+        <h5 class="card-title">Clients</h5>
+    </div>
+    <div class="card" style="margin:8px">
+        <div class="card-body">
+            <div >
+                <h5 class="card-title">Person</h5>
+                <p class="card-text">The person who represent a Client Company.</p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
                     Add
                   </button>
-                <a href="/Admin/Companies" class="btn btn-secondary text-decoration-none text-white">View</a>
+
+
+
+                <a href="/Admin/Clients/Person" class="btn btn-secondary text-decoration-none text-white">View</a>
             </div>
         </div>
     </div>
-</div>
-</div>
-
-
-
-        <div class="col-xl-4 col-lg-4">
-            <div class="card" style="margin-top:10px">
-                    <div class="card-header">
-                    <h5 class="card-title">Developers</h5>
-            </div>
-                <div class="card" style="margin:8px">
-                    <div class="card-body">
-                        <div >
-
-                            <p class="card-text">Add or see all the developers..</p>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Developers">
+    <div class="card" style="margin:8px">
+        <div class="card-body">
+            <div >
+                <h5 class="card-title">Company</h5>
+                <p class="card-text">Create or edit clients as company.</p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ClientCompanyModal">
                     Add
                   </button>
 
 
-                <a href="/Admin/Developers" class="btn btn-secondary text-decoration-none text-white">View</a>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-
-<div class="col-xl-4 col-lg-4">
-    <div class="card" style="margin-top:10px">
-            <div class="card-header">
-            <h5 class="card-title">Roles</h5>
-    </div>
-        <div class="card" style="margin:8px">
-            <div class="card-body">
-                <div >
-
-                    <p class="card-text">Add or see all the roles..</p>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Roles">
-            Add
-          </button>
-        <a href="/Admin/Roles" class="btn btn-secondary text-decoration-none text-white">View</a>
-    </div>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="col-xl-4 col-lg-4">
-    <div class="card" style="margin-top:10px">
-            <div class="card-header">
-            <h5 class="card-title">Persons</h5>
-    </div>
-        <div class="card" style="margin:8px">
-            <div class="card-body">
-                <div >
-
-                    <p class="card-text">Add or see all the Persons..</p>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Persons">
-            Add
-          </button>
-
-
-        <a href="/Admin/Persons" class="btn btn-secondary text-decoration-none text-white">View</a>
-    </div>
-</div>
-</div>
-</div>
-</div>
-
-
-
-<div class="col-xl-4 col-lg-4">
-    <div class="card" style="margin-top:10px">
-            <div class="card-header">
-            <h5 class="card-title">Relationships</h5>
-    </div>
-        <div class="card" style="margin:8px">
-            <div class="card-body">
-                <div >
-                    <h5>Direct</h5>
-                    <p class="card-text">Add or see all the Direct Persons..</p>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#relationships">
-            Add
-          </button>
-
-
-
-        <a href="/Admin/Relationships/Direct" class="btn btn-secondary text-decoration-none text-white">View</a>
+                <a href="/Admin/Clients/Company" class="btn btn-secondary text-decoration-none text-white">View</a>
                 </div>
-            </div>
         </div>
-
-        <div class="card" style="margin:8px">
-            <div class="card-body">
-                <div >
-                    <h5>Freelance relattionship</h5>
-                    <p class="card-text">Add or see all the freelance relation persons..</p>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#directRelation">
-            Add
-          </button>
-
-
-
-        <a href="/Admin/Relationships/Freelance" class="btn btn-secondary text-decoration-none text-white">View</a>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
+</div>
 
-
-
-
-<div class="col-xl-4 col-lg-4">
-    <div class="card" style="margin-top:10px">
-            <div class="card-header">
-            <h5 class="card-title">Clients</h5>
         </div>
-        <div class="card" style="margin:8px">
-            <div class="card-body">
-                <div >
-                    <h5 class="card-title">Person</h5>
-                    <p class="card-text">The person who represent a Client Company.</p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
-                        Add
-                      </button>
 
 
 
-                    <a href="/Admin/Clients/Person" class="btn btn-secondary text-decoration-none text-white">View</a>
-                </div>
-            </div>
-        </div>
-        <div class="card" style="margin:8px">
-            <div class="card-body">
-                <div >
-                    <h5 class="card-title">Company</h5>
-                    <p class="card-text">Create or edit clients as company.</p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ClientCompanyModal">
-                        Add
-                      </button>
 
-
-                    <a href="/Admin/Clients/Company" class="btn btn-secondary text-decoration-none text-white">View</a>
-                    </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 
 <!-- Modal company Client-->
 <div class="modal fade" id="ClientCompanyModal" tabindex="-1" role="dialog" aria-labelledby="ClientCompanyModalTitle" aria-hidden="true">

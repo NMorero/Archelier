@@ -283,7 +283,7 @@ function getReminders() {
                 if(data[i-1].status == 1){
                         let templateLiteral = `
                                 <li class="border-botBlue justify-content-between d-flex row reminder-li text-dark align-center ">
-                                    <div class="form-check form-check-inline p-0 m-0 col-6">
+                                    <div class="form-check form-check-inline p-0 m-0 col-11">
                                         <input class="form-check-input" type="checkbox" value="" onclick="updateReminder(${data[i-1].id})">
                                         <label class="form-check-label" for="">${data[i-1].message}</label>
                                     </div>
@@ -296,7 +296,7 @@ function getReminders() {
                 }else {
                     let templateLiteral = `
                                 <li class="border-botBlue justify-content-between d-flex row reminder-li text-dark align-center ">
-                                    <div class="form-check form-check-inline p-0 m-0 col-6">
+                                    <div class="form-check form-check-inline p-0 m-0 col-11">
                                         <input class="form-check-input" type="checkbox" value="" onclick="updateReminder(${data[i-1].id})" checked>
                                         <label class="form-check-label" for=""><strike>${data[i-1].message}</strike></label>
                                     </div>
