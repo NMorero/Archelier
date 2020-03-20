@@ -55,7 +55,7 @@ function getCarousel(){
 
                 <div class="rounded p-2 pauseProject border divHeightCarousel2">
                 <button class="bg-transparent border-0 p-0 m-0 col-12 ml-1 text-center infoProject"  onclick="acProject(${project.id})"><i class="fas fa-chevron-up"></i></button>
-                    <p class="p-0 m-0 nameProject" style="height:10%">${project.project_name}</p>
+                    <p class="p-0 m-0 nameProject" style="height:20%">${project.project_name}</p>
                     <p class="p-0 m-0 infoProject">${project.client}</p>
                     <div class="row mt-0 pt-0">
                         <img class="col-12" src="/resorces/imgExample2.svg"  alt="">
