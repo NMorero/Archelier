@@ -25,14 +25,14 @@
 
                 <div class="form-group col-8" id="usersSelectBox">
                     <label for="TaskBtnUserSelect" class="text-muted">Users</label>
-                    <select name="TaskBtnUserSelect" id="TaskBtnUserSelect" class="custom-select" required>
+                    <select name="TaskBtnUserSelect1" id="TaskBtnUserSelect0" class="custom-select" required>
                         <option value="null">Select...</option>
                     </select>
                 </div>
                 <div class="form-group col-12 justify-content-center row">
                     <button class="btn btn-primary col-6" onclick="addUserBtn()">Add user</button>
                 </div>
-                <input type="text" name="TaskBtnUserSelect" id="TaskBtnUserSelect" hidden>
+                <input type="number" name="TaskBtnUserCant" id="TaskBtnUserCant" value="0" hidden>
 
 
                 <div class="form-group col-6">

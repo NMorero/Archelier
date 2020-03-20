@@ -8,11 +8,10 @@ console.log('Dia:'+elmnt);
 elmnt.scrollIntoView();
 }
 
-
+setTimeout('scroll()', 1000);
 
 function autoRefreshPage() {
     getPosts();
-    getReminders();
     getTasks();
 }
 
@@ -478,21 +477,51 @@ function getTasks() {
         .catch(function(error) {
             console.log(error);
         });
-        setTimeout('scroll()', 1000);
+
 
 }
-
+var usersSelects = [];
+var users = "";
 function addUserBtn(){
-    var userBox = document.getElementById('usersSelectBox');
-    var users = document.getElementById('TaskBtnUserSelect');
 
+getUsers();
+
+
+
+    var userBox = document.getElementById('usersSelectBox');
+
+    var cantInp = document.getElementById('TaskBtnUserCant');
+    var cant = parseInt(cantInp.value);
+        var usersSelect = document.getElementById('TaskBtnUserSelect'+cant);
+        usersSelects.push(
+            {
+                'value': usersSelect.value,
+                'id': usersSelect.id,
+                'name': usersSelect.name
+            }
+        );
+
+    cant++;
+    console.log(usersSelects);
     userBox.innerHTML = userBox.innerHTML.concat(`
-        <select name="TaskBtnUserSelect${users.value+1}" id="TaskBtnUserSelect${users.value+1}" class="custom-select" required>
+        <select name="TaskBtnUserSelect${cant}" id="TaskBtnUserSelect${cant}" class="custom-select" required>
                         <option value="null">Select...</option>
                     </select>
                     `);
+    for(var i = 1; i <= cant; i++){
+        var select = document.getElementById('TaskBtnUserSelect'+i);
+        users.map(function(user) {
+            select.innerHTML = select.innerHTML.concat(`<option value="${user.id}">${user.username}</option>`);
+        });
 
-    users.setAttribute('value', users.value +1);
+    }
+    for(var i = 0; i < cant; i++){
+        var select = document.getElementById('TaskBtnUserSelect'+i);
+        var opt = usersSelects[i].value;
+        select.getElementsByTagName('option')[opt].selected = 'selected';
+    }
+    console.log(cant);
+    cantInp.setAttribute('value', cant);
 }
 
 

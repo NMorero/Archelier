@@ -616,7 +616,23 @@ class AdminController extends Controller
                 'lastname' => $lastnameLea
             ];
         }
-        $vac = compact('projects');
+
+        $clients = Clients::all();
+        $leaders = ProjectLeaders::all();
+        $managers = ProjectManagers::all();
+        foreach ($managers as $manager) {
+            $user = User::find($manager->user_id);
+            $manager['name'] = $user->username;
+        }
+
+        foreach ($leaders as $leader) {
+            $user = User::find($leader->user_id);
+            $leader['name'] = $user->username;
+        }
+
+        $developers = Developers::all();
+
+        $vac = compact('projects', 'clients', 'managers', 'leaders');
         return view('layouts.admin.projects', $vac);
     }
 
@@ -640,6 +656,7 @@ class AdminController extends Controller
         $project->client_id = $request['client'];
         $project->manager_id = $request['manager'];
         $project->leader_id = $request['leader'];
+        $project->status = 'ongoing';
         $project->save();
 
         return redirect('/Admin/Projects');

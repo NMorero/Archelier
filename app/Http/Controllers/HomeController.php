@@ -358,43 +358,49 @@ class HomeController extends Controller
 
     public function addTask($formData)
     {
+
+
+
         $formData = json_decode($formData, true);
-
-        $task = new Tasks;
-
-        $message = [];
-
         $data = explode(',', $formData['message']);
-        $i = 0;
-        foreach ($data as $comment) {
-            $i++;
-            $temp = [
-                'id' => $i,
-                'data' => $comment,
-                'status' => 1
-            ];
-            array_push($message, $temp);
+
+        foreach($formData['UsersTasks'] as $user){
+            $task = new Tasks;
+
+            $message = [];
+
+
+            $i = 0;
+            foreach ($data as $comment) {
+                $i++;
+                $temp = [
+                    'id' => $i,
+                    'data' => $comment,
+                    'status' => 1
+                ];
+                array_push($message, $temp);
+            }
+
+
+            $task->message = json_encode($message);
+            $task->status = $formData['status'];
+            $task->end_date = $formData['end_date'];
+            $task->user_id = $user;
+
+            if (isset($formData['project']) && !empty($formData['project'])) {
+                $task->project_id = $formData['project'];
+            }
+
+            if (isset($formData['client']) && !empty($formData['client'])) {
+                $task->client_id = $formData['client'];
+            }
+
+
+            if (isset($formData['view']) && !empty($formData['view'])) {
+                $task->view_id = $formData['view'];
+            }
+            $task->save();
         }
-
-
-        $task->message = json_encode($message);
-        $task->status = $formData['status'];
-        $task->end_date = $formData['end_date'];
-        $task->user_id = $formData['user'];
-
-        if (isset($formData['project']) && !empty($formData['project'])) {
-            $task->project_id = $formData['project'];
-        }
-
-        if (isset($formData['client']) && !empty($formData['client'])) {
-            $task->client_id = $formData['client'];
-        }
-
-
-        if (isset($formData['view']) && !empty($formData['view'])) {
-            $task->view_id = $formData['view'];
-        }
-        $task->save();
 
         return ['status' => 'ok'];
     }

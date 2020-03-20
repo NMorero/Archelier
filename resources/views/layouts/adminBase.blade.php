@@ -28,16 +28,23 @@
                     </div>
                 </div>
                 <div class="row col-10 justify-content-around pt-1">
-                    <a class="col-3 buttons-header text-center text-center text-decoration-none shadow" href="/">Home</a>
-                    <a class="col-3 buttons-header  text-center text-decoration-none shadow m-0 p-0" href="/Admin/Projects" tabindex="-1" aria-disabled="true">Projects</a>
+                    <a class="col-3 buttons-header-admin text-center text-center text-decoration-none shadow" href="/">Home</a>
+                    <a class="col-3 buttons-header-admin  text-center text-decoration-none shadow m-0 p-0" href="/Admin/Projects" tabindex="-1" aria-disabled="true">Projects</a>
 
                     @if (auth()->user()->roles->rol == 'admin')
-                    <a class="col-4 buttons-header text-center text-decoration-none shadow px-1" href="/Admin" tabindex="-1" aria-disabled="true">Resources</a>
+                    <a class="col-3 buttons-header-admin text-center text-decoration-none shadow px-1" href="/Admin" tabindex="-1" aria-disabled="true">Resources</a>
                     @endif
-                </div>
-            </div>
-            <div class="col-5"></div>
 
+
+                </div>
+
+            </div>
+            <div class="col-7 text-right pt-2">
+                @section('projectAddBtn')
+
+                    @show
+            </div>
+            <div class="col-1"></div>
           </nav>
 
     </header>

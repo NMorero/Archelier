@@ -108,6 +108,19 @@ ul {
     display: none;
 }
 
+.buttons-header-admin{
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(98, 224, 195);
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 30px;
+    height: 3vh;
+
+    font-weight: 500;
+    color: rgb(58, 193, 162);
+}
+
+
 .buttons-header {
     background-color: rgb(255, 255, 255);
     border-color: rgb(98, 224, 195);

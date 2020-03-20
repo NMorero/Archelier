@@ -26,7 +26,7 @@ var users = "";
 
 getUsers();
 
-userSelect = document.getElementById("TaskBtnUserSelect");
+userSelect = document.getElementById("TaskBtnUserSelect0");
 users.map(function(user) {
     const templateLiteral = `
     <option value="${user.id}">${user.username}</option>
@@ -167,11 +167,20 @@ function saveButton(button) {
 
     if (button == "Task") {
         let array = [];
+        let users = [];
         let cantComments = document.getElementById("commentsCant").value;
         for (var i = 1; i <= cantComments; i++) {
             let comment = document.getElementById("TaskBtnMessage" + i);
             array.push(comment.value);
         }
+        var cant = document.getElementById('TaskBtnUserCant').value
+        for(var i = 0; i <= cant; i++){
+            var user = document.getElementById('TaskBtnUserSelect'+i).value
+            users.push(user);
+        }
+
+        formData['UsersTasks'] = users;
+
         document.getElementById('commentTaskBtn').innerHTML = ` <label for="TaskBtnMessage1" class="text-muted">Tasks</label>
         <input type="text" name="TaskBtnMessage1" id="TaskBtnMessage1" class="form-control" placeholder="Task 1" required>`
         document.getElementById('commentsCant').setAttribute('value', 1);
