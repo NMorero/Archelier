@@ -9,7 +9,7 @@
 @section('content')
     <main class="p-4 pt-0 bg-lightGrey" >
 
-        <div class="carousel1 px-5" id="carrusel1">
+        <div class="carousel1 px-5 divHeightCarousel mb-4" id="carrusel1">
 
 
     </div>
@@ -17,7 +17,7 @@
 
 
 
-        <div class="carousel2 px-5" id="carrusel2">
+        <div class="carousel2 px-5 divHeightCarousel" id="carrusel2">
 
 
     </div>

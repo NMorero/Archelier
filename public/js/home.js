@@ -482,6 +482,21 @@ function getTasks() {
 
 }
 
+function addUserBtn(){
+    var userBox = document.getElementById('usersSelectBox');
+    var users = document.getElementById('TaskBtnUserSelect');
+
+    userBox.innerHTML = userBox.innerHTML.concat(`
+        <select name="TaskBtnUserSelect${users.value+1}" id="TaskBtnUserSelect${users.value+1}" class="custom-select" required>
+                        <option value="null">Select...</option>
+                    </select>
+                    `);
+
+    users.setAttribute('value', users.value +1);
+}
+
+
+
 function test(taskId, commId) {
     console.log("task:" + taskId + "comm: " + commId);
     fetch("/changeTask/" + taskId + "/" + commId)
