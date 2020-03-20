@@ -101,7 +101,7 @@
 
 
 
-        <div class="carousel2 px-5 divHeightCarousel" id="carrusel2">
+        <div class="carousel2 px-5 divHeightCarousel2" id="carrusel2">
 
 
     </div>
