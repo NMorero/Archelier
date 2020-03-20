@@ -51,9 +51,9 @@ function getCarousel(){
 
                 carrusel1.innerHTML = carrusel1.innerHTML.concat(templateLiteral);
                 }else{
-                    var templateLiteral = `<div class="p-2 " id="myBtn${project.id}" style="height:40vh; width:15vw">
+                    var templateLiteral = `<div class="p-2 divHeightCarousel2" id="myBtn${project.id}" >
 
-                <div class="rounded p-2 pauseProject border ">
+                <div class="rounded p-2 pauseProject border divHeightCarousel2">
                 <button class="bg-transparent border-0 p-0 m-0 col-12 ml-1 text-center infoProject"  onclick="acProject(${project.id})"><i class="fas fa-chevron-up"></i></button>
                     <p class="p-0 m-0 nameProject" style="height:10%">${project.project_name}</p>
                     <p class="p-0 m-0 infoProject">${project.client}</p>
