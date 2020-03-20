@@ -21,16 +21,25 @@
                     <button class="btn btn-primary col-6" onclick="addcommentTask()">Add task</button>
                 </div>
                 <input type="text" name="TaskBtnStatusSelect" id="TaskBtnStatusSelect" hidden>
-                <div class="form-group col-6">
-                    <label for="TaskBtnEndDate" class="text-muted">End Date</label>
-                    <input type="date" id="TaskBtnEndDate" class="form-control" name="TaskBtnEndDate" required>
-                </div>
-                <div class="form-group col-6">
-                    <label for="TaskBtnUserSelect" class="text-muted">User</label>
+
+
+                <div class="form-group col-8" id="usersSelectBox">
+                    <label for="TaskBtnUserSelect" class="text-muted">Users</label>
                     <select name="TaskBtnUserSelect" id="TaskBtnUserSelect" class="custom-select" required>
                         <option value="null">Select...</option>
                     </select>
                 </div>
+                <div class="form-group col-12 justify-content-center row">
+                    <button class="btn btn-primary col-6" onclick="addUserBtn()">Add user</button>
+                </div>
+                <input type="text" name="TaskBtnUserSelect" id="TaskBtnUserSelect" hidden>
+
+
+                <div class="form-group col-6">
+                    <label for="TaskBtnEndDate" class="text-muted">End Date</label>
+                    <input type="date" id="TaskBtnEndDate" class="form-control" name="TaskBtnEndDate" required>
+                </div>
+
                 <div class="form-group col-6">
                     <label for="TaskBtnClientSelect" class="text-muted">Client</label>
                     <select name="TaskBtnClientSelect" id="TaskBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Task')" >

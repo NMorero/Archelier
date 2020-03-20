@@ -13,6 +13,14 @@ body::-webkit-scrollbar {
     display: none;
 }
 
+
+/* .imgProjectSmall{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+} */
+
+
+
 .pauseProject{
     background-color: darkgray;
     opacity: 0.7;
@@ -290,6 +298,25 @@ li {
 }
 
 
+.boxBtnHover{
+    padding-top: 3vh !important;
+}
+.nameProject{
+    font-size: 2vh;
+}
+.btnHoversProject{
+
+    padding: 1vh !important;
+}
+.divHeightCarousel{
+    height:48vh !important;
+
+}
+
+
+
+
+
 
 @media (max-width: 1400px) {
     #tasksBox {
@@ -337,9 +364,39 @@ li {
         word-break: break-all;
     }
 
+    .boxBtnHover{
+        padding-top: 1vh !important;
+    }
 
 
 }
+
+@media (max-width: 1000px){
+
+.divHeightCarousel{
+    height:48vh !important;
+
+}
+
+.btnHoversProject{
+
+    font-size: 6px !important;
+    height: 5vh !important;
+    padding: 1vh !important;
+}
+
+.nameProject{
+    font-size: 9px !important;
+}
+
+.infoProject{
+    font-size: 8px !important;
+}
+.infoHover{
+    font-size: 8px !important;
+}
+}
+
 @media (max-width: 700px) {
     .scrollable {
         height: 60vh;
@@ -356,6 +413,8 @@ li {
         overflow-y: scroll;
         overflow-x: hidden;
     }
+
+
 }
 
 /* Fin Home */
