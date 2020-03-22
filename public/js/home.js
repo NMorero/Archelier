@@ -1,6 +1,7 @@
+var scrolled = false;
 getPosts();
 getReminders();
-getTasks();
+getTasks(scrolled);
 
 function scroll(){
     var elmnt = document.getElementById("actualAgenda");
@@ -8,7 +9,7 @@ console.log('Dia:'+elmnt);
 elmnt.scrollIntoView();
 }
 
-setTimeout('scroll()', 1000);
+
 
 function autoRefreshPage() {
     getPosts();
@@ -363,7 +364,7 @@ function deleteReminder(id) {
     });
 }
 
-function getTasks() {
+function getTasks(scrolled) {
     fetch("/getTasks")
         .then(function(response) {
             return response.json();
@@ -472,7 +473,10 @@ function getTasks() {
 
             });
 
-
+            if(scrolled == false){
+                scroll();
+                scrolled = true;
+            }
         })
         .catch(function(error) {
             console.log(error);

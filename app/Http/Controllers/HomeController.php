@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Clients;
 use App\Deliveries;
+use App\Developers;
 use App\Events;
 use App\Images;
 use App\LeaderOfDeveloper;
@@ -11,6 +12,7 @@ use App\ManagerOfLeaders;
 use App\Persons;
 use App\Posts;
 use App\PRLeaders;
+use App\ProjectDevelopers;
 use App\ProjectLeaders;
 use App\ProjectManagers;
 use App\Projects;
@@ -43,7 +45,42 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $clients = Clients::all();
+        $clients = [];
+        $id = Auth::user()->id;
+
+        if (auth()->user()->roles->rol == 'developer'){
+            $dev = Developers::where('user_id', 'LIKE', $id)->get();
+            $devProjects = ProjectDevelopers::where('developer_id','LIKE',$dev[0]->id)->get();
+
+            foreach($devProjects as $devProject){
+                $project = Projects::find($devProject->id);
+                $client = Clients::find($project->client_id);
+                $clients[] = $client;
+            }
+        }else if(auth()->user()->roles->rol == 'PRleader'){
+            $lead = ProjectLeaders::find($id);
+            $leadProjects = Projects::where('leader_id', 'LIKE', $lead->id)->get();
+            foreach($leadProjects as $leadProject){
+                $project = Projects::find($leadProject->id);
+                $client = Clients::find($project->client_id);
+                $clients[] = $client;
+            }
+        }else if(auth()->user()->roles->rol == 'PRmanager'){
+            $man = ProjectManagers::find($id);
+            $manProjects = Projects::where('manager_id', 'LIKE', $man->id)->get();
+            foreach($manProjects as $manProject){
+                $project = Projects::find($manProject->id);
+                $client = Clients::find($project->client_id);
+                $clients[] = $client;
+            }
+        }else if(auth()->user()->roles->rol == 'admin'){
+            $clients = Clients::all();
+        }
+
+
+
+
+
         $vac = compact('clients');
         return view('home', $vac);
     }
@@ -57,7 +94,41 @@ class HomeController extends Controller
 
     public function getProjectsByClient($client)
     {
-        $projects = Projects::where('client_id', 'LIKE', $client)->get();
+        $id = Auth::user()->id;
+        $projects = [];
+        if (auth()->user()->roles->rol == 'developer'){
+
+            $dev = Developers::where('user_id', 'LIKE', $id)->get();
+            $devProjects = ProjectDevelopers::where('developer_id','LIKE',$dev[0]->id)->get();
+            foreach($devProjects as $devProject){
+                $project = Projects::find($devProject->id);
+                if($project->client_id == $client){
+                    $projects[] = $project;
+                }
+            }
+        }else if(auth()->user()->roles->rol == 'PRleader'){
+            $lead = ProjectLeaders::find($id);
+            $leadProjects = Projects::where('leader_id', 'LIKE', $lead->id)->get();
+            foreach($leadProjects as $leadProject){
+                $project = Projects::find($leadProject->id);
+                if($project->client_id == $client){
+                    $projects[] = $project;
+                }
+
+            }
+        }else if(auth()->user()->roles->rol == 'PRmanager'){
+            $man = ProjectManagers::find($id);
+            $manProjects = Projects::where('manager_id', 'LIKE', $man->id)->get();
+            foreach($manProjects as $manProject){
+                $project = Projects::find($manProject->id);
+                if($project->client_id == $client){
+                    $projects[] = $project;
+                }
+            }
+        }else if(auth()->user()->roles->rol == 'admin'){
+            $projects = Projects::where('client_id', 'LIKE', $client)->get();
+        }
+
         return $projects;
     }
 
@@ -70,12 +141,85 @@ class HomeController extends Controller
     public function getPosts($client, $project, $view)
     {
 
-
+        $posts = [];
+        $id = Auth::user()->id;
         if ($client === 'All') {
-            $posts = Posts::orderBy('id', 'DESC')->get();
+            if (auth()->user()->roles->rol == 'developer'){
+
+                $dev = Developers::where('user_id', 'LIKE', $id)->get();
+                $devProjects = ProjectDevelopers::where('developer_id','LIKE',$dev[0]->id)->get();
+                foreach($devProjects as $devProject){
+                    $project = Projects::find($devProject->id);
+                    $post = Posts::where('project_id', 'LIKE', $project->id)->orderBy('id', 'DESC')->get();
+                    foreach($post as $po){
+                        $posts[] = $po;
+                    }
+                }
+
+            }else if(auth()->user()->roles->rol == 'PRleader'){
+                $lead = ProjectLeaders::find($id);
+                $leadProjects = Projects::where('leader_id', 'LIKE', $lead->id)->get();
+                foreach($leadProjects as $leadProject){
+                    $project = Projects::find($leadProject->id);
+                    $post = Posts::where('project_id', 'LIKE', $project->id)->orderBy('id', 'DESC')->get();
+                    foreach($post as $po){
+                        $posts[] = $po;
+                    }
+
+                }
+            }else if(auth()->user()->roles->rol == 'PRmanager'){
+                $man = ProjectManagers::find($id);
+                $manProjects = Projects::where('manager_id', 'LIKE', $man->id)->get();
+                foreach($manProjects as $manProject){
+                    $project = Projects::find($manProject->id);
+                    $post = Posts::where('project_id', 'LIKE', $project->id)->orderBy('id', 'DESC')->get();
+                    foreach($post as $po){
+                        $posts[] = $po;
+                    }
+                }
+            }else if(auth()->user()->roles->rol == 'admin'){
+                $posts = Posts::orderBy('id', 'DESC')->get();
+            }
+
         } else {
             if ($project === 'All') {
-                $posts = Posts::where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->get();
+                if (auth()->user()->roles->rol == 'developer'){
+
+                    $dev = Developers::where('user_id', 'LIKE', $id)->get();
+                    $devProjects = ProjectDevelopers::where('developer_id','LIKE',$dev[0]->id)->get();
+                    foreach($devProjects as $devProject){
+                        $project = Projects::find($devProject->id);
+                        $post = Posts::where('project_id', 'LIKE', $project->id)->where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->get();
+                        foreach($post as $po){
+                            $posts[] = $po;
+                        }
+                    }
+
+                }else if(auth()->user()->roles->rol == 'PRleader'){
+                    $lead = ProjectLeaders::find($id);
+                    $leadProjects = Projects::where('leader_id', 'LIKE', $lead->id)->get();
+                    foreach($leadProjects as $leadProject){
+                        $project = Projects::find($leadProject->id);
+                        $post = Posts::where('project_id', 'LIKE', $project->id)->where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->get();
+                        foreach($post as $po){
+                            $posts[] = $po;
+                        }
+
+                    }
+                }else if(auth()->user()->roles->rol == 'PRmanager'){
+                    $man = ProjectManagers::find($id);
+                    $manProjects = Projects::where('manager_id', 'LIKE', $man->id)->get();
+                    foreach($manProjects as $manProject){
+                        $project = Projects::find($manProject->id);
+                        $post = Posts::where('project_id', 'LIKE', $project->id)->where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->get();
+                        foreach($post as $po){
+                            $posts[] = $po;
+                        }
+                    }
+                }else if(auth()->user()->roles->rol == 'admin'){
+                    $posts = Posts::where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->get();
+                }
+
             } else {
                 if ($view === 'All') {
                     $posts = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->orderBy('id', 'DESC')->get();
@@ -86,7 +230,9 @@ class HomeController extends Controller
         }
 
 
+        $colid = array_column($posts, 'id');
 
+array_multisort($colid, SORT_DESC, $posts);
 
 
         foreach ($posts as $post) {
@@ -233,13 +379,27 @@ class HomeController extends Controller
         }
         $year = '2020';
         $ranges = array();
-        $start = strtotime($year.'-01-01');
-        $end = strtotime($year.'-12-31');
+        $month = date('m');
+        $d=cal_days_in_month(CAL_GREGORIAN,$month,$year);
+        $start = strtotime($year.'-' . $month .'-01');
+        $end = strtotime($year.'-'. $month .'-' . $d);
+        $i2 = 1;
+        for($i = 0; $i<=20; $i++){
+            if($i==0){
+                $da = date('Y-m-d', strtotime('today'));
+                $ranges[] = $da;
+            }else if($i <= 10){
+                $da = date('Y-m-d', strtotime('+' . $i . ' days'));
+                $ranges[] = $da;
+            }else{
+                $da = date('Y-m-d', strtotime('-' . $i2 . ' days'));
+                $ranges[] = $da;
+                $i2++;
+            }
 
-        do {
-         $ranges[] = date('Y-m-d',$start);
-         $start = strtotime("+ 1 day",$start);
-        } while ( $start <= $end );
+        }
+
+
 
         foreach($ranges as $range){
             if (!array_key_exists($range, $dates)) {

@@ -3,16 +3,65 @@
 namespace App\Http\Controllers;
 
 use App\Clients;
-use Illuminate\Http\Request;
+use App\Deliveries;
+use App\Developers;
+use App\Events;
 use App\Feedbacks;
+use App\Images;
+use App\LeaderOfDeveloper;
+use App\ManagerOfLeaders;
+use App\Persons;
 use App\Posts;
+use App\PRLeaders;
+use App\ProjectDevelopers;
+use App\ProjectLeaders;
+use App\ProjectManagers;
+use App\Projects;
+use App\ProjectViews;
+use App\Reminders;
+use App\Tasks;
+use App\Templates;
+use App\User;
+use App\Views;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class FeedbackController extends Controller
 {
     public function create()
     {
-        $clients = Clients::all();
+        $clients = [];
+        $id = Auth::user()->id;
+
+        if (auth()->user()->roles->rol == 'developer'){
+            $dev = Developers::where('user_id', 'LIKE', $id)->get();
+            $devProjects = ProjectDevelopers::where('developer_id','LIKE',$dev[0]->id)->get();
+
+            foreach($devProjects as $devProject){
+                $project = Projects::find($devProject->id);
+                $client = Clients::find($project->client_id);
+                $clients[] = $client;
+            }
+        }else if(auth()->user()->roles->rol == 'PRleader'){
+            $lead = ProjectLeaders::find($id);
+            $leadProjects = Projects::where('leader_id', 'LIKE', $lead->id)->get();
+            foreach($leadProjects as $leadProject){
+                $project = Projects::find($leadProject->id);
+                $client = Clients::find($project->client_id);
+                $clients[] = $client;
+            }
+        }else if(auth()->user()->roles->rol == 'PRmanager'){
+            $man = ProjectManagers::find($id);
+            $manProjects = Projects::where('manager_id', 'LIKE', $man->id)->get();
+            foreach($manProjects as $manProject){
+                $project = Projects::find($manProject->id);
+                $client = Clients::find($project->client_id);
+                $clients[] = $client;
+            }
+        }else if(auth()->user()->roles->rol == 'admin'){
+            $clients = Clients::all();
+        }
         $vac = compact('clients');
         return view('createFeedback', $vac);
     }

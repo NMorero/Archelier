@@ -12,6 +12,7 @@ use App\DirectRelationships;
 use App\FreelanceRelationships;
 use App\Images;
 use App\PRLeaders;
+use App\ProjectDevelopers;
 use App\ProjectLeaders;
 use App\ProjectManagers;
 use App\Projects;
@@ -45,7 +46,7 @@ class AdminController extends Controller
                 return abort(401);
             }
             return $next($request);
-        })->except(['pageProjects', 'pageViews']);
+        })->except(['pageProjects', 'pageViews', 'getProjects', 'acProject', 'desProject']);
     }
 
 
@@ -539,7 +540,41 @@ class AdminController extends Controller
     }
 
     public function getProjects(){
-        $projects = Projects::all();
+        $id = Auth::user()->id;
+        $projects = [];
+        if (auth()->user()->roles->rol == 'developer'){
+
+            $dev = Developers::where('user_id', 'LIKE', $id)->get();
+            $devProjects = ProjectDevelopers::where('developer_id','LIKE',$dev[0]->id)->get();
+            foreach($devProjects as $devProject){
+                $project = Projects::find($devProject->id);
+
+                    $projects[] = $project;
+
+            }
+        }else if(auth()->user()->roles->rol == 'PRleader'){
+            $lead = ProjectLeaders::find($id);
+            $leadProjects = Projects::where('leader_id', 'LIKE', $lead->id)->get();
+            foreach($leadProjects as $leadProject){
+                $project = Projects::find($leadProject->id);
+
+                    $projects[] = $project;
+
+
+            }
+        }else if(auth()->user()->roles->rol == 'PRmanager'){
+            $man = ProjectManagers::find($id);
+            $manProjects = Projects::where('manager_id', 'LIKE', $man->id)->get();
+            foreach($manProjects as $manProject){
+                $project = Projects::find($manProject->id);
+
+                    $projects[] = $project;
+
+            }
+        }else if(auth()->user()->roles->rol == 'admin'){
+            $projects = Projects::all();
+        }
+
         foreach ($projects as $project) {
             $client = Clients::find($project->client_id);
             $manager = ProjectManagers::find($project->manager_id);
