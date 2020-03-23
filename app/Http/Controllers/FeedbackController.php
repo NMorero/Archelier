@@ -44,16 +44,16 @@ class FeedbackController extends Controller
                 $clients[] = $client;
             }
         }else if(auth()->user()->roles->rol == 'PRleader'){
-            $lead = ProjectLeaders::find($id);
-            $leadProjects = Projects::where('leader_id', 'LIKE', $lead->id)->get();
+            $lead = ProjectLeaders::where('user_id', 'LIKE', $id)->get();
+            $leadProjects = Projects::where('leader_id', 'LIKE', $lead[0]->id)->get();
             foreach($leadProjects as $leadProject){
                 $project = Projects::find($leadProject->id);
                 $client = Clients::find($project->client_id);
                 $clients[] = $client;
             }
         }else if(auth()->user()->roles->rol == 'PRmanager'){
-            $man = ProjectManagers::find($id);
-            $manProjects = Projects::where('manager_id', 'LIKE', $man->id)->get();
+            $man = ProjectManagers::where('user_id', 'LIKE', $id)->get();
+            $manProjects = Projects::where('manager_id', 'LIKE', $man[0]->id)->get();
             foreach($manProjects as $manProject){
                 $project = Projects::find($manProject->id);
                 $client = Clients::find($project->client_id);
