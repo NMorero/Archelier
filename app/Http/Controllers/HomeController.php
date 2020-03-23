@@ -59,15 +59,16 @@ class HomeController extends Controller
             }
         }else if(auth()->user()->roles->rol == 'PRleader'){
             $lead = ProjectLeaders::where('user_id', 'LIKE', $id)->get();
-            $leadProjects = Projects::where('leader_id', 'LIKE', $lead->id)->get();
+
+            $leadProjects = Projects::where('leader_id', 'LIKE', $lead[0]->id)->get();
             foreach($leadProjects as $leadProject){
                 $project = Projects::find($leadProject->id);
                 $client = Clients::find($project->client_id);
                 $clients[] = $client;
             }
         }else if(auth()->user()->roles->rol == 'PRmanager'){
-            $man = ProjectManagers::find($id);
-            $manProjects = Projects::where('manager_id', 'LIKE', $man->id)->get();
+            $man = ProjectManagers::where('user_id', 'LIKE', $id)->get();
+            $manProjects = Projects::where('manager_id', 'LIKE', $man[0]->id)->get();
             foreach($manProjects as $manProject){
                 $project = Projects::find($manProject->id);
                 $client = Clients::find($project->client_id);
@@ -108,7 +109,7 @@ class HomeController extends Controller
             }
         }else if(auth()->user()->roles->rol == 'PRleader'){
             $lead = ProjectLeaders::where('user_id', 'LIKE', $id)->get();
-            $leadProjects = Projects::where('leader_id', 'LIKE', $lead->id)->get();
+            $leadProjects = Projects::where('leader_id', 'LIKE', $lead[0]->id)->get();
             foreach($leadProjects as $leadProject){
                 $project = Projects::find($leadProject->id);
                 if($project->client_id == $client){
@@ -118,7 +119,7 @@ class HomeController extends Controller
             }
         }else if(auth()->user()->roles->rol == 'PRmanager'){
             $man = ProjectManagers::where('user_id' , 'LIKE' , $id)->get();
-            $manProjects = Projects::where('manager_id', 'LIKE', $man->id)->get();
+            $manProjects = Projects::where('manager_id', 'LIKE', $man[0]->id)->get();
             foreach($manProjects as $manProject){
                 $project = Projects::find($manProject->id);
                 if($project->client_id == $client){
@@ -157,8 +158,8 @@ class HomeController extends Controller
                 }
 
             }else if(auth()->user()->roles->rol == 'PRleader'){
-                $lead = ProjectLeaders::find($id);
-                $leadProjects = Projects::where('leader_id', 'LIKE', $lead->id)->get();
+                $lead = ProjectLeaders::where('user_id', 'LIKE', $id)->get();
+                $leadProjects = Projects::where('leader_id', 'LIKE', $lead[0]->id)->get();
                 foreach($leadProjects as $leadProject){
                     $project = Projects::find($leadProject->id);
                     $post = Posts::where('project_id', 'LIKE', $project->id)->orderBy('id', 'DESC')->get();
@@ -168,8 +169,8 @@ class HomeController extends Controller
 
                 }
             }else if(auth()->user()->roles->rol == 'PRmanager'){
-                $man = ProjectManagers::find($id);
-                $manProjects = Projects::where('manager_id', 'LIKE', $man->id)->get();
+                $man = ProjectManagers::where('user_id', 'LIKE', $id)->get();
+                $manProjects = Projects::where('manager_id', 'LIKE', $man[0]->id)->get();
                 foreach($manProjects as $manProject){
                     $project = Projects::find($manProject->id);
                     $post = Posts::where('project_id', 'LIKE', $project->id)->orderBy('id', 'DESC')->get();
@@ -196,8 +197,8 @@ class HomeController extends Controller
                     }
 
                 }else if(auth()->user()->roles->rol == 'PRleader'){
-                    $lead = ProjectLeaders::find($id);
-                    $leadProjects = Projects::where('leader_id', 'LIKE', $lead->id)->get();
+                    $lead = ProjectLeaders::where('user_id', 'LIKE', $id)->get();
+                    $leadProjects = Projects::where('leader_id', 'LIKE', $lead[0]->id)->get();
                     foreach($leadProjects as $leadProject){
                         $project = Projects::find($leadProject->id);
                         $post = Posts::where('project_id', 'LIKE', $project->id)->where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->get();
@@ -207,8 +208,8 @@ class HomeController extends Controller
 
                     }
                 }else if(auth()->user()->roles->rol == 'PRmanager'){
-                    $man = ProjectManagers::find($id);
-                    $manProjects = Projects::where('manager_id', 'LIKE', $man->id)->get();
+                    $man = ProjectManagers::where('user_id', 'LIKE', $id)->get();
+                    $manProjects = Projects::where('manager_id', 'LIKE', $man[0]->id)->get();
                     foreach($manProjects as $manProject){
                         $project = Projects::find($manProject->id);
                         $post = Posts::where('project_id', 'LIKE', $project->id)->where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->get();
