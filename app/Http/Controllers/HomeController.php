@@ -229,11 +229,11 @@ class HomeController extends Controller
                 }
             }
         }
-        return $posts;
+
 
         $colid = array_column($posts, 'id');
 
-array_multisort($colid, SORT_DESC, $posts);
+        array_multisort($colid, SORT_DESC, $posts);
 
 
         foreach ($posts as $post) {
