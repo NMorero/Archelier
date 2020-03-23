@@ -554,7 +554,7 @@ class AdminController extends Controller
             }
         }else if(auth()->user()->roles->rol == 'PRleader'){
             $lead = ProjectLeaders::find($id);
-            $leadProjects = Projects::where('leader_id', 'LIKE', $lead->id)->get();
+            $leadProjects = Projects::where('leader_id', 'LIKE', $lead[0]->id)->get();
             foreach($leadProjects as $leadProject){
                 $project = Projects::find($leadProject->id);
 
@@ -564,7 +564,7 @@ class AdminController extends Controller
             }
         }else if(auth()->user()->roles->rol == 'PRmanager'){
             $man = ProjectManagers::find($id);
-            $manProjects = Projects::where('manager_id', 'LIKE', $man->id)->get();
+            $manProjects = Projects::where('manager_id', 'LIKE', $man[0]->id)->get();
             foreach($manProjects as $manProject){
                 $project = Projects::find($manProject->id);
 
