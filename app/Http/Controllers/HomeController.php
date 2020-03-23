@@ -229,8 +229,10 @@ class HomeController extends Controller
                 }
             }
         }
-
-
+        return $posts;
+        foreach($posts as $post ){
+            foreach($pos)
+        }
         $colid = array_column($posts, 'id');
 
 array_multisort($colid, SORT_DESC, $posts);
