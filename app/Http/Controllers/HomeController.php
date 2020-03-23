@@ -229,11 +229,15 @@ class HomeController extends Controller
                 }
             }
         }
+        $postDb = [];
 
+        foreach($posts as $post){
+            $postDb[] = $post;
+        }
 
-        $colid = array_column($posts, 'id');
+        $colid = array_column($postDb, 'id');
 
-        array_multisort($colid, SORT_DESC, $posts);
+        $posts = array_multisort($colid, SORT_DESC, $postDb);
 
 
         foreach ($posts as $post) {
