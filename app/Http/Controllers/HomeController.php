@@ -238,7 +238,7 @@ class HomeController extends Controller
         $colid = array_column($postDb, 'id');
 
         $posts = array_multisort($colid, SORT_DESC, $postDb);
-
+        return $posts;
 
         foreach ($posts as $post) {
             $user = User::find($post['user_id']);
