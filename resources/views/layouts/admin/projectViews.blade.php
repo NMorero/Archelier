@@ -27,7 +27,7 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                            <form action="/Admin/Projects/addView/{{$id}}" id="developerForm" method="post" enctype="multipart/form-data">
+                            <form autocomplete="off" action="/Admin/Projects/addView/{{$id}}" id="developerForm" method="post" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="custom-file">

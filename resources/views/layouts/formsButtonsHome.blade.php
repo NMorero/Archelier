@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="row" id="TaskBtnForm" >
+            <form autocomplete="off" class="row" id="TaskBtnForm" >
                 <div class="form-group col-12" id="commentTaskBtn">
                   <label for="TaskBtnMessage1" class="text-muted">Tasks</label>
                   <input type="text" name="TaskBtnMessage1" id="TaskBtnMessage1" class="form-control" placeholder="Task 1" required>
@@ -87,7 +87,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="row" id="DeliveryBtnForm">
+            <form autocomplete="off" class="row" id="DeliveryBtnForm">
                 <div class="form-group col-12">
                     <label for="DeliveryBtnMessage" class="text-muted">Comment</label>
                     <textarea name="DeliveryBtnMessage" id="DeliveryBtnMessage" class="form-control" cols="20" rows="3" ></textarea>
@@ -166,7 +166,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="row" id="EventBtnForm">
+            <form autocomplete="off" class="row" id="EventBtnForm">
                 <div class="form-group col-12">
                     <label for="EventBtnMessage" class="text-muted">Message</label>
                     <textarea name="EventBtnMessage" id="EventBtnMessage" class="form-control" cols="20" rows="3" required></textarea>
@@ -218,7 +218,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="row justify-content-between p-2" id="postBtnForm">
+            <form autocomplete="off" class="row justify-content-between p-2" id="postBtnForm">
                 @csrf
                 <div class="form-group col-12">
                     <label for="PostBtnTitle" class="text-muted">Title</label>
@@ -282,7 +282,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="row" id="ReminderBtnForm">
+            <form autocomplete="off" class="row" id="ReminderBtnForm">
                 <div class="form-group col-12">
                     <label for="ReminderBtnMessage" class="text-muted">Message</label>
                     <textarea name="ReminderBtnMessage" id="ReminderBtnMessage" class="form-control" cols="20" rows="3" required ></textarea>

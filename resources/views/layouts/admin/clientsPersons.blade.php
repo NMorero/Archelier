@@ -17,7 +17,7 @@
         <tbody>
 
             @foreach ($clients as $client)
-                <form action="/Admin/Clients/Person/Update/{{$client->id}}" method="POST">
+                <form autocomplete="off" action="/Admin/Clients/Person/Update/{{$client->id}}" method="POST">
                     @csrf
                     <tr >
                         <td>{{$client->id}}</td>
@@ -26,7 +26,7 @@
                         <td data-toggle="collapse" data-target="#accordion{{$client->id}}" class="clickable">Info</td>
                         <td><button class="btn btn-dark" type="submit">Update</button></td>
                     </tr>
-                        <form action="/Admin/Persons/Update/{{$client->person->id}}">
+                        <form autocomplete="off" action="/Admin/Persons/Update/{{$client->person->id}}">
                             <tr id="accordion{{$client->id}}" class="collapse">
                                 <td colspan="3">
                                     <table class="table table-sm">

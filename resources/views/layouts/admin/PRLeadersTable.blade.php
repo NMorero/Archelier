@@ -39,7 +39,7 @@
                                 <th></th>
                             </thead>
                             <tbody>
-                                <form action="/Admin/Persons/Update/{{$leader['person']['id']}}" method="POST">
+                                <form autocomplete="off" action="/Admin/Persons/Update/{{$leader['person']['id']}}" method="POST">
                                     @csrf
 
                                         <td class="align-middle">{{$leader['person']['id']}}</td>

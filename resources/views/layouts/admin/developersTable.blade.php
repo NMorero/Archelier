@@ -41,7 +41,7 @@
                                     <th scope="col">Delete</th>
                                 </thead>
                                 <tbody>
-                                    <form action="/Admin/Persons/Update/{{$developer['person']['id']}}" method="POST">
+                                    <form autocomplete="off" action="/Admin/Persons/Update/{{$developer['person']['id']}}" method="POST">
                                         @csrf
 
                                             <td class="align-middle">{{$developer['person']['id']}}</td>

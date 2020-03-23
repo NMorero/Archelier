@@ -16,7 +16,7 @@
         <tbody>
 
             @foreach ($clients as $client)
-            <form action="/Admin/Clients/Update/{{$client->id}}" method="POST">
+            <form autocomplete="off" action="/Admin/Clients/Update/{{$client->id}}" method="POST">
                 @csrf
                 <tr >
                     <td>{{$client->id}}</td>
@@ -45,7 +45,7 @@
                                     <th></th>
                                 </thead>
                                 <tbody>
-                                    <form action="" method="POST">
+                                    <form autocomplete="off" action="" method="POST">
                                         @csrf
                                         <td>{{$client->company->id}}</td>
                                         <td class="align-middle"><input class="border-0 rounded bg-transparent" type="text" name="name" id="" value="{{$client->company->name}}"></td>

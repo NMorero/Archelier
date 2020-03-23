@@ -26,7 +26,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form action="/Admin/Projects/addProject" id="projectsForm" method="post">
+            <form autocomplete="off" action="/Admin/Projects/addProject" id="projectsForm" method="post">
                 @csrf
 
                 <div class="form-group">

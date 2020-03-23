@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                     @foreach ($persons as $person)
-                    <form action="/Admin/Persons/Update/{{$person->id}}" method="POST">
+                    <form autocomplete="off" action="/Admin/Persons/Update/{{$person->id}}" method="POST">
                         @csrf
                         <tr>
                             <td>{{$person->id}}</td>

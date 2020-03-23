@@ -21,7 +21,7 @@
 
 
                 <tr>
-                    <form action="" method="POST">
+                    <form autocomplete="off" action="" method="POST">
                         @csrf
                         <th scope="row">{{$user->id}}</th>
                         <td class="align-middle"><input class="border-0 rounded bg-transparent" type="text" name="username" id="" value="{{$user->username}}"></td>
@@ -52,7 +52,7 @@
 
                             </thead>
                             <tbody>
-                                <form action="/Admin/Persons/Update/{{$user['person']['id']}}" method="POST">
+                                <form autocomplete="off" action="/Admin/Persons/Update/{{$user['person']['id']}}" method="POST">
                                     @csrf
 
                                         <td class="align-middle">{{$user['person']['id']}}</td>

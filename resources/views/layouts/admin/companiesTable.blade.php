@@ -25,7 +25,7 @@
             </thead>
             <tbody>
               @foreach ($companies as $company)
-                <form action="" method="POST">
+                <form autocomplete="off" action="" method="POST">
                     @csrf
                     <tr>
                         <th class="align-middle">{{$company->id}}</th>

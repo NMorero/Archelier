@@ -260,7 +260,7 @@ font-family: 'Droid Serif', serif;
           </button>
         </div>
         <div class="modal-body">
-            <form action="/Admin/addClientsCompany" id="clientCompanyForm" method="post">
+            <form autocomplete="off" action="/Admin/addClientsCompany" id="clientCompanyForm" method="post">
                 @csrf
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -301,7 +301,7 @@ font-family: 'Droid Serif', serif;
           </button>
         </div>
         <div class="modal-body">
-            <form action="/Admin/Users/addUser" class="regform" method="POST">
+            <form autocomplete="off" action="/Admin/Users/addUser" class="regform" method="POST">
                 @csrf
                 <!-- Progress Bar -->
                 <ul id="progressbar" class="justify-content-around d-flex">
@@ -451,7 +451,7 @@ font-family: 'Droid Serif', serif;
           </button>
         </div>
         <div class="modal-body">
-            <form action="/Admin/Projects/addProject" id="projectsForm" method="post">
+            <form autocomplete="off" action="/Admin/Projects/addProject" id="projectsForm" method="post">
                 @csrf
 
                 <div class="form-group">
@@ -515,7 +515,7 @@ font-family: 'Droid Serif', serif;
           </button>
         </div>
         <div class="modal-body">
-            <form action="/Admin/Companies/addCompany" id="clientPersonForm" method="post">
+            <form autocomplete="off" action="/Admin/Companies/addCompany" id="clientPersonForm" method="post">
                 @csrf
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -653,7 +653,7 @@ font-family: 'Droid Serif', serif;
           </button>
         </div>
         <div class="modal-body">
-            <form action="/Admin/Developers/addDeveloper" id="developerForm" method="post">
+            <form autocomplete="off" action="/Admin/Developers/addDeveloper" id="developerForm" method="post">
                 @csrf
 
                 <div class="form-group">
@@ -684,7 +684,7 @@ font-family: 'Droid Serif', serif;
           </button>
         </div>
         <div class="modal-body">
-            <form action="/Admin/Users/addUser" class="regform" method="POST">
+            <form autocomplete="off" action="/Admin/Users/addUser" class="regform" method="POST">
                 @csrf
                 <!-- Progress Bar -->
                 <ul id="progressbar" class="justify-content-around d-flex">
@@ -844,7 +844,7 @@ font-family: 'Droid Serif', serif;
           </button>
         </div>
         <div class="modal-body">
-            <form action="/Admin/Roles/addRol" id="developerForm" method="post">
+            <form autocomplete="off" action="/Admin/Roles/addRol" id="developerForm" method="post">
                 @csrf
 
                 <div class="form-group">
@@ -873,7 +873,7 @@ font-family: 'Droid Serif', serif;
           </button>
         </div>
         <div class="modal-body">
-            <form action="/Admin/Persons/addPersons" id="developerForm" method="post" class="p-3">
+            <form autocomplete="off" action="/Admin/Persons/addPersons" id="developerForm" method="post" class="p-3">
                 @csrf
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -1002,7 +1002,7 @@ font-family: 'Droid Serif', serif;
                   </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/Admin/Managers/addProjectManager" id="PRManagerFUserForm" method="post">
+                    <form autocomplete="off" action="/Admin/Managers/addProjectManager" id="PRManagerFUserForm" method="post">
                         @csrf
 
                         <div class="form-group">
@@ -1033,7 +1033,7 @@ font-family: 'Droid Serif', serif;
                   </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/Admin/Users/addUser" class="regform" method="POST">
+                    <form autocomplete="off" action="/Admin/Users/addUser" class="regform" method="POST">
                         @csrf
                         <!-- Progress Bar -->
                         <ul id="progressbar" class="justify-content-around d-flex">
@@ -1218,7 +1218,7 @@ font-family: 'Droid Serif', serif;
                   </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/Admin/Managers/addProjectLeader" id="PRLeaderFUserForm" method="post">
+                    <form autocomplete="off" action="/Admin/Managers/addProjectLeader" id="PRLeaderFUserForm" method="post">
                         @csrf
 
                         <div class="form-group">
@@ -1250,7 +1250,7 @@ font-family: 'Droid Serif', serif;
                   </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/Admin/Users/addUser" class="regform" method="POST">
+                    <form autocomplete="off" action="/Admin/Users/addUser" class="regform" method="POST">
                         @csrf
                         <!-- Progress Bar -->
                         <ul id="progressbar" class="justify-content-around d-flex">
@@ -1408,7 +1408,7 @@ font-family: 'Droid Serif', serif;
           </button>
         </div>
         <div class="modal-body">
-            <form action="/Admin/Relationships/Direct/Add" method="POST">
+            <form autocomplete="off" action="/Admin/Relationships/Direct/Add" method="POST">
                 @csrf
             <div class="form-group">
                 <label for="person">Person</label>
@@ -1496,7 +1496,7 @@ font-family: 'Droid Serif', serif;
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <form action="/Admin/Relationships/Freelance/Add" method="POST">
+                        <form autocomplete="off" action="/Admin/Relationships/Freelance/Add" method="POST">
                             @csrf
                         <label for="person">Person</label>
                         <select class="custom-select" name="person" id="">
@@ -1589,7 +1589,7 @@ font-family: 'Droid Serif', serif;
                               </button>
                             </div>
                             <div class="modal-body">
-                                <form action="/Admin/addClientsPersons" id="clientPersonForm" method="post">
+                                <form autocomplete="off" action="/Admin/addClientsPersons" id="clientPersonForm" method="post">
                                     @csrf
                                     <div class="form-group">
                                         <label for="name">Name</label>
@@ -1626,7 +1626,7 @@ font-family: 'Droid Serif', serif;
                               </button>
                             </div>
                             <div class="modal-body">
-                                <form action="/Admin/addClientsPersons" class="regform" method="POST">
+                                <form autocomplete="off" action="/Admin/addClientsPersons" class="regform" method="POST">
                                     @csrf
                                     <!-- Progress Bar -->
                                     <ul id="progressbar" class="justify-content-around d-flex">
