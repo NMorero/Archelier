@@ -179,7 +179,10 @@ class HomeController extends Controller
                     }
                 }
             }else if(auth()->user()->roles->rol == 'admin'){
-                $posts = Posts::orderBy('id', 'DESC')->get();
+                $post = Posts::orderBy('id', 'DESC')->get();
+                foreach($post as $po){
+                    $posts[] = $po;
+                }
             }
 
         } else {
@@ -223,21 +226,23 @@ class HomeController extends Controller
 
             } else {
                 if ($view === 'All') {
-                    $posts = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->orderBy('id', 'DESC')->get();
+                    $post = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->orderBy('id', 'DESC')->get();
+                    foreach($post as $po){
+                        $posts[] = $po;
+                    }
                 } else {
-                    $posts = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->where('view_id', 'LIKE', $view)->orderBy('id', 'DESC')->get();
+                    $post = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->where('view_id', 'LIKE', $view)->orderBy('id', 'DESC')->get();
+                    foreach($post as $po){
+                        $posts[] = $po;
+                    }
                 }
             }
         }
-        $postDb = [];
 
-        foreach($posts as $post){
-            $postDb[] = $post;
-        }
+        return $posts;
+        $colid = array_column($posts[0], 'id');
 
-        $colid = array_column($postDb, 'id');
-
-        $posts = array_multisort($colid, SORT_DESC, $postDb);
+        $posts = array_multisort($colid, SORT_DESC, $posts);
         return $posts;
 
         foreach ($posts as $post) {
