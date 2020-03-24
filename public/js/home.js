@@ -113,7 +113,9 @@ function getPosts() {
         })
         .then(function(data) {
             console.log(data);
-
+            data = Object.values(data);
+            data.sort();
+            data.reverse();
             var divPosts = document.getElementById("divPosts");
             divPosts.innerHTML = "";
             data.map(function(post) {

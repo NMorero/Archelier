@@ -153,7 +153,7 @@ class HomeController extends Controller
                     $project = Projects::find($devProject->id);
                     $post = Posts::where('project_id', 'LIKE', $project->id)->orderBy('id', 'DESC')->get();
                     foreach($post as $po){
-                        $posts[] = $po;
+                        $posts[$po->id] = $po;
                     }
                 }
 
@@ -164,7 +164,7 @@ class HomeController extends Controller
                     $project = Projects::find($leadProject->id);
                     $post = Posts::where('project_id', 'LIKE', $project->id)->orderBy('id', 'DESC')->get();
                     foreach($post as $po){
-                        $posts[] = $po;
+                        $posts[$po->id] = $po;
                     }
 
                 }
@@ -175,13 +175,13 @@ class HomeController extends Controller
                     $project = Projects::find($manProject->id);
                     $post = Posts::where('project_id', 'LIKE', $project->id)->orderBy('id', 'DESC')->get();
                     foreach($post as $po){
-                        $posts[] = $po;
+                        $posts[$po->id] = $po;
                     }
                 }
             }else if(auth()->user()->roles->rol == 'admin'){
                 $post = Posts::orderBy('id', 'DESC')->get();
                 foreach($post as $po){
-                    $posts[] = $po;
+                    $posts[$po->id] = $po;
                 }
             }
 
@@ -195,7 +195,7 @@ class HomeController extends Controller
                         $project = Projects::find($devProject->id);
                         $post = Posts::where('project_id', 'LIKE', $project->id)->where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->get();
                         foreach($post as $po){
-                            $posts[] = $po;
+                            $posts[$po->id] = $po;
                         }
                     }
 
@@ -206,7 +206,7 @@ class HomeController extends Controller
                         $project = Projects::find($leadProject->id);
                         $post = Posts::where('project_id', 'LIKE', $project->id)->where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->get();
                         foreach($post as $po){
-                            $posts[] = $po;
+                            $posts[$po->id] = $po;
                         }
 
                     }
@@ -217,7 +217,7 @@ class HomeController extends Controller
                         $project = Projects::find($manProject->id);
                         $post = Posts::where('project_id', 'LIKE', $project->id)->where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->get();
                         foreach($post as $po){
-                            $posts[] = $po;
+                            $posts[$po->id] = $po;
                         }
                     }
                 }else if(auth()->user()->roles->rol == 'admin'){
@@ -228,22 +228,19 @@ class HomeController extends Controller
                 if ($view === 'All') {
                     $post = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->orderBy('id', 'DESC')->get();
                     foreach($post as $po){
-                        $posts[] = $po;
+                        $posts[$po->id] = $po;
                     }
                 } else {
                     $post = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->where('view_id', 'LIKE', $view)->orderBy('id', 'DESC')->get();
                     foreach($post as $po){
-                        $posts[] = $po;
+                        $posts[$po->id] = $po;
                     }
                 }
             }
         }
 
-        return $posts;
-        $colid = array_column($posts[0], 'id');
 
-        $posts = array_multisort($colid, SORT_DESC, $posts);
-        return $posts;
+
 
         foreach ($posts as $post) {
             $user = User::find($post['user_id']);
