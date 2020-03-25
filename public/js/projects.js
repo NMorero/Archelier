@@ -16,14 +16,17 @@ function getCarousel(){
             data.map(function(project) {
                 console.log(project.client);
 
+
                 if(project.status == 'ongoing'){
                     var templateLiteral = `<div class="p-2 divHeightCarousel " id="myBtn${project.id}" >
-                <div class="rounded bg-white p-2 divHeightCarousel" >
+                <div class="rounded bg-white p-2 divHeightCarousel" data-toggle="modal" data-target=".bd-example-modal-lg${project.id}">
                     <p class="nameProject" style="height:10%">${project.project_name}</p>
                     <p class="m-0 p-0 infoProject">${project.client}</p>
-                    <div class="row mt-0 pt-0">
-                        <img class="col-12" src="/resorces/imgExample2.svg"  alt="">
-                        <div class="col-12 row text-center pr-4 pl-2 ml-2 mt-1">
+                    <div class="row mt-0 pt-0" >
+                        <img class="col-12" src="${project.thumbnail}" onerror="if (this.src != '/resorces/imgExample2.svg') this.src = '/resorces/imgExample2.svg';" height="150vh">
+
+
+                        <div class="col-12 row text-center pr-4 pl-2 ml-2 pt-1">
                             <img class="col-4 imgProjectSmall px-1 py-0 m-0" src="/resorces/imgExample2.svg" alt="" >
                             <img class="col-4 imgProjectSmall px-1 py-0 m-0" src="/resorces/imgExample2.svg" alt="" >
                             <img class="col-4 imgProjectSmall px-1 py-0 m-0" src="/resorces/imgExample2.svg" alt="" >
@@ -50,6 +53,27 @@ function getCarousel(){
                 </div>`;
 
                 carrusel1.innerHTML = carrusel1.innerHTML.concat(templateLiteral);
+                var modals = document.getElementById('modals');
+                modals.innerHTML = modals.innerHTML.concat(`
+                <div class="modal fade bd-example-modal-lg${project.id}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-body rounded bg-white row">
+                            <div class="col-9 row p-0 m-0" id="imgPro${project.id}">
+
+
+                            </div>
+                            <div class="col-3  border-left">
+                            <h5 class mb-1><b>${project.project_name}</b></h5>
+                            <p class="border-bottom">${project.client}</p>
+                            <h6 class="border-bottom mt-2">Manager</h6>
+                            <span>${project['manager']['name']} ${project['manager']['lastname']}</span>
+                            <h6 class="border-bottom mt-2">Leader</h6>
+                            <p >${project['leader']['name']} ${project['leader']['lastname']}</p>
+                            <h6 class="border-bottom mt-2">Developers</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>`);
                 }else{
                     var templateLiteral = `<div class="p-2 divHeightCarousel2" id="myBtn${project.id}" >
 
@@ -82,6 +106,15 @@ function getCarousel(){
                 </div>`;
 
                 carrusel2.innerHTML = carrusel2.innerHTML.concat(templateLiteral);
+                var imgModal = document.getElementById('imgPro'+project.id);
+                project.views.map(function(view) {
+                    let template = `<img class="col-4 mb-3" src="${project.thumbnail}" onerror="if (this.src != '/resorces/imgExample2.svg') this.src = '/resorces/imgExample2.svg';" height="140vh">
+                    `;
+                    imgModal.innerHTML = imgModal.innerHTML.concat(template);
+                });
+
+
+
                 }
             });
             $('.carousel1').slick({

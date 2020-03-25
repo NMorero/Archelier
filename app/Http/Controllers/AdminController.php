@@ -582,6 +582,9 @@ class AdminController extends Controller
             $leader = ProjectLeaders::find($project->leader_id);
             $user2 = User::find($leader->user_id);
 
+            $views = ProjectViews::where('project_id', 'LIKE', $project->id)->get();
+
+
             $personMan = Persons::find($user1->person_id);
             $nameMan = $personMan->name;
             $lastnameMan = $personMan->last_name;
@@ -590,7 +593,7 @@ class AdminController extends Controller
             $nameLea = $personLea->name;
             $lastnameLea = $personLea->last_name;
 
-
+            $project['views'] = $views;
             $project['client'] = $client->client_name;
             $project['manager'] = [
                 'name' => $nameMan,
@@ -685,6 +688,10 @@ class AdminController extends Controller
 
     public function addProject(Request $request)
     {
+
+
+
+
         $project = new Projects;
         $project->project_name = $request['projectName'];
         $project->delivery_date = $request['deliveryDate'];
@@ -692,6 +699,19 @@ class AdminController extends Controller
         $project->manager_id = $request['manager'];
         $project->leader_id = $request['leader'];
         $project->status = 'ongoing';
+
+        if(isset($request['thumbnail']) && !empty($request['thumbnail'])){
+
+            $imageName = date("Y-m-d") . '-' . time() . '.' . $request['thumbnail']->getClientOriginalExtension();
+            $request['thumbnail']->move(
+                base_path() . '/public/upload/posts/thumbnails',
+                $imageName
+            );
+                $project->thumbnail ='/upload/posts/thumbnails/' . $imageName;;
+            }
+
+
+
         $project->save();
 
         return redirect('/Admin/Projects');
