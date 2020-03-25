@@ -55,7 +55,7 @@ function getCarousel(){
                 carrusel1.innerHTML = carrusel1.innerHTML.concat(templateLiteral);
                 var modals = document.getElementById('modals');
                 modals.innerHTML = modals.innerHTML.concat(`
-                <div class="modal fade bd-example-modal-lg${project.id}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel${project.id}" aria-hidden="true" data-backdrop="static">
+                <div class="modal fade bd-example-modal-lg${project.id}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel${project.id}" aria-hidden="true" >
                     <div class="modal-dialog modal-xl" role="document">
                         <div class="modal-content">
                             <div class="modal-body rounded bg-white row">
