@@ -70,7 +70,7 @@ function getCarousel(){
                                     <h6 class="border-bottom mt-2">Leader</h6>
                                     <p >${project['leader']['name']} ${project['leader']['lastname']}</p>
                                     <h6 class="border-bottom mt-2">Developers</h6>
-                                    <a data-toggle="modal" href=".bd-view-modal-lg${project.id}">add</a>
+
                                 </div>
                             </div>
                         </div>
