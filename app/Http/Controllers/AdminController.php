@@ -574,7 +574,7 @@ class AdminController extends Controller
         }else if(auth()->user()->roles->rol == 'admin'){
             $projects = Projects::all();
         }
-
+        $views=[];
         foreach ($projects as $project) {
             $client = Clients::find($project->client_id);
             $manager = ProjectManagers::find($project->manager_id);
@@ -582,8 +582,12 @@ class AdminController extends Controller
             $leader = ProjectLeaders::find($project->leader_id);
             $user2 = User::find($leader->user_id);
 
-            $views = ProjectViews::where('project_id', 'LIKE', $project->id)->get();
-
+            $viewsPR = ProjectViews::where('project_id', 'LIKE', $project->id)->get();
+            foreach($viewsPR as $viewPR){
+                $viewT = Views::find($viewPR->view_id);
+                $image = Images::find($viewT->image_id);
+                $views[] = $image->image_route;
+            }
 
             $personMan = Persons::find($user1->person_id);
             $nameMan = $personMan->name;
@@ -726,6 +730,7 @@ class AdminController extends Controller
             base_path() . '/public/upload/views',
             $imageName
         );
+
 
         $image->image_route = '/upload/views/' . $imageName;
         $image->save();

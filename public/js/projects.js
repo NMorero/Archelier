@@ -55,25 +55,29 @@ function getCarousel(){
                 carrusel1.innerHTML = carrusel1.innerHTML.concat(templateLiteral);
                 var modals = document.getElementById('modals');
                 modals.innerHTML = modals.innerHTML.concat(`
-                <div class="modal fade bd-example-modal-lg${project.id}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl">
-                        <div class="modal-body rounded bg-white row">
-                            <div class="col-9 row p-0 m-0" id="imgPro${project.id}">
+                <div class="modal fade bd-example-modal-lg${project.id}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel${project.id}" aria-hidden="true" data-backdrop="static">
+                    <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body rounded bg-white row">
+                                <div class="col-9 row p-0 m-0" id="imgPro${project.id}">
 
-
-                            </div>
-                            <div class="col-3  border-left">
-                            <h5 class mb-1><b>${project.project_name}</b></h5>
-                            <p class="border-bottom">${project.client}</p>
-                            <h6 class="border-bottom mt-2">Manager</h6>
-                            <span>${project['manager']['name']} ${project['manager']['lastname']}</span>
-                            <h6 class="border-bottom mt-2">Leader</h6>
-                            <p >${project['leader']['name']} ${project['leader']['lastname']}</p>
-                            <h6 class="border-bottom mt-2">Developers</h6>
+                                </div>
+                                <div class="col-3  border-left">
+                                    <h5 class mb-1><b>${project.project_name}</b></h5>
+                                    <p class="border-bottom">${project.client}</p>
+                                    <h6 class="border-bottom mt-2">Manager</h6>
+                                    <span>${project['manager']['name']} ${project['manager']['lastname']}</span>
+                                    <h6 class="border-bottom mt-2">Leader</h6>
+                                    <p >${project['leader']['name']} ${project['leader']['lastname']}</p>
+                                    <h6 class="border-bottom mt-2">Developers</h6>
+                                    <a data-toggle="modal" href=".bd-view-modal-lg${project.id}">add</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>`);
+
+
+`);
                 }else{
                     var templateLiteral = `<div class="p-2 divHeightCarousel2" id="myBtn${project.id}" >
 
@@ -106,12 +110,6 @@ function getCarousel(){
                 </div>`;
 
                 carrusel2.innerHTML = carrusel2.innerHTML.concat(templateLiteral);
-                var imgModal = document.getElementById('imgPro'+project.id);
-                project.views.map(function(view) {
-                    let template = `<img class="col-4 mb-3" src="${project.thumbnail}" onerror="if (this.src != '/resorces/imgExample2.svg') this.src = '/resorces/imgExample2.svg';" height="140vh">
-                    `;
-                    imgModal.innerHTML = imgModal.innerHTML.concat(template);
-                });
 
 
 
@@ -132,6 +130,20 @@ function getCarousel(){
                 slidesToShow: 6,
                 slidesToScroll: 1
               });
+
+              data.map(function(project) {
+                var imgModal = document.getElementById('imgPro'+project.id);
+                console.log('views:'+project.views);
+                console.log(imgModal);
+                project.views.map(function(view) {
+                    let template = `<img class="col-4 mb-3" src="${view}" onerror="if (this.src != '/resorces/imgExample2.svg') this.src = '/resorces/imgExample2.svg';" height="250vh">
+                    `;
+                    imgModal.innerHTML = imgModal.innerHTML.concat(template);
+                });
+                imgModal.innerHTML = imgModal.innerHTML.concat(`<img class="col-4 imgProjectSmall px-3 py-0 m-0 " src="/resorces/addImg.png" data-toggle="modal" data-target=".bd-view-modal-lg${project.id}" height="250vh"></img>`);
+
+            });
+
         })
         .catch(function(error) {
             console.log(error);

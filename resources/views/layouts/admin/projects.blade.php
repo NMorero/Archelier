@@ -7,7 +7,7 @@
 
 
 @section('head')
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
 @endsection
@@ -42,7 +42,7 @@
 
                 <div class="form-group">
                     <label for="client">Client</label>
-                    <select class="custom-select" name="client" id="" required>
+                    <select class="custom-select" name="client"  required>
                         <option value="none">Select..</option>
                         @foreach ($clients as $client)
                             <option value="{{$client->id}}">{{$client->client_name}}</option>
@@ -52,7 +52,7 @@
 
                 <div class="form-group">
                     <label for="manager">Manager</label>
-                    <select class="custom-select" name="manager" id="" required>
+                    <select class="custom-select" name="manager"  required>
                         <option value="none">Select..</option>
                         @foreach ($managers as $manager)
                             <option value="{{$manager->id}}">{{$manager->name}}</option>
@@ -62,7 +62,7 @@
 
                 <div class="form-group">
                     <label for="leader">Leader</label>
-                    <select class="custom-select" name="leader" id="">
+                    <select class="custom-select" name="leader" >
                         <option value="none">Select..</option>
                         @foreach ($leaders as $leader)
                             <option value="{{$leader->id}}">{{$leader->name}}</option>
@@ -114,7 +114,30 @@
 
 </div>
 
+<div id="modalsviews">
+    @foreach ($projects as $project)
+    <div>
+        <div class="modal fade bd-view-modal-lg{{$project->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-body rounded bg-secondary row ">
+                        <form autocomplete="off" class="formsView" action="/Admin/Projects/addView/{{$project->id}}" id="developerForm" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="custom-file my-2">
+                                <input type="file" class="custom-file-input" name="image" id="image">
+                                <label class="custom-file-label" for="image">Choose file</label>
+                            </div>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Add</button>
 
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
 
 
 @endsection
@@ -124,5 +147,6 @@
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script type="text/javascript" src="{{asset('/js/projects.js')}}">
   </script>
+
 
 @endsection
