@@ -581,6 +581,19 @@ class AdminController extends Controller
             $user1 = User::find($manager->user_id);
             $leader = ProjectLeaders::find($project->leader_id);
             $user2 = User::find($leader->user_id);
+            $devPros = ProjectDevelopers::where('project_id', 'LIKE', $project->id)->get();
+
+            $devs = [];
+            foreach($devPros as $devPro){
+                $dev = Developers::find($devPro->developer_id);
+                $userDev = User::find($dev->user_id);
+                $devs[] = [
+                    'module' => $devPro->module,
+                    'developer' => $userDev->person->name
+                ];
+            }
+            $project['devs'] = $devs;
+
 
             $viewsPR = ProjectViews::where('project_id', 'LIKE', $project->id)->get();
             foreach($viewsPR as $viewPR){
@@ -631,6 +644,7 @@ class AdminController extends Controller
 
     public function pageProjects()
     {
+
         $projects = Projects::all();
         foreach ($projects as $project) {
             $client = Clients::find($project->client_id);
@@ -673,9 +687,26 @@ class AdminController extends Controller
         }
 
         $developers = Developers::all();
-
-        $vac = compact('projects', 'clients', 'managers', 'leaders');
+        foreach($developers as $developer){
+            $user = User::find($developer->user_id);
+            $developer['name'] = $user->person->name;
+        }
+        $vac = compact('projects', 'clients', 'managers', 'leaders', 'developers');
         return view('layouts.admin.projects', $vac);
+    }
+
+    public function addModuleProject(Request $request){
+
+
+        $id = $request['projectId'];
+
+
+        $devPro = new ProjectDevelopers;
+        $devPro->developer_id = $request['developer'];
+        $devPro->project_id = $id;
+        $devPro->module = $request['moduleName'];
+        $devPro->save();
+        return ['status' => 'ok'];
     }
 
     public function pageViews($id)

@@ -136,6 +136,44 @@
             </div>
         </div>
     </div>
+        <!-- Modal -->
+    <div class="modal fade" id="moduleModal{{$project->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{$project->id}}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel{{$project->id}}">New module</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form action="/Admin/Projects/Module/Add" id="addModuleFormPro{{$project->id}}">
+                    @csrf
+                    <div class="form-group">
+                        <label for="moduleName">Module name</label>
+                        <input type="text" name="moduleName" class="form-control" id="moduleName" aria-describedby="moduleName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="developer">Developer</label>
+                        <select class="custom-select" name="developer" id="developer"  required>
+                            <option value="none">Select..</option>
+                            @foreach ($developers as $developer)
+                                <option value="{{$developer->id}}">{{$developer->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <input type="number" name="projectId" id="" value="{{$project->id}}" hidden>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="closeFormModalDev{{$project->id}}" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="addModule({{$project->id}})">Add</button>
+                        </div>
+                </form>
+            </div>
+
+        </div>
+        </div>
+    </div>
     @endforeach
 </div>
 

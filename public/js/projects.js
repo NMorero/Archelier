@@ -65,19 +65,21 @@ function getCarousel(){
                                 <div class="col-3  border-left">
                                     <h5 class mb-1><b>${project.project_name}</b></h5>
                                     <p class="border-bottom">${project.client}</p>
-                                    <h6 class="border-bottom mt-2">Manager</h6>
+                                    <h5 class="border-bottom mt-2">Manager</h5>
                                     <span>${project['manager']['name']} ${project['manager']['lastname']}</span>
-                                    <h6 class="border-bottom mt-2">Leader</h6>
+                                    <h5 class="border-bottom mt-2">Leader</h5>
                                     <p >${project['leader']['name']} ${project['leader']['lastname']}</p>
-                                    <h6 class="border-bottom mt-2">Developers</h6>
-
+                                    <h5 class="border-bottom mt-2">Developers</h5>
+                                    <div id="devPro${project.id}">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
 
-`);
+                `);
+
                 }else{
                     var templateLiteral = `<div class="p-2 divHeightCarousel2" id="myBtn${project.id}" >
 
@@ -142,6 +144,12 @@ function getCarousel(){
                 });
                 imgModal.innerHTML = imgModal.innerHTML.concat(`<img class="col-4 imgProjectSmall px-3 py-0 m-0 " src="/resorces/addImg.png" data-toggle="modal" data-target=".bd-view-modal-lg${project.id}" height="250vh"></img>`);
 
+
+                var debBox = document.getElementById('devPro'+project.id);
+                project.devs.map(function(mDev) {
+                    debBox.innerHTML = debBox.innerHTML.concat(`<h5>${mDev.module}</h5><h6>- ${mDev.developer}</h6>`);
+                });
+                debBox.innerHTML = debBox.innerHTML.concat(`<button class=" buttons-header" data-toggle="modal" data-target="#moduleModal${project.id}">+ Module</button>`);
             });
 
         })
@@ -151,7 +159,46 @@ function getCarousel(){
 
 }
 
+function addModule(id){
+    var form = document.getElementById('addModuleFormPro'+id);
 
+
+
+    var url = form.getAttribute("action");
+    var formData = {};
+    $(form).find("input[name]").each(function (index, node) {
+        formData[node.name] = node.value;
+    });
+    $(form).find("select[name]").each(function (index, node) {
+        formData[node.name] = node.value;
+    });
+    $.post(url, formData).done(function (data) {
+        var debBox = document.getElementById('devPro'+id);
+        form.reset();
+        debBox.innerHTML = "";
+        document.getElementById('closeFormModalDev'+id).click();
+        fetch("/Admin/Projects/get")
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                data.map(function(project) {
+                    var debBox = document.getElementById('devPro'+project.id);
+                    project.devs.map(function(mDev) {
+                        debBox.innerHTML = debBox.innerHTML.concat(`<h5>${mDev.module}</h5><h6>- ${mDev.developer}</h6>`);
+                    });
+                    debBox.innerHTML = debBox.innerHTML.concat(`<button class=" buttons-header" data-toggle="modal" data-target="#moduleModal${project.id}">+ Module</button>`);
+                });
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+
+
+    })
+
+
+    }
 function desProject(id){
     fetch("/Admin/Projects/Deactivate/"+id)
         .then(function(response) {

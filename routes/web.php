@@ -125,6 +125,8 @@ Route::get('/Admin/Projects/Delete/{id}', 'AdminController@deleteProject');
 
 Route::post('/Admin/Projects/addView/{id}', 'AdminController@addView');
 
+Route::post('/Admin/Projects/Module/Add', 'AdminController@addModuleProject');
+
 Route::get('/Admin/Project/Views/Delete/{id}', 'AdminController@deleteView');
 
 Route::post('/Admin/Users/addUser', 'AdminController@addUser');
