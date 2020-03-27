@@ -573,7 +573,15 @@ class HomeController extends Controller
     }
 
 
-    function addPost(Request $request)
+   public function deletePost($id){
+        $post = Posts::find($id);
+        $post->delete();
+        return ['status' => 'ok'];
+   }
+
+
+
+    public function addPost(Request $request)
     {
 
 

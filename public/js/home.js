@@ -123,7 +123,14 @@ function getPosts() {
                     if (post.image != null) {
                         const templateLiteral = `
                     <div class="row border-botBlue my-2 py-2">
-                    <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
+                    <p class=" col-6 text-dark" onclick="dotsMenuOpen(${post.id})" >
+                    <i class="fas fa-ellipsis-h"></i>
+                    </p>
+                    <div class="rounded bg-white mt-3 ml-2 infoHover border p-2 dotsMenu" id="div${post.id}" style="display:none;position:absolute;z-index:400">
+                        <button class="btn border-bottom" onclick="deletePost(${post.id})">Delete</button><br>
+                        <button class="btn" onclick="dotsMenuClose(${post.id})">Close</button>
+                    </div>
+                    <p class=" col-6 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
                     <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
                     <img src="${post.image}" class="postImage" alt="">
 
@@ -136,7 +143,14 @@ function getPosts() {
                     } else {
                         const templateLiteral = `
                     <div class="row border-botBlue my-2 py-2">
-                    <p class=" col-12 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
+                    <p class=" col-6 text-dark" onclick="dotsMenuOpen(${post.id})" >
+                    <i class="fas fa-ellipsis-h"></i>
+                    </p>
+                    <div class="rounded bg-white mt-3 ml-2 infoHover border p-2 dotsMenu" id="div${post.id}" style="display:none;position:absolute;z-index:400">
+                        <button class="btn border-bottom" onclick="deletePost(${post.id})">Delete</button><br>
+                        <button class="btn" onclick="dotsMenuClose(${post.id})">Close</button>
+                    </div>
+                    <p class=" col-6 text-right postInfo mb-0">${post.user_name} - ${post.date} </p>
                     <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
 
 
@@ -217,6 +231,25 @@ function getPosts() {
             console.log(error);
         });
 }
+
+
+function deletePost(id){
+
+        fetch("/deletePost/" + id)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                getPosts();
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }
+
+
+
+
 
 function reminderNext(){
     var actualPage = document.getElementById('actualPage');
@@ -544,4 +577,16 @@ function test(taskId, commId) {
         .catch(function(error) {
             console.log(error);
         });
+}
+
+function dotsMenuOpen(id){
+    document.getElementById('div'+id).style.display = 'block';
+
+
+}
+
+
+function dotsMenuClose(id){
+    document.getElementById('div'+id).style.display = 'none';
+
 }

@@ -31,6 +31,8 @@ Route::get('/getViewsByProject/{project}', 'HomeController@getViewsByProject');
 
 Route::get('/getPosts/{client}/{project}/{view}', 'HomeController@getPosts');
 
+Route::get('/deletePost/{id}', 'HomeController@deletePost');
+
 Route::get('/getReminders', 'HomeController@getReminders');
 
 Route::get('/getTemplates', 'HomeController@getTemplates');

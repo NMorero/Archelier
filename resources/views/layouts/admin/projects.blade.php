@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-
+<input type="number" name="dotsMenuLast" id="dotsMenuLast" value="1" hidden>
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
