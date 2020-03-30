@@ -17,27 +17,24 @@ function autoRefreshPage() {
 }
 
 setInterval("autoRefreshPage()", 30000);
-var comments = [];
+
 let cantComments = 1;
 function addcommentTask() {
-
+    var comments = [];
     let commentDiv = document.getElementById("commentTaskBtn");
     let cantInp = document.getElementById("commentsCant");
-    if (cantInp.value == 1){
-        comments = [];
-        cantComments = 1;
+
+    for(var i = 1; i <= cantInp.value; i++){
+        let prevComment = document.getElementById("TaskBtnMessage" + i);
+        comments.push({
+            name: prevComment.name,
+            value: prevComment.value,
+            placeholder: prevComment.placeholder,
+            id: prevComment.id
+        });
     }
-
-    let prevComment = document.getElementById("TaskBtnMessage" + cantInp.value);
-    console.log(prevComment);
-
-    comments.push({
-        name: prevComment.name,
-        value: prevComment.value,
-        placeholder: prevComment.placeholder,
-        id: prevComment.id
-    });
     console.log(comments);
+
     comments.forEach(comm => {
         let input = document.getElementById(comm.id);
         input.setAttribute("value", comm.value);
