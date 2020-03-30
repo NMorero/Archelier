@@ -306,7 +306,7 @@ function getReminders() {
             var page = 1;
             let reminderPage = document.getElementById('Page1');
             for(var i = 1; i <= data.length; i++) {
-                if((i-1 )% 8 === 0 && i-1 != 0){
+                if((i-1 )% 16 === 0 && i-1 != 0){
                     page++;
                     remindersBox.innerHTML = remindersBox.innerHTML.concat(
                         `<div id="Page${page}" class="page" style="">
