@@ -443,16 +443,18 @@ function getTasks(scrolled) {
                         if (comm.status == 1) {
                             let temp = `<li class=" mb-2 m-0 p-0">
                         <div class="form-check form-check-inline m-0 p-0">
-                        <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})">
-                        <label class="form-check-label" for="task${task.id}Check${comm.id}">${comm.data} - ${task.user.username}</label>
+                        <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})"><span>${comm.data} - ${task.user.username} <a class="ml-1" onclick="deleteTask(${task.id} , ${comm.id})" style="cursor:pointer">X</a></span>
+
                       </div>
-                        </li>`;
+
+                        </li>
+                        `;
                             templatelit2 = templatelit2 + temp;
                         } else {
                             let temp = `<li class=" mb-2 m-0 p-0" >
                         <div class="form-check form-check-inline p-0 m-0">
-                        <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})" checked>
-                        <label class="form-check-label" for="task${task.id}Check${comm.id}"><strike>${comm.data} </strike>- ${task.user.username}</label>
+                        <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})" checked><span><strike>${comm.data} </strike>- ${task.user.username}<a class="ml-1" onclick="deleteTask(${task.id}, ${comm.id})" style="cursor:pointer">X</a></span>
+
                       </div>
                         </li>`;
                             templatelit2 = templatelit2 + temp;
@@ -587,4 +589,18 @@ function dotsMenuOpen(id){
 function dotsMenuClose(id){
     document.getElementById('div'+id).style.display = 'none';
 
+}
+
+function deleteTask(id, comm){
+    console.log(id + ' ' + comm);
+    fetch("/deleteTask/" + id + '/' + comm)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            getTasks();
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
 }

@@ -44,6 +44,7 @@ function getUsers() {
             users = Object.values(data);
         }
     });
+
 }
 
 function getProjectsByClient(button) {
@@ -148,12 +149,32 @@ $("#EventBtnForm").submit(function(e) {
     e.preventDefault();
     saveButton("Event");
 });
+
 $("#closeTask").click(function(e){
-    document.getElementById("TaskBtnForm").reset();
     document.getElementById('commentTaskBtn').innerHTML = ` <label for="TaskBtnMessage1" class="text-muted">Tasks</label>
         <input type="text" name="TaskBtnMessage1" id="TaskBtnMessage1" class="form-control" placeholder="Task 1" required>`
         document.getElementById('commentsCant').setAttribute('value', 1);
-});
+        var userBox = document.getElementById('usersSelectBox');
+
+        var cantInp = document.getElementById('TaskBtnUserCant').setAttribute('value', 0);
+        userBox.innerHTML =`
+        <select name="TaskBtnUserSelect0" id="TaskBtnUserSelect0" class="custom-select" required>
+                        <option value="null">Select...</option>
+                    </select>
+                    `;
+                    $.ajax({
+                        url: "/getUsers",
+                        type: "get",
+                        async: false,
+                        success: function(data) {
+                            users = Object.values(data);
+                            var select0 = document.getElementById('TaskBtnUserSelect0');
+                            users.map(function(user) {
+                                select0.innerHTML = select0.innerHTML.concat(`<option value="${user.id}">${user.username}</option>`);
+                            });
+                        }
+                    });
+    });
 
 function saveButton(button) {
     console.log("si");

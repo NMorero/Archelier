@@ -272,6 +272,16 @@ class HomeController extends Controller
         return $posts;
     }
 
+    public function deleteTask($id, $comm){
+        $task = Tasks::find($id);
+        $comments = json_decode($task->message);
+        for($i = 0; $i < count($comments); $i++){
+            if($comments[$i]->id==$comm){
+                unset($comments[$i]);
+            }
+        }
+        return ['status' => 'ok'];
+    }
 
     public function getReminders()
     {
