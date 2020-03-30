@@ -432,9 +432,9 @@ function getTasks(scrolled) {
                 }
 
                 var userLoged = document.getElementById('userLoged').value;
-
+                var rol = document.getElementById('rolLoged').value;
                 tasks.projects.map(function(task) {
-                    if(userLoged == task.created_by){
+                    if(userLoged == task.created_by || rol == 1){
                         let tasksBox2 = document.getElementById("tasks" + i);
 
                     const templateLiteral = `
