@@ -250,6 +250,12 @@ class HomeController extends Controller
                 $post['feedback'] = $post->feedback;
             }
 
+            $client = Clients::find($post->client_id);
+            $post['client'] = $client->client_name;
+
+            $project = Projects::find($post['project_id']);
+
+            $post['project'] = $project->project_name;
 
             $project = Projects::find($post['project_id']);
             $post['project_name'] = $project['project_name'];
