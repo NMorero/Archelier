@@ -275,9 +275,16 @@ class HomeController extends Controller
     public function deleteTask($id, $comm){
         $task = Tasks::find($id);
         $comments = json_decode($task->message);
-        for($i = 0; $i < count($comments); $i++){
-            if($comments[$i]->id==$comm){
-                unset($comments[$i]);
+        if(count($comments) == 1){
+            $task->delete();
+        }else{
+            for($i = 0; $i < count($comments); $i++){
+                if($comments[$i]->id == $comm){
+                    unset($comments[$i]);
+                    $task->message = json_encode($comments);
+                    $task->save();
+                    return ['status' => 'ok'];
+                }
             }
         }
         return ['status' => 'ok'];
