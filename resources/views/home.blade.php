@@ -22,7 +22,7 @@ Home
 
 
 
-
+    <input type="number" value="{{auth()->id()}}" id="userLoged" hidden>
   <header class="header-base p-2 justify-content-between d-flex row d-block d-lg-none" id="headerMobile">
       <div class="pos-f-t col-6">
           <nav class="navbar navbar-dark bg-dark">

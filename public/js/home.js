@@ -431,9 +431,11 @@ function getTasks(scrolled) {
                 tasksBox.innerHTML = tasksBox.innerHTML.concat(templateLiteral);
                 }
 
+                var userLoged = document.getElementById('userLoged').value;
 
                 tasks.projects.map(function(task) {
-                    let tasksBox2 = document.getElementById("tasks" + i);
+                    if(userLoged == task.created_by){
+                        let tasksBox2 = document.getElementById("tasks" + i);
 
                     const templateLiteral = `
                         <div class="row m-0 p-0"><ul class="p-0 m-0" style="list-style-type: none;">`;
@@ -472,6 +474,48 @@ function getTasks(scrolled) {
                         tasksBox2.innerHTML = tasksBox2.innerHTML.concat(
                             templateLiteral + templatelit2
                         );
+                    }
+                    }else{
+                        let tasksBox2 = document.getElementById("tasks" + i);
+
+                    const templateLiteral = `
+                        <div class="row m-0 p-0"><ul class="p-0 m-0" style="list-style-type: none;">`;
+                    let comments = JSON.parse(task.message);
+                    let templatelit2 = ``;
+                    comments.map(function(comm) {
+                        if (comm.status == 1) {
+                            let temp = `<li class=" mb-2 m-0 p-0">
+                        <div class="form-check form-check-inline m-0 p-0">
+                        <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})"><span>${comm.data} - ${task.user.username} </span>
+
+                      </div>
+
+                        </li>
+                        `;
+                            templatelit2 = templatelit2 + temp;
+                        } else {
+                            let temp = `<li class=" mb-2 m-0 p-0" >
+                        <div class="form-check form-check-inline p-0 m-0">
+                        <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})" checked><span><strike>${comm.data} </strike>- ${task.user.username}</span>
+
+                      </div>
+                        </li>`;
+                            templatelit2 = templatelit2 + temp;
+                        }
+                    });
+
+                    if (task.client && task.client.length) {
+                        const templatelit3 = `</ul><p class="taskFooter text-right col-12">${task.client.client_name} // ${task.project.project_name} // ${task.user.username}</p>
+                        </div>
+                        `;
+                        tasksBox2.innerHTML = tasksBox2.innerHTML.concat(
+                            templateLiteral + templatelit2 + templatelit3
+                        );
+                    } else {
+                        tasksBox2.innerHTML = tasksBox2.innerHTML.concat(
+                            templateLiteral + templatelit2
+                        );
+                    }
                     }
                 });
 

@@ -590,6 +590,8 @@ class HomeController extends Controller
             if (isset($formData['view']) && !empty($formData['view'])) {
                 $task->view_id = $formData['view'];
             }
+
+            $task->created_by = auth()->id();
             $task->save();
         }
 
