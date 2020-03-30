@@ -53,7 +53,7 @@ class HomeController extends Controller
             $devProjects = ProjectDevelopers::where('developer_id','LIKE',$dev[0]->id)->get();
 
             foreach($devProjects as $devProject){
-                $project = Projects::find($devProject->id);
+                $project = Projects::find($devProject->project_id);
                 $client = Clients::find($project->client_id);
                 $clients[] = $client;
             }
