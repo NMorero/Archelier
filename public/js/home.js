@@ -127,7 +127,7 @@ function getPosts() {
                         <button class="btn border-bottom" onclick="deletePost(${post.id})">Delete</button><br>
                         <button class="btn" onclick="dotsMenuClose(${post.id})">Close</button>
                     </div>
-                    <p class=" col-8 text-right postInfo mb-0">${post.client} - ${post.project} - ${post.user_name} - ${post.date} </p>
+                    <p class=" col-8 text-right postInfo mb-0">${post.client} - ${post.project} - ${post.user_name} - ${post.date} - ${post.time}</p>
                     <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
                     <img src="${post.image}" class="postImage" alt="">
 
@@ -140,14 +140,14 @@ function getPosts() {
                     } else {
                         const templateLiteral = `
                     <div class="row border-botBlue my-2 py-2">
-                    <p class=" col-6 text-dark" onclick="dotsMenuOpen(${post.id})" >
+                    <p class=" col-4 text-dark" onclick="dotsMenuOpen(${post.id})" >
                     <i class="fas fa-ellipsis-h"></i>
                     </p>
                     <div class="rounded bg-white mt-3 ml-2 infoHover border p-2 dotsMenu" id="div${post.id}" style="display:none;position:absolute;z-index:400">
                         <button class="btn border-bottom" onclick="deletePost(${post.id})">Delete</button><br>
                         <button class="btn" onclick="dotsMenuClose(${post.id})">Close</button>
                     </div>
-                    <p class=" col-6 text-right postInfo mb-0">${post.client} - ${post.project} - ${post.user_name} - ${post.date} </p>
+                    <p class=" col-8 text-right postInfo mb-0">${post.client} - ${post.project} - ${post.user_name} - ${post.date} - ${post.time}</p>
                     <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
 
 
@@ -160,7 +160,7 @@ function getPosts() {
                 } else if (post.type == "feedbackCreate") {
                     const templateLiteral = `
                     <a href="/Feedback/Edit/${post.feedback_id}" class="row border-botBlue p-1 text-decoration-none text-dark justify-content-between my-2 py-2">
-                        <p class=" col-12 text-right postInfo mb-0">${post.client} - ${post.project} - ${post.user_name} - ${post.date} </p>
+                        <p class=" col-12 text-right postInfo mb-0">${post.client} - ${post.project} - ${post.user_name} - ${post.date} - ${post.time}</p>
                         <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
                         <ul>
 

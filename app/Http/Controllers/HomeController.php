@@ -263,7 +263,8 @@ class HomeController extends Controller
 
             $date = $post['created_at'];
 
-
+            $time = date('H:i', strtotime($date));
+            $post['time'] = $time;
             $date = date('d-m-y', strtotime($post['created_at']));
             //Print out the day that our date fell on.
             $post['date'] = $date;
