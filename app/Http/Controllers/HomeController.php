@@ -150,7 +150,7 @@ class HomeController extends Controller
                 $dev = Developers::where('user_id', 'LIKE', $id)->get();
                 $devProjects = ProjectDevelopers::where('developer_id','LIKE',$dev[0]->id)->get();
                 foreach($devProjects as $devProject){
-                    $project = Projects::find($devProject->id);
+                    $project = Projects::find($devProject->project_id);
                     $post = Posts::where('project_id', 'LIKE', $project->id)->orderBy('id', 'DESC')->get();
                     foreach($post as $po){
                         $posts[$po->id] = $po;
