@@ -346,11 +346,12 @@ function getReminders() {
 
 
             }
+            var actualPage = document.getElementById('actualPage').value;
             var pages = document.getElementsByClassName('page');
             for(var i = 0; i < pages.length; i++) {
                 pages[i].style.display = 'none';
             }
-            document.getElementById('Page1').style.display = 'block';
+            document.getElementById('Page'+actualPage).style.display = 'block';
         })
         .catch(function(error) {
             console.log(error);
