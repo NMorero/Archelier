@@ -134,7 +134,8 @@ function getCarousel(){
               });
 
               data.map(function(project) {
-                var imgModal = document.getElementById('imgPro'+project.id);
+                if(project.status == 'ongoing'){
+                    var imgModal = document.getElementById('imgPro'+project.id);
                 console.log('views:'+project.views);
                 console.log(imgModal);
                 project.views.map(function(view) {
@@ -150,6 +151,8 @@ function getCarousel(){
                     debBox.innerHTML = debBox.innerHTML.concat(`<h5>${mDev.module}</h5><h6>- ${mDev.developer}</h6>`);
                 });
                 debBox.innerHTML = debBox.innerHTML.concat(`<button class=" buttons-header" data-toggle="modal" data-target="#moduleModal${project.id}">+ Module</button>`);
+                }
+
             });
 
         })
