@@ -488,6 +488,8 @@ function _via_init_mouse_handlers() {
 //
 
 function download_as_image() {
+    var buttonSumbmit = document.getElementById('submitFeedback');
+    buttonSumbmit.disabled = true;
     if (
         _via_display_area_content_name !==
         VIA_DISPLAY_AREA_CONTENT_NAME["IMAGE"]

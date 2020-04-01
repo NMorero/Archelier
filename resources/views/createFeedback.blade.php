@@ -354,7 +354,7 @@
                 </select>
             </div>
 
-            <span class="button mt-2 ml-3 p-2" onclick="download_as_image()" title="Download an image containing the annotations">Save</span>
+            <button class="btn  mt-2 ml-3 p-2 btn-primary" onclick="download_as_image()" id="submitFeedback" title="Download an image containing the annotations" >Save</button>
 
 
 
