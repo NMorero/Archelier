@@ -179,7 +179,7 @@ $("#closeTask").click(function(e){
     });
 
 function saveButton(button) {
-    document.getElementById('submit'+button).attr('disabled', true);
+    document.getElementById('submit'+button).disabled = true;
     console.log("si");
     let formData = {
         status: null,
@@ -315,5 +315,5 @@ function saveButton(button) {
         .catch(function(error) {
             console.log(error);
         });
-        document.getElementById('submit'+button).attr('disabled', false);
+        document.getElementById('submit'+button).disabled = false;
 }
