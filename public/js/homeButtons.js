@@ -1,4 +1,5 @@
 $("#postBtnForm").on("submit", function(e) {
+    document.getElementById('submitPost').attr('disabled', true);
     e.preventDefault();
     console.log("si");
     var f = $(this);
@@ -20,6 +21,7 @@ $("#postBtnForm").on("submit", function(e) {
         getPosts();
         $("#closePostBtn").click();
     });
+    document.getElementById('submitPost').attr('disabled', false);
 });
 
 var users = "";
@@ -177,6 +179,7 @@ $("#closeTask").click(function(e){
     });
 
 function saveButton(button) {
+    document.getElementById('submit'+button).attr('disabled', true);
     console.log("si");
     let formData = {
         status: null,
@@ -312,4 +315,5 @@ function saveButton(button) {
         .catch(function(error) {
             console.log(error);
         });
+        document.getElementById('submit'+button).attr('disabled', false);
 }

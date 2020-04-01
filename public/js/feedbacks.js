@@ -9,6 +9,8 @@
 
     });
 $("#editFeedback").on("submit", function(e){
+    var button = document.getElementById('submitFeedback');
+    button.disabled = true;
     e.preventDefault();
     console.log('si')
     var f = $(this);

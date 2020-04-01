@@ -66,7 +66,7 @@
 
                 <div class="modal-footer col-12">
                   <button type="button" class="btn btn-secondary" id="closeTask" data-dismiss="modal">Cancel</button>
-                  <button type="submit" class="btn btn-primary" >Done</button>
+                  <button type="submit" class="btn btn-primary" id="submitTask">Done</button>
                 </div>
               </form>
 
@@ -122,7 +122,7 @@
 
                 <div class="modal-footer col-12">
                   <button type="button" class="btn btn-secondary" id="closeDelivery" data-dismiss="modal">Cancel</button>
-                  <button type="submit" class="btn btn-primary" >Done</button>
+                  <button type="submit" class="btn btn-primary" id="submitDelivery">Done</button>
                 </div>
 
             </form>
@@ -198,7 +198,7 @@
                 </div>
                 <div class="modal-footer col-12">
                   <button type="button" class="btn btn-secondary" id="closeEvent" data-dismiss="modal">Cancel</button>
-                  <button type="submit" class="btn btn-primary" >Done</button>
+                  <button type="submit" class="btn btn-primary" id="submitEvent">Done</button>
                 </div>
             </form>
         </div>
@@ -261,7 +261,7 @@
 
                 <div class="modal-footer col-12">
                     <button type="button" class="btn btn-secondary" id="closePostBtn" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Done</button>
+                    <button type="submit" class="btn btn-primary" id="submitPost">Done</button>
                   </div>
             </form>
         </div>
@@ -290,7 +290,7 @@
 
                 <div class="modal-footer col-12">
                   <button type="button" class="btn btn-secondary" id="closeReminder" data-dismiss="modal">Cancel</button>
-                  <button type="submit" class="btn btn-primary" >Done</button>
+                  <button type="submit" class="btn btn-primary" id="submitReminder">Done</button>
                 </div>
             </form>
         </div>

@@ -23,7 +23,7 @@
                     <label class="custom-control-label" for="comment{{$comment['id']}}" >{{$comment['comment']}}</label>
                 </div>
                 @endforeach
-                <button type="submit" class="btn btn-info mt-3">Save</button>
+                <button type="submit" class="btn btn-info mt-3" id="submitFeedback" disabled="false">Save</button>
             </form>
         </div>
     </main>
