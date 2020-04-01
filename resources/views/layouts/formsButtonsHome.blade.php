@@ -260,7 +260,7 @@
 
 
                 <div class="modal-footer col-12">
-                    <button type="button" class="btn btn-secondary" id="closePostBtn" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" id="closePostBtn" data-dismiss="modal" onclick="resteForm()">Cancel</button>
                     <button type="submit" class="btn btn-primary" id="submitPost">Done</button>
                   </div>
             </form>

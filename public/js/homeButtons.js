@@ -1,3 +1,8 @@
+
+function resteForm(){
+    document.getElementById("postBtnForm").reset();
+}
+
 $("#postBtnForm").on("submit", function(e) {
     document.getElementById('submitPost').disabled = true;
     e.preventDefault();
