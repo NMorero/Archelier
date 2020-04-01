@@ -1,5 +1,5 @@
 $("#postBtnForm").on("submit", function(e) {
-    document.getElementById('submitPost').attr('disabled', true);
+    document.getElementById('submitPost').disabled = true;
     e.preventDefault();
     console.log("si");
     var f = $(this);
@@ -21,7 +21,7 @@ $("#postBtnForm").on("submit", function(e) {
         getPosts();
         $("#closePostBtn").click();
     });
-    document.getElementById('submitPost').attr('disabled', false);
+    document.getElementById('submitPost').disable = false;
 });
 
 var users = "";
