@@ -445,19 +445,22 @@ function getTasks(scrolled) {
                         if (comm.status == 1) {
                             let temp = `<li class=" mb-2 m-0 p-0">
                         <div class="form-check form-check-inline m-0 p-0">
-                        <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})"><span>${comm.data} - ${task.user.username} <a class="ml-1" onclick="deleteTask(${task.id} , ${comm.id})" style="cursor:pointer">X</a></span>
+                        <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})"><span>${comm.data}</span>
 
                       </div>
-
+                      <br>
+                            <span class="postInfo">${task.client.client_name} - ${task.project.project_name} - ${task.user.username} <a class="ml-1" onclick="deleteTask(${task.id} , ${comm.id})" style="cursor:pointer">X</a></span>
                         </li>
                         `;
                             templatelit2 = templatelit2 + temp;
                         } else {
                             let temp = `<li class=" mb-2 m-0 p-0" >
                         <div class="form-check form-check-inline p-0 m-0">
-                        <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})" checked><span><strike>${comm.data} </strike>- ${task.user.username}<a class="ml-1" onclick="deleteTask(${task.id}, ${comm.id})" style="cursor:pointer">X</a></span>
+                        <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})" checked><span><strike>${comm.data} </strike></span>
 
                       </div>
+                      <br>
+                      <span class="postInfo"> ${task.client.client_name} - ${task.project.project_name} - ${task.user.username}<a class="ml-1" onclick="deleteTask(${task.id}, ${comm.id})" style="cursor:pointer">X</a></span>
                         </li>`;
                             templatelit2 = templatelit2 + temp;
                         }

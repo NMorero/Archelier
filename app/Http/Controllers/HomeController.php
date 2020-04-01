@@ -401,11 +401,12 @@ class HomeController extends Controller
 
         foreach ($tasksDB as $task) {
             $task['user'] = $task->user;
-            if (isset($task->client_id) && !empty($task->client_id)) {
+
                 $task['project'] = $task->project;
                 $task['client'] = $task->client->person;
-            }
+
             $endDate = $task->end_date;
+
 
         }
         $year = '2020';
