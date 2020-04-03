@@ -643,8 +643,8 @@ class HomeController extends Controller
         if (isset($request['PostBtnViewSelect']) && !empty($request['PostBtnViewSelect']) && $request['PostBtnViewSelect'] != 'none') {
             $post->view_id = $request['PostBtnViewSelect'];
         }
-        $image = $request['PostBtnFile']->make('public/Test/test.jpg')->resize(300, 200);
-        return ['status' => 'ok'];
+        
+        
         if (isset($request['PostBtnFile']) && !empty($request['PostBtnFile'])) {
             $imageName = date("Y-m-d") . '-' . time() . '.' . $request['PostBtnFile']->getClientOriginalExtension();
             $request['PostBtnFile']->move(
