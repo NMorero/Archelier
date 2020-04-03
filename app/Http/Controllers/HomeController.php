@@ -20,11 +20,16 @@ use App\ProjectViews;
 use App\Reminders;
 use App\Tasks;
 use App\Templates;
+use App\Tickets;
 use App\User;
 use App\Views;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+
+// import the Intervention Image Manager Class
+use Intervention\Image\ImageManager;
 
 class HomeController extends Controller
 {
@@ -85,6 +90,14 @@ class HomeController extends Controller
         $vac = compact('clients');
         return view('home', $vac);
     }
+
+    public function addTicket(Request $request){
+        return $request;
+        $ticket = new Tickets;
+        $ticket->message = $request['data'];
+
+    }
+
 
     public function test()
     {
@@ -630,8 +643,8 @@ class HomeController extends Controller
         if (isset($request['PostBtnViewSelect']) && !empty($request['PostBtnViewSelect']) && $request['PostBtnViewSelect'] != 'none') {
             $post->view_id = $request['PostBtnViewSelect'];
         }
-
-
+        $image = $request['PostBtnFile']->make('public/Test/test.jpg')->resize(300, 200);
+        return ['status' => 'ok'];
         if (isset($request['PostBtnFile']) && !empty($request['PostBtnFile'])) {
             $imageName = date("Y-m-d") . '-' . time() . '.' . $request['PostBtnFile']->getClientOriginalExtension();
             $request['PostBtnFile']->move(

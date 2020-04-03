@@ -124,7 +124,15 @@ class FeedbackController extends Controller
 
 
 
-
+    public function deleteFeedback($id){
+        $posts = Posts::where('feedback_id', 'LIKE', $id)->get();
+        foreach($posts as $post){
+            $post->delete();
+        }
+        $feedback = Feedbacks::find($id);
+        $feedback->delete();
+        return ['status' => 'ok'];
+    }
 
     public function edit($id)
     {
