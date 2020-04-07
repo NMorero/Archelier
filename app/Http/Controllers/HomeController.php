@@ -653,24 +653,35 @@ class HomeController extends Controller
             $imageName = date("Y-m-d") . '-' . time() . '.' . $request['PostBtnFile']->getClientOriginalExtension();
 
 
-            $post->image = '/upload/posts/' . $imageName;
+            $post->image = '/upload/posts/thumbnails/' . $imageName;
+            $post->image_original = '/upload/posts/' . $imageName;
             $img = $request->file('PostBtnFile')->getRealPath();
-
             $resized = Image::make($img);
             $width = $resized->width();
             $height = $resized->height();
 
+            $resized2 = Image::make($img);
+
             if(($width / $height) >= 1.77){
                 $resized->resize(478, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $resized2->resize(1920, null, function ($constraint) {
                     $constraint->aspectRatio();
                 });
             }else{
                 $resized->resize(null, 270, function ($constraint) {
                     $constraint->aspectRatio();
                 });
+
+                $resized2->resize(null, 1080, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
             }
 
-            $resized->save('upload/posts/' . $imageName);
+            $resized->save('upload/posts/thumbnails/' . $imageName);
+            $resized2->save('upload/posts/' . $imageName);
         }
         $post->save();
 
