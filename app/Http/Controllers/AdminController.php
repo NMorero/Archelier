@@ -28,6 +28,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
+
+// include composer autoload
+require '../vendor/autoload.php';
+
+// import the Intervention Image Manager Class
+use Intervention\Image\ImageManagerStatic as Image;
+
+// configure with favored image driver (gd by default)
+Image::configure(array('driver' => 'imagick'));
+
+
 class AdminController extends Controller
 {
     /**
@@ -738,11 +749,25 @@ class AdminController extends Controller
         if(isset($request['thumbnail']) && !empty($request['thumbnail'])){
 
             $imageName = date("Y-m-d") . '-' . time() . '.' . $request['thumbnail']->getClientOriginalExtension();
-            $request['thumbnail']->move(
-                base_path() . '/public/upload/posts/thumbnails',
-                $imageName
-            );
+
                 $project->thumbnail ='/upload/posts/thumbnails/' . $imageName;;
+                $img = $request->file('thumbnail')->getRealPath();
+
+                $resized = Image::make($img);
+                $width = $resized->width();
+                $height = $resized->height();
+
+                if(($width / $height) >= 1.77){
+                    $resized->resize(478, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                }else{
+                    $resized->resize(null, 270, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                }
+
+                $resized->save('upload/posts/thumbnails/' . $imageName);
             }
 
 

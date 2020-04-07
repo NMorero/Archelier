@@ -27,9 +27,14 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+// include composer autoload
+require '../vendor/autoload.php';
 
 // import the Intervention Image Manager Class
-use Intervention\Image\ImageManager;
+use Intervention\Image\ImageManagerStatic as Image;
+
+// configure with favored image driver (gd by default)
+Image::configure(array('driver' => 'imagick'));
 
 class HomeController extends Controller
 {
@@ -625,7 +630,6 @@ class HomeController extends Controller
     {
 
 
-
         $post = new Posts;
         $post->title = $request['PostBtnTitle'];
         $post->message = $request['PostBtnMessage'];
@@ -643,16 +647,30 @@ class HomeController extends Controller
         if (isset($request['PostBtnViewSelect']) && !empty($request['PostBtnViewSelect']) && $request['PostBtnViewSelect'] != 'none') {
             $post->view_id = $request['PostBtnViewSelect'];
         }
-        
-        
+
+
         if (isset($request['PostBtnFile']) && !empty($request['PostBtnFile'])) {
             $imageName = date("Y-m-d") . '-' . time() . '.' . $request['PostBtnFile']->getClientOriginalExtension();
-            $request['PostBtnFile']->move(
-                base_path() . '/public/upload/posts',
-                $imageName
-            );
+
 
             $post->image = '/upload/posts/' . $imageName;
+            $img = $request->file('PostBtnFile')->getRealPath();
+
+            $resized = Image::make($img);
+            $width = $resized->width();
+            $height = $resized->height();
+
+            if(($width / $height) >= 1.77){
+                $resized->resize(478, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }else{
+                $resized->resize(null, 270, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
+
+            $resized->save('upload/posts/' . $imageName);
         }
         $post->save();
 
