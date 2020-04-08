@@ -118,7 +118,9 @@ function getPosts() {
             data.map(function(post) {
                 if (post.type == "post") {
                     if (post.image != null) {
-                        const templateLiteral = `
+                        var propor = post.image.width / post.image.height;
+                        if(propor >= 1.33){
+                            const templateLiteral = `
                     <div class="row border-botBlue my-2 py-2">
                     <p class=" col-2 text-dark" onclick="dotsMenuOpen(${post.id})" >
                     <i class="fas fa-ellipsis-h"></i>
@@ -137,6 +139,47 @@ function getPosts() {
                         divPosts.innerHTML = divPosts.innerHTML.concat(
                             templateLiteral
                         );
+                        }else if(propor < 1.33 && propor >= 1){
+                            const templateLiteral = `
+                    <div class="row border-botBlue my-2 py-2">
+                    <p class=" col-2 text-dark" onclick="dotsMenuOpen(${post.id})" >
+                    <i class="fas fa-ellipsis-h"></i>
+                    </p>
+                    <div class="rounded bg-white mt-3 ml-2 infoHover border p-2 dotsMenu" id="div${post.id}" style="display:none;position:absolute;z-index:400">
+                        <button class="btn border-bottom" onclick="deletePost(${post.id})">Delete</button><br>
+                        <button class="btn" onclick="dotsMenuClose(${post.id})">Close</button>
+                    </div>
+                    <p class=" col-10 text-right postInfo mb-0">${post.client} - ${post.project} - ${post.user_name} - ${post.date} - ${post.time}</p>
+                    <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
+                    <div class="col-12 px-3"><img src="${post.image}" class="postImage" alt="" ></div>
+
+
+                </div>
+                    `;
+                        divPosts.innerHTML = divPosts.innerHTML.concat(
+                            templateLiteral
+                        );
+                        }else{
+                            const templateLiteral = `
+                    <div class="row border-botBlue my-2 py-2">
+                    <p class=" col-2 text-dark" onclick="dotsMenuOpen(${post.id})" >
+                    <i class="fas fa-ellipsis-h"></i>
+                    </p>
+                    <div class="rounded bg-white mt-3 ml-2 infoHover border p-2 dotsMenu" id="div${post.id}" style="display:none;position:absolute;z-index:400">
+                        <button class="btn border-bottom" onclick="deletePost(${post.id})">Delete</button><br>
+                        <button class="btn" onclick="dotsMenuClose(${post.id})">Close</button>
+                    </div>
+                    <p class=" col-10 text-right postInfo mb-0">${post.client} - ${post.project} - ${post.user_name} - ${post.date} - ${post.time}</p>
+                    <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
+                    <div class="col-12 px-5 py-0"><img src="${post.image}" class="postImage" ></div>
+
+
+                </div>
+                    `;
+                        divPosts.innerHTML = divPosts.innerHTML.concat(
+                            templateLiteral
+                        );
+                        }
                     } else {
                         const templateLiteral = `
                     <div class="row border-botBlue my-2 py-2">
