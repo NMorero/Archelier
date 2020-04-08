@@ -526,6 +526,8 @@ function getTasks(scrolled) {
                         <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})"><span>${comm.data} - ${task.user.username} </span>
 
                       </div>
+                      <br>
+                      <span class="postInfo"> ${task.client.client_name} - ${task.project.project_name} - ${task.user.username} </span>
 
                         </li>
                         `;
@@ -533,9 +535,11 @@ function getTasks(scrolled) {
                         } else {
                             let temp = `<li class=" mb-2 m-0 p-0" >
                         <div class="form-check form-check-inline p-0 m-0">
-                        <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})" checked><span><strike>${comm.data} </strike>- ${task.user.username}</span>
+                        <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})" checked><span><strike>${comm.data} </strike></span>
 
                       </div>
+                      <br>
+                      <span class="postInfo"> ${task.client.client_name} - ${task.project.project_name} - ${task.user.username} </span>
                         </li>`;
                             templatelit2 = templatelit2 + temp;
                         }
