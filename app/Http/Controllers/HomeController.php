@@ -511,7 +511,7 @@ class HomeController extends Controller
                 array_push($tasks[$endDate]['projects'], $taskDB);
             }
         }
-
+        
         foreach ($events as $event) {
             $endDateEvent = $event->end_date;
             if (array_key_exists($endDateEvent, $tasks)) {
