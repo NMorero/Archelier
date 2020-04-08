@@ -782,13 +782,37 @@ class AdminController extends Controller
 
         $image = new Images;
         $imageName = date("Y-m-d") . '-' . time() . '.' . $request['image']->getClientOriginalExtension();
-        $request['image']->move(
-            base_path() . '/public/upload/views',
-            $imageName
-        );
+        $img = $request->file('PostBtnFile')->getRealPath();
+            $resized = Image::make($img);
+            $width = $resized->width();
+            $height = $resized->height();
+
+            $resized2 = Image::make($img);
+
+            if(($width / $height) >= 1.77){
+                $resized->resize(478, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $resized2->resize(1920, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }else{
+                $resized->resize(null, 270, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $resized2->resize(null, 1080, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
+
+            $resized->save('upload/views/thumbnails/' . $imageName, 100);
+            $resized2->save('upload/views/' . $imageName, 100);
 
 
-        $image->image_route = '/upload/views/' . $imageName;
+        $image->image_route = '/upload/views/thumbnails/' . $imageName;
+        $image->image_original = 'upload/views/' . $imageName;
         $image->save();
 
         $view = new Views;
