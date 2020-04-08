@@ -116,8 +116,8 @@ class FeedbackController extends Controller
                 });
             }
 
-            $resized->save('upload/feedbacks/thumbnails/' . $imageName);
-            $resized2->save('upload/feedbacks/' . $imageName);
+            $resized->save('upload/feedbacks/thumbnails/' . $imageName, 100);
+            $resized2->save('upload/feedbacks/' . $imageName, 100);
 
 
 
