@@ -311,7 +311,7 @@ class HomeController extends Controller
     public function getReminders()
     {
         $id = Auth::user()->id;
-        $reminders = Reminders::where('user_id', 'LIKE', $id)->get();
+        $reminders = Reminders::where('user_id', 'LIKE', $id)->orderBy('id')->get();
         return $reminders;
     }
     public function deleteReminder($id)
@@ -511,7 +511,7 @@ class HomeController extends Controller
                 array_push($tasks[$endDate]['projects'], $taskDB);
             }
         }
-        
+
         foreach ($events as $event) {
             $endDateEvent = $event->end_date;
             if (array_key_exists($endDateEvent, $tasks)) {
