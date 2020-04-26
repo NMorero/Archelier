@@ -28,6 +28,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
+
+// include composer autoload
+require '../vendor/autoload.php';
+
+// import the Intervention Image Manager Class
+use Intervention\Image\ImageManagerStatic as Image;
+
+// configure with favored image driver (gd by default)
+Image::configure(array('driver' => 'imagick'));
+
+
 class AdminController extends Controller
 {
     /**
@@ -738,11 +749,25 @@ class AdminController extends Controller
         if(isset($request['thumbnail']) && !empty($request['thumbnail'])){
 
             $imageName = date("Y-m-d") . '-' . time() . '.' . $request['thumbnail']->getClientOriginalExtension();
-            $request['thumbnail']->move(
-                base_path() . '/public/upload/posts/thumbnails',
-                $imageName
-            );
+
                 $project->thumbnail ='/upload/posts/thumbnails/' . $imageName;;
+                $img = $request->file('thumbnail')->getRealPath();
+
+                $resized = Image::make($img);
+                $width = $resized->width();
+                $height = $resized->height();
+
+                if(($width / $height) >= 1.77){
+                    $resized->resize(478, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                }else{
+                    $resized->resize(null, 270, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                }
+
+                $resized->save('upload/posts/thumbnails/' . $imageName);
             }
 
 
@@ -757,13 +782,37 @@ class AdminController extends Controller
 
         $image = new Images;
         $imageName = date("Y-m-d") . '-' . time() . '.' . $request['image']->getClientOriginalExtension();
-        $request['image']->move(
-            base_path() . '/public/upload/views',
-            $imageName
-        );
+        $img = $request->file('PostBtnFile')->getRealPath();
+            $resized = Image::make($img);
+            $width = $resized->width();
+            $height = $resized->height();
+
+            $resized2 = Image::make($img);
+
+            if(($width / $height) >= 1.77){
+                $resized->resize(478, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $resized2->resize(1920, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }else{
+                $resized->resize(null, 270, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $resized2->resize(null, 1080, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
+
+            $resized->save('upload/views/thumbnails/' . $imageName, 100);
+            $resized2->save('upload/views/' . $imageName, 100);
 
 
-        $image->image_route = '/upload/views/' . $imageName;
+        $image->image_route = '/upload/views/thumbnails/' . $imageName;
+        $image->image_original = 'upload/views/' . $imageName;
         $image->save();
 
         $view = new Views;

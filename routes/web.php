@@ -17,6 +17,8 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
+Route::post('/addTicket', 'HomeController@addTicket');
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -52,6 +54,8 @@ Route::get('/addReminder/{formData}', 'HomeController@addReminder');
 Route::get('/addTask/{formData}', 'HomeController@addTask');
 
 Route::post('/addPost', 'HomeController@addPost');
+
+Route::get('/deleteFeedback/{id}', 'FeedbackController@deleteFeedback');
 
 Route::get('/addEvent/{formData}', 'HomeController@addEvent');
 

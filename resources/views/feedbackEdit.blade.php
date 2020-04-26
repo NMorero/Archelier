@@ -5,7 +5,7 @@
 @section('content')
     <main class="container-fluid row d-flex py-2 justify-content-between pr-1">
         <div class="col-9" style="height:85vh">
-            <img src="/{{$feedback->image}}" alt="" height="100%" width="100%">
+            <img src="/{{$feedback->image_original}}" alt="" height="100%" width="100%">
         </div>
 
         <div class="col-3 ">

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href=" {{asset('/css/master.css')}} ">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Muli:400,500&display=swap" rel="stylesheet">
@@ -23,11 +24,17 @@
             <div class="col-4 row justify-content-between">
                 <div class="col-2  pt-1 dropdownBox ">
                     <span class=" dropBtn rounded-circle bg-secondary p-2 text-white" style="cursor:pointer;">{{substr(auth()->user()->person->name, 0, 1)}}{{substr(auth()->user()->person->last_name, 0, 1)}}</span>
-                    <div class="dropdownContent text-center rounded" >
-                        <a class="text-center text-decoration-none color-lightGrey" href="/logout">Log Out</a>
+                    <div class="dropdownContent text-center rounded row" >
+                        <a class="text-center text-decoration-none color-lightGrey col-12"  href="/logout">Log Out</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
+                        <!-- Button trigger modal -->
+                            <a class="text-center text-decoration-none color-lightGrey col-12" data-toggle="modal" href="#ticketModal">
+                                Ticket
+                            </a>
+
+
                     </div>
                 </div>
                 <div class="row col-10 justify-content-around pt-1">
@@ -45,7 +52,23 @@
             <a href="/Feedback/Create" class="col-xl-5 col-lg-6 buttons-header text-center text-center text-decoration-none shadow px-2">Feedback</a>
             </div>
           </nav>
+           <!-- Modal -->
+           <div class="modal " id="ticketModal" tabindex="-1" role="dialog" aria-labelledby="ticketModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="ticketModalLabel">New ticket</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
 
+            </div>
+            </div>
+        </div>
     </header>
 
 
@@ -65,5 +88,6 @@
     @section('scripts')
 
     @show
+
 </body>
 </html>

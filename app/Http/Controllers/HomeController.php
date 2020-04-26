@@ -20,11 +20,21 @@ use App\ProjectViews;
 use App\Reminders;
 use App\Tasks;
 use App\Templates;
+use App\Tickets;
 use App\User;
 use App\Views;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+// include composer autoload
+require '../vendor/autoload.php';
+
+// import the Intervention Image Manager Class
+use Intervention\Image\ImageManagerStatic as Image;
+
+// configure with favored image driver (gd by default)
+Image::configure(array('driver' => 'imagick'));
 
 class HomeController extends Controller
 {
@@ -85,6 +95,14 @@ class HomeController extends Controller
         $vac = compact('clients');
         return view('home', $vac);
     }
+
+    public function addTicket(Request $request){
+        return $request;
+        $ticket = new Tickets;
+        $ticket->message = $request['data'];
+
+    }
+
 
     public function test()
     {
@@ -293,7 +311,7 @@ class HomeController extends Controller
     public function getReminders()
     {
         $id = Auth::user()->id;
-        $reminders = Reminders::where('user_id', 'LIKE', $id)->get();
+        $reminders = Reminders::where('user_id', 'LIKE', $id)->orderBy('id')->get();
         return $reminders;
     }
     public function deleteReminder($id)
@@ -612,7 +630,6 @@ class HomeController extends Controller
     {
 
 
-
         $post = new Posts;
         $post->title = $request['PostBtnTitle'];
         $post->message = $request['PostBtnMessage'];
@@ -634,12 +651,37 @@ class HomeController extends Controller
 
         if (isset($request['PostBtnFile']) && !empty($request['PostBtnFile'])) {
             $imageName = date("Y-m-d") . '-' . time() . '.' . $request['PostBtnFile']->getClientOriginalExtension();
-            $request['PostBtnFile']->move(
-                base_path() . '/public/upload/posts',
-                $imageName
-            );
 
-            $post->image = '/upload/posts/' . $imageName;
+
+            $post->image = '/upload/posts/thumbnails/' . $imageName;
+            $post->image_original = '/upload/posts/' . $imageName;
+            $img = $request->file('PostBtnFile')->getRealPath();
+            $resized = Image::make($img);
+            $width = $resized->width();
+            $height = $resized->height();
+
+            $resized2 = Image::make($img);
+
+            if(($width / $height) >= 1.77){
+                $resized->resize(478, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $resized2->resize(1920, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }else{
+                $resized->resize(null, 270, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $resized2->resize(null, 1080, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
+
+            $resized->save('upload/posts/thumbnails/' . $imageName);
+            $resized2->save('upload/posts/' . $imageName);
         }
         $post->save();
 

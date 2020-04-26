@@ -118,7 +118,9 @@ function getPosts() {
             data.map(function(post) {
                 if (post.type == "post") {
                     if (post.image != null) {
-                        const templateLiteral = `
+                        var propor = post.image.width / post.image.height;
+                        if(propor >= 1.33){
+                            const templateLiteral = `
                     <div class="row border-botBlue my-2 py-2">
                     <p class=" col-2 text-dark" onclick="dotsMenuOpen(${post.id})" >
                     <i class="fas fa-ellipsis-h"></i>
@@ -137,6 +139,47 @@ function getPosts() {
                         divPosts.innerHTML = divPosts.innerHTML.concat(
                             templateLiteral
                         );
+                        }else if(propor < 1.33 && propor >= 1){
+                            const templateLiteral = `
+                    <div class="row border-botBlue my-2 py-2">
+                    <p class=" col-2 text-dark" onclick="dotsMenuOpen(${post.id})" >
+                    <i class="fas fa-ellipsis-h"></i>
+                    </p>
+                    <div class="rounded bg-white mt-3 ml-2 infoHover border p-2 dotsMenu" id="div${post.id}" style="display:none;position:absolute;z-index:400">
+                        <button class="btn border-bottom" onclick="deletePost(${post.id})">Delete</button><br>
+                        <button class="btn" onclick="dotsMenuClose(${post.id})">Close</button>
+                    </div>
+                    <p class=" col-10 text-right postInfo mb-0">${post.client} - ${post.project} - ${post.user_name} - ${post.date} - ${post.time}</p>
+                    <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
+                    <div class="col-12 px-3"><img src="${post.image}" class="postImage" alt="" ></div>
+
+
+                </div>
+                    `;
+                        divPosts.innerHTML = divPosts.innerHTML.concat(
+                            templateLiteral
+                        );
+                        }else{
+                            const templateLiteral = `
+                    <div class="row border-botBlue my-2 py-2">
+                    <p class=" col-2 text-dark" onclick="dotsMenuOpen(${post.id})" >
+                    <i class="fas fa-ellipsis-h"></i>
+                    </p>
+                    <div class="rounded bg-white mt-3 ml-2 infoHover border p-2 dotsMenu" id="div${post.id}" style="display:none;position:absolute;z-index:400">
+                        <button class="btn border-bottom" onclick="deletePost(${post.id})">Delete</button><br>
+                        <button class="btn" onclick="dotsMenuClose(${post.id})">Close</button>
+                    </div>
+                    <p class=" col-10 text-right postInfo mb-0">${post.client} - ${post.project} - ${post.user_name} - ${post.date} - ${post.time}</p>
+                    <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
+                    <div class="col-12 px-5 py-0"><img src="${post.image}" class="postImage" ></div>
+
+
+                </div>
+                    `;
+                        divPosts.innerHTML = divPosts.innerHTML.concat(
+                            templateLiteral
+                        );
+                        }
                     } else {
                         const templateLiteral = `
                     <div class="row border-botBlue my-2 py-2">
@@ -159,10 +202,21 @@ function getPosts() {
                     }
                 } else if (post.type == "feedbackCreate") {
                     const templateLiteral = `
+
+                    <div class="row mb-0">
+                        <p class=" col-2 text-dark" onclick="dotsMenuOpen(${post.id})" >
+                        <i class="fas fa-ellipsis-h"></i>
+                        </p>
+                        <p class=" col-10 text-right postInfo mb-0 pt-1">${post.client} - ${post.project} - ${post.user_name} - ${post.date} - ${post.time}</p>
+                        <div class="rounded bg-white mt-3 ml-2 infoHover border p-2 dotsMenu" id="div${post.id}" style="display:none;position:absolute;z-index:400">
+                            <button class="btn border-bottom" onclick="deleteFeedback(${post.feedback_id})">Delete</button><br>
+                            <button class="btn" onclick="dotsMenuClose(${post.id})">Close</button>
+                        </div>
+                    </div>
                     <a href="/Feedback/Edit/${post.feedback_id}" class="row border-botBlue p-1 text-decoration-none text-dark justify-content-between my-2 py-2">
-                        <p class=" col-12 text-right postInfo mb-0">${post.client} - ${post.project} - ${post.user_name} - ${post.date} - ${post.time}</p>
+
                         <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
-                        <ul>
+                        </ul>
 
                     `;
 
@@ -191,8 +245,18 @@ function getPosts() {
                     divPosts.innerHTML = divPosts.innerHTML.concat(template);
                 } else {
                     const templateLiteral = `
+                    <div class="row mb-0">
+                        <p class=" col-2 text-dark" onclick="dotsMenuOpen(${post.id})" >
+                        <i class="fas fa-ellipsis-h"></i>
+                        </p>
+                        <p class=" col-10 text-right postInfo mb-0 pt-1">${post.client} - ${post.project} - ${post.user_name} - ${post.date} - ${post.time}</p>
+                        <div class="rounded bg-white mt-3 ml-2 infoHover border p-2 dotsMenu" id="div${post.id}" style="display:none;position:absolute;z-index:400">
+                            <button class="btn border-bottom" onclick="deleteFeedback(${post.feedback_id})">Delete</button><br>
+                            <button class="btn" onclick="dotsMenuClose(${post.id})">Close</button>
+                        </div>
+                    </div>
                     <a href="/Feedback/Edit/${post.feedback_id}" class="row border-botBlue p-1 text-decoration-none text-dark my-2 py-2">
-                        <p class=" col-12 text-right postInfo mb-0">${post.client} - ${post.project} - ${post.user_name} - ${post.date} </p>
+
                         <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
                         <ul class="col-9">
 
@@ -245,6 +309,19 @@ function deletePost(id){
     }
 
 
+    function deleteFeedback(id){
+        fetch("/deleteFeedback/" + id)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            getPosts();
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
+    }
 
 
 
@@ -492,6 +569,8 @@ function getTasks(scrolled) {
                         <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})"><span>${comm.data} - ${task.user.username} </span>
 
                       </div>
+                      <br>
+                      <span class="postInfo"> ${task.client.client_name} - ${task.project.project_name} - ${task.user.username} </span>
 
                         </li>
                         `;
@@ -499,9 +578,11 @@ function getTasks(scrolled) {
                         } else {
                             let temp = `<li class=" mb-2 m-0 p-0" >
                         <div class="form-check form-check-inline p-0 m-0">
-                        <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})" checked><span><strike>${comm.data} </strike>- ${task.user.username}</span>
+                        <input class="form-check-input" type="checkbox" id="task${task.id}Check${comm.id}" value="option1" onclick="test(${task.id}, ${comm.id})" checked><span><strike>${comm.data} </strike></span>
 
                       </div>
+                      <br>
+                      <span class="postInfo"> ${task.client.client_name} - ${task.project.project_name} - ${task.user.username} </span>
                         </li>`;
                             templatelit2 = templatelit2 + temp;
                         }

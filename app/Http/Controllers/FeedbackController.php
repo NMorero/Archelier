@@ -27,6 +27,17 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
+// include composer autoload
+require '../vendor/autoload.php';
+
+// import the Intervention Image Manager Class
+use Intervention\Image\ImageManagerStatic as Image;
+
+// configure with favored image driver (gd by default)
+Image::configure(array('driver' => 'imagick'));
+
+
 class FeedbackController extends Controller
 {
     public function create()
@@ -75,9 +86,40 @@ class FeedbackController extends Controller
         $img = str_replace('data:image/jpeg;base64,', '', $img);
         $img = str_replace(' ', '+', $img);
         $data = base64_decode($img);
-        $file = UPLOAD_DIR . uniqid() . '.jpg';
-        $success = file_put_contents($file, $data);
-        print $success ? $file : 'Unable to save the file.';
+
+
+
+            $imageName = date("Y-m-d") . '-' . time() . '.' . 'jpg';
+            $file ='upload/feedbacks/thumbnails/' . $imageName;
+            $file2 ='upload/feedbacks/' . $imageName;
+            $resized = Image::make($data);
+            $width = $resized->width();
+            $height = $resized->height();
+
+            $resized2 = Image::make($data);
+
+            if(($width / $height) >= 1.77){
+                $resized->resize(478, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $resized2->resize(1920, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }else{
+                $resized->resize(null, 270, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $resized2->resize(null, 1080, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
+
+            $resized->save('upload/feedbacks/thumbnails/' . $imageName, 100);
+            $resized2->save('upload/feedbacks/' . $imageName, 100);
+
+
 
         $feedback = new Feedbacks;
         $comentaries = [];
@@ -100,12 +142,14 @@ class FeedbackController extends Controller
             $feedback->view_id = $request['view'];
         }
         $feedback->image = $file;
+        $feedback->image_original = $file2;
         $feedback->save();
         $post = new Posts();
 
         $post->title = 'New Feedback';
         $post->message = ' ';
         $post->image = $file;
+        $post->image_original = $file2;
         $post->user_id = Auth::id();
         $post->client_id = $request['client'];
         $post->project_id = $request['project'];
@@ -124,7 +168,15 @@ class FeedbackController extends Controller
 
 
 
-
+    public function deleteFeedback($id){
+        $posts = Posts::where('feedback_id', 'LIKE', $id)->get();
+        foreach($posts as $post){
+            $post->delete();
+        }
+        $feedback = Feedbacks::find($id);
+        $feedback->delete();
+        return ['status' => 'ok'];
+    }
 
     public function edit($id)
     {
