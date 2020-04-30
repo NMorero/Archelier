@@ -279,6 +279,19 @@ Home
 
 
     </main>
+
+<!-- The Modal -->
+<div id="modalImgExpand" class="modalimg" onclick="closeModalImgExpanded()">
+
+    <!-- The Close Button -->
+
+
+    <!-- Modal Content (The Image) -->
+    <img class="modalimg-content" id="imgExpanded">
+
+    <!-- Modal Caption (Image Text) -->
+
+  </div>
 @endsection
 
 @section('scripts')
@@ -303,5 +316,36 @@ if (window.matchMedia("(max-width: 700px)").matches) {
       var fileName = $(this).val().split("\\").pop();
       $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
+    </script>
+
+    <script>
+        function closeModalImgExpanded(){
+            var modal = document.getElementById("modalImgExpand");
+            modal.style.display = 'none';
+        }
+
+        // Get the modal
+var modal = document.getElementById("modalImgExpand");
+        function openModalImg(id){
+
+            // Get the image and insert it inside the modal - use its "alt" text as a caption
+            var img = document.getElementById("postImg"+id);
+
+
+            var modalImg = document.getElementById("imgExpanded");
+
+
+
+            modal.style.display = "block";
+            modalImg.src = img.src;
+
+
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on <span> (x), close the modal
+
+        }
     </script>
 @endsection
