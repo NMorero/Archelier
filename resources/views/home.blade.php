@@ -337,7 +337,7 @@ var modal = document.getElementById("modalImgExpand");
 
 
             modal.style.display = "block";
-            modalImg.src = img.srcstr.replace("/thumbnail", "");;
+            modalImg.src = img.src.str.replace("/thumbnail", "");;
 
 
 
