@@ -1940,6 +1940,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1955,7 +1959,8 @@ __webpack_require__.r(__webpack_exports__);
       color: 'black',
       cStep: 0,
       cPushArray: new Array(),
-      newImg: false
+      newImg: false,
+      brushF: false
     };
   },
   methods: {
@@ -1971,6 +1976,10 @@ __webpack_require__.r(__webpack_exports__);
       };
     },
     startPainting: function startPainting(e) {
+      if (!this.brushF) {
+        return;
+      }
+
       this.painting = true;
       console.log(this.painting);
       this.draw(e);
@@ -1998,8 +2007,13 @@ __webpack_require__.r(__webpack_exports__);
         this.cantMark++;
         this.ctx.fillStyle = this.color;
         this.ctx.font = "bold 40px Arial";
-        this.ctx.fillText(this.cantMark, e.clientX - 10, e.clientY - 70);
-        this.flag = false;
+        this.ctx.fillText(this.cantMark, e.clientX - 20, e.clientY - 45); //this.flag =false;
+
+        this.comments.push({
+          id: this.comments.length,
+          value: '',
+          number: this.cantMark
+        });
       }
 
       if (this.newImg) {
@@ -2011,7 +2025,7 @@ __webpack_require__.r(__webpack_exports__);
         img.src = url;
 
         img.onload = function () {
-          ctx.drawImage(img, e.clientX - 10, e.clientY - 70, 220, 122);
+          ctx.drawImage(img, e.clientX, e.clientY, 220, 122);
         };
 
         this.newImg = false;
@@ -2049,11 +2063,20 @@ __webpack_require__.r(__webpack_exports__);
     oBackInp: function oBackInp() {
       document.getElementById('backInput').click();
     },
-    addComment: function addComment() {
-      this.comments.push({
-        id: this.comments.length,
-        value: ''
-      });
+    saveFeedback: function saveFeedback() {
+      console.log('si');
+    },
+    setFocus: function setFocus(id) {
+      var btns = document.getElementsByClassName('btnMenu');
+
+      for (var i = 1; i <= 7; i++) {
+        //assemble our info objects
+        var bt = document.getElementById('btn' + i);
+        bt.style.backgroundColor = '#39d2b4';
+      }
+
+      var btn = document.getElementById('btn' + id);
+      btn.style.backgroundColor = '#34349e';
     }
   },
   mounted: function mounted() {
@@ -50176,37 +50199,112 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("button", { on: { click: _vm.oBackInp } }, [
-        _c("i", { staticClass: "fas fa-image" })
-      ]),
-      _vm._v(" "),
-      _c("button", { on: { click: _vm.oPalette } }, [
-        _c("i", { staticClass: "fas fa-palette" })
-      ]),
+      _c(
+        "button",
+        {
+          staticClass: "btnMenu",
+          attrs: { id: "btn1" },
+          on: {
+            click: function($event) {
+              _vm.flag = false
+              _vm.brushF = true
+              _vm.setFocus(1)
+            }
+          }
+        },
+        [_c("i", { staticClass: "fas fa-paint-brush" })]
+      ),
       _vm._v(" "),
       _c(
         "button",
         {
+          staticClass: "btnMenu",
+          attrs: { id: "btn2" },
+          on: {
+            click: function($event) {
+              _vm.oPalette()
+              _vm.setFocus(2)
+            }
+          }
+        },
+        [_c("i", { staticClass: "fas fa-palette" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btnMenu",
+          attrs: { id: "btn3" },
           on: {
             click: function($event) {
               _vm.flag = true
+              _vm.brushF = false
+              _vm.setFocus(3)
             }
           }
         },
         [_c("i", { staticClass: "far fa-flag" })]
       ),
       _vm._v(" "),
-      _c("button", { on: { click: _vm.cUndo } }, [
-        _c("i", { staticClass: "fas fa-undo-alt" })
-      ]),
+      _c(
+        "button",
+        {
+          staticClass: "btnMenu",
+          attrs: { id: "btn4" },
+          on: {
+            click: function($event) {
+              _vm.oBackInp()
+              _vm.setFocus(4)
+            }
+          }
+        },
+        [_c("i", { staticClass: "fas fa-image" })]
+      ),
       _vm._v(" "),
-      _c("button", { on: { click: _vm.cRedo } }, [
-        _c("i", { staticClass: "fas fa-redo-alt" })
-      ]),
+      _c(
+        "button",
+        {
+          staticClass: "btnMenu",
+          attrs: { id: "btn5" },
+          on: {
+            click: function($event) {
+              _vm.cUndo()
+              _vm.setFocus(5)
+            }
+          }
+        },
+        [_c("i", { staticClass: "fas fa-undo-alt" })]
+      ),
       _vm._v(" "),
-      _c("button", { on: { click: _vm.oImg } }, [
-        _c("i", { staticClass: "far fa-file-image" })
-      ]),
+      _c(
+        "button",
+        {
+          staticClass: "btnMenu",
+          attrs: { id: "btn6" },
+          on: {
+            click: function($event) {
+              _vm.cRedo()
+              _vm.setFocus(6)
+            }
+          }
+        },
+        [_c("i", { staticClass: "fas fa-redo-alt" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btnMenu",
+          attrs: { id: "btn7" },
+          on: {
+            click: function($event) {
+              _vm.oImg()
+              _vm.setFocus(7)
+            }
+          }
+        },
+        [_c("i", { staticClass: "far fa-file-image" })]
+      ),
       _vm._v(" "),
       _c(
         "div",
@@ -50223,7 +50321,7 @@ var render = function() {
                 attrs: { id: "comentBox" }
               },
               [
-                _vm._v("\n                    " + _vm._s(comm.id) + "  "),
+                _vm._v("\n                    " + _vm._s(comm.number) + "  "),
                 _c("input", {
                   directives: [
                     {
@@ -50250,8 +50348,8 @@ var render = function() {
           _vm._v(" "),
           _c(
             "button",
-            { attrs: { id: "btnAddCom" }, on: { click: _vm.addComment } },
-            [_vm._v("Add comment")]
+            { attrs: { id: "btnAddCom" }, on: { click: _vm.saveFeedback } },
+            [_vm._v("Save")]
           )
         ],
         2
@@ -62516,15 +62614,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!******************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue ***!
   \******************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
 /* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -62554,7 +62651,7 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

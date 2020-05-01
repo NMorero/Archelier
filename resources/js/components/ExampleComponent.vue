@@ -10,20 +10,24 @@
             <input type="file" name="" id="backInput" @change="onFileChange" hidden>
             <input type="color" v-model="color" id="colorInput" hidden>
 
-            <button @click="oBackInp"><i class="fas fa-image"></i></button>
-            <button @click="oPalette"><i class="fas fa-palette"></i></button>
-            <button @click="flag = true"><i class="far fa-flag"></i></button>
-            <button @click="cUndo"><i class="fas fa-undo-alt"></i></button>
-            <button @click="cRedo"><i class="fas fa-redo-alt"></i></button>
-            <button @click="oImg"><i class="far fa-file-image"></i></button>
+
+
+            <button class="btnMenu" id="btn1" @click="flag = false; brushF = true; setFocus(1)"><i class="fas fa-paint-brush"></i></button>
+            <button class="btnMenu" id="btn2" @click="oPalette(); setFocus(2)"><i class="fas fa-palette"></i></button>
+            <button class="btnMenu" id="btn3" @click="flag = true; brushF = false; setFocus(3)"><i class="far fa-flag"></i></button>
+            <button class="btnMenu" id="btn4" @click="oBackInp(); setFocus(4)"><i class="fas fa-image"></i></button>
+            <button class="btnMenu" id="btn5" @click="cUndo(); setFocus(5)"><i class="fas fa-undo-alt"></i></button>
+            <button class="btnMenu" id="btn6" @click="cRedo(); setFocus(6)"><i class="fas fa-redo-alt"></i></button>
+            <button class="btnMenu" id="btn7" @click="oImg(); setFocus(7)"><i class="far fa-file-image"></i></button>
+
 
 
                 <div id="commentBox">
                     <h3>Comments</h3>
                     <div v-for="comm in comments" :key="comments.id" id="comentBox" class="input">
-                        {{comm.id}}  <input type="text" value="comm.value" v-model="comm.value" >
+                        {{comm.number}}  <input type="text" value="comm.value" v-model="comm.value" >
                     </div>
-                <button id="btnAddCom" @click="addComment">Add comment</button>
+                <button id="btnAddCom" @click="saveFeedback">Save</button>
 
                 </div>
         </div>
@@ -38,21 +42,20 @@
         data() {
             return {
                 message: 'Hello Vue!',
-            vueCanvas:null,
-            painting:false,
-            canvas:null,
-            ctx:null,
-            comments: [
+                vueCanvas:null,
+                painting:false,
+                canvas:null,
+                ctx:null,
+                comments: [],
+                image: null,
+                cantMark: 0,
+                flag: false,
+                color: 'black',
+                cStep: 0,
+                cPushArray: new Array,
+                newImg: false,
+                brushF: false,
 
-
-            ],
-            image: null,
-            cantMark: 0,
-            flag: false,
-            color: 'black',
-            cStep: 0,
-            cPushArray: new Array,
-            newImg: false,
             };
         },
 
@@ -72,6 +75,7 @@
 
                 },
             startPainting(e) {
+                if(!this.brushF){return}
             this.painting = true;
             console.log(this.painting)
             this.draw(e)
@@ -108,8 +112,11 @@
 
                     this.ctx.fillStyle = this.color;
                     this.ctx.font = "bold 40px Arial";
-                    this.ctx.fillText(this.cantMark, e.clientX - 10,e.clientY - 70);
-                    this.flag =false;
+                    this.ctx.fillText(this.cantMark, e.clientX - 20,e.clientY-45);
+                    //this.flag =false;
+
+                    this.comments.push({id:this.comments.length, value:'', number: this.cantMark});
+
                 }
                 if(this.newImg){
 
@@ -122,7 +129,7 @@
 
                     img.onload = function() {
 
-                        ctx.drawImage(img, e.clientX - 10,e.clientY - 70, 220 , 122);
+                        ctx.drawImage(img, e.clientX,e.clientY, 220 , 122);
                     }
                     this.newImg = false;
                 }
@@ -154,9 +161,19 @@
             oBackInp(){
                 document.getElementById('backInput').click();
             },
-            addComment(){
-                this.comments.push({id:this.comments.length, value:''});
+            saveFeedback(){
+                console.log('si');
+            },
+            setFocus(id){
+            var btns = document.getElementsByClassName('btnMenu');
+            for (var i = 1; i <= 7; i++){ //assemble our info objects
+                var bt = document.getElementById('btn'+i);
+                bt.style.backgroundColor = '#39d2b4'
             }
+
+            var btn = document.getElementById('btn'+id);
+            btn.style.backgroundColor = '#34349e';
+        }
 
 
         },
@@ -174,6 +191,7 @@
 
 
         },
+
 
 
 

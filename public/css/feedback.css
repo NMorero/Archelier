@@ -45,14 +45,14 @@ input{
     justify-content: center;
     display: flex;
 }
-
+i{
+    border: 0px;
+}
 button{
     display: block;
     padding-top: 1vh;
     padding-bottom: 1vh;
-    padding-left: 1vh;
-    padding-right: 2vh;
-    width: 46.6px;
+    width: 40px;
     background: #39D2B4;
     color: #fff;
     font-weight: bold;
@@ -61,6 +61,7 @@ button{
     border: 0px;
     cursor: pointer;
     float: left;
+    justify-content: center;
 }
 
 
