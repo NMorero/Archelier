@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <canvas @mousedown="startPainting" @mouseup="finishedPainting" @mousemove="draw"  id="canvas" v-bind:style="{ 'background-image': 'url(' + image + ')', 'background-repeat': 'no-repeat', 'background-size': '100% 100%' }" @click="addNumber">
+        <canvas @mousedown="startPainting" @mouseup="finishedPainting" @mousemove="draw"  id="canvas"  @click="addNumber">
 
         </canvas>
 
@@ -68,8 +68,48 @@
 
                 var img = new Image();
                 img.src = this.image;
+                 var w = window.innerWidth;
+            var h = window.innerHeight;
+
+
                 img.onload = function() {
-                    ctx.drawImage(img, 0, 0, 1280, 720);
+                     var hImg = this.height;
+                var wImg = this.width;
+
+                var rAsp = wImg / hImg;
+                console.log(rAsp);
+
+
+                    if(w <= 1400 && w > 1200){
+                        if(rAsp >= 1.77){
+                            ctx.drawImage(img, 0, 0, 1000, 562);
+                        }else{
+                            var newW = (562 * wImg) / hImg;
+                            var newX = 1000 - newW;
+                            ctx.drawImage(img,  newX / 2, 0, newW, 562);
+                        }
+
+
+                    }else if(w <= 1200){
+
+                          if(rAsp >= 1.77){
+                            ctx.drawImage(img, 0, 0, 900, 506);
+                        }else{
+                            var newW = (506 * wImg) / hImg;
+                             var newX = 900 - newW;
+                            ctx.drawImage(img,  newX / 2, 0, newW, 506);
+                        }
+                    }else{
+                        if(rAsp >= 1.77){
+                            ctx.drawImage(img, 0, 0, 1280, 720);
+                        }else{
+                            var newW = (720 * wImg) / hImg;
+                            var newX = 1280 - newW;
+                            ctx.drawImage(img, newX / 2, 0, newW, 720);
+                        }
+
+                    }
+
                 }
 
 
