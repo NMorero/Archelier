@@ -35,7 +35,7 @@ input{
     overflow-wrap: break-word;
     word-wrap: break-word;
     width: 280px;
-    height: 720px;
+    height: 700px;
     display: block;
     float: left;
     background-color: white;
@@ -72,12 +72,12 @@ button{
     border-style: solid;
     border-width: 2px;
     border-radius: 30px;
-    padding-top: 0.4vh;
-    padding-bottom: 0.4vh;
+    padding-top: 0.2vh;
+    padding-bottom: 0.2vh;
     padding-left: 1vw;
     padding-right: 1vw;
     text-decoration: none;
-    height: 28px;
+    height: 24px;
     font-family: 'Muli', sans-serif;
     font-weight: 500;
     color: rgb(58, 193, 162);
@@ -85,7 +85,7 @@ button{
 }
 
 header{
-    margin-top: 2vh;
+    margin-top: 1vh;
 }
 
 #commentBox{
@@ -95,4 +95,147 @@ header{
 
 #btnAddCom{
     width: 280px !important;
+}
+
+@media(max-width: 1400px){
+    #menu{
+        margin-left: 1vw;
+        box-shadow: 2px 2px 5px #999;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        width: 280px;
+        height: 562px;
+        display: block;
+        float: left;
+        background-color: white;
+    }
+
+    #menu h3 {
+        justify-content: center;
+        display: flex;
+    }
+    i{
+        border: 0px;
+    }
+    button{
+        display: block;
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+        width: 40px;
+        background: #39D2B4;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1em;
+        transition: all .4s;
+        border: 0px;
+        cursor: pointer;
+        float: left;
+        justify-content: center;
+    }
+
+
+    .buttons-header {
+        box-shadow: 2px 2px 5px #999;
+        background-color: rgb(255, 255, 255);
+        border-color: rgb(98, 224, 195);
+        border-style: solid;
+        border-width: 2px;
+        border-radius: 30px;
+        padding-top: 0.4vh;
+        padding-bottom: 0.4vh;
+        padding-left: 1vw;
+        padding-right: 1vw;
+        text-decoration: none;
+        height: 28px;
+        font-family: 'Muli', sans-serif;
+        font-weight: 500;
+        color: rgb(58, 193, 162);
+        margin-right: 1.4vw;
+    }
+
+    header{
+        margin-top: 2vh;
+    }
+
+    #commentBox{
+        margin-top: 10vh;
+
+    }
+
+    #btnAddCom{
+        width: 280px !important;
+    }
+
+}
+
+
+@media(max-width: 1200px){
+    #menu{
+        margin-left: 1vw;
+        box-shadow: 2px 2px 5px #999;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        width: 200px;
+        height: 506px;
+        display: block;
+        float: left;
+        background-color: white;
+    }
+
+    #menu h3 {
+        justify-content: center;
+        display: flex;
+    }
+    i{
+        border: 0px;
+    }
+    button{
+        display: block;
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+        width: 28.575px;
+        background: #39D2B4;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1em;
+        transition: all .4s;
+        border: 0px;
+        cursor: pointer;
+        float: left;
+        justify-content: center;
+    }
+
+
+    .buttons-header {
+        box-shadow: 2px 2px 5px #999;
+        background-color: rgb(255, 255, 255);
+        border-color: rgb(98, 224, 195);
+        border-style: solid;
+        border-width: 2px;
+        border-radius: 30px;
+        padding-top: 0.4vh;
+        padding-bottom: 0.4vh;
+        padding-left: 1vw;
+        padding-right: 1vw;
+        text-decoration: none;
+        height: 28px;
+        font-family: 'Muli', sans-serif;
+        font-weight: 500;
+        color: rgb(58, 193, 162);
+        margin-right: 1.4vw;
+    }
+
+    header{
+        margin-top: 2vh;
+    }
+
+    #commentBox{
+        margin-top: 10vh;
+
+    }
+
+    #btnAddCom{
+        width: 200px !important;
+    }
+
 }

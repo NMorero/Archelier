@@ -183,9 +183,22 @@
             this.ctx = canvas.getContext("2d");
             this.menu = document.getElementById('menu');
 
-            // Resize canvas
-             this.canvas.height = 720; //(window.innerHeight * 90) / 100;
-            this.canvas.width =1280; //(window.innerWidth * 75) / 100;
+
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+
+            if(w <= 1400 && w > 1200){
+                this.canvas.height = 562; //(window.innerHeight * 90) / 100;
+                this.canvas.width =1000; //(window.innerWidth * 75) / 100;
+            }else if(w <= 1200){
+                 this.canvas.height = 506; //(window.innerHeight * 90) / 100;
+                this.canvas.width =900; //(window.innerWidth * 75) / 100;
+            }else{
+                this.canvas.height = 700; //(window.innerHeight * 90) / 100;
+                this.canvas.width =1280; //(window.innerWidth * 75) / 100;
+            }
+
+
             this.canvas.style.display = 'flex';
             this.canvas.style.float = 'left';
 

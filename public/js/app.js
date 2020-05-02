@@ -2082,11 +2082,23 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.canvas = document.getElementById("canvas");
     this.ctx = canvas.getContext("2d");
-    this.menu = document.getElementById('menu'); // Resize canvas
+    this.menu = document.getElementById('menu');
+    var w = window.innerWidth;
+    var h = window.innerHeight;
 
-    this.canvas.height = 720; //(window.innerHeight * 90) / 100;
+    if (w <= 1400 && w > 1200) {
+      this.canvas.height = 562; //(window.innerHeight * 90) / 100;
 
-    this.canvas.width = 1280; //(window.innerWidth * 75) / 100;
+      this.canvas.width = 1000; //(window.innerWidth * 75) / 100;
+    } else if (w <= 1200) {
+      this.canvas.height = 506; //(window.innerHeight * 90) / 100;
+
+      this.canvas.width = 900; //(window.innerWidth * 75) / 100;
+    } else {
+      this.canvas.height = 700; //(window.innerHeight * 90) / 100;
+
+      this.canvas.width = 1280; //(window.innerWidth * 75) / 100;
+    }
 
     this.canvas.style.display = 'flex';
     this.canvas.style["float"] = 'left';
@@ -62697,8 +62709,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/nicolas/Escritorio/Archelier/Archelier/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/nicolas/Escritorio/Archelier/Archelier/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Websocket\Archelier\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Websocket\Archelier\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
