@@ -266,14 +266,14 @@ textarea{
 }
 
 
-@media(max-width: 1200px){
+@media(max-width: 1280px){
     .dropdownContent{
         box-shadow: 2px 2px 5px #999;
         z-index: 999;
         width: 33.33px;
         background-color: white;
         position: absolute;
-        right: 180px;
+        right: 196px;
         top: 147px;
 
     }
@@ -293,7 +293,7 @@ textarea{
         overflow-wrap: break-word;
         word-wrap: break-word;
         width: 200px;
-        height: 450px;
+        height: 506px;
         display: block;
         float: left;
         background-color: white;
