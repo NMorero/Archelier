@@ -2021,7 +2021,7 @@ __webpack_require__.r(__webpack_exports__);
             var newX = 1000 - newW;
             ctx.drawImage(img, newX / 2, 0, newW, 562);
           }
-        } else if (w <= 1200 && w > 1000) {
+        } else if (w <= 1280 && w > 1000) {
           if (rAsp >= 1.77) {
             ctx.drawImage(img, 0, 0, 800, 450);
           } else {
@@ -2128,7 +2128,7 @@ __webpack_require__.r(__webpack_exports__);
             var newX = 1000 - newW;
             ctx.drawImage(img, newX / 2, 0, newW, 562);
           }
-        } else if (w <= 1200 && w > 1000) {
+        } else if (w <= 1280 && w > 1000) {
           if (rAsp >= 1.77) {
             ctx.drawImage(img, 0, 0, 800, 450);
           } else {
@@ -2182,7 +2182,7 @@ __webpack_require__.r(__webpack_exports__);
             var newX = 1000 - newW;
             ctx.drawImage(img, newX / 2, 0, newW, 562);
           }
-        } else if (w <= 1200 && w > 1000) {
+        } else if (w <= 1280 && w > 1000) {
           if (rAsp >= 1.77) {
             ctx.drawImage(img, 0, 0, 800, 450);
           } else {
@@ -2252,7 +2252,7 @@ __webpack_require__.r(__webpack_exports__);
       this.canvas.height = 562; //(window.innerHeight * 90) / 100;
 
       this.canvas.width = 1000; //(window.innerWidth * 75) / 100;
-    } else if (w <= 1200 && w > 1000) {
+    } else if (w <= 1280 && w > 1000) {
       this.canvas.height = 450; //(window.innerHeight * 90) / 100;
 
       this.canvas.width = 800; //(window.innerWidth * 75) / 100;

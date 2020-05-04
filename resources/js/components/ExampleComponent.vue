@@ -126,7 +126,7 @@
                         }
 
 
-                    }else if(w <= 1200 && w > 1000){
+                    }else if(w <= 1280 && w > 1000){
 
                           if(rAsp >= 1.77){
                             ctx.drawImage(img, 0, 0, 800, 450);
@@ -255,7 +255,7 @@
                         }
 
 
-                    }else if(w <= 1200 && w > 1000){
+                    }else if(w <= 1280 && w > 1000){
 
                           if(rAsp >= 1.77){
                             ctx.drawImage(img, 0, 0, 800, 450);
@@ -317,7 +317,7 @@
                         }
 
 
-                    }else if(w <= 1200 && w > 1000){
+                    }else if(w <= 1280 && w > 1000){
 
                           if(rAsp >= 1.77){
                             ctx.drawImage(img, 0, 0, 800, 450);
@@ -392,7 +392,7 @@
             if(w <= 1400 && w > 1200){
                 this.canvas.height = 562; //(window.innerHeight * 90) / 100;
                 this.canvas.width =1000; //(window.innerWidth * 75) / 100;
-            }else if(w <= 1200 && w > 1000){
+            }else if(w <= 1280 && w > 1000){
                  this.canvas.height = 450; //(window.innerHeight * 90) / 100;
                 this.canvas.width =800; //(window.innerWidth * 75) / 100;
             }else if( w <= 1000){
