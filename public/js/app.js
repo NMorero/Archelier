@@ -2013,7 +2013,7 @@ __webpack_require__.r(__webpack_exports__);
         var rAsp = wImg / hImg;
         console.log(rAsp);
 
-        if (w <= 1400 && w > 1200) {
+        if (w <= 1400 && w > 1280) {
           if (rAsp >= 1.77) {
             ctx.drawImage(img, 0, 0, 1000, 562);
           } else {
@@ -2120,7 +2120,7 @@ __webpack_require__.r(__webpack_exports__);
         var rAsp = wImg / hImg;
         console.log(rAsp);
 
-        if (w <= 1400 && w > 1200) {
+        if (w <= 1400 && w > 1280) {
           if (rAsp >= 1.77) {
             ctx.drawImage(img, 0, 0, 1000, 562);
           } else {
@@ -2174,7 +2174,7 @@ __webpack_require__.r(__webpack_exports__);
         var rAsp = wImg / hImg;
         console.log(rAsp);
 
-        if (w <= 1400 && w > 1200) {
+        if (w <= 1400 && w > 1280) {
           if (rAsp >= 1.77) {
             ctx.drawImage(img, 0, 0, 1000, 562);
           } else {
@@ -2248,7 +2248,7 @@ __webpack_require__.r(__webpack_exports__);
     var h = window.innerHeight;
     console.log(w, h);
 
-    if (w <= 1400 && w > 1200) {
+    if (w <= 1400 && w > 1280) {
       this.canvas.height = 562; //(window.innerHeight * 90) / 100;
 
       this.canvas.width = 1000; //(window.innerWidth * 75) / 100;
