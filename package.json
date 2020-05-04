@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "autosize": "^4.0.2",
         "konva": "^5.0.2",
         "vue-konva": "^2.1.1",
         "vue-painting": "^1.0.8"

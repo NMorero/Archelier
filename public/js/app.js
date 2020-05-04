@@ -1944,6 +1944,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1960,10 +1981,21 @@ __webpack_require__.r(__webpack_exports__);
       cStep: 0,
       cPushArray: new Array(),
       newImg: false,
-      brushF: false
+      brushF: false,
+      flagPalette: false
     };
   },
   methods: {
+    resize: function resize(e) {
+      e.target.style.height = 'auto';
+      e.target.style.height = e.target.scrollHeight + 'px';
+    },
+    setFocusDrop: function setFocusDrop(id) {
+      document.getElementById('color1').style.backgroundColor = '#39D2B4';
+      document.getElementById('color2').style.backgroundColor = '#39D2B4';
+      document.getElementById('color3').style.backgroundColor = '#39D2B4';
+      document.getElementById(id).style.backgroundColor = '#34349e';
+    },
     onFileChange: function onFileChange(e) {
       var file = e.target.files[0];
       this.image = URL.createObjectURL(file);
@@ -2028,10 +2060,17 @@ __webpack_require__.r(__webpack_exports__);
       this.ctx.lineWidth = 10;
       this.ctx.lineCap = "round";
       this.ctx.strokeStyle = this.color;
-      this.ctx.lineTo(e.clientX - 10, e.clientY - 70);
+      this.ctx.lineTo(e.clientX - 10, e.clientY - 50);
       this.ctx.stroke();
       this.ctx.beginPath();
-      this.ctx.moveTo(e.clientX - 10, e.clientY - 70);
+      this.ctx.moveTo(e.clientX - 10, e.clientY - 50);
+    },
+    attachImg: function attachImg(e) {
+      var image = document.getElementById('imgInput').files[0];
+      var url = URL.createObjectURL(image);
+      var id = document.getElementById('imgInput').alt;
+      var menu = document.getElementById('menu');
+      this.comments[id].image = url;
     },
     addNumber: function addNumber(e) {
       if (this.flag) {
@@ -2043,23 +2082,10 @@ __webpack_require__.r(__webpack_exports__);
         this.comments.push({
           id: this.comments.length,
           value: '',
-          number: this.cantMark
+          number: this.cantMark,
+          image: '',
+          width: '0px'
         });
-      }
-
-      if (this.newImg) {
-        var ctx = canvas.getContext("2d");
-        var image = document.getElementById('imgInput').files[0];
-        var url = URL.createObjectURL(image);
-        console.log('Imagen Add: ' + url);
-        var img = new Image();
-        img.src = url;
-
-        img.onload = function () {
-          ctx.drawImage(img, e.clientX, e.clientY, 220, 122);
-        };
-
-        this.newImg = false;
       }
     },
     cUndo: function cUndo() {
@@ -2067,25 +2093,103 @@ __webpack_require__.r(__webpack_exports__);
         this.cStep = 0;
       }
 
+      var ctx = canvas.getContext("2d");
       this.cStep--;
       var ant = this.cPushArray[this.cStep];
       console.log('ant: ' + ant);
       this.image = ant;
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      var img = new Image();
+      img.src = this.image;
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+
+      img.onload = function () {
+        var hImg = this.height;
+        var wImg = this.width;
+        var rAsp = wImg / hImg;
+        console.log(rAsp);
+
+        if (w <= 1400 && w > 1200) {
+          if (rAsp >= 1.77) {
+            ctx.drawImage(img, 0, 0, 1000, 562);
+          } else {
+            var newW = 562 * wImg / hImg;
+            var newX = 1000 - newW;
+            ctx.drawImage(img, newX / 2, 0, newW, 562);
+          }
+        } else if (w <= 1200) {
+          if (rAsp >= 1.77) {
+            ctx.drawImage(img, 0, 0, 900, 506);
+          } else {
+            var newW = 506 * wImg / hImg;
+            var newX = 900 - newW;
+            ctx.drawImage(img, newX / 2, 0, newW, 506);
+          }
+        } else {
+          if (rAsp >= 1.77) {
+            ctx.drawImage(img, 0, 0, 1280, 720);
+          } else {
+            var newW = 720 * wImg / hImg;
+            var newX = 1280 - newW;
+            ctx.drawImage(img, newX / 2, 0, newW, 720);
+          }
+        }
+      };
     },
     cRedo: function cRedo() {
+      var ctx = canvas.getContext("2d");
       this.cStep++;
 
       if (this.cStep >= this.cPushArray.length) {
         this.cStep = this.cPushArray.length - 1;
       }
 
+      var img = new Image();
+      img.src = this.image;
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+
+      img.onload = function () {
+        var hImg = this.height;
+        var wImg = this.width;
+        var rAsp = wImg / hImg;
+        console.log(rAsp);
+
+        if (w <= 1400 && w > 1200) {
+          if (rAsp >= 1.77) {
+            ctx.drawImage(img, 0, 0, 1000, 562);
+          } else {
+            var newW = 562 * wImg / hImg;
+            var newX = 1000 - newW;
+            ctx.drawImage(img, newX / 2, 0, newW, 562);
+          }
+        } else if (w <= 1200) {
+          if (rAsp >= 1.77) {
+            ctx.drawImage(img, 0, 0, 900, 506);
+          } else {
+            var newW = 506 * wImg / hImg;
+            var newX = 900 - newW;
+            ctx.drawImage(img, newX / 2, 0, newW, 506);
+          }
+        } else {
+          if (rAsp >= 1.77) {
+            ctx.drawImage(img, 0, 0, 1280, 720);
+          } else {
+            var newW = 720 * wImg / hImg;
+            var newX = 1280 - newW;
+            ctx.drawImage(img, newX / 2, 0, newW, 720);
+          }
+        }
+      };
+
       var pos = this.cPushArray[this.cStep];
       console.log('ant: ' + pos);
       this.image = pos;
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
-    oImg: function oImg() {
+    oImg: function oImg(id) {
+      document.getElementById('imgInput').alt = id;
       document.getElementById('imgInput').click();
     },
     oPalette: function oPalette() {
@@ -2100,7 +2204,7 @@ __webpack_require__.r(__webpack_exports__);
     setFocus: function setFocus(id) {
       var btns = document.getElementsByClassName('btnMenu');
 
-      for (var i = 1; i <= 7; i++) {
+      for (var i = 1; i <= 6; i++) {
         //assemble our info objects
         var bt = document.getElementById('btn' + i);
         bt.style.backgroundColor = '#39d2b4';
@@ -50206,7 +50310,7 @@ var render = function() {
         attrs: { type: "file", name: "", id: "imgInput", hidden: "" },
         on: {
           change: function($event) {
-            _vm.newImg = true
+            return _vm.attachImg($event)
           }
         }
       }),
@@ -50244,6 +50348,7 @@ var render = function() {
           attrs: { id: "btn1" },
           on: {
             click: function($event) {
+              _vm.flagPalette = false
               _vm.flag = false
               _vm.brushF = true
               _vm.setFocus(1)
@@ -50260,13 +50365,59 @@ var render = function() {
           attrs: { id: "btn2" },
           on: {
             click: function($event) {
-              _vm.oPalette()
+              _vm.flagPalette = !_vm.flagPalette
               _vm.setFocus(2)
             }
           }
         },
         [_c("i", { staticClass: "fas fa-palette" })]
       ),
+      _vm._v(" "),
+      _vm.flagPalette
+        ? _c("div", { staticClass: "dropdownContent" }, [
+            _c(
+              "button",
+              {
+                attrs: { id: "color1" },
+                on: {
+                  click: function($event) {
+                    _vm.setFocusDrop("color1")
+                    _vm.color = "black"
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fas fa-circle" })]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                attrs: { id: "color2" },
+                on: {
+                  click: function($event) {
+                    _vm.setFocusDrop("color2")
+                    _vm.color = "red"
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fas fa-circle" })]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                attrs: { id: "color3" },
+                on: {
+                  click: function($event) {
+                    _vm.setFocusDrop("color3")
+                    _vm.color = "blue"
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fas fa-circle" })]
+            )
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "button",
@@ -50275,6 +50426,7 @@ var render = function() {
           attrs: { id: "btn3" },
           on: {
             click: function($event) {
+              _vm.flagPalette = false
               _vm.flag = true
               _vm.brushF = false
               _vm.setFocus(3)
@@ -50291,6 +50443,7 @@ var render = function() {
           attrs: { id: "btn4" },
           on: {
             click: function($event) {
+              _vm.flagPalette = false
               _vm.oBackInp()
               _vm.setFocus(4)
             }
@@ -50306,6 +50459,7 @@ var render = function() {
           attrs: { id: "btn5" },
           on: {
             click: function($event) {
+              _vm.flagPalette = false
               _vm.cUndo()
               _vm.setFocus(5)
             }
@@ -50321,6 +50475,7 @@ var render = function() {
           attrs: { id: "btn6" },
           on: {
             click: function($event) {
+              _vm.flagPalette = false
               _vm.cRedo()
               _vm.setFocus(6)
             }
@@ -50329,38 +50484,23 @@ var render = function() {
         [_c("i", { staticClass: "fas fa-redo-alt" })]
       ),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btnMenu",
-          attrs: { id: "btn7" },
-          on: {
-            click: function($event) {
-              _vm.oImg()
-              _vm.setFocus(7)
-            }
-          }
-        },
-        [_c("i", { staticClass: "far fa-file-image" })]
-      ),
+      _c("br"),
+      _c("br"),
+      _vm._v(" "),
+      _c("h3", [_vm._v("Comments")]),
       _vm._v(" "),
       _c(
         "div",
         { attrs: { id: "commentBox" } },
-        [
-          _c("h3", [_vm._v("Comments")]),
-          _vm._v(" "),
-          _vm._l(_vm.comments, function(comm) {
-            return _c(
-              "div",
-              {
-                key: _vm.comments.id,
-                staticClass: "input",
-                attrs: { id: "comentBox" }
-              },
-              [
-                _vm._v("\n                    " + _vm._s(comm.number) + "  "),
-                _c("input", {
+        _vm._l(_vm.comments, function(comm) {
+          return _c(
+            "div",
+            { key: _vm.comments.id, attrs: { id: "comentBox" + comm.id } },
+            [
+              _c("div", { staticClass: "input" }, [
+                _c("span", [_vm._v(_vm._s(comm.number))]),
+                _vm._v(" "),
+                _c("textarea", {
                   directives: [
                     {
                       name: "model",
@@ -50369,28 +50509,65 @@ var render = function() {
                       expression: "comm.value"
                     }
                   ],
-                  attrs: { type: "text", value: "comm.value" },
+                  attrs: {
+                    id: "textArea" + comm.id,
+                    type: "text",
+                    cols: "30",
+                    rows: comm.textRow
+                  },
                   domProps: { value: comm.value },
                   on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(comm, "value", $event.target.value)
+                      },
+                      function($event) {
+                        return _vm.resize($event)
                       }
-                      _vm.$set(comm, "value", $event.target.value)
-                    }
+                    ]
                   }
-                })
-              ]
-            )
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            { attrs: { id: "btnAddCom" }, on: { click: _vm.saveFeedback } },
-            [_vm._v("Save")]
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.oImg(comm.id)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fas fa-folder-plus" })]
+                ),
+                _vm._v(" "),
+                _c("br")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "divImgAttach" }, [
+                comm.image
+                  ? _c("img", {
+                      class: { marginLeft: comm.width },
+                      attrs: {
+                        src: comm.image,
+                        alt: "",
+                        id: "attachImg" + comm.number
+                      }
+                    })
+                  : _vm._e()
+              ])
+            ]
           )
-        ],
-        2
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { attrs: { id: "btnAddCom" }, on: { click: _vm.saveFeedback } },
+        [_vm._v("Save")]
       )
     ])
   ])
