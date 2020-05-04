@@ -1967,6 +1967,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -50458,6 +50459,20 @@ var render = function() {
                   click: function($event) {
                     _vm.setFocusDrop("color3")
                     _vm.color = "blue"
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fas fa-circle" })]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                attrs: { id: "color4" },
+                on: {
+                  click: function($event) {
+                    _vm.setFocusDrop("color4")
+                    _vm.color = "green"
                   }
                 }
               },

@@ -21,6 +21,7 @@
                      <button id="color1" @click="setFocusDrop('color1'); color = 'black'"><i class="fas fa-circle"></i></button>
                      <button id="color2" @click="setFocusDrop('color2'); color = 'red'"><i class="fas fa-circle"></i></button>
                      <button id="color3" @click="setFocusDrop('color3'); color = 'blue'"><i class="fas fa-circle"></i></button>
+                     <button id="color4" @click="setFocusDrop('color4'); color = 'green'"><i class="fas fa-circle"></i></button>
             </div>
 
 

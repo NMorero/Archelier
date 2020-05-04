@@ -147,6 +147,9 @@ header{
 #color3{
     color: blue;
 }
+#color4{
+    color: green;
+}
 
 #btnAddCom{
     width: 280px !important;
@@ -273,8 +276,8 @@ textarea{
         width: 33.33px;
         background-color: white;
         position: absolute;
-        right: 259px;
-        top: 138px;
+        right: 160px;
+        top: 137px;
 
     }
     .divImgAttach{
