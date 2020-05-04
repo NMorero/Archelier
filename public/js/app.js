@@ -2021,13 +2021,21 @@ __webpack_require__.r(__webpack_exports__);
             var newX = 1000 - newW;
             ctx.drawImage(img, newX / 2, 0, newW, 562);
           }
-        } else if (w <= 1200) {
+        } else if (w <= 1200 && w > 1000) {
           if (rAsp >= 1.77) {
             ctx.drawImage(img, 0, 0, 800, 450);
           } else {
             var newW = 450 * wImg / hImg;
             var newX = 800 - newW;
             ctx.drawImage(img, newX / 2, 0, newW, 450);
+          }
+        } else if (w <= 1000) {
+          if (rAsp >= 1.77) {
+            ctx.drawImage(img, 0, 0, 700, 394);
+          } else {
+            var newW = 394 * wImg / hImg;
+            var newX = 700 - newW;
+            ctx.drawImage(img, newX / 2, 0, newW, 394);
           }
         } else {
           if (rAsp >= 1.77) {
@@ -2120,13 +2128,21 @@ __webpack_require__.r(__webpack_exports__);
             var newX = 1000 - newW;
             ctx.drawImage(img, newX / 2, 0, newW, 562);
           }
-        } else if (w <= 1200) {
+        } else if (w <= 1200 && w > 1000) {
           if (rAsp >= 1.77) {
             ctx.drawImage(img, 0, 0, 800, 450);
           } else {
             var newW = 450 * wImg / hImg;
             var newX = 800 - newW;
             ctx.drawImage(img, newX / 2, 0, newW, 450);
+          }
+        } else if (w <= 1000) {
+          if (rAsp >= 1.77) {
+            ctx.drawImage(img, 0, 0, 700, 394);
+          } else {
+            var newW = 394 * wImg / hImg;
+            var newX = 700 - newW;
+            ctx.drawImage(img, newX / 2, 0, newW, 394);
           }
         } else {
           if (rAsp >= 1.77) {
@@ -2166,13 +2182,21 @@ __webpack_require__.r(__webpack_exports__);
             var newX = 1000 - newW;
             ctx.drawImage(img, newX / 2, 0, newW, 562);
           }
-        } else if (w <= 1200) {
+        } else if (w <= 1200 && w > 1000) {
           if (rAsp >= 1.77) {
             ctx.drawImage(img, 0, 0, 800, 450);
           } else {
             var newW = 450 * wImg / hImg;
             var newX = 800 - newW;
             ctx.drawImage(img, newX / 2, 0, newW, 450);
+          }
+        } else if (w <= 1000) {
+          if (rAsp >= 1.77) {
+            ctx.drawImage(img, 0, 0, 700, 394);
+          } else {
+            var newW = 394 * wImg / hImg;
+            var newX = 700 - newW;
+            ctx.drawImage(img, newX / 2, 0, newW, 394);
           }
         } else {
           if (rAsp >= 1.77) {
@@ -2227,10 +2251,14 @@ __webpack_require__.r(__webpack_exports__);
       this.canvas.height = 562; //(window.innerHeight * 90) / 100;
 
       this.canvas.width = 1000; //(window.innerWidth * 75) / 100;
-    } else if (w <= 1200) {
+    } else if (w <= 1200 && w > 1000) {
       this.canvas.height = 450; //(window.innerHeight * 90) / 100;
 
       this.canvas.width = 800; //(window.innerWidth * 75) / 100;
+    } else if (w <= 1000) {
+      this.canvas.height = 394; //(window.innerHeight * 90) / 100;
+
+      this.canvas.width = 700; //(window.innerWidth * 75) / 100;
     } else {
       this.canvas.height = 700; //(window.innerHeight * 90) / 100;
 
