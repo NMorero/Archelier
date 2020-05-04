@@ -273,8 +273,8 @@ textarea{
         width: 33.33px;
         background-color: white;
         position: absolute;
-        right: 196px;
-        top: 147px;
+        right: 259px;
+        top: 138px;
 
     }
     .divImgAttach{
@@ -293,7 +293,7 @@ textarea{
         overflow-wrap: break-word;
         word-wrap: break-word;
         width: 200px;
-        height: 506px;
+        height: 562px;
         display: block;
         float: left;
         background-color: white;
