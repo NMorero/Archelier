@@ -2023,10 +2023,10 @@ __webpack_require__.r(__webpack_exports__);
           }
         } else if (w <= 1280 && w > 1000) {
           if (rAsp >= 1.77) {
-            ctx.drawImage(img, 0, 0, 900, 562);
+            ctx.drawImage(img, 0, 0, 1000, 562);
           } else {
             var newW = 562 * wImg / hImg;
-            var newX = 900 - newW;
+            var newX = 1000 - newW;
             ctx.drawImage(img, newX / 2, 0, newW, 450);
           }
         } else if (w <= 1000) {
