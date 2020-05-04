@@ -388,7 +388,7 @@
 
             var w = window.innerWidth;
             var h = window.innerHeight;
-
+            console.log(w,h);
             if(w <= 1400 && w > 1200){
                 this.canvas.height = 562; //(window.innerHeight * 90) / 100;
                 this.canvas.width =1000; //(window.innerWidth * 75) / 100;

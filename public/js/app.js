@@ -2246,6 +2246,7 @@ __webpack_require__.r(__webpack_exports__);
     this.menu = document.getElementById('menu');
     var w = window.innerWidth;
     var h = window.innerHeight;
+    console.log(w, h);
 
     if (w <= 1400 && w > 1200) {
       this.canvas.height = 562; //(window.innerHeight * 90) / 100;
