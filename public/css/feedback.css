@@ -164,7 +164,7 @@ textarea{
     width: 46px;
     background-color: white;
     position: absolute;
-    right: 204px;
+    right: 157px;
     top: 137px;
 
 }
@@ -186,7 +186,7 @@ textarea{
         width: 46.66px;
         background-color: white;
         position: absolute;
-        right: 252px;
+        right: 204px;
         top: 137px;
 
     }
@@ -273,7 +273,7 @@ textarea{
         width: 33.33px;
         background-color: white;
         position: absolute;
-        right: 213px;
+        right: 180px;
         top: 147px;
 
     }
@@ -293,7 +293,7 @@ textarea{
         overflow-wrap: break-word;
         word-wrap: break-word;
         width: 200px;
-        height: 506px;
+        height: 450px;
         display: block;
         float: left;
         background-color: white;
@@ -356,3 +356,4 @@ textarea{
     }
 
 }
+

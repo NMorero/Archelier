@@ -1965,6 +1965,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2021,11 +2023,11 @@ __webpack_require__.r(__webpack_exports__);
           }
         } else if (w <= 1200) {
           if (rAsp >= 1.77) {
-            ctx.drawImage(img, 0, 0, 900, 506);
+            ctx.drawImage(img, 0, 0, 800, 450);
           } else {
-            var newW = 506 * wImg / hImg;
-            var newX = 900 - newW;
-            ctx.drawImage(img, newX / 2, 0, newW, 506);
+            var newW = 450 * wImg / hImg;
+            var newX = 800 - newW;
+            ctx.drawImage(img, newX / 2, 0, newW, 450);
           }
         } else {
           if (rAsp >= 1.77) {
@@ -2120,11 +2122,11 @@ __webpack_require__.r(__webpack_exports__);
           }
         } else if (w <= 1200) {
           if (rAsp >= 1.77) {
-            ctx.drawImage(img, 0, 0, 900, 506);
+            ctx.drawImage(img, 0, 0, 800, 450);
           } else {
-            var newW = 506 * wImg / hImg;
-            var newX = 900 - newW;
-            ctx.drawImage(img, newX / 2, 0, newW, 506);
+            var newW = 450 * wImg / hImg;
+            var newX = 800 - newW;
+            ctx.drawImage(img, newX / 2, 0, newW, 450);
           }
         } else {
           if (rAsp >= 1.77) {
@@ -2166,11 +2168,11 @@ __webpack_require__.r(__webpack_exports__);
           }
         } else if (w <= 1200) {
           if (rAsp >= 1.77) {
-            ctx.drawImage(img, 0, 0, 900, 506);
+            ctx.drawImage(img, 0, 0, 800, 450);
           } else {
-            var newW = 506 * wImg / hImg;
-            var newX = 900 - newW;
-            ctx.drawImage(img, newX / 2, 0, newW, 506);
+            var newW = 450 * wImg / hImg;
+            var newX = 800 - newW;
+            ctx.drawImage(img, newX / 2, 0, newW, 450);
           }
         } else {
           if (rAsp >= 1.77) {
@@ -2226,9 +2228,9 @@ __webpack_require__.r(__webpack_exports__);
 
       this.canvas.width = 1000; //(window.innerWidth * 75) / 100;
     } else if (w <= 1200) {
-      this.canvas.height = 506; //(window.innerHeight * 90) / 100;
+      this.canvas.height = 450; //(window.innerHeight * 90) / 100;
 
-      this.canvas.width = 900; //(window.innerWidth * 75) / 100;
+      this.canvas.width = 800; //(window.innerWidth * 75) / 100;
     } else {
       this.canvas.height = 700; //(window.innerHeight * 90) / 100;
 
@@ -50345,6 +50347,22 @@ var render = function() {
         "button",
         {
           staticClass: "btnMenu",
+          attrs: { id: "btn4" },
+          on: {
+            click: function($event) {
+              _vm.flagPalette = false
+              _vm.oBackInp()
+              _vm.setFocus(4)
+            }
+          }
+        },
+        [_c("i", { staticClass: "fas fa-folder-plus" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btnMenu",
           attrs: { id: "btn1" },
           on: {
             click: function($event) {
@@ -50434,22 +50452,6 @@ var render = function() {
           }
         },
         [_c("i", { staticClass: "far fa-flag" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btnMenu",
-          attrs: { id: "btn4" },
-          on: {
-            click: function($event) {
-              _vm.flagPalette = false
-              _vm.oBackInp()
-              _vm.setFocus(4)
-            }
-          }
-        },
-        [_c("i", { staticClass: "fas fa-image" })]
       ),
       _vm._v(" "),
       _c(

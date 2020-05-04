@@ -13,8 +13,8 @@
             <input type="color" v-model="color" id="colorInput" hidden>
 
 
-
-            <button class="btnMenu" id="btn1" @click="flagPalette = false;flag = false; brushF = true; setFocus(1)"><i class="fas fa-paint-brush"></i></button>
+            <button class="btnMenu" id="btn4" @click="flagPalette = false;oBackInp(); setFocus(4)"><i class="fas fa-folder-plus"></i></button>
+             <button class="btnMenu" id="btn1" @click="flagPalette = false;flag = false; brushF = true; setFocus(1)"><i class="fas fa-paint-brush"></i></button>
             <button class="btnMenu" id="btn2" @click="flagPalette = !flagPalette; setFocus(2)"><i class="fas fa-palette"></i>
             </button>
             <div class="dropdownContent" v-if="flagPalette">
@@ -23,8 +23,10 @@
                      <button id="color3" @click="setFocusDrop('color3'); color = 'blue'"><i class="fas fa-circle"></i></button>
             </div>
 
+
+
             <button class="btnMenu" id="btn3" @click="flagPalette = false;flag = true; brushF = false; setFocus(3)"><i class="far fa-flag"></i></button>
-            <button class="btnMenu" id="btn4" @click="flagPalette = false;oBackInp(); setFocus(4)"><i class="fas fa-image"></i></button>
+
             <button class="btnMenu" id="btn5" @click="flagPalette = false;cUndo(); setFocus(5)"><i class="fas fa-undo-alt"></i></button>
             <button class="btnMenu" id="btn6" @click="flagPalette = false;cRedo(); setFocus(6)"><i class="fas fa-redo-alt"></i></button>
 
@@ -127,11 +129,11 @@
                     }else if(w <= 1200){
 
                           if(rAsp >= 1.77){
-                            ctx.drawImage(img, 0, 0, 900, 506);
+                            ctx.drawImage(img, 0, 0, 800, 450);
                         }else{
-                            var newW = (506 * wImg) / hImg;
-                             var newX = 900 - newW;
-                            ctx.drawImage(img,  newX / 2, 0, newW, 506);
+                            var newW = (450 * wImg) / hImg;
+                             var newX = 800 - newW;
+                            ctx.drawImage(img,  newX / 2, 0, newW, 450);
                         }
                     }else{
                         if(rAsp >= 1.77){
@@ -246,11 +248,11 @@
                     }else if(w <= 1200){
 
                           if(rAsp >= 1.77){
-                            ctx.drawImage(img, 0, 0, 900, 506);
+                            ctx.drawImage(img, 0, 0, 800, 450);
                         }else{
-                            var newW = (506 * wImg) / hImg;
-                             var newX = 900 - newW;
-                            ctx.drawImage(img,  newX / 2, 0, newW, 506);
+                            var newW = (450 * wImg) / hImg;
+                             var newX = 800 - newW;
+                            ctx.drawImage(img,  newX / 2, 0, newW, 450);
                         }
                     }else{
                         if(rAsp >= 1.77){
@@ -299,11 +301,11 @@
                     }else if(w <= 1200){
 
                           if(rAsp >= 1.77){
-                            ctx.drawImage(img, 0, 0, 900, 506);
+                            ctx.drawImage(img, 0, 0, 800, 450);
                         }else{
-                            var newW = (506 * wImg) / hImg;
-                             var newX = 900 - newW;
-                            ctx.drawImage(img,  newX / 2, 0, newW, 506);
+                            var newW = (450 * wImg) / hImg;
+                             var newX = 800 - newW;
+                            ctx.drawImage(img,  newX / 2, 0, newW, 450);
                         }
                     }else{
                         if(rAsp >= 1.77){
@@ -363,8 +365,8 @@
                 this.canvas.height = 562; //(window.innerHeight * 90) / 100;
                 this.canvas.width =1000; //(window.innerWidth * 75) / 100;
             }else if(w <= 1200){
-                 this.canvas.height = 506; //(window.innerHeight * 90) / 100;
-                this.canvas.width =900; //(window.innerWidth * 75) / 100;
+                 this.canvas.height = 450; //(window.innerHeight * 90) / 100;
+                this.canvas.width =800; //(window.innerWidth * 75) / 100;
             }else{
                 this.canvas.height = 700; //(window.innerHeight * 90) / 100;
                 this.canvas.width =1280; //(window.innerWidth * 75) / 100;
