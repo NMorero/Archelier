@@ -120,7 +120,7 @@ class HomeController extends Controller
             $dev = Developers::where('user_id', 'LIKE', $id)->get();
             $devProjects = ProjectDevelopers::where('developer_id','LIKE',$dev[0]->id)->get();
             foreach($devProjects as $devProject){
-                $project = Projects::find($devProject->id);
+                $project = Projects::find($devProject->project_id);
                 if($project->client_id == $client){
                     $projects[] = $project;
                 }
@@ -174,6 +174,7 @@ class HomeController extends Controller
                         $posts[$po->id] = $po;
                     }
                 }
+
 
             }else if(auth()->user()->roles->rol == 'PRleader'){
                 $lead = ProjectLeaders::where('user_id', 'LIKE', $id)->get();
