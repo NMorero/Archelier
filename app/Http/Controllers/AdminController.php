@@ -557,12 +557,15 @@ class AdminController extends Controller
 
             $dev = Developers::where('user_id', 'LIKE', $id)->get();
             $devProjects = ProjectDevelopers::where('developer_id','LIKE',$dev[0]->id)->get();
+
             foreach($devProjects as $devProject){
-                $project = Projects::find($devProject->id);
+                $project = Projects::find($devProject->project_id);
 
                     $projects[] = $project;
 
             }
+
+
         }else if(auth()->user()->roles->rol == 'PRleader'){
             $lead = ProjectLeaders::where('user_id', 'LIKE', $id)->get();
             $leadProjects = Projects::where('leader_id', 'LIKE', $lead[0]->id)->get();
@@ -586,6 +589,7 @@ class AdminController extends Controller
             $projects = Projects::all();
         }
         $views=[];
+
         foreach ($projects as $project) {
             $client = Clients::find($project->client_id);
             $manager = ProjectManagers::find($project->manager_id);
