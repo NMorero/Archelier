@@ -52,7 +52,8 @@
 
 
                 </div>
-                <label for="clientSelect">Client: </label>
+
+                    <label for="clientSelect">Client: </label>
                 <select name="client" id="clientSelect" v-model="client" @change="getProjects">
                     <option v-for="cl in clients" :value="cl.id" :key="cl.id">{{cl.client_name}}</option>
                 </select>
@@ -61,6 +62,7 @@
                     <option v-for="pr in projects" :value="pr.id" :key="pr.id">{{pr.project_name}}</option>
                 </select>
                 <button id="btnAddCom" @click="saveFeedback">Save</button>
+
         </div>
 
 
@@ -381,6 +383,16 @@
             },
             saveFeedback(){
                 console.log(canvas.toDataURL());
+                if(this.client == null){
+                    document.getElementById('clientSelect').style.border = '1px solid red';
+                    return;
+                }
+                if(this.project == null){
+                    document.getElementById('projectSelect').style.border = '1px solid red';
+                    return;
+                }
+                document.getElementById('btnAddCom').disabled = true;
+                document.getElementById('btnAddCom').style.backgroundColor = 'grey';
                 axios.post('/addFeedback', {imgCanvas: canvas.toDataURL(), comments: this.comments, client: this.client, project: this.project})
                 .then(response => {
                 console.log('listo');

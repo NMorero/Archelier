@@ -1978,6 +1978,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2242,6 +2244,19 @@ __webpack_require__.r(__webpack_exports__);
     },
     saveFeedback: function saveFeedback() {
       console.log(canvas.toDataURL());
+
+      if (this.client == null) {
+        document.getElementById('clientSelect').style.border = '1px solid red';
+        return;
+      }
+
+      if (this.project == null) {
+        document.getElementById('projectSelect').style.border = '1px solid red';
+        return;
+      }
+
+      document.getElementById('btnAddCom').disabled = true;
+      document.getElementById('btnAddCom').style.backgroundColor = 'grey';
       axios.post('/addFeedback', {
         imgCanvas: canvas.toDataURL(),
         comments: this.comments,
