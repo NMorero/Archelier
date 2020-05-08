@@ -217,4 +217,82 @@ class FeedbackController extends Controller
 
         return ['status' => 'Listo'];
     }
+
+    public function getClients(){
+        $clients = [];
+        $id = Auth::user()->id;
+
+        if (auth()->user()->roles->rol == 'developer'){
+            $dev = Developers::where('user_id', 'LIKE', $id)->get();
+            $devProjects = ProjectDevelopers::where('developer_id','LIKE',$dev[0]->id)->get();
+
+            foreach($devProjects as $devProject){
+                $project = Projects::find($devProject->project_id);
+                $client = Clients::find($project->client_id);
+                $clients[] = $client;
+            }
+        }else if(auth()->user()->roles->rol == 'PRleader'){
+            $lead = ProjectLeaders::where('user_id', 'LIKE', $id)->get();
+
+            $leadProjects = Projects::where('leader_id', 'LIKE', $lead[0]->id)->get();
+            foreach($leadProjects as $leadProject){
+                $project = Projects::find($leadProject->id);
+                $client = Clients::find($project->client_id);
+                $clients[] = $client;
+            }
+        }else if(auth()->user()->roles->rol == 'PRmanager'){
+            $man = ProjectManagers::where('user_id', 'LIKE', $id)->get();
+            $manProjects = Projects::where('manager_id', 'LIKE', $man[0]->id)->get();
+            foreach($manProjects as $manProject){
+                $project = Projects::find($manProject->id);
+                $client = Clients::find($project->client_id);
+                $clients[] = $client;
+            }
+        }else if(auth()->user()->roles->rol == 'admin'){
+            $clients = Clients::all();
+        }
+
+        return $clients;
+
+    }
+
+    public function getProjects($client)
+    {
+        $id = Auth::user()->id;
+        $projects = [];
+        if (auth()->user()->roles->rol == 'developer'){
+
+            $dev = Developers::where('user_id', 'LIKE', $id)->get();
+            $devProjects = ProjectDevelopers::where('developer_id','LIKE',$dev[0]->id)->get();
+            foreach($devProjects as $devProject){
+                $project = Projects::find($devProject->project_id);
+                if($project->client_id == $client){
+                    $projects[] = $project;
+                }
+            }
+        }else if(auth()->user()->roles->rol == 'PRleader'){
+            $lead = ProjectLeaders::where('user_id', 'LIKE', $id)->get();
+            $leadProjects = Projects::where('leader_id', 'LIKE', $lead[0]->id)->get();
+            foreach($leadProjects as $leadProject){
+                $project = Projects::find($leadProject->id);
+                if($project->client_id == $client){
+                    $projects[] = $project;
+                }
+
+            }
+        }else if(auth()->user()->roles->rol == 'PRmanager'){
+            $man = ProjectManagers::where('user_id' , 'LIKE' , $id)->get();
+            $manProjects = Projects::where('manager_id', 'LIKE', $man[0]->id)->get();
+            foreach($manProjects as $manProject){
+                $project = Projects::find($manProject->id);
+                if($project->client_id == $client){
+                    $projects[] = $project;
+                }
+            }
+        }else if(auth()->user()->roles->rol == 'admin'){
+            $projects = Projects::where('client_id', 'LIKE', $client)->get();
+        }
+
+        return $projects;
+    }
 }

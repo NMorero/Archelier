@@ -1968,9 +1968,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      clients: null,
+      projects: null,
+      showModal: false,
       message: 'Hello Vue!',
       vueCanvas: null,
       painting: false,
@@ -1985,7 +1998,9 @@ __webpack_require__.r(__webpack_exports__);
       cPushArray: new Array(),
       newImg: false,
       brushF: false,
-      flagPalette: false
+      flagPalette: false,
+      client: null,
+      project: null
     };
   },
   methods: {
@@ -2229,7 +2244,9 @@ __webpack_require__.r(__webpack_exports__);
       console.log(canvas.toDataURL());
       axios.post('/addFeedback', {
         imgCanvas: canvas.toDataURL(),
-        comments: this.comments
+        comments: this.comments,
+        client: this.client,
+        project: this.project
       });
     },
     setFocus: function setFocus(id) {
@@ -2243,9 +2260,25 @@ __webpack_require__.r(__webpack_exports__);
 
       var btn = document.getElementById('btn' + id);
       btn.style.backgroundColor = '#34349e';
+    },
+    getProjects: function getProjects() {
+      var _this = this;
+
+      console.log(this.client);
+      axios.get('/Feedback/getProjects/' + this.client).then(function (response) {
+        _this.projects = response.data;
+        console.log(_this.projects);
+      });
     }
   },
   mounted: function mounted() {
+    var _this2 = this;
+
+    axios.get('/Feedback/getClients').then(function (response) {
+      _this2.clients = response.data;
+      console.log(_this2.clients);
+    });
+    console.log(this.clients);
     this.canvas = document.getElementById("canvas");
     this.ctx = canvas.getContext("2d");
     this.menu = document.getElementById('menu');
@@ -50545,7 +50578,7 @@ var render = function() {
         _vm._l(_vm.comments, function(comm) {
           return _c(
             "div",
-            { key: _vm.comments.id, attrs: { id: "comentBox" + comm.id } },
+            { key: comm.id, attrs: { id: "comentBox" + comm.id } },
             [
               _c("div", { staticClass: "input" }, [
                 _c("span", [_vm._v(_vm._s(comm.number))]),
@@ -50610,6 +50643,85 @@ var render = function() {
               ])
             ]
           )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "clientSelect" } }, [_vm._v("Client: ")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.client,
+              expression: "client"
+            }
+          ],
+          attrs: { name: "client", id: "clientSelect" },
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.client = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.getProjects
+            ]
+          }
+        },
+        _vm._l(_vm.clients, function(cl) {
+          return _c("option", { key: cl.id, domProps: { value: cl.id } }, [
+            _vm._v(_vm._s(cl.client_name))
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "projectSelect" } }, [_vm._v("Project: ")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.project,
+              expression: "project"
+            }
+          ],
+          attrs: { name: "project", id: "projectSelect" },
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.project = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        _vm._l(_vm.projects, function(pr) {
+          return _c("option", { key: pr.id, domProps: { value: pr.id } }, [
+            _vm._v(_vm._s(pr.project_name))
+          ])
         }),
         0
       ),

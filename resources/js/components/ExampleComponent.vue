@@ -39,7 +39,7 @@
                 <div id="commentBox">
 
 
-                    <div v-for="comm in comments" :key="comments.id" :id="'comentBox' + comm.id" class="">
+                    <div v-for="comm in comments" :key="comm.id" :id="'comentBox' + comm.id" class="">
 
                         <div class="input">
                             <span>{{comm.number}}</span>  <textarea :id="'textArea'+ comm.id" type="text"  v-model="comm.value" cols="30" :rows="comm.textRow" @input="resize($event)"></textarea> <span @click="oImg(comm.id)"><i class="fas fa-folder-plus"></i></span>
@@ -52,8 +52,18 @@
 
 
                 </div>
+                <label for="clientSelect">Client: </label>
+                <select name="client" id="clientSelect" v-model="client" @change="getProjects">
+                    <option v-for="cl in clients" :value="cl.id" :key="cl.id">{{cl.client_name}}</option>
+                </select>
+                <label for="projectSelect">Project: </label>
+                <select name="project" id="projectSelect" v-model="project">
+                    <option v-for="pr in projects" :value="pr.id" :key="pr.id">{{pr.project_name}}</option>
+                </select>
                 <button id="btnAddCom" @click="saveFeedback">Save</button>
         </div>
+
+
 
     </div>
 
@@ -65,6 +75,9 @@
 
         data() {
             return {
+                clients: null,
+                projects:null,
+                showModal: false,
                 message: 'Hello Vue!',
                 vueCanvas:null,
                 painting:false,
@@ -79,7 +92,9 @@
                 cPushArray: new Array,
                 newImg: false,
                 brushF: false,
-                flagPalette:false
+                flagPalette:false,
+                client: null,
+                project: null,
 
             };
         },
@@ -366,7 +381,7 @@
             },
             saveFeedback(){
                 console.log(canvas.toDataURL());
-                axios.post('/addFeedback', {imgCanvas: canvas.toDataURL(), comments: this.comments});
+                axios.post('/addFeedback', {imgCanvas: canvas.toDataURL(), comments: this.comments, client: this.client, project: this.project});
             },
             setFocus(id){
             var btns = document.getElementsByClassName('btnMenu');
@@ -377,12 +392,27 @@
 
             var btn = document.getElementById('btn'+id);
             btn.style.backgroundColor = '#34349e';
-        }
+            },
+            getProjects(){
+                console.log(this.client);
+                axios.get('/Feedback/getProjects/'+this.client)
+            .then(response => {
+                this.projects = response.data;
+                console.log(this.projects);
+            })
+            }
 
 
         },
 
         mounted() {
+
+            axios.get('/Feedback/getClients')
+            .then(response => {
+                this.clients = response.data;
+                console.log(this.clients);
+            })
+            console.log(this.clients);
             this.canvas = document.getElementById("canvas");
             this.ctx = canvas.getContext("2d");
             this.menu = document.getElementById('menu');
@@ -408,7 +438,6 @@
 
             this.canvas.style.display = 'flex';
             this.canvas.style.float = 'left';
-
 
         },
 

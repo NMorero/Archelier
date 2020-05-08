@@ -63,6 +63,10 @@ Route::get('/addDelivery/{formData}', 'HomeController@addDelivery');
 
 Route::get('/Feedback/Create', 'FeedbackController@create');
 
+Route::get('/Feedback/getClients', 'FeedbackController@getClients');
+
+Route::get('/Feedback/getProjects/{client}', 'FeedbackController@getProjects');
+
 Route::get('/Feedback/Edit/{id}', 'FeedbackController@edit');
 
 Route::post('/Feedback/Edit/saveFeedback', 'FeedbackController@saveFeedbackChange');
