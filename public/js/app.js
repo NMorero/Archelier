@@ -2249,6 +2249,7 @@ __webpack_require__.r(__webpack_exports__);
         project: this.project
       }).then(function (response) {
         console.log('listo');
+        window.location.href = "/";
       });
     },
     setFocus: function setFocus(id) {

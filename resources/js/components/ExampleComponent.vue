@@ -384,6 +384,7 @@
                 axios.post('/addFeedback', {imgCanvas: canvas.toDataURL(), comments: this.comments, client: this.client, project: this.project})
                 .then(response => {
                 console.log('listo');
+                window.location.href = "/";
                 });
             },
             setFocus(id){

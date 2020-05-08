@@ -129,7 +129,8 @@ class FeedbackController extends Controller
             $commentary = [
                 'comment' => $comment['value'],
                 'status' => 'undone',
-                'id' => $i
+                'id' => $i,
+                'image' => $comment['image']
             ];
             array_push($comentaries, $commentary);
         }
