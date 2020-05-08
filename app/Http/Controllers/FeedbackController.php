@@ -79,11 +79,11 @@ class FeedbackController extends Controller
 
     public function addFeedback(Request $request)
     {
-        $b64 = $request['base64'];
+        $b64 = $request['imgCanvas'];
 
         define('UPLOAD_DIR', 'upload/feedbacks/');
         $img = $b64;
-        $img = str_replace('data:image/jpeg;base64,', '', $img);
+        $img = str_replace('data:image/png;base64,', '', $img);
         $img = str_replace(' ', '+', $img);
         $data = base64_decode($img);
 

@@ -27,6 +27,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import VueKonva from 'vue-konva';
+
+Vue.use(VueKonva)
+
 const app = new Vue({
     el: '#app',
+
 });

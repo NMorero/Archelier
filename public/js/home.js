@@ -151,8 +151,8 @@ function getPosts() {
                     </div>
                     <p class=" col-10 text-right postInfo mb-0">${post.client} - ${post.project} - ${post.user_name} - ${post.date} - ${post.time}</p>
                     <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
-                    <div class="col-12 px-3"><img src="${post.image}" class="postImage" alt=""  onclick="openModalImg(${post.id})" id="postImg${post.id}"></div>
 
+                    <div class="col-12 px-3"><img src="${post.image}" class="postImage" alt=""  onclick="openModalImg(${post.id})" id="postImg${post.id}"></div>
 
                 </div>
                     `;
@@ -171,8 +171,8 @@ function getPosts() {
                     </div>
                     <p class=" col-10 text-right postInfo mb-0">${post.client} - ${post.project} - ${post.user_name} - ${post.date} - ${post.time}</p>
                     <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
-                    <div class="col-12 px-5 py-0"><img src="${post.image}" class="postImage"  onclick="openModalImg(${post.id})" id="postImg${post.id}"></div>
 
+                    <div class="col-12 px-5 py-0"><img src="${post.image}" class="postImage"  onclick="openModalImg(${post.id})" id="postImg${post.id}"></div>
 
                 </div>
                     `;
