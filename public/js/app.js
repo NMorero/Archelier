@@ -2226,7 +2226,11 @@ __webpack_require__.r(__webpack_exports__);
       document.getElementById('backInput').click();
     },
     saveFeedback: function saveFeedback() {
-      console.log('si');
+      console.log(canvas.toDataURL());
+      axios.post('/addFeedback', {
+        imgCanvas: canvas.toDataURL(),
+        comments: this.comments
+      });
     },
     setFocus: function setFocus(id) {
       var btns = document.getElementsByClassName('btnMenu');

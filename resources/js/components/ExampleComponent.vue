@@ -365,7 +365,8 @@
                 document.getElementById('backInput').click();
             },
             saveFeedback(){
-                console.log('si');
+                console.log(canvas.toDataURL());
+                axios.post('/addFeedback', {imgCanvas: canvas.toDataURL(), comments: this.comments});
             },
             setFocus(id){
             var btns = document.getElementsByClassName('btnMenu');
