@@ -127,7 +127,7 @@ class FeedbackController extends Controller
         foreach ($request['comments'] as $comment) {
             $i++;
             $commentary = [
-                'comment' => $comment,
+                'comment' => $comment['value'],
                 'status' => 'undone',
                 'id' => $i
             ];
@@ -141,6 +141,7 @@ class FeedbackController extends Controller
         if (isset($request['view']) && $request['view'] != 'none') {
             $feedback->view_id = $request['view'];
         }
+
         $feedback->image = $file;
         $feedback->image_original = $file2;
         $feedback->save();
@@ -153,13 +154,11 @@ class FeedbackController extends Controller
         $post->user_id = Auth::id();
         $post->client_id = $request['client'];
         $post->project_id = $request['project'];
-        if (isset($request['type']) && !empty($request['type'])) {
-            $post->type = $request['type'];
-        }
         if (isset($request['view']) && $request['view'] != 'none') {
             $post->view_id = $request['view'];
         }
         $post->feedback_id = $feedback->id;
+        $post->type = "feedbackCreate";
         $post->save();
 
 
