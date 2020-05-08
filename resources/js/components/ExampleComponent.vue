@@ -381,7 +381,10 @@
             },
             saveFeedback(){
                 console.log(canvas.toDataURL());
-                axios.post('/addFeedback', {imgCanvas: canvas.toDataURL(), comments: this.comments, client: this.client, project: this.project});
+                axios.post('/addFeedback', {imgCanvas: canvas.toDataURL(), comments: this.comments, client: this.client, project: this.project})
+                .then(response => {
+                console.log('listo');
+                });
             },
             setFocus(id){
             var btns = document.getElementsByClassName('btnMenu');

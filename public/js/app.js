@@ -2247,6 +2247,8 @@ __webpack_require__.r(__webpack_exports__);
         comments: this.comments,
         client: this.client,
         project: this.project
+      }).then(function (response) {
+        console.log('listo');
       });
     },
     setFocus: function setFocus(id) {
