@@ -57,6 +57,7 @@ class HomeController extends Controller
     {
         $clients = [];
         $id = Auth::user()->id;
+        $flag = true;
 
         if (auth()->user()->roles->rol == 'developer'){
             $dev = Developers::where('user_id', 'LIKE', $id)->get();
@@ -65,7 +66,15 @@ class HomeController extends Controller
             foreach($devProjects as $devProject){
                 $project = Projects::find($devProject->project_id);
                 $client = Clients::find($project->client_id);
-                $clients[] = $client;
+                foreach($clients as $cl){
+                    if($cl->id == $client->id){
+                        $flag = false;
+                    }
+                }
+                if($flag){
+                    $clients[] = $client;
+                }
+                $flag = true;
             }
         }else if(auth()->user()->roles->rol == 'PRleader'){
             $lead = ProjectLeaders::where('user_id', 'LIKE', $id)->get();
@@ -74,7 +83,15 @@ class HomeController extends Controller
             foreach($leadProjects as $leadProject){
                 $project = Projects::find($leadProject->id);
                 $client = Clients::find($project->client_id);
-                $clients[] = $client;
+                foreach($clients as $cl){
+                    if($cl->id == $client->id){
+                        $flag = false;
+                    }
+                }
+                if($flag){
+                    $clients[] = $client;
+                }
+                $flag = true;
             }
         }else if(auth()->user()->roles->rol == 'PRmanager'){
             $man = ProjectManagers::where('user_id', 'LIKE', $id)->get();
@@ -82,7 +99,15 @@ class HomeController extends Controller
             foreach($manProjects as $manProject){
                 $project = Projects::find($manProject->id);
                 $client = Clients::find($project->client_id);
-                $clients[] = $client;
+                foreach($clients as $cl){
+                    if($cl->id == $client->id){
+                        $flag = false;
+                    }
+                }
+                if($flag){
+                    $clients[] = $client;
+                }
+                $flag = true;
             }
         }else if(auth()->user()->roles->rol == 'admin'){
             $clients = Clients::all();
