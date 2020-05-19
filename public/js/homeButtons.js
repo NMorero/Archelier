@@ -26,7 +26,7 @@ $("#postBtnForm").on("submit", function(e) {
         getPosts();
         $("#closePostBtn").click();
     });
-    document.getElementById('submitPost').disable = false;
+    document.getElementById('submitPost').removeAttribute('disabled');
 });
 
 var users = "";
