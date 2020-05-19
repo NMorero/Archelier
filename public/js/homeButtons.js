@@ -24,9 +24,10 @@ $("#postBtnForm").on("submit", function(e) {
         console.log(res);
         document.getElementById("postBtnForm").reset();
         getPosts();
+        document.getElementById('submitPost').disabled = false;
         $("#closePostBtn").click();
     });
-    document.getElementById('submitPost').removeAttribute('disabled');
+
 });
 
 var users = "";
