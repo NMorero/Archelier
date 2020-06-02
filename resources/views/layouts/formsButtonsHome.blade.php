@@ -42,7 +42,7 @@
 
                 <div class="form-group col-6">
                     <label for="TaskBtnClientSelect" class="text-muted">Client</label>
-                    <select name="TaskBtnClientSelect" id="TaskBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Task')" >
+                    <select name="TaskBtnClientSelect" id="TaskBtnClientSelect" class="custom-select" onchange="getProjectsByClient('Task')" required>
                         <option value="null">Select...</option>
                         @foreach ($clients as $client)
                             <option value="{{$client->id}}" > {{$client->client_name}} </option>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-group col-6" >
                     <label for="TaskBtnProjectSelect" class="text-muted">Project</label>
-                    <select name="TaskBtnProjectSelect" id="TaskBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Task')" >
+                    <select name="TaskBtnProjectSelect" id="TaskBtnProjectSelect" class="custom-select" onchange="getViewsByProject('Task')" required>
 
                     </select>
                 </div>
