@@ -654,8 +654,6 @@ class HomeController extends Controller
 
     public function addPost(Request $request)
     {
-
-
         $post = new Posts;
         $post->title = $request['PostBtnTitle'];
         $post->message = $request['PostBtnMessage'];
@@ -668,12 +666,9 @@ class HomeController extends Controller
             $post->view_id = $request['PostBtnViewSelect'];
         }
 
-
-
         if (isset($request['PostBtnViewSelect']) && !empty($request['PostBtnViewSelect']) && $request['PostBtnViewSelect'] != 'none') {
             $post->view_id = $request['PostBtnViewSelect'];
         }
-
 
         if (isset($request['PostBtnFile']) && !empty($request['PostBtnFile'])) {
             $imageName = date("Y-m-d") . '-' . time() . '.' . $request['PostBtnFile']->getClientOriginalExtension();
@@ -712,6 +707,20 @@ class HomeController extends Controller
         $post->save();
 
         return 'se cargo el post';
+    }
+
+    function addPostTest($formData)
+    {
+        $formData = json_decode($formData, true);
+        $post = new Posts;
+        $post->title = $formData['title'];
+        $post->message = $formData['message'];
+        $post->user_id = Auth::id();
+        $post->type = 'post';
+        $post->client_id = $formData['client'];
+        $post->project_id = $formData['project'];
+        $post->save();
+        return ['status' => 'ok'];
     }
 
     function addEvent($formData)
@@ -759,4 +768,5 @@ class HomeController extends Controller
 
         return ['status' => 'ok'];
     }
+
 }

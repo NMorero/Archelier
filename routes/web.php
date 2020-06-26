@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/testLimit', function(){
+    return view('testLimit');
+});
+
 Route::get('/Admin/Delete/All/DB', 'AdminController@deleteDb');
 
 Route::get('/', 'HomeController@index');
@@ -52,6 +56,8 @@ Route::get('/getUsers', 'HomeController@getUsers');
 Route::get('/addReminder/{formData}', 'HomeController@addReminder');
 
 Route::get('/addTask/{formData}', 'HomeController@addTask');
+
+Route::get('/addPostTest/{formData}', 'HomeController@addPostTest' );
 
 Route::post('/addPost', 'HomeController@addPost');
 
