@@ -36,7 +36,7 @@
         };
         formData = JSON.stringify(formData);
         let route = "/addPostTest" + "/" + formData;
-        for (i = 0; i < 200; i++) {
+        for (i = 0; i < 10; i++) {
             fetch(route)
             .then(function(response) {
                 return response.json();
