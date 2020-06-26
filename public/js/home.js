@@ -732,3 +732,18 @@ function deleteTask(id, comm){
             console.log(error);
         });
 }
+
+function addFileBtnPost(){
+    var nummm = document.getElementById('filePostModalNum');
+    nummm.value = nummm.value + 1;
+    var boxFiles = document.getElementById('filePostModal');
+    boxFiles.innerHTML = boxFiles.innerHTML.concat(
+        `<div class="custom-file col-12 px-5">
+        <input type="file" class="custom-file-input" name="PostBtnFile2" id="PostBtnFile2">
+        <label class="custom-file-label text-muted" for="PostBtnFile2">Choose file</label>
+      </div>`
+    );
+}
+
+
+//

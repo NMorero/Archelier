@@ -250,12 +250,14 @@
                     </select>
                 </div>
 
-                <div class="form-group col-12">
+                <div id="filePostModal" class="form-group col-12">
                   <div class="custom-file col-12 px-5">
-                    <input type="file" class="custom-file-input" name="PostBtnFile" id="PostBtnFile">
-                    <label class="custom-file-label text-muted" for="PostBtnFile">Choose file</label>
+                    <input type="file" class="custom-file-input" name="PostBtnFile[]" id="PostBtnFile" multiple>
+                    <label class="custom-file-label text-muted" for="PostBtnFile">Choose files</label>
                   </div>
                 </div>
+
+
 
 
 
