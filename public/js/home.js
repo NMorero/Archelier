@@ -195,7 +195,7 @@ function getPosts() {
                         `;
                         var postImages = JSON.parse(post.images);
                         console.log('images: ' + postImages);
-                        postImages.map(function(img){
+                        for(var img in postImages){
                             var propor = img.width / img.height;
                             if(propor >= 1.33){
                                 imageTemplate = `
@@ -213,7 +213,7 @@ function getPosts() {
                                 `;
                                 templateLiteral2 = templateLiteral2 + imageTemplate;
                             }
-                        });
+                        }
                         divPosts.innerHTML = divPosts.innerHTML.concat(templateLiteral2);
                     }else {
                         const templateLiteral = `
