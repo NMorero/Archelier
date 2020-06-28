@@ -654,7 +654,7 @@ class HomeController extends Controller
 
     public function addPost(Request $request)
     {
-
+        return $request['PostBtnFile'];
         $post = new Posts;
         $post->title = $request['PostBtnTitle'];
         $post->message = $request['PostBtnMessage'];
