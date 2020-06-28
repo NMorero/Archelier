@@ -180,7 +180,40 @@ function getPosts() {
                             templateLiteral
                         );
                         }
-                    } else {
+                    }else if(post.images !== null){
+                        var templateLiteral2 = `
+                            <div class="row border-botBlue my-2 py-2">
+                                <p class=" col-2 text-dark" onclick="dotsMenuOpen(${post.id})" >
+                                <i class="fas fa-ellipsis-h"></i>
+                                </p>
+                                <div class="rounded bg-white mt-3 ml-2 infoHover border p-2 dotsMenu" id="div${post.id}" style="display:none;position:absolute;z-index:400">
+                                    <button class="btn border-bottom" onclick="deletePost(${post.id})">Delete</button><br>
+                                    <button class="btn" onclick="dotsMenuClose(${post.id})">Close</button>
+                                </div>
+                                <p class=" col-10 text-right postInfo mb-0">${post.client} - ${post.project} - ${post.user_name} - ${post.date} - ${post.time}</p>
+                                <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
+                        `;
+                        post.images.map(function(img){
+                            var propor = img.width / img.height;
+                            if(propor >= 1.33){
+                                imageTemplate = `
+                                <img src="${img.image}" class="postImage" alt="" onclick="openModalImg(${post.id})" id="postImg${post.id}">
+                                `;
+                                templateLiteral2 = templateLiteral2 + imageTemplate;
+                            }else if(propor < 1.33 && propor >= 1){
+                                imageTemplate = `
+                                <div class="col-12 px-3"><img src="${img.image}" class="postImage" alt=""  onclick="openModalImg(${post.id})" id="postImg${post.id}"></div>
+                                `;
+                                templateLiteral2 = templateLiteral2 + imageTemplate;
+                            }else{
+                                imageTemplate = `
+                                <div class="col-12 px-5 py-0"><img src="${img.image}" class="postImage"  onclick="openModalImg(${post.id})" id="postImg${post.id}"></div>
+                                `;
+                                templateLiteral2 = templateLiteral2 + imageTemplate;
+                            }
+                        });
+                        divPosts.innerHTML = divPosts.innerHTML.concat(templateLiteral2);
+                    }else {
                         const templateLiteral = `
                     <div class="row border-botBlue my-2 py-2">
                     <p class=" col-2 text-dark" onclick="dotsMenuOpen(${post.id})" >

@@ -708,7 +708,7 @@ class HomeController extends Controller
                 $resized->save('upload/posts/thumbnails/' . $imageName);
                 $resized2->save('upload/posts/' . $imageName);
             }
-
+            $post->images = $imagesArray;
         }
         $post->save();
 
