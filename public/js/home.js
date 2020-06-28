@@ -195,9 +195,9 @@ function getPosts() {
                         `;
                         var postImages = JSON.parse(post.images);
 
-                        for(var img in postImages){
-                            console.log(img);
-                            var propor = img.width / img.height;
+                        for(var key in postImages){
+                            console.log(postImages[key]);
+                            var propor = postImages[key].width / postImages[key].height;
                             if(propor >= 1.33){
                                 imageTemplate = `
                                 <img src="${img.image}" class="postImage" alt="" onclick="openModalImg(${post.id})" id="postImg${post.id}">
