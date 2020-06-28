@@ -193,7 +193,8 @@ function getPosts() {
                                 <p class=" col-10 text-right postInfo mb-0">${post.client} - ${post.project} - ${post.user_name} - ${post.date} - ${post.time}</p>
                                 <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
                         `;
-                        post.images.map(function(img){
+                        var postImages = JSON.parse(post.images);
+                        postImages.map(function(img){
                             var propor = img.width / img.height;
                             if(propor >= 1.33){
                                 imageTemplate = `
