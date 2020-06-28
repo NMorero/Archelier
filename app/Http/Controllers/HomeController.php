@@ -707,7 +707,6 @@ class HomeController extends Controller
                 $resized->save('upload/posts/thumbnails/' . $imageName);
                 $resized2->save('upload/posts/' . $imageName);
             }
-            return json_encode($imagesArray);
             $post->images = json_encode($imagesArray);
         }
         $post->save();
