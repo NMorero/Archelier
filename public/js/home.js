@@ -194,9 +194,9 @@ function getPosts() {
                                 <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
                         `;
                         var postImages = JSON.parse(post.images);
-                        var result = Object.keys(postImages).map(function(key) {
-                            return [Number(key), postImages[key]];
-                          });
+                        var result = $.map(postImages, function(value, index) {
+                            return [value];
+                        });
                         console.log('images: ' + result);
                         for(var img in postImages){
                             var propor = img.width / img.height;
