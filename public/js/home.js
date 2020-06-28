@@ -195,8 +195,8 @@ function getPosts() {
                         `;
                         var postImages = JSON.parse(post.images);
 
-                        console.log('images: ' + postImages[0]);
                         for(var img in postImages){
+                            console.log(img);
                             var propor = img.width / img.height;
                             if(propor >= 1.33){
                                 imageTemplate = `
