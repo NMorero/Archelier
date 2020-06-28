@@ -654,7 +654,7 @@ class HomeController extends Controller
 
     public function addPost(Request $request)
     {
-        return $request['PostBtnFile'];
+
         $post = new Posts;
         $post->title = $request['PostBtnTitle'];
         $post->message = $request['PostBtnMessage'];
@@ -673,7 +673,6 @@ class HomeController extends Controller
 
         if (isset($request['PostBtnFile']) && !empty($request['PostBtnFile'])) {
             $imagesArray = [];
-
             $iImages = 0;
             foreach($request['PostBtnFile'] as $file){
                 $iImages++;
@@ -708,6 +707,7 @@ class HomeController extends Controller
                 $resized->save('upload/posts/thumbnails/' . $imageName);
                 $resized2->save('upload/posts/' . $imageName);
             }
+            return json_encode($imagesArray);
             $post->images = json_encode($imagesArray);
         }
         $post->save();
