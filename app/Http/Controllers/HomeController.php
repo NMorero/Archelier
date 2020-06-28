@@ -194,7 +194,7 @@ class HomeController extends Controller
                 $devProjects = ProjectDevelopers::where('developer_id','LIKE',$dev[0]->id)->get();
                 foreach($devProjects as $devProject){
                     $project = Projects::find($devProject->project_id);
-                    $post = Posts::where('project_id', 'LIKE', $project->id)->orderBy('id', 'DESC')->paginate(15);
+                    $post = Posts::where('project_id', 'LIKE', $project->id)->orderBy('id', 'DESC')->paginate(25);
                     foreach($post as $po){
                         $posts[$po->id] = $po;
                     }
@@ -206,7 +206,7 @@ class HomeController extends Controller
                 $leadProjects = Projects::where('leader_id', 'LIKE', $lead[0]->id)->get();
                 foreach($leadProjects as $leadProject){
                     $project = Projects::find($leadProject->id);
-                    $post = Posts::where('project_id', 'LIKE', $project->id)->orderBy('id', 'DESC')->paginate(15);
+                    $post = Posts::where('project_id', 'LIKE', $project->id)->orderBy('id', 'DESC')->paginate(25);
                     foreach($post as $po){
                         $posts[$po->id] = $po;
                     }
@@ -217,13 +217,13 @@ class HomeController extends Controller
                 $manProjects = Projects::where('manager_id', 'LIKE', $man[0]->id)->get();
                 foreach($manProjects as $manProject){
                     $project = Projects::find($manProject->id);
-                    $post = Posts::where('project_id', 'LIKE', $project->id)->orderBy('id', 'DESC')->paginate(15);
+                    $post = Posts::where('project_id', 'LIKE', $project->id)->orderBy('id', 'DESC')->paginate(25);
                     foreach($post as $po){
                         $posts[$po->id] = $po;
                     }
                 }
             }else if(auth()->user()->roles->rol == 'admin'){
-                $post = Posts::orderBy('id', 'DESC')->paginate(15);
+                $post = Posts::orderBy('id', 'DESC')->paginate(25);
                 foreach($post as $po){
                     $posts[$po->id] = $po;
                 }
@@ -237,7 +237,7 @@ class HomeController extends Controller
                     $devProjects = ProjectDevelopers::where('developer_id','LIKE',$dev[0]->id)->get();
                     foreach($devProjects as $devProject){
                         $project = Projects::find($devProject->project_id);
-                        $post = Posts::where('project_id', 'LIKE', $project->id)->where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->paginate(15);
+                        $post = Posts::where('project_id', 'LIKE', $project->id)->where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->paginate(25);
                         foreach($post as $po){
                             $posts[$po->id] = $po;
                         }
@@ -248,7 +248,7 @@ class HomeController extends Controller
                     $leadProjects = Projects::where('leader_id', 'LIKE', $lead[0]->id)->get();
                     foreach($leadProjects as $leadProject){
                         $project = Projects::find($leadProject->id);
-                        $post = Posts::where('project_id', 'LIKE', $project->id)->where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->paginate(15);
+                        $post = Posts::where('project_id', 'LIKE', $project->id)->where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->paginate(25);
                         foreach($post as $po){
                             $posts[$po->id] = $po;
                         }
@@ -259,23 +259,23 @@ class HomeController extends Controller
                     $manProjects = Projects::where('manager_id', 'LIKE', $man[0]->id)->get();
                     foreach($manProjects as $manProject){
                         $project = Projects::find($manProject->id);
-                        $post = Posts::where('project_id', 'LIKE', $project->id)->where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->paginate(15);
+                        $post = Posts::where('project_id', 'LIKE', $project->id)->where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->paginate(25);
                         foreach($post as $po){
                             $posts[$po->id] = $po;
                         }
                     }
                 }else if(auth()->user()->roles->rol == 'admin'){
-                    $posts = Posts::where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->paginate(15);
+                    $posts = Posts::where('client_id', 'LIKE', $client)->orderBy('id', 'DESC')->paginate(25);
                 }
 
             } else {
                 if ($view === 'All') {
-                    $post = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->orderBy('id', 'DESC')->paginate(15);
+                    $post = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->orderBy('id', 'DESC')->paginate(25);
                     foreach($post as $po){
                         $posts[$po->id] = $po;
                     }
                 } else {
-                    $post = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->where('view_id', 'LIKE', $view)->orderBy('id', 'DESC')->paginate(15);
+                    $post = Posts::where('client_id', 'LIKE', $client)->where('project_id', 'LIKE', $project)->where('view_id', 'LIKE', $view)->orderBy('id', 'DESC')->paginate(25);
                     foreach($post as $po){
                         $posts[$po->id] = $po;
                     }
