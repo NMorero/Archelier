@@ -194,10 +194,8 @@ function getPosts() {
                                 <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
                         `;
                         var postImages = JSON.parse(post.images);
-                        var result = $.map(postImages, function(value, index) {
-                            return [value];
-                        });
-                        console.log('images: ' + result);
+
+                        console.log('images: ' + Object.values(postImages));
                         for(var img in postImages){
                             var propor = img.width / img.height;
                             if(propor >= 1.33){
