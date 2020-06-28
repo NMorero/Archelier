@@ -200,17 +200,17 @@ function getPosts() {
                             var propor = postImages[key].width / postImages[key].height;
                             if(propor >= 1.33){
                                 imageTemplate = `
-                                <img src="${img.image}" class="postImage" alt="" onclick="openModalImg(${post.id})" id="postImg${post.id}">
+                                <img src="${postImages[key].image}" class="postImage" alt="" onclick="openModalImg(${post.id})" id="postImg${post.id}">
                                 `;
                                 templateLiteral2 = templateLiteral2 + imageTemplate;
                             }else if(propor < 1.33 && propor >= 1){
                                 imageTemplate = `
-                                <div class="col-12 px-3"><img src="${img.image}" class="postImage" alt=""  onclick="openModalImg(${post.id})" id="postImg${post.id}"></div>
+                                <div class="col-12 px-3"><img src="${postImages[key].image}" class="postImage" alt=""  onclick="openModalImg(${post.id})" id="postImg${post.id}"></div>
                                 `;
                                 templateLiteral2 = templateLiteral2 + imageTemplate;
                             }else{
                                 imageTemplate = `
-                                <div class="col-12 px-5 py-0"><img src="${img.image}" class="postImage"  onclick="openModalImg(${post.id})" id="postImg${post.id}"></div>
+                                <div class="col-12 px-5 py-0"><img src="${postImages[key].image}" class="postImage"  onclick="openModalImg(${post.id})" id="postImg${post.id}"></div>
                                 `;
                                 templateLiteral2 = templateLiteral2 + imageTemplate;
                             }
