@@ -24,6 +24,7 @@ $("#postBtnForm").on("submit", function(e) {
         console.log(res);
         document.getElementById("postBtnForm").reset();
         getPosts();
+        document.getElementById('PostBtnFile').value = "";
         document.getElementById('submitPost').disabled = false;
         $("#closePostBtn").click();
     });
