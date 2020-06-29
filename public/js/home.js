@@ -201,19 +201,19 @@ function getPosts() {
                             iImages++;
                             if(propor >= 1.33){
                                 imageTemplate = `
-                                <img src="${postImages[key].image}" class="postImage" alt="" onclick="openModalImg(${iImages+post.id})" id="postImg${iImages+post.id}">
+                                <img src="${postImages[key].image}" class="postImage" alt="" onclick="openModalImgMulti(${iImages+post.id})" id="postMultiImg${iImages+post.id}">
                                 </div>
                                 `;
                                 templateLiteral2 = templateLiteral2 + imageTemplate;
                             }else if(propor < 1.33 && propor >= 1){
                                 imageTemplate = `
-                                <div class="col-12 px-3"><img src="${postImages[key].image}" class="postImage" alt=""  onclick="openModalImg(${iImages+post.id})" id="postImg${iImages+post.id}"></div>
+                                <div class="col-12 px-3"><img src="${postImages[key].image}" class="postImage" alt=""  onclick="openModalImgMulti(${iImages+post.id})" id="postMultiImg${iImages+post.id}"></div>
                                 </div>
                                 `;
                                 templateLiteral2 = templateLiteral2 + imageTemplate;
                             }else{
                                 imageTemplate = `
-                                <div class="col-12 px-5 py-0"><img src="${postImages[key].image}" class="postImage"  onclick="openModalImg(${iImages+post.id})" id="postImg${iImages+post.id}"></div>
+                                <div class="col-12 px-5 py-0"><img src="${postImages[key].image}" class="postImage"  onclick="openModalImgMulti(${iImages+post.id})" id="postMultiImg${iImages+post.id}"></div>
                                 </div>
                                 `;
                                 templateLiteral2 = templateLiteral2 + imageTemplate;

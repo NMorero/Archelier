@@ -282,16 +282,20 @@ Home
 
 <!-- The Modal -->
 <div id="modalImgExpand" class="modalimg" onclick="closeModalImgExpanded()">
-
     <!-- The Close Button -->
-
-
     <!-- Modal Content (The Image) -->
     <img class="modalimg-content" id="imgExpanded">
-
     <!-- Modal Caption (Image Text) -->
-
   </div>
+
+  <!-- The Modal -->
+<div id="modalImgExpandMulti" class="modalimg" onclick="closeModalImgExpanded()">
+    <!-- The Close Button -->
+    <!-- Modal Content (The Image) -->
+    <img class="modalimg-content" id="imgExpanded">
+    <!-- Modal Caption (Image Text) -->
+  </div>
+
   <!-- Modal -->
 <div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -342,29 +346,31 @@ if (window.matchMedia("(max-width: 700px)").matches) {
         }
 
         // Get the modal
-var modal = document.getElementById("modalImgExpand");
+        var modal = document.getElementById("modalImgExpand");
+        var modal2 = document.getElementById("modalImgExpandMulti");
         function openModalImg(id){
-
             // Get the image and insert it inside the modal - use its "alt" text as a caption
             var img = document.getElementById("postImg"+id);
-
-
             var modalImg = document.getElementById("imgExpanded");
-
-
-
             modal.style.display = "block";
             var string = img.src;
             var newString = string.replace("/thumbnails", "")
             modalImg.src = newString;
-
-
-
             // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close")[0];
-
             // When the user clicks on <span> (x), close the modal
 
+        }
+        function openModalImgMulti(id){
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById("postMultiImg"+id);
+        modal2.style.display = "block";
+        var string = img.src;
+        var newString = string.replace("/thumbnails", "")
+        modal2.src = newString;
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        // When the user clicks on <span> (x), close the modal
         }
     </script>
 @endsection
