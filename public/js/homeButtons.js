@@ -31,6 +31,7 @@ $("#postBtnForm").on("submit", function(e) {
     })
     .fail(function() {
         alert( "Error al subir el post" );
+        document.getElementById('submitPost').disabled = false;
       });
 
 });
