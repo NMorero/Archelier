@@ -55,8 +55,12 @@ $("#postBtnForm").on("submit", function(e) {
         document.getElementById('PostBtnFile').value = "";
         document.getElementById('submitPost').disabled = false;
         $("#closePostBtn").click();
-    });
-
+    })
+    .fail(function() {
+        hidePleaseWait();
+        alert( "Error al subir el post" );
+        document.getElementById('submitPost').disabled = false;
+      });
 
 });
 
