@@ -31,16 +31,11 @@ $("#postBtnForm").on("submit", function(e) {
         dataType: "html",
         data: formData,
         xhr: function() {
-            var xhr = new window.XMLHttpRequest();
-            $('#statusPostUpload').attr('aria-valuenow', percentComplete).css('width', percentComplete);
-            showPleaseWait();
-            xhr.upload.addEventListener("progress", function(evt) {
-                if (evt.lengthComputable) {
-                    var percentComplete = evt.loaded / evt.total;
-                    $('#statusPostUpload').attr('aria-valuenow', percentComplete).css('width', percentComplete);
-                }
-            }, false);
-            return xhr;
+            var myXhr = $.ajaxSettings.xhr();
+            if(myXhr.upload){
+                myXhr.upload.addEventListener('progress',progress, false);
+            }
+            return myXhr;
         },
         cache: false,
         contentType: false,
@@ -63,6 +58,20 @@ $("#postBtnForm").on("submit", function(e) {
       });
 
 });
+
+function progress(e){
+    if(e.lengthComputable){
+        var max = e.total;
+        var current = e.loaded;
+        var Percentage = (current * 100)/max;
+        $("#statusPostUpload").attr('aria-valuenow', Percentage).css('width', Percentage);
+        if(Percentage >= 100)
+        {
+            hidePleaseWait();
+        }
+    }
+ }
+
 
 var users = "";
 
