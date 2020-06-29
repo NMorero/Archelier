@@ -115,6 +115,7 @@ function getPosts() {
             data.reverse();
             var divPosts = document.getElementById("divPosts");
             divPosts.innerHTML = "";
+            var iImages = 1;
             data.map(function(post) {
                 if (post.type == "post") {
                     if (post.image != null) {
@@ -194,26 +195,26 @@ function getPosts() {
                                 <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
                         `;
                         var postImages = JSON.parse(post.images);
-                        var iImages = 1000;
+
                         for(var key in postImages){
                             console.log(postImages[key]);
                             var propor = postImages[key].width / postImages[key].height;
                             iImages++;
                             if(propor >= 1.33){
                                 imageTemplate = `
-                                <img src="${postImages[key].image}" class="postImage" alt="" onclick="openModalImgMulti(${iImages+post.id})" id="postMultiImg${iImages+post.id}">
+                                <img src="${postImages[key].image}" class="postImage" alt="" onclick="openModalImgMulti(${iImages})" id="postMultiImg${iImages}">
                                 </div>
                                 `;
                                 templateLiteral2 = templateLiteral2 + imageTemplate;
                             }else if(propor < 1.33 && propor >= 1){
                                 imageTemplate = `
-                                <div class="col-12 px-3"><img src="${postImages[key].image}" class="postImage" alt=""  onclick="openModalImgMulti(${iImages+post.id})" id="postMultiImg${iImages+post.id}"></div>
+                                <div class="col-12 px-3"><img src="${postImages[key].image}" class="postImage" alt=""  onclick="openModalImgMulti(${iImages})" id="postMultiImg${iImages}"></div>
                                 </div>
                                 `;
                                 templateLiteral2 = templateLiteral2 + imageTemplate;
                             }else{
                                 imageTemplate = `
-                                <div class="col-12 px-5 py-0"><img src="${postImages[key].image}" class="postImage"  onclick="openModalImgMulti(${iImages+post.id})" id="postMultiImg${iImages+post.id}"></div>
+                                <div class="col-12 px-5 py-0"><img src="${postImages[key].image}" class="postImage"  onclick="openModalImgMulti(${iImages})" id="postMultiImg${iImages}"></div>
                                 </div>
                                 `;
                                 templateLiteral2 = templateLiteral2 + imageTemplate;
