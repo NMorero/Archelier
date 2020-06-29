@@ -3,6 +3,20 @@ function resteForm(){
     document.getElementById("postBtnForm").reset();
 }
 
+$(function () {
+    var pleaseWait = $('#pleaseWaitDialog');
+
+    showPleaseWait = function() {
+        pleaseWait.modal('show');
+    };
+
+    hidePleaseWait = function () {
+        pleaseWait.modal('hide');
+    };
+
+    showPleaseWait();
+});
+
 $("#postBtnForm").on("submit", function(e) {
     document.getElementById('submitPost').disabled = true;
     e.preventDefault();
@@ -19,8 +33,7 @@ $("#postBtnForm").on("submit", function(e) {
         xhr: function() {
             var xhr = new window.XMLHttpRequest();
             $('#statusPostUpload').attr('aria-valuenow', percentComplete).css('width', percentComplete);
-            var pleaseWait = $('#pleaseWaitDialog');
-            pleaseWait.modal('show');
+            showPleaseWait();
             xhr.upload.addEventListener("progress", function(evt) {
                 if (evt.lengthComputable) {
                     var percentComplete = evt.loaded / evt.total;
@@ -36,8 +49,7 @@ $("#postBtnForm").on("submit", function(e) {
     })
     .done(function(res) {
         console.log(res);
-        var pleaseWait = $('#pleaseWaitDialog');
-        pleaseWait.modal('hide');
+        hidePleaseWait();
         document.getElementById("postBtnForm").reset();
         getPosts();
         document.getElementById('PostBtnFile').value = "";
@@ -45,8 +57,7 @@ $("#postBtnForm").on("submit", function(e) {
         $("#closePostBtn").click();
     })
     .fail(function() {
-        var pleaseWait = $('#pleaseWaitDialog');
-        pleaseWait.modal('hide');
+        hidePleaseWait();
         alert( "Error al subir el post" );
         document.getElementById('submitPost').disabled = false;
       });
