@@ -201,19 +201,19 @@ function getPosts() {
                             iImages++;
                             if(propor >= 1.33){
                                 imageTemplate = `
-                                <img src="${postImages[key].image}" class="postImage" alt="" onclick="openModalImg(${post.id+'multi'+iImages})" id="postImg${post.id+'multi'+iImages}">
+                                <img src="${postImages[key].image}" class="postImage" alt="" onclick="openModalImg(${'multi'+iImages+post.id})" id="postImg${'multi'+iImages+post.id}">
                                 </div>
                                 `;
                                 templateLiteral2 = templateLiteral2 + imageTemplate;
                             }else if(propor < 1.33 && propor >= 1){
                                 imageTemplate = `
-                                <div class="col-12 px-3"><img src="${postImages[key].image}" class="postImage" alt=""  onclick="openModalImg(${post.id+'multi'+iImages})" id="postImg${post.id+'multi'+iImages}"></div>
+                                <div class="col-12 px-3"><img src="${postImages[key].image}" class="postImage" alt=""  onclick="openModalImg(${'multi'+iImages+post.id})" id="postImg${'multi'+iImages+post.id}"></div>
                                 </div>
                                 `;
                                 templateLiteral2 = templateLiteral2 + imageTemplate;
                             }else{
                                 imageTemplate = `
-                                <div class="col-12 px-5 py-0"><img src="${postImages[key].image}" class="postImage"  onclick="openModalImg(${post.id+'multi'+iImages})" id="postImg${post.id+'multi'+iImages}"></div>
+                                <div class="col-12 px-5 py-0"><img src="${postImages[key].image}" class="postImage"  onclick="openModalImg(${'multi'+iImages+post.id})" id="postImg${'multi'+iImages+post.id}"></div>
                                 </div>
                                 `;
                                 templateLiteral2 = templateLiteral2 + imageTemplate;
