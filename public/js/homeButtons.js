@@ -14,7 +14,7 @@ $(function () {
         pleaseWait.modal('hide');
     };
 
-    showPleaseWait();
+    hidePleaseWait();
 });
 
 $("#postBtnForm").on("submit", function(e) {
