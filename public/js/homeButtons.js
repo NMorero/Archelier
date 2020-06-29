@@ -25,6 +25,7 @@ $("#postBtnForm").on("submit", function(e) {
     var formData = new FormData(document.getElementById("postBtnForm"));
     console.log("data:" + formData);
     //formData.append(f.attr("name"), $(this)[0].files[0]);
+    showPleaseWait();
     $.ajax({
         url: "/addPost",
         type: "post",
