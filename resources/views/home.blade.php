@@ -289,10 +289,10 @@ Home
   </div>
 
   <!-- The Modal -->
-<div id="modalImgExpandMulti" class="modalimg" onclick="closeModalImgExpanded()">
+<div id="modalImgExpandMulti" class="modalimg" onclick="closeModalImgExpandedMulti()">
     <!-- The Close Button -->
     <!-- Modal Content (The Image) -->
-    <img class="modalimg-content" id="imgExpanded">
+    <img class="modalimg-content" id="imgExpandedMulti">
     <!-- Modal Caption (Image Text) -->
   </div>
 
@@ -343,6 +343,14 @@ if (window.matchMedia("(max-width: 700px)").matches) {
         function closeModalImgExpanded(){
             var modal = document.getElementById("modalImgExpand");
             modal.style.display = 'none';
+            var imgModal1 = document.getElementById('imgExpanded');
+            imgModal1.src = '';
+        }
+        function closeModalImgExpandedMulti(){
+            var modal = document.getElementById("modalImgExpandMulti");
+            modal.style.display = 'none';
+            var imgModal2 = document.getElementById('imgExpandedMulti');
+            imgModal2.src = '';
         }
 
         // Get the modal
@@ -367,7 +375,8 @@ if (window.matchMedia("(max-width: 700px)").matches) {
         modal2.style.display = "block";
         var string = img.src;
         var newString = string.replace("/thumbnails", "")
-        modal2.src = newString;
+        var imgModal2 = document.getElementById('imgExpandedMulti');
+        imgModal2.src = newString;
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
         // When the user clicks on <span> (x), close the modal
