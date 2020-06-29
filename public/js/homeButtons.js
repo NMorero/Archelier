@@ -20,14 +20,18 @@ $("#postBtnForm").on("submit", function(e) {
         contentType: false,
 
         processData: false
-    }).done(function(res) {
+    })
+    .done(function(res) {
         console.log(res);
         document.getElementById("postBtnForm").reset();
         getPosts();
         document.getElementById('PostBtnFile').value = "";
         document.getElementById('submitPost').disabled = false;
         $("#closePostBtn").click();
-    });
+    })
+    .fail(function() {
+        alert( "Error al subir el post" );
+      });
 
 });
 
