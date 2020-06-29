@@ -194,26 +194,26 @@ function getPosts() {
                                 <p class="col-12 postMessage mt-1" ><b>${post.title}:</b> ${post.message}</p>
                         `;
                         var postImages = JSON.parse(post.images);
-                        var iImages = 0;
+                        var iImages = 1000;
                         for(var key in postImages){
                             console.log(postImages[key]);
                             var propor = postImages[key].width / postImages[key].height;
                             iImages++;
                             if(propor >= 1.33){
                                 imageTemplate = `
-                                <img src="${postImages[key].image}" class="postImage" alt="" onclick="openModalImg(${'multi'+iImages+post.id})" id="postImg${'multi'+iImages+post.id}">
+                                <img src="${postImages[key].image}" class="postImage" alt="" onclick="openModalImg(${iImages+post.id})" id="postImg${iImages+post.id}">
                                 </div>
                                 `;
                                 templateLiteral2 = templateLiteral2 + imageTemplate;
                             }else if(propor < 1.33 && propor >= 1){
                                 imageTemplate = `
-                                <div class="col-12 px-3"><img src="${postImages[key].image}" class="postImage" alt=""  onclick="openModalImg(${'multi'+iImages+post.id})" id="postImg${'multi'+iImages+post.id}"></div>
+                                <div class="col-12 px-3"><img src="${postImages[key].image}" class="postImage" alt=""  onclick="openModalImg(${iImages+post.id})" id="postImg${iImages+post.id}"></div>
                                 </div>
                                 `;
                                 templateLiteral2 = templateLiteral2 + imageTemplate;
                             }else{
                                 imageTemplate = `
-                                <div class="col-12 px-5 py-0"><img src="${postImages[key].image}" class="postImage"  onclick="openModalImg(${'multi'+iImages+post.id})" id="postImg${'multi'+iImages+post.id}"></div>
+                                <div class="col-12 px-5 py-0"><img src="${postImages[key].image}" class="postImage"  onclick="openModalImg(${iImages+post.id})" id="postImg${iImages+post.id}"></div>
                                 </div>
                                 `;
                                 templateLiteral2 = templateLiteral2 + imageTemplate;
