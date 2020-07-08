@@ -29,7 +29,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/changeTask/{task}/{comment}', 'HomeController@changeTask');
 
-Route::get('/test', 'HomeController@test');
+Route::get('/test', function(){
+    return view('test');
+});
 
 Route::get('/getProjectsByClient/{client}', 'HomeController@getProjectsByClient');
 
