@@ -2244,6 +2244,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var formData = new FormData();
       formData.append('image', this.file);
+      formData.append('title', this.viewTitle);
       var f = document.getElementById('inputViewFile');
       var reader = new FileReader();
       reader.readAsDataURL(f.files[0]);
@@ -55355,8 +55356,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.taskTitle,
-                        expression: "taskTitle"
+                        value: _vm.viewTitle,
+                        expression: "viewTitle"
                       }
                     ],
                     attrs: {
@@ -55365,13 +55366,13 @@ var render = function() {
                       id: "inputViewTitle",
                       placeholder: "View title"
                     },
-                    domProps: { value: _vm.taskTitle },
+                    domProps: { value: _vm.viewTitle },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.taskTitle = $event.target.value
+                        _vm.viewTitle = $event.target.value
                       }
                     }
                   }),
