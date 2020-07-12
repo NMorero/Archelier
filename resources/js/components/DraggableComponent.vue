@@ -298,16 +298,47 @@ export default {
         formData.append('list', self.taskList);
         formData.append('title', self.taskTitle);
         formData.append('developer', self.taskDeveloper);
-        console.log(self.projectActual[0]['devs']['devsLists'][self.taskList].modules);
+        //console.log(self.projectActual[0]['devs']['devsLists'][self.taskList].modules);
         self.taskDeveloperAc = self.developers.filter((obj) => {
             return obj.id == self.taskDeveloper;
         });
-        console.log(self.taskDeveloperAc[0]);
+        //console.log(self.taskDeveloperAc[0]);
         self.taskDeveloperAc = self.taskDeveloperAc[0].user.substring(0,2);
         axios.post('/Admin/Projects/Module/Add', formData, config)
             .then(function (response) {
                 self.viewIdCounter = self.viewIdCounter + 1;
                 self.projectActual[0]['devs']['devsLists'][self.taskList].modules.push({developer:self.taskDeveloperAc, id:self.viewIdCounter, list_name:self.taskList,module:self.taskTitle });
+                if(self.projectActual[0].status == 'next'){
+                    for (var i = 0; i < self.list1.length; i++) {
+                        if(self.list1[i].id == self.projectActual[0].id){
+                            self.list1[i]['devs']['devs'].push({developer:self.taskDeveloperAc, id:self.viewIdCounter, list_name:self.taskList,module:self.taskTitle })
+                        }
+                    }
+                }else if(self.projectActual[0].status == 'ongoing'){
+                    for (var i = 0; i < self.list2.length; i++) {
+                        if(self.list2[i].id == self.projectActual[0].id){
+                            self.list2[i]['devs']['devs'].push({developer:self.taskDeveloperAc, id:self.viewIdCounter, list_name:self.taskList,module:self.taskTitle })
+                        }
+                    }
+                }else if(self.projectActual[0].status == 'atClient'){
+                    for (var i = 0; i < self.list3.length; i++) {
+                        if(self.list3[i].id == self.projectActual[0].id){
+                            self.list3[i]['devs']['devs'].push({developer:self.taskDeveloperAc, id:self.viewIdCounter, list_name:self.taskList,module:self.taskTitle })
+                        }
+                    }
+                }else if(self.projectActual[0].status == 'pause'){
+                    for (var i = 0; i < self.list4.length; i++) {
+                        if(self.list4[i].id == self.projectActual[0].id){
+                            self.list4[i]['devs']['devs'].push({developer:self.taskDeveloperAc, id:self.viewIdCounter, list_name:self.taskList,module:self.taskTitle })
+                        }
+                    }
+                }else if(self.projectActual[0].status == 'finished'){
+                    for (var i = 0; i < self.list5.length; i++) {
+                        if(self.list5[i].id == self.projectActual[0].id){
+                            self.list5[i]['devs']['devs'].push({developer:self.taskDeveloperAc, id:self.viewIdCounter, list_name:self.taskList,module:self.taskTitle })
+                        }
+                    }
+                }
                 self.taskList = '';
                 self.taskTitle = '';
                 self.taskDeveloper = '';

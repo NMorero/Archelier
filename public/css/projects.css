@@ -335,7 +335,7 @@ h3{
     border-radius: 2%;
 }
 .boxImg1{
-    width: 150px;
+    width: 160px;
     height: 85px;
     display: inline-block;
     float: left;
@@ -1236,5 +1236,14 @@ img{
     }
     .tasksModalProject{
         padding-top: 3%;
+    }
+}
+
+@media (min-width: 1920px) and (min-height: 1080px){
+    .boxImg1 {
+        width: 140px !important;
+        height: 85px;
+        display: inline-block;
+        float: left;
     }
 }
