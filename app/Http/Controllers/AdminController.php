@@ -872,7 +872,7 @@ class AdminController extends Controller
 
     public function addView(Request $request, $id)
     {
-        return $request['title'];
+        return $request;
         $image = new Images;
         $imageName = date("Y-m-d") . '-' . time() . '.' . $request['image']->getClientOriginalExtension();
         $img = $request['image']->getRealPath();
