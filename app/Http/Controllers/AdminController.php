@@ -658,7 +658,7 @@ class AdminController extends Controller
                 'devsLists' => $devsLists
             ];
 
-
+            $views = [];
             $viewsPR = ProjectViews::where('project_id', 'LIKE', $project->id)->get();
             $n = 0;
             foreach($viewsPR as $viewPR){

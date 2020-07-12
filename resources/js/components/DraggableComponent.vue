@@ -342,11 +342,12 @@ export default {
         axios.post('/Admin/Projects/addView/'+ currentObj.projectActual[0].id, formData, config)
             .then(function (response) {
                 currentObj.success = response.data.success;
+                currentObj.projectActual[0].views.push({id: currentObj.viewIdCounter, img: currentObj.viewUploaded, title: currentObj.viewTitle});
                 currentObj.value = "";
                 currentObj.viewTitle = "";
                 currentObj.modalView = false;
                 currentObj.viewIdCounter = currentObj.viewIdCounter + 1;
-                currentObj.projectActual[0].views.push({id: currentObj.viewIdCounter, img: currentObj.viewUploaded, title: currentObj.viewTitle});
+
             })
             .catch(function (error) {
                 currentObj.output = error;
