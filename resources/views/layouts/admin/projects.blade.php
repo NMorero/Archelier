@@ -19,7 +19,7 @@
 <body>
     <header>
         <span id="userLogo">{{substr(auth()->user()->person->name, 0, 1)}}{{substr(auth()->user()->person->last_name, 0, 1)}}</span>
-        <a class="" id="boxUserLogo"  href="/logout">Log Out</a>
+
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
         </form>
@@ -30,7 +30,7 @@
         <a class="linkHeader marginHeaderBtn" href="">Delivery</a>
         <a class="linkHeader" href="">Feedback</a>
     </header>
-
+    <a class="" id="boxUserLogo"  href="/logout">Log Out</a>
     <div id="app">
         <draggable-component></draggable-component>
     </div>

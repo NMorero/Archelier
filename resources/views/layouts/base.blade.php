@@ -45,6 +45,18 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
     <script src="https://kit.fontawesome.com/1c8538c20e.js" crossorigin="anonymous"></script>
+    <script>
+        $(document).click(function(event){
+            //console.log(event.target.id);
+            if(event.target.id == 'userLogo' || event.target.id == 'boxUserLogo'){
+                $('#boxUserLogo').css('display', 'block');
+            }else{
+                $('#boxUserLogo').css('display', 'none');
+            }
+
+        });
+
+    </script>
     @section('scripts')
 
     @show
