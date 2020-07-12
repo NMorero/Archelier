@@ -331,6 +331,7 @@ export default {
         // form data
         let formData = new FormData();
         formData.append('image', this.file);
+        formData.append('title', currentObj.viewTitle);
         var f = document.getElementById( 'inputViewFile' );
         var reader = new FileReader();
         reader.readAsDataURL(f.files[0]);
