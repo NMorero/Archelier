@@ -13,7 +13,8 @@
     <!-- CDNJS :: Vue.Draggable (https://cdnjs.com/) -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="{{asset('css/projects.css')}}">
+    <link rel="stylesheet" href="{{asset('css/header.css')}}">
 </head>
 <body class="px-5">
     <header>
