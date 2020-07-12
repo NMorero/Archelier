@@ -337,6 +337,7 @@ export default {
         reader.onload = function(e) {
             currentObj.viewUploaded = e.target.result;
             currentObj.projectActual[0].views.push({id: currentObj.viewIdCounter, img: currentObj.viewUploaded, title: currentObj.viewTitle});
+            currentObj.modalView = false;
         };
 
         // send upload request
@@ -345,9 +346,7 @@ export default {
                 currentObj.success = response.data.success;
                 currentObj.value = "";
                 currentObj.viewTitle = "";
-                currentObj.modalView = false;
                 currentObj.viewIdCounter = currentObj.viewIdCounter + 1;
-
             })
             .catch(function (error) {
                 currentObj.output = error;

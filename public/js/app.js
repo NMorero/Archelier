@@ -2256,6 +2256,7 @@ __webpack_require__.r(__webpack_exports__);
           img: currentObj.viewUploaded,
           title: currentObj.viewTitle
         });
+        currentObj.modalView = false;
       }; // send upload request
 
 
@@ -2263,7 +2264,6 @@ __webpack_require__.r(__webpack_exports__);
         currentObj.success = response.data.success;
         currentObj.value = "";
         currentObj.viewTitle = "";
-        currentObj.modalView = false;
         currentObj.viewIdCounter = currentObj.viewIdCounter + 1;
       })["catch"](function (error) {
         currentObj.output = error;
