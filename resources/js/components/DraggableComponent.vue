@@ -40,7 +40,7 @@
                 </div>
                 <form @submit="submitFormView" enctype="multipart/form-data" id="formAddView">
 
-                    <input type="text" name="viewTitle" id="inputViewTitle" placeholder="View title" v-model="taskTitle">
+                    <input type="text" name="viewTitle" id="inputViewTitle" placeholder="View title" v-model="viewTitle">
 
                     <label class="file-select">
                         <!-- We can't use a normal button element here, as it would become the target of the label. -->
