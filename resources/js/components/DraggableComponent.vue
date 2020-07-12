@@ -307,7 +307,6 @@ export default {
         axios.post('/Admin/Projects/Module/Add', formData, config)
             .then(function (response) {
                 self.viewIdCounter = self.viewIdCounter + 1;
-
                 self.projectActual[0]['devs']['devsLists'][self.taskList].modules.push({developer:self.taskDeveloperAc, id:self.viewIdCounter, list_name:self.taskList,module:self.taskTitle });
                 self.taskList = '';
                 self.taskTitle = '';
@@ -338,11 +337,11 @@ export default {
         reader.onload = function(e) {
             currentObj.viewUploaded = e.target.result;
         };
+        currentObj.projectActual[0].views.push({id: currentObj.viewIdCounter, img: currentObj.viewUploaded, title: currentObj.viewTitle});
         // send upload request
         axios.post('/Admin/Projects/addView/'+ currentObj.projectActual[0].id, formData, config)
             .then(function (response) {
                 currentObj.success = response.data.success;
-                currentObj.projectActual[0].views.push({id: currentObj.viewIdCounter, img: currentObj.viewUploaded, title: currentObj.viewTitle});
                 currentObj.value = "";
                 currentObj.viewTitle = "";
                 currentObj.modalView = false;

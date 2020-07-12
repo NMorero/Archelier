@@ -2251,16 +2251,16 @@ __webpack_require__.r(__webpack_exports__);
 
       reader.onload = function (e) {
         currentObj.viewUploaded = e.target.result;
-      }; // send upload request
+      };
 
+      currentObj.projectActual[0].views.push({
+        id: currentObj.viewIdCounter,
+        img: currentObj.viewUploaded,
+        title: currentObj.viewTitle
+      }); // send upload request
 
       axios.post('/Admin/Projects/addView/' + currentObj.projectActual[0].id, formData, config).then(function (response) {
         currentObj.success = response.data.success;
-        currentObj.projectActual[0].views.push({
-          id: currentObj.viewIdCounter,
-          img: currentObj.viewUploaded,
-          title: currentObj.viewTitle
-        });
         currentObj.value = "";
         currentObj.viewTitle = "";
         currentObj.modalView = false;
