@@ -70,6 +70,15 @@ class AdminController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
+    public function getRole(){
+        $user = [
+            0 => auth()->user()->roles->rol,
+            1 => auth()->user()->person->name,
+            2 => auth()->user()->person->last_name
+        ];
+        return $user;
+    }
+
     public function deleteDB()
     {
         $tableNames = Schema::getConnection()->getDoctrineSchemaManager()->listTableNames();
@@ -549,7 +558,30 @@ class AdminController extends Controller
         $user->delete();
         return redirect('/Admin/Users');
     }
-
+    public function updateProject($id, $status){
+        if($status == 1){
+            $project = Projects::find($id);
+            $project->status = 'next';
+            $project->save();
+        }else if($status == 2){
+            $project = Projects::find($id);
+            $project->status = 'ongoing';
+            $project->save();
+        }else if($status == 3){
+            $project = Projects::find($id);
+            $project->status = 'atClient';
+            $project->save();
+        }else if($status == 4){
+            $project = Projects::find($id);
+            $project->status = 'pause';
+            $project->save();
+        }else if($status == 5){
+            $project = Projects::find($id);
+            $project->status = 'finished';
+            $project->save();
+        }
+        return ['status' => 'ok'];
+    }
     public function getProjects(){
         $id = Auth::user()->id;
         $projects = [];
@@ -560,30 +592,21 @@ class AdminController extends Controller
 
             foreach($devProjects as $devProject){
                 $project = Projects::find($devProject->project_id);
-
                     $projects[] = $project;
-
             }
-
-
         }else if(auth()->user()->roles->rol == 'PRleader'){
             $lead = ProjectLeaders::where('user_id', 'LIKE', $id)->get();
             $leadProjects = Projects::where('leader_id', 'LIKE', $lead[0]->id)->get();
             foreach($leadProjects as $leadProject){
                 $project = Projects::find($leadProject->id);
-
                     $projects[] = $project;
-
-
             }
         }else if(auth()->user()->roles->rol == 'PRmanager'){
             $man = ProjectManagers::where('user_id', 'LIKE', $id)->get();
             $manProjects = Projects::where('manager_id', 'LIKE', $man[0]->id)->get();
             foreach($manProjects as $manProject){
                 $project = Projects::find($manProject->id);
-
                     $projects[] = $project;
-
             }
         }else if(auth()->user()->roles->rol == 'admin'){
             $projects = Projects::all();
@@ -599,22 +622,54 @@ class AdminController extends Controller
             $devPros = ProjectDevelopers::where('project_id', 'LIKE', $project->id)->get();
 
             $devs = [];
+            $devsLists = [];
+            $i = 0;
             foreach($devPros as $devPro){
+                $i++;
                 $dev = Developers::find($devPro->developer_id);
                 $userDev = User::find($dev->user_id);
                 $devs[] = [
                     'module' => $devPro->module,
                     'developer' => $userDev->person->name
                 ];
+                if(array_key_exists($devPro->list_name, $devsLists)){
+                     array_push($devsLists[$devPro->list_name]['modules'],[
+                         'id' => $i,
+                        'module' => $devPro->module,
+                        'list_name' => $devPro->list_name,
+                        'developer' => substr($userDev->person->name,0, 1) . substr($userDev->person->last_name,0, 1)
+                    ]);
+                }else{
+                    $devsLists[$devPro->list_name] = [
+                        'id' => $i,
+                        'name' => $devPro->list_name,
+                        'modules' => []
+                    ];
+                    array_push($devsLists[$devPro->list_name]['modules'],[
+                        'id' => $i,
+                        'module' => $devPro->module,
+                        'list_name' => $devPro->list_name,
+                        'developer' => substr($userDev->person->name,0, 1) . substr($userDev->person->last_name,0, 1)
+                    ]);
+                }
             }
-            $project['devs'] = $devs;
+            $project['devs'] = [
+                'devs' => $devs,
+                'devsLists' => $devsLists
+            ];
 
 
             $viewsPR = ProjectViews::where('project_id', 'LIKE', $project->id)->get();
+            $n = 0;
             foreach($viewsPR as $viewPR){
+                $n++;
                 $viewT = Views::find($viewPR->view_id);
                 $image = Images::find($viewT->image_id);
-                $views[] = $image->image_route;
+                $views[] = [
+                    'id' => $n,
+                    'img' => $image->image_route,
+                    'title' => $viewPR->view_title
+                ];
             }
 
             $personMan = Persons::find($user1->person_id);
@@ -636,10 +691,46 @@ class AdminController extends Controller
                 'lastname' => $lastnameLea
             ];
         }
-        return $projects;
+
+        $projectFinal = [];
+        $projectNext = [];
+        $projectOngoing = [];
+        $projectAtClient = [];
+        $projectSuspended = [];
+        $projectFinished = [];
+        foreach($projects as $proj){
+            if($proj['status'] == 'ongoing'){
+                $projectOngoing[] = $proj;
+            }else if($proj['status'] == 'next'){
+                $projectNext[] = $proj;
+            }else if($proj['status'] == 'atClient'){
+                $projectAtClient[] = $proj;
+            }else if($proj['status'] == 'pause'){
+                $projectSuspended[] = $proj;
+            }else if($proj['status'] == 'finished'){
+                $projectFinished[] = $proj;
+            }
+        }
+        $projectFinal[0] = $projectNext;
+        $projectFinal[1] = $projectOngoing;
+        $projectFinal[2] = $projectAtClient;
+        $projectFinal[3] = $projectSuspended;
+        $projectFinal[4] = $projectFinished;
+        $projectsAll = [
+            0 => $projectFinal,
+            1 => $projects
+        ];
+        return $projectsAll;
     }
 
-
+    public function getDevelopers(){
+        $devs = Developers::all();
+        foreach($devs as $dev){
+            $user = User::find($dev->user_id);
+            $dev['user'] = $user->username;
+        }
+        return $devs;
+    }
     public function acProject($id){
         $project = Projects::find($id);
         $project->status = 'ongoing';
@@ -711,15 +802,13 @@ class AdminController extends Controller
     }
 
     public function addModuleProject(Request $request){
-
-
-        $id = $request['projectId'];
-
+        $id = $request['id'];
 
         $devPro = new ProjectDevelopers;
         $devPro->developer_id = $request['developer'];
         $devPro->project_id = $id;
-        $devPro->module = $request['moduleName'];
+        $devPro->module = $request['title'];
+        $devPro->list_name = $request['list'];
         $devPro->save();
         return ['status' => 'ok'];
     }
@@ -786,7 +875,7 @@ class AdminController extends Controller
 
         $image = new Images;
         $imageName = date("Y-m-d") . '-' . time() . '.' . $request['image']->getClientOriginalExtension();
-        $img = $request->file('PostBtnFile')->getRealPath();
+        $img = $request['image']->getRealPath();
             $resized = Image::make($img);
             $width = $resized->width();
             $height = $resized->height();
@@ -826,6 +915,7 @@ class AdminController extends Controller
         $projectView = new ProjectViews;
         $projectView->view_id = $view->id;
         $projectView->project_id = $id;
+        $projectView->view_title = $request['title'];
         $projectView->save();
 
         return back();

@@ -15,6 +15,8 @@ Route::get('/testLimit', function(){
     return view('testLimit');
 });
 
+Route::get('/Admin/UserRole', 'AdminController@getRole');
+
 Route::get('/Admin/Delete/All/DB', 'AdminController@deleteDb');
 
 Route::get('/', 'HomeController@index');
@@ -140,6 +142,10 @@ Route::get('/Admin/Projects/get', 'AdminController@getProjects');
 Route::get('/Admin/Projects/Deactivate/{id}', 'AdminController@desProject');
 
 Route::get('/Admin/Projects/Activate/{id}', 'AdminController@acProject');
+
+Route::get('/Admin/Projects/Developers/get', 'AdminController@getDevelopers');
+
+Route::get('/Admin/Projects/Update/{id}/{status}', 'AdminController@updateProject');
 
 Route::get('/Admin/Projects/Delete/{id}', 'AdminController@deleteProject');
 
