@@ -336,8 +336,9 @@ export default {
         reader.readAsDataURL(f.files[0]);
         reader.onload = function(e) {
             currentObj.viewUploaded = e.target.result;
+            currentObj.projectActual[0].views.push({id: currentObj.viewIdCounter, img: currentObj.viewUploaded, title: currentObj.viewTitle});
         };
-        currentObj.projectActual[0].views.push({id: currentObj.viewIdCounter, img: currentObj.viewUploaded, title: currentObj.viewTitle});
+
         // send upload request
         axios.post('/Admin/Projects/addView/'+ currentObj.projectActual[0].id, formData, config)
             .then(function (response) {
