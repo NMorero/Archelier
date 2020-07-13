@@ -11,13 +11,16 @@ elmnt.scrollIntoView();
 
 
 
-function autoRefreshPage() {
-    getPosts();
-    getTasks();
-}
-
-setInterval("autoRefreshPage()", 30000);
-
+var socket = io.connect('http://192.168.1.83:4200');
+        socket.on('connect', function(data) {
+            console.log('Connected to websocket');
+        });
+        socket.on('postUpload', function(data) {
+            getPosts();
+        });
+        socket.on('taskUpload', function(data) {
+            getTasks();
+        });
 let cantComments = 1;
 function addcommentTask() {
     var comments = [];

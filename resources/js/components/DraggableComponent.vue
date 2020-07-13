@@ -201,7 +201,8 @@
 </template>
 <script>
 import draggable from "vuedraggable";
-
+import io from "socket.io-client";
+var socket = io.connect("http://192.168.1.83:4200");
 export default {
   order: 1,
   components: {
@@ -397,53 +398,111 @@ export default {
     },
     log1: function(evt) {
       if (evt.added) {
+          console.log(evt.added.element);
         window.console.log("To dragg 1: ", evt.added.element.id);
+        socket.emit('logAdd', {list:1, project:evt.added.element})
         axios.get('/Admin/Projects/Update/' + evt.added.element.id + '/1')
         .catch(function (error) {
             console.log(error);
         })
+      }else if(evt.removed){
+          socket.emit('logRem', {list:1, project:evt.removed.element})
       }
     },
     log2: function(evt) {
       if (evt.added) {
         window.console.log("To dragg 2: ", evt.added.element.id);
+        socket.emit('logAdd', {list:2, project:evt.added.element})
         axios.get('/Admin/Projects/Update/' + evt.added.element.id + '/2')
         .catch(function (error) {
             console.log(error);
         })
+      }else if(evt.removed){
+          socket.emit('logRem', {list:2, project:evt.removed.element})
       }
     },
     log3: function(evt) {
       if (evt.added) {
         window.console.log("To dragg 3: ", evt.added.element.id);
+        socket.emit('logAdd', {list:3, project:evt.added.element})
         axios.get('/Admin/Projects/Update/' + evt.added.element.id + '/3')
         .catch(function (error) {
             console.log(error);
         })
+      }else if(evt.removed){
+          socket.emit('logRem', {list:3, project:evt.removed.element})
       }
     },
     log4: function(evt) {
       if (evt.added) {
         window.console.log("To dragg 4: ", evt.added.element.id);
+        socket.emit('logAdd', {list:4, project:evt.added.element})
         axios.get('/Admin/Projects/Update/' + evt.added.element.id + '/4')
         .catch(function (error) {
             console.log(error);
         })
+      }else if(evt.removed){
+          socket.emit('logRem', {list:4, project:evt.removed.element})
       }
     },
     log5: function(evt) {
       if (evt.added) {
         window.console.log("To dragg 5  : ", evt.added.element.id);
+        socket.emit('logAdd', {list:5, project:evt.added.element})
         axios.get('/Admin/Projects/Update/' + evt.added.element.id + '/5')
         .catch(function (error) {
             console.log(error);
         })
+      }else if(evt.removed){
+          socket.emit('logRem', {list:5, project:evt.removed.element})
       }
     },
 
   },
     mounted(){
         let self = this;
+        socket.on('connect', function(data) {
+            console.log('Conected to websocket');
+        });
+        socket.on('logAdd', function(data) {
+            console.log('Add: ' + data.project)
+            if(data.list == 1){
+                self.list1.push(data.project);
+            }else if(data.list == 2){
+                self.list2.push(data.project)
+            }else if(data.list == 3){
+                self.list3.push(data.project)
+            }else if(data.list == 4){
+                self.list4.push(data.project)
+            }else if(data.list == 5){
+                self.list5.push(data.project)
+            }
+        });
+        socket.on('logRem', function(data) {
+            console.log('Rem: ' + data.project)
+            if(data.list == 1){
+                self.list1 = self.list1.filter((obj) => {
+                    return obj.id !== data.project.id;
+                });
+            }else if(data.list == 2){
+                self.list2 = self.list2.filter((obj) => {
+                    return obj.id !== data.project.id;
+                });
+            }else if(data.list == 3){
+                self.list3 = self.list3.filter((obj) => {
+                    return obj.id !== data.project.id;
+                });
+            }else if(data.list == 4){
+                self.list4 = self.list4.filter((obj) => {
+                    return obj.id !== data.project.id;
+                });
+            }else if(data.list == 5){
+                self.list5 = self.list5.filter((obj) => {
+                    return obj.id !== data.project.id;
+                });
+            }
+        });
+
         axios.get('/Admin/Projects/get')
             .then(function (response) {
                 self.projects = response.data[1];
@@ -452,6 +511,7 @@ export default {
                 self.list3 = response.data[0][2];
                 self.list4 = response.data[0][3];
                 self.list5 = response.data[0][4];
+
             })
             .catch(function (error) {
                 console.log(error);

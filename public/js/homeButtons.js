@@ -44,6 +44,7 @@ $("#postBtnForm").on("submit", function(e) {
         processData: false
     })
     .done(function(res) {
+        socket.emit('postUpload', {message:'Post Uploaded'});
         console.log(res);
         hidePleaseWait();
         document.getElementById("postBtnForm").reset();
@@ -354,6 +355,9 @@ function saveButton(button) {
             return response.json();
         })
         .then(function(data) {
+            if(button == 'Task'){
+                socket.emit('taskUpload', {message:'Task Uploaded'});
+            }
             document.getElementById(button + "BtnForm").reset();
             console.log(data.status);
             getPosts();
