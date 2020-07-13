@@ -202,7 +202,7 @@
 <script>
 import draggable from "vuedraggable";
 import io from "socket.io-client";
-var socket = io.connect("http://192.168.1.83:4200");
+var socket = io.connect("http://186.108.203.181:4200");
 export default {
   order: 1,
   components: {

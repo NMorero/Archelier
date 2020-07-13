@@ -2194,7 +2194,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 
-var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("http://192.168.1.83:4200");
+var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("http://186.108.203.181:4200");
 /* harmony default export */ __webpack_exports__["default"] = ({
   order: 1,
   components: {
