@@ -17,6 +17,7 @@ var socket = io.connect('http://192.168.1.83:4200');
         });
         socket.on('postUpload', function(data) {
             getPosts();
+            //console.log()
         });
         socket.on('taskUpload', function(data) {
             getTasks();
