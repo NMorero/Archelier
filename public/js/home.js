@@ -5,7 +5,7 @@ getTasks(scrolled);
 
 function scroll(){
     var elmnt = document.getElementById("actualAgenda");
-console.log('Dia:'+elmnt);
+//console.log('Dia:'+elmnt);
 elmnt.scrollIntoView();
 }
 
@@ -37,7 +37,7 @@ function addcommentTask() {
             id: prevComment.id
         });
     }
-    console.log(comments);
+    //console.log(comments);
 
     comments.forEach(comm => {
         let input = document.getElementById(comm.id);
@@ -54,9 +54,9 @@ function addcommentTask() {
 }
 
 $("#clientSelect").change(function() {
-    console.log("si");
+    //console.log("si");
     var clientoption = document.getElementById("clientSelect").value;
-    console.log("value client: " + clientoption);
+    //console.log("value client: " + clientoption);
 
     if (clientoption != "All") {
         fetch("getProjectsByClient/" + clientoption)
@@ -64,7 +64,7 @@ $("#clientSelect").change(function() {
                 return response.json();
             })
             .then(function(data) {
-                console.log(data);
+                //console.log(data);
                 document.getElementById("projectSelect").disabled = false;
                 var selectProjects = document.getElementById("projectSelect");
                 selectProjects.innerHTML = `<option selected onclick="projectSelect()" value="All">All</option>`;
@@ -107,13 +107,13 @@ function getPosts() {
 
     var view = "All";
     var route = "/getPosts/" + client.value + "/" + project.value + "/" + view;
-    console.log(route);
+    //console.log(route);
     fetch(route)
         .then(function(response) {
             return response.json();
         })
         .then(function(data) {
-            console.log(data);
+            //console.log(data);
             data = Object.values(data);
             data.sort();
             data.reverse();
@@ -201,7 +201,7 @@ function getPosts() {
                         var postImages = JSON.parse(post.images);
 
                         for(var key in postImages){
-                            console.log(postImages[key]);
+                            //console.log(postImages[key]);
                             var propor = postImages[key].width / postImages[key].height;
                             iImages++;
                             if(propor >= 1.33){
@@ -374,8 +374,8 @@ function reminderNext(){
     var actualPage = document.getElementById('actualPage');
     let nextPage = parseInt(actualPage.value) + 1;
     var pages = document.getElementsByClassName('page');
-    console.log(nextPage);
-    console.log(pages.length);
+    //console.log(nextPage);
+    //console.log(pages.length);
     if(nextPage > pages.length){
         return console.log('No hay pagina siguiente');
     }
@@ -413,7 +413,7 @@ function getReminders() {
             return response.json();
         })
         .then(function(data) {
-            console.log(data);
+            //console.log(data);
 
             var remindersBox = document.getElementById("remindersBox");
             remindersBox.innerHTML = "";
@@ -501,13 +501,13 @@ function deleteReminder(id) {
     }).then(result => {
         if (result.value) {
             var route = "/deleteReminder/" + id;
-            console.log(route);
+            //console.log(route);
             fetch(route)
                 .then(function(response) {
                     return response.json();
                 })
                 .then(function(data) {
-                    console.log(data);
+                    //console.log(data);
                     getReminders();
                 })
                 .catch(function(error) {
@@ -526,14 +526,14 @@ function getTasks(scrolled) {
         })
         .then(function(data) {
             data = Object.values(data);
-            console.log(data);
+            //console.log(data);
             var i = 0;
             var tasksBox = document.getElementById("tasksBox");
             tasksBox.innerHTML = "";
             data.map(function(tasks) {
                 i++;
                 if(typeof tasks.today !== 'undefined' && tasks.today == 'si'){
-                    console.log(tasks);
+                    //console.log(tasks);
                     const templateLiteral = `
                         <div class="col-12 row  mb-1 m-0 p-0 border-bottom" >
                             <h6 class="col-12 text-right mb-2" id="actualAgenda">${tasks.day}</h6>
@@ -714,7 +714,7 @@ getUsers();
         );
 
     cant++;
-    console.log(usersSelects);
+    //console.log(usersSelects);
     userBox.innerHTML = userBox.innerHTML.concat(`
         <select name="TaskBtnUserSelect${cant}" id="TaskBtnUserSelect${cant}" class="custom-select" required>
                         <option value="null">Select...</option>
@@ -732,14 +732,14 @@ getUsers();
         var opt = usersSelects[i].value;
         select.getElementsByTagName('option')[opt].selected = 'selected';
     }
-    console.log(cant);
+    //(cant);
     cantInp.setAttribute('value', cant);
 }
 
 
 
 function test(taskId, commId) {
-    console.log("task:" + taskId + "comm: " + commId);
+    //console.log("task:" + taskId + "comm: " + commId);
     fetch("/changeTask/" + taskId + "/" + commId)
         .then(function(response) {
             return response.json();
@@ -765,7 +765,7 @@ function dotsMenuClose(id){
 }
 
 function deleteTask(id, comm){
-    console.log(id + ' ' + comm);
+    //console.log(id + ' ' + comm);
     fetch("/deleteTask/" + id + '/' + comm)
         .then(function(response) {
             return response.json();
