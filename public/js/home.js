@@ -22,6 +22,9 @@ var socket = io.connect('http://186.108.203.181:4200');
         socket.on('taskUpload', function(data) {
             getTasks();
         });
+        socket.on('postDelete', function(data) {
+            getPosts();
+        });
 let cantComments = 1;
 function addcommentTask() {
     var comments = [];
