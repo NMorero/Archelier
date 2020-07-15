@@ -393,9 +393,10 @@ export default {
                     client_id:self.projectClientModal,
                     devs:{devs:[], devsLists:[]},
                     id:response.data.id,
+                    alias:self.projectAliasModal,
                     leader:{
                         name:lead[0].name,
-                        lastname:lead[0].lastname
+                        lastname:lead[0].last_name
                     },
                     leader_id: self.projectLeaderModal,
                     project_name: self.projectNameModal,
