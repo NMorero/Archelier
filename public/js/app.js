@@ -2395,6 +2395,25 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("ht
             status: 'next',
             thumbnail: response.data.thumbnail
           });
+          self.projects.push({
+            // CAMBIA A FILTRAR ARRAY CLIENTS  LEADERS Y MANAGERS, THUMBNAIL Y ID DESDE RESPONSE
+            client: client[0].client_name,
+            client_id: self.projectClientModal,
+            devs: {
+              devs: [],
+              devsLists: []
+            },
+            id: response.data.id,
+            alias: self.projectAliasModal,
+            leader: {
+              name: lead[0].name,
+              lastname: lead[0].last_name
+            },
+            leader_id: self.projectLeaderModal,
+            project_name: self.projectNameModal,
+            status: 'next',
+            thumbnail: response.data.thumbnail
+          });
         })["catch"](function (error) {
           self.output = error;
           alert('There was an error while uploading project');
