@@ -2363,7 +2363,6 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("ht
         return obj.id == self.projectClientModal;
       });
       console.log(client);
-      ss;
       var man = self.managers.filter(function (obj) {
         return obj.id == self.projectManagerModal;
       });
