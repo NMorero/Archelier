@@ -126,7 +126,7 @@
             <draggable class="list-group" :list="list1" group="people" @change="log1" :disabled="!enabled">
                 <div class="list-group-item" v-for="element in list1" :key="element.id  ">
                     <span class="clientText">{{element.client}}</span>
-                    <span class="projectText">Apodo test</span>
+                    <span class="projectText">{{element.alias}}</span>
                     <div class="boxInfoProjects" @click="handleClickProject(element.id)">
                         <div class="boxImg1">
                             <img class="imgVie" v-for="view in element.views" :key="view.id" :src="view.img" alt />
@@ -150,7 +150,7 @@
             <draggable class="list-group" :list="list2" group="people" @change="log2" :disabled="!enabled">
                 <div class="list-group-item" v-for="element in list2" :key="element.id">
                     <span class="clientText">{{element.client}}</span>
-                    <span class="projectText">Apodo test</span>
+                    <span class="projectText">{{element.alias}}</span>
                     <div class="boxInfoProjects" @click="handleClickProject(element.id)">
                         <div class="boxImg1">
                             <img class="imgVie" v-for="view in element.views" :key="view.id" :src="view.img" alt />
@@ -173,7 +173,7 @@
             <draggable class="list-group" :list="list3" group="people" @change="log3" :disabled="!enabled">
                 <div class="list-group-item" v-for="element in list3" :key="element.id">
                     <span class="clientText">{{element.client}}</span>
-                    <span class="projectText">Apodo test</span>
+                    <span class="projectText">{{element.alias}}</span>
                     <div class="boxInfoProjects" @click="handleClickProject(element.id)">
                         <div class="boxImg1">
                             <img class="imgVie" v-for="view in element.views" :key="view.id" :src="view.img" alt />
@@ -196,7 +196,7 @@
             <draggable class="list-group" :list="list4" group="people" @change="log4" :disabled="!enabled">
                 <div class="list-group-item" v-for="element in list4" :key="element.id  ">
                     <span class="clientText">{{element.client}}</span>
-                    <span class="projectText">Apodo test</span>
+                    <span class="projectText">{{element.alias}}</span>
                     <div class="boxInfoProjects" @click="handleClickProject(element.id)">
                         <div class="boxImg1">
                             <img class="imgVie" v-for="view in element.views" :key="view.id" :src="view.img" alt />
@@ -219,7 +219,7 @@
             <draggable class="list-group" :list="list5" group="people" @change="log5" :disabled="!enabled">
                 <div class="list-group-item" v-for="element in list5" :key="element.name">
                     <span class="clientText">{{element.client}}</span>
-                    <span class="projectText">Apodo test</span>
+                    <span class="projectText">{{element.alias}}</span>
                     <div class="boxInfoProjects" @click="handleClickProject(element.id)">
                         <div class="boxImg1">
                             <img class="imgVie" v-for="view in element.views" :key="view.id" :src="view.img" alt />

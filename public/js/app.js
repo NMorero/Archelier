@@ -66395,7 +66395,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("span", { staticClass: "projectText" }, [
-                  _vm._v("Apodo test")
+                  _vm._v(_vm._s(element.alias))
                 ]),
                 _vm._v(" "),
                 _c(
@@ -66485,7 +66485,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("span", { staticClass: "projectText" }, [
-                  _vm._v("Apodo test")
+                  _vm._v(_vm._s(element.alias))
                 ]),
                 _vm._v(" "),
                 _c(
@@ -66575,7 +66575,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("span", { staticClass: "projectText" }, [
-                  _vm._v("Apodo test")
+                  _vm._v(_vm._s(element.alias))
                 ]),
                 _vm._v(" "),
                 _c(
@@ -66665,7 +66665,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("span", { staticClass: "projectText" }, [
-                  _vm._v("Apodo test")
+                  _vm._v(_vm._s(element.alias))
                 ]),
                 _vm._v(" "),
                 _c(
@@ -66755,7 +66755,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("span", { staticClass: "projectText" }, [
-                  _vm._v("Apodo test")
+                  _vm._v(_vm._s(element.alias))
                 ]),
                 _vm._v(" "),
                 _c(
