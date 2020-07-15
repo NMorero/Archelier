@@ -389,13 +389,13 @@ export default {
             .then(function (response) {
                 self.list1.push({
                     // CAMBIA A FILTRAR ARRAY CLIENTS  LEADERS Y MANAGERS, THUMBNAIL Y ID DESDE RESPONSE
-                    client:client.client_name,
+                    client:client[0].client_name,
                     client_id:self.projectClientModal,
                     devs:{devs:[], devsLists:[]},
                     id:response.data.id,
                     leader:{
-                        name:lead.name,
-                        lastname:lead.lastname
+                        name:lead[0].name,
+                        lastname:lead[0].lastname
                     },
                     leader_id: self.projectLeaderModal,
                     project_name: self.projectNameModal,

@@ -2379,7 +2379,7 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("ht
         axios.post('/Admin/Projects/addProject', formData, config).then(function (response) {
           self.list1.push({
             // CAMBIA A FILTRAR ARRAY CLIENTS  LEADERS Y MANAGERS, THUMBNAIL Y ID DESDE RESPONSE
-            client: client.client_name,
+            client: client[0].client_name,
             client_id: self.projectClientModal,
             devs: {
               devs: [],
@@ -2387,8 +2387,8 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("ht
             },
             id: response.data.id,
             leader: {
-              name: lead.name,
-              lastname: lead.lastname
+              name: lead[0].name,
+              lastname: lead[0].lastname
             },
             leader_id: self.projectLeaderModal,
             project_name: self.projectNameModal,
