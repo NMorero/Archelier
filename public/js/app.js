@@ -66214,7 +66214,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("input", {
-                      attrs: { type: "file" },
+                      attrs: { type: "file", id: "inputViewFile" },
                       on: { change: _vm.handleFileChange }
                     })
                   ]),

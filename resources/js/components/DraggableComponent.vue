@@ -89,7 +89,7 @@
                         <span v-else>Select File</span>
                         </div>
                         <!-- Now, the file input that we hide. -->
-                        <input type="file" @change="handleFileChange"/>
+                        <input type="file" id="inputViewFile" @change="handleFileChange"/>
                     </label>
                     <input type="submit" id="btnSaveView" value="Save" />
                 </form>
