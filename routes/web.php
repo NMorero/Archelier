@@ -89,6 +89,8 @@ Route::get('/feedback/getViewsByProject/{project}', 'HomeController@getViewsByPr
 
 Route::get('/Admin', 'AdminController@home');
 
+Route::get('/Admin/Info/Clients/Managers/Leaders', 'AdminController@infoClientsLeadersManagers');
+
 Route::get('/Admin/Clients/Person', 'AdminController@pageClientsPersons');
 
 Route::post('/Admin/Clients/Person/Update/{id}', 'AdminController@updateClientperson');

@@ -582,6 +582,28 @@ class AdminController extends Controller
         }
         return ['status' => 'ok'];
     }
+
+    public function infoClientsLeadersManagers(){
+        $clients = Clients::all();
+        $managers = ProjectManagers::all();
+        $leaders = ProjectLeaders::all();
+        foreach($leaders as $lead){
+            $user = User::find($lead->user_id);
+            $person = Persons::find($user->person_id);
+            $lead['username'] = $user->username;
+            $lead['lastName'] = $person->last_name;
+            $lead['name'] = $person->name;
+        }
+        foreach($managers as $man){
+            $user = User::find($man->user_id);
+            $person = Persons::find($user->person_id);
+            $man['username'] = $user->username;
+            $man['lastName'] = $person->last_name;
+            $man['name'] = $person->name;
+        }
+        return ['clients' => $clients, 'managers' => $managers, 'leaders' => $leaders];
+    }
+
     public function getProjects(){
         $id = Auth::user()->id;
         $projects = [];
@@ -827,17 +849,14 @@ class AdminController extends Controller
 
     public function addProject(Request $request)
     {
-
-
-
-
         $project = new Projects;
         $project->project_name = $request['projectName'];
-        $project->delivery_date = $request['deliveryDate'];
-        $project->client_id = $request['client'];
-        $project->manager_id = $request['manager'];
-        $project->leader_id = $request['leader'];
-        $project->status = 'ongoing';
+        $project->delivery_date = $request['projectDate'];
+        $project->client_id = $request['projectClient'];
+        $project->manager_id = $request['projectManager'];
+        $project->leader_id = $request['projectLeader'];
+        $project->alias = $request['projectAlias'];
+        $project->status = 'next';
 
         if(isset($request['thumbnail']) && !empty($request['thumbnail'])){
 
@@ -867,7 +886,7 @@ class AdminController extends Controller
 
         $project->save();
 
-        return redirect('/Admin/Projects');
+        return ['id' => $project->id, 'thumbnail' => $project->thumbnail];
     }
 
     public function addView(Request $request, $id)

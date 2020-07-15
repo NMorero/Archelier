@@ -1,5 +1,43 @@
 <template>
     <div>
+        <button id="btnOpenAddProjetc" @click="addProjectModal = true">+ Project</button>
+
+        <div id="boxAddProjectModal" v-if="addProjectModal" @click="handleClickModalAddProject">
+            <div id="addProject">
+                <div id="headerAddProject">
+                    <span>Add project</span>
+                </div>
+                <form action="" @submit="submitFormProject">
+                    <input type="text" placeholder="Project name" class="inputInline" required v-model="projectNameModal">
+                    <input type="text" placeholder="Project alias" class="inputInline" required v-model="projectAliasModal">
+                    <input type="text" required class="inputInline" placeholder="Delivery date" onfocus="(this.type='date')" v-model="projectDateModal">
+                    <select name="" id="" class="inputInline" required v-model="projectClientModal">
+                        <option value="" selected hidden>Selet client</option>
+                        <option :value="client.id" v-for="client in clients" :key="client.id">{{client.client_name}}</option>
+                    </select>
+                    <select name="" id="" class="inputInline" required v-model="projectManagerModal">
+                        <option value="" selected hidden>Selet manager</option>
+                        <option :value="man.id" v-for="man in managers" :key="man.id">{{man.username}}</option>
+                    </select>
+                    <select name="" id="" class="inputInline" required v-model="projectLeaderModal">
+                        <option value="" selected hidden>Selet leader</option>
+                        <option :value="lead.id" v-for="lead in leaders" :key="lead.id">{{lead.username}}</option>
+                    </select>
+                    <label class="file-select">
+                        <!-- We can't use a normal button element here, as it would become the target of the label. -->
+                        <div class="select-button">
+                        <!-- Display the filename if a file has been selected. -->
+                        <span v-if="value">{{value}}</span>
+                        <span v-else>Select File</span>
+                        </div>
+                        <!-- Now, the file input that we hide. -->
+                        <input type="file" id="inputProjectFile" @change="handleFileChange"/>
+                    </label>
+                    <button type="submit" id="btnSaveAddProject">Save</button>
+                </form>
+            </div>
+        </div>
+
         <div v-if="modal" id="boxModalProject" @click="handleClickModal">
             <div id="modalProject">
                 <div id="headerModalProject" >
@@ -29,6 +67,7 @@
                         <span class="add" @click="openModalAddTask(devs.name)">+</span>
                     </div>
                     <span class="addList" @click="listModal = true">+</span>
+
                 </div>
             </div>
         </div>
@@ -46,11 +85,11 @@
                         <!-- We can't use a normal button element here, as it would become the target of the label. -->
                         <div class="select-button">
                         <!-- Display the filename if a file has been selected. -->
-                        <span v-if="value" id="valueImgSelected">{{value}}</span>
+                        <span v-if="value">{{value}}</span>
                         <span v-else>Select File</span>
                         </div>
                         <!-- Now, the file input that we hide. -->
-                        <input type="file" id="inputViewFile" @change="handleFileChange"/>
+                        <input type="file" @change="handleFileChange"/>
                     </label>
                     <input type="submit" id="btnSaveView" value="Save" />
                 </form>
@@ -75,7 +114,7 @@
 
 
 
-        <div id="addListModal" v-if="listModal">
+        <div id="addListModal" v-if="listModal" @click="handleClickModalList">
             <div id="addList">
                 <input type="text" placeholder="List title" v-model="newListTask">
                 <button id="btnAddList" @click="addList">Add</button>
@@ -197,6 +236,7 @@
                 </div>
             </draggable>
         </div>
+
     </div>
 </template>
 <script>
@@ -221,6 +261,13 @@ export default {
         taskDeveloperAc: '',
         listModal: false,
         newListTask: '',
+        addProjectModal: false,
+        projectNameModal: '',
+        projectDateModal: '',
+        projectManagerModal: '',
+        projectLeaderModal: '',
+        projectClientModal: '',
+        projectAliasModal: '',
         value: '',
         modal: false,
         modalView: false,
@@ -236,18 +283,26 @@ export default {
         username: '',
         lastname: '',
         developers: [],
+        clients: [],
+        managers: [],
+        leaders: [],
     };
   },
   methods: {
     addList: function(){
+
         console.log(this.projectActual[0]['devs']['devsLists']);
         this.viewIdCounter = this.viewIdCounter + 1;
-        this.projectActual[0]['devs']['devsLists'][this.newListTask] = {
+        //this.projectActual[0]['devs']['devsLists'];
+        var project = this.projectActual[0];
+        project['devs']['devsLists'].push({
             name: this.newListTask,
             id: this.viewIdCounter,
             modules: []
-        };
-        console.log(this.projectActual[0]['devs']['devsLists']);
+        });
+        this.projectActual[0] = project;
+        this.newListTask = '';
+        console.log(this.projectActual[0]);
         this.listModal = false;
     },
     handleClickModal: function(event){
@@ -263,9 +318,21 @@ export default {
         }
     },
     handleClickModalTask: function (){
-        if(event.target.id=='addTaskModal'){
+        if(event.target.id == 'addTaskModal'){
             this.taskModal = false;
             this.taskDeveloper = '';
+        }
+    },
+    handleClickModalList: function (){
+        if(event.target.id == 'addListModal'){
+            this.listModal = false;
+
+        }
+    },
+    handleClickModalAddProject: function (){
+        if(event.target.id == 'boxAddProjectModal'){
+            this.addProjectModal = false;
+
         }
     },
     handleFileChange(e) {
@@ -284,6 +351,61 @@ export default {
     openModalAddTask(name){
         this.taskList = name;
         this.taskModal = true;
+    },
+    submitFormProject(e){
+        e.preventDefault();
+        let self = this;
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            }
+        }
+        let formData = new FormData();
+        formData.append('projectName', self.projectNameModal);
+        formData.append('projectDate', self.projectDateModal);
+        formData.append('projectClient', self.projectClientModal);
+        formData.append('projectManager', self.projectManagerModal);
+        formData.append('projectLeader', self.projectLeaderModal);
+        formData.append('projectAlias', self.projectAliasModal);
+        formData.append('thumbnail', self.file);
+        var client = self.clients.filter((obj) => {
+            return obj.id == self.projectClientModal;
+        });
+        var man = self.managers.filter((obj) => {
+            return obj.id == self.projectManagerModal;
+        });
+        var lead = self.leaders.filter((obj) => {
+            return obj.id == self.projectLeaderModal;
+        });
+        var f = document.getElementById( 'inputProjectFile' );
+        var reader = new FileReader();
+        reader.readAsDataURL(f.files[0]);
+        reader.onload = function(e) {
+            self.viewUploaded = e.target.result;
+            axios.post('/Admin/Projects/addProject', formData, config)
+            .then(function (response) {
+                self.list1.push({
+                    // CAMBIA A FILTRAR ARRAY CLIENTS  LEADERS Y MANAGERS, THUMBNAIL Y ID DESDE RESPONSE
+                    client:client.name,
+                    client_id:self.projectClientModal,
+                    devs:{devs:[], devsLists:[]},
+                    id:response.data.id,
+                    leader:{
+                        name:lead.name,
+                        lastname:lead.lastname
+                    },
+                    leader_id: self.projectLeaderModal,
+                    project_name: self.projectNameModal,
+                    status: 'next',
+                    thumbnail: response.data.thumbnail,
+                });
+            })
+            .catch(function (error) {
+                self.output = error;
+                alert('There was an error while uploading project');
+            });
+        };
     },
     submitFormTask(e) {
         e.preventDefault();
@@ -308,7 +430,12 @@ export default {
         axios.post('/Admin/Projects/Module/Add', formData, config)
             .then(function (response) {
                 self.viewIdCounter = self.viewIdCounter + 1;
-                self.projectActual[0]['devs']['devsLists'][self.taskList].modules.push({developer:self.taskDeveloperAc, id:self.viewIdCounter, list_name:self.taskList,module:self.taskTitle });
+                self.projectActual[0]['devs']['devsLists'].forEach((item, index) => {
+                    if(item.name == self.taskList){
+                        item.modules.push({developer:self.taskDeveloperAc, id:self.viewIdCounter, list_name:self.taskList,module:self.taskTitle });
+                    }
+                });
+                //self.projectActual[0]['devs']['devsLists'][self.taskList].modules.push();
                 if(self.projectActual[0].status == 'next'){
                     for (var i = 0; i < self.list1.length; i++) {
                         if(self.list1[i].id == self.projectActual[0].id){
@@ -369,6 +496,8 @@ export default {
         reader.onload = function(e) {
             currentObj.viewUploaded = e.target.result;
             currentObj.projectActual[0].views.push({id: currentObj.viewIdCounter, img: currentObj.viewUploaded, title: currentObj.viewTitle});
+            currentObj.viewUploaded = '';
+            currentObj.viewTitle = '';
             currentObj.modalView = false;
         };
 
@@ -535,6 +664,16 @@ export default {
             .catch(function (error) {
                 console.log(error);
             });
+        axios.get('/Admin/Info/Clients/Managers/Leaders')
+            .then(function (response) {
+                console.log(response.data);
+                self.managers = response.data.managers;
+                self.leaders = response.data.leaders;
+                self.clients = response.data.clients;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     },
 
 };
@@ -542,10 +681,10 @@ export default {
 <style scoped>
 .addList{
     position: relative;
-    top:-93%;
     cursor: pointer;
     color: #62dfc2;
     font-size: 2rem;
+
 }
 select { width: 400px; text-align-last:center; }
 #headerModalAddTask{
@@ -616,6 +755,7 @@ label{
     color: #fff;
     border: #62dfc2;
 }
+
 .file-select > .select-button {
     padding: 0.5rem;
     border:3px solid #62dfc2;

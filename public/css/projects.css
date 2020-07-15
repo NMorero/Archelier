@@ -23,6 +23,20 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+  #btnOpenAddProjetc{
+      position: absolute;
+      bottom: 5%;
+      right: 5%;
+      border: 2px solid #62dfc2;
+      border-radius: 30px;
+      padding: 1%;
+      box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 899;
+  }
+
+  #btnOpenAddProjetc:focus {
+    outline: none;
+  }
   #addList{
 
     background-color: #fefefe;
@@ -52,6 +66,68 @@
     margin-right: 15%;
     margin-bottom: 10%;
     width: 70%;
+  }
+  #boxAddProjectModal{
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 1%; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    z-index: 900;
+  }
+  #addProject{
+      padding: 2%;
+    border: 0px;
+    text-align: center;
+    border-bottom: 1px solid darkgray;
+    border-radius: 10px;
+    background-color: #fff;
+    height: 100%;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-bottom: 10%;
+    width: 30%;
+  }
+  #headerAddProject{
+      width: 100%;
+      height: 12%;
+      margin-bottom: 10%;
+      border-bottom: 1px solid darkgray;
+  }
+  #headerAddProject span{
+    font-size: 2rem;
+
+  }
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black;
+    opacity: 1; /* Firefox */
+  }
+  #btnSaveAddProject{
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 70%;
+    padding: 2%;
+    border-radius: 10px;
+    background-color: #62dfc2;
+    color: #fff;
+    border: #62dfc2;
+  }
+  .inputInline{
+      color: black;
+    border: 0px;
+    text-align: center;
+    border-bottom: 1px solid darkgray;
+    height: 8%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10%;
+    width: 70% !important;
   }
 #boxModalProject {
     display: block; /* Hidden by default */
@@ -230,6 +306,7 @@
     height: 100%;
     display: inline-block;
     margin-right: 3%;
+    float: left;
 }
 
 .titleListTaskModalProject{
@@ -1316,7 +1393,7 @@ img{
         padding-top: 3%;
     }
 }
-@media  (min-width: 1900px) and (min-height: 1000px){
+@media  (max-width: 1920px) and (min-height: 1000px){
     .boxImg1 {
         width: 50%;
         height: 85px;

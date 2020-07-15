@@ -2192,6 +2192,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("http://186.108.203.181:4200");
@@ -2212,6 +2252,13 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("ht
       taskDeveloperAc: '',
       listModal: false,
       newListTask: '',
+      addProjectModal: false,
+      projectNameModal: '',
+      projectDateModal: '',
+      projectManagerModal: '',
+      projectLeaderModal: '',
+      projectClientModal: '',
+      projectAliasModal: '',
       value: '',
       modal: false,
       modalView: false,
@@ -2226,19 +2273,26 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("ht
       enabled: false,
       username: '',
       lastname: '',
-      developers: []
+      developers: [],
+      clients: [],
+      managers: [],
+      leaders: []
     };
   },
   methods: {
     addList: function addList() {
       console.log(this.projectActual[0]['devs']['devsLists']);
-      this.viewIdCounter = this.viewIdCounter + 1;
-      this.projectActual[0]['devs']['devsLists'][this.newListTask] = {
+      this.viewIdCounter = this.viewIdCounter + 1; //this.projectActual[0]['devs']['devsLists'];
+
+      var project = this.projectActual[0];
+      project['devs']['devsLists'].push({
         name: this.newListTask,
         id: this.viewIdCounter,
         modules: []
-      };
-      console.log(this.projectActual[0]['devs']['devsLists']);
+      });
+      this.projectActual[0] = project;
+      this.newListTask = '';
+      console.log(this.projectActual[0]);
       this.listModal = false;
     },
     handleClickModal: function handleClickModal(event) {
@@ -2261,6 +2315,16 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("ht
         this.taskDeveloper = '';
       }
     },
+    handleClickModalList: function handleClickModalList() {
+      if (event.target.id == 'addListModal') {
+        this.listModal = false;
+      }
+    },
+    handleClickModalAddProject: function handleClickModalAddProject() {
+      if (event.target.id == 'boxAddProjectModal') {
+        this.addProjectModal = false;
+      }
+    },
     handleFileChange: function handleFileChange(e) {
       // Whenever the file changes, emit the 'input' event with the file data.
       this.value = e.target.files[0].name;
@@ -2277,6 +2341,63 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("ht
     openModalAddTask: function openModalAddTask(name) {
       this.taskList = name;
       this.taskModal = true;
+    },
+    submitFormProject: function submitFormProject(e) {
+      e.preventDefault();
+      var self = this;
+      var config = {
+        headers: {
+          'content-type': 'multipart/form-data',
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        }
+      };
+      var formData = new FormData();
+      formData.append('projectName', self.projectNameModal);
+      formData.append('projectDate', self.projectDateModal);
+      formData.append('projectClient', self.projectClientModal);
+      formData.append('projectManager', self.projectManagerModal);
+      formData.append('projectLeader', self.projectLeaderModal);
+      formData.append('projectAlias', self.projectAliasModal);
+      formData.append('thumbnail', self.file);
+      var client = self.clients.filter(function (obj) {
+        return obj.id == self.projectClientModal;
+      });
+      var man = self.managers.filter(function (obj) {
+        return obj.id == self.projectManagerModal;
+      });
+      var lead = self.leaders.filter(function (obj) {
+        return obj.id == self.projectLeaderModal;
+      });
+      var f = document.getElementById('inputProjectFile');
+      var reader = new FileReader();
+      reader.readAsDataURL(f.files[0]);
+
+      reader.onload = function (e) {
+        self.viewUploaded = e.target.result;
+        axios.post('/Admin/Projects/addProject', formData, config).then(function (response) {
+          self.list1.push({
+            // CAMBIA A FILTRAR ARRAY CLIENTS  LEADERS Y MANAGERS, THUMBNAIL Y ID DESDE RESPONSE
+            client: client.name,
+            client_id: self.projectClientModal,
+            devs: {
+              devs: [],
+              devsLists: []
+            },
+            id: response.data.id,
+            leader: {
+              name: lead.name,
+              lastname: lead.lastname
+            },
+            leader_id: self.projectLeaderModal,
+            project_name: self.projectNameModal,
+            status: 'next',
+            thumbnail: response.data.thumbnail
+          });
+        })["catch"](function (error) {
+          self.output = error;
+          alert('There was an error while uploading project');
+        });
+      };
     },
     submitFormTask: function submitFormTask(e) {
       e.preventDefault();
@@ -2300,12 +2421,16 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("ht
       self.taskDeveloperAc = self.taskDeveloperAc[0].user.substring(0, 2);
       axios.post('/Admin/Projects/Module/Add', formData, config).then(function (response) {
         self.viewIdCounter = self.viewIdCounter + 1;
-        self.projectActual[0]['devs']['devsLists'][self.taskList].modules.push({
-          developer: self.taskDeveloperAc,
-          id: self.viewIdCounter,
-          list_name: self.taskList,
-          module: self.taskTitle
-        });
+        self.projectActual[0]['devs']['devsLists'].forEach(function (item, index) {
+          if (item.name == self.taskList) {
+            item.modules.push({
+              developer: self.taskDeveloperAc,
+              id: self.viewIdCounter,
+              list_name: self.taskList,
+              module: self.taskTitle
+            });
+          }
+        }); //self.projectActual[0]['devs']['devsLists'][self.taskList].modules.push();
 
         if (self.projectActual[0].status == 'next') {
           for (var i = 0; i < self.list1.length; i++) {
@@ -2397,6 +2522,8 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("ht
           img: currentObj.viewUploaded,
           title: currentObj.viewTitle
         });
+        currentObj.viewUploaded = '';
+        currentObj.viewTitle = '';
         currentObj.modalView = false;
       }; // send upload request
 
@@ -2581,6 +2708,14 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("ht
     axios.get('/Admin/Projects/Developers/get').then(function (response) {
       console.log(response.data);
       self.developers = response.data;
+    })["catch"](function (error) {
+      console.log(error);
+    });
+    axios.get('/Admin/Info/Clients/Managers/Leaders').then(function (response) {
+      console.log(response.data);
+      self.managers = response.data.managers;
+      self.leaders = response.data.leaders;
+      self.clients = response.data.clients;
     })["catch"](function (error) {
       console.log(error);
     });
@@ -9949,7 +10084,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.addList[data-v-52bac0ca]{\n    position: relative;\n    top:-93%;\n    cursor: pointer;\n    color: #62dfc2;\n    font-size: 2rem;\n}\nselect[data-v-52bac0ca] { width: 400px; -moz-text-align-last:center; text-align-last:center;\n}\n#headerModalAddTask[data-v-52bac0ca]{\n    width: 100%;\n    height: 20%;\n    border-bottom: 1px solid darkgray;\n    text-align: center;\n    font-size: 2rem;\n    margin-bottom: 10%;\n}\n#headerModalAddView[data-v-52bac0ca]{\n    width: 100%;\n    height: 20%;\n    border-bottom: 1px solid darkgray;\n    text-align: center;\n    font-size: 2rem;\n    margin-bottom: 10%;\n}\n#formAddView[data-v-52bac0ca]{\n    padding-top: 10%;\n    text-align: center;\n}\n#inputViewTitle[data-v-52bac0ca]{\n    border: 0px;\n    text-align: center;\n    border-bottom: 1px solid darkgray;\n    height: 8%;\n    margin-left: 10%;\n    margin-right: 10%;\n    margin-bottom: 10%;\n    width: 70%;\n}\n#btnSaveTask[data-v-52bac0ca]{\n    margin-left: 15%;\n    margin-right: 15%;\n    width: 70%;\n    padding: 2%;\n    border-radius: 10px;\n    background-color: #62dfc2;\n    color: #fff;\n    border: #62dfc2;\n}\n.inputTaskTitle[data-v-52bac0ca]{\n    border: 0px;\n    text-align: center;\n    border-bottom: 1px solid darkgray;\n    height: 8%;\n    margin-left: 15%;\n    margin-right: 15%;\n    margin-bottom: 10%;\n    width: 70%;\n}\n#formAddView span[data-v-52bac0ca]{\n    font-size: 1.5rem;\n}\nlabel[data-v-52bac0ca]{\n    margin-left: 10%;\n    margin-right: 10%;\n    width: 70%;\n}\n#btnSaveView[data-v-52bac0ca]{\n    margin-left: 10%;\n    margin-right: 10%;\n    width: 70%;\n    padding: 2%;\n    border-radius: 10px;\n    background-color: #62dfc2;\n    color: #fff;\n    border: #62dfc2;\n}\n.file-select > .select-button[data-v-52bac0ca] {\n    padding: 0.5rem;\n    border:3px solid #62dfc2;\n    color: #62dfc2;\n    display: inline-block;\n    width: 100%;\n    border-radius: .3rem;\n    text-align: center;\n}\n\n/* Don't forget to hide the original file input! */\n.file-select > input[type=\"file\"][data-v-52bac0ca] {\n  display: none;\n}\n", ""]);
+exports.push([module.i, "\n.addList[data-v-52bac0ca]{\n    position: relative;\n    cursor: pointer;\n    color: #62dfc2;\n    font-size: 2rem;\n}\nselect[data-v-52bac0ca] { width: 400px; -moz-text-align-last:center; text-align-last:center;\n}\n#headerModalAddTask[data-v-52bac0ca]{\n    width: 100%;\n    height: 20%;\n    border-bottom: 1px solid darkgray;\n    text-align: center;\n    font-size: 2rem;\n    margin-bottom: 10%;\n}\n#headerModalAddView[data-v-52bac0ca]{\n    width: 100%;\n    height: 20%;\n    border-bottom: 1px solid darkgray;\n    text-align: center;\n    font-size: 2rem;\n    margin-bottom: 10%;\n}\n#formAddView[data-v-52bac0ca]{\n    padding-top: 10%;\n    text-align: center;\n}\n#inputViewTitle[data-v-52bac0ca]{\n    border: 0px;\n    text-align: center;\n    border-bottom: 1px solid darkgray;\n    height: 8%;\n    margin-left: 10%;\n    margin-right: 10%;\n    margin-bottom: 10%;\n    width: 70%;\n}\n#btnSaveTask[data-v-52bac0ca]{\n    margin-left: 15%;\n    margin-right: 15%;\n    width: 70%;\n    padding: 2%;\n    border-radius: 10px;\n    background-color: #62dfc2;\n    color: #fff;\n    border: #62dfc2;\n}\n.inputTaskTitle[data-v-52bac0ca]{\n    border: 0px;\n    text-align: center;\n    border-bottom: 1px solid darkgray;\n    height: 8%;\n    margin-left: 15%;\n    margin-right: 15%;\n    margin-bottom: 10%;\n    width: 70%;\n}\n#formAddView span[data-v-52bac0ca]{\n    font-size: 1.5rem;\n}\nlabel[data-v-52bac0ca]{\n    margin-left: 10%;\n    margin-right: 10%;\n    width: 70%;\n}\n#btnSaveView[data-v-52bac0ca]{\n    margin-left: 10%;\n    margin-right: 10%;\n    width: 70%;\n    padding: 2%;\n    border-radius: 10px;\n    background-color: #62dfc2;\n    color: #fff;\n    border: #62dfc2;\n}\n.file-select > .select-button[data-v-52bac0ca] {\n    padding: 0.5rem;\n    border:3px solid #62dfc2;\n    color: #62dfc2;\n    display: inline-block;\n    width: 100%;\n    border-radius: .3rem;\n    text-align: center;\n}\n\n/* Don't forget to hide the original file input! */\n.file-select > input[type=\"file\"][data-v-52bac0ca] {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -65580,6 +65715,282 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c(
+      "button",
+      {
+        attrs: { id: "btnOpenAddProjetc" },
+        on: {
+          click: function($event) {
+            _vm.addProjectModal = true
+          }
+        }
+      },
+      [_vm._v("+ Project")]
+    ),
+    _vm._v(" "),
+    _vm.addProjectModal
+      ? _c(
+          "div",
+          {
+            attrs: { id: "boxAddProjectModal" },
+            on: { click: _vm.handleClickModalAddProject }
+          },
+          [
+            _c("div", { attrs: { id: "addProject" } }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  attrs: { action: "" },
+                  on: { submit: _vm.submitFormProject }
+                },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.projectNameModal,
+                        expression: "projectNameModal"
+                      }
+                    ],
+                    staticClass: "inputInline",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Project name",
+                      required: ""
+                    },
+                    domProps: { value: _vm.projectNameModal },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.projectNameModal = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.projectAliasModal,
+                        expression: "projectAliasModal"
+                      }
+                    ],
+                    staticClass: "inputInline",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Project alias",
+                      required: ""
+                    },
+                    domProps: { value: _vm.projectAliasModal },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.projectAliasModal = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.projectDateModal,
+                        expression: "projectDateModal"
+                      }
+                    ],
+                    staticClass: "inputInline",
+                    attrs: {
+                      type: "text",
+                      required: "",
+                      placeholder: "Delivery date",
+                      onfocus: "(this.type='date')"
+                    },
+                    domProps: { value: _vm.projectDateModal },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.projectDateModal = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.projectClientModal,
+                          expression: "projectClientModal"
+                        }
+                      ],
+                      staticClass: "inputInline",
+                      attrs: { name: "", id: "", required: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.projectClientModal = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "option",
+                        { attrs: { value: "", selected: "", hidden: "" } },
+                        [_vm._v("Selet client")]
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.clients, function(client) {
+                        return _c(
+                          "option",
+                          { key: client.id, domProps: { value: client.id } },
+                          [_vm._v(_vm._s(client.client_name))]
+                        )
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.projectManagerModal,
+                          expression: "projectManagerModal"
+                        }
+                      ],
+                      staticClass: "inputInline",
+                      attrs: { name: "", id: "", required: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.projectManagerModal = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "option",
+                        { attrs: { value: "", selected: "", hidden: "" } },
+                        [_vm._v("Selet manager")]
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.managers, function(man) {
+                        return _c(
+                          "option",
+                          { key: man.id, domProps: { value: man.id } },
+                          [_vm._v(_vm._s(man.username))]
+                        )
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.projectLeaderModal,
+                          expression: "projectLeaderModal"
+                        }
+                      ],
+                      staticClass: "inputInline",
+                      attrs: { name: "", id: "", required: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.projectLeaderModal = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "option",
+                        { attrs: { value: "", selected: "", hidden: "" } },
+                        [_vm._v("Selet leader")]
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.leaders, function(lead) {
+                        return _c(
+                          "option",
+                          { key: lead.id, domProps: { value: lead.id } },
+                          [_vm._v(_vm._s(lead.username))]
+                        )
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "file-select" }, [
+                    _c("div", { staticClass: "select-button" }, [
+                      _vm.value
+                        ? _c("span", [_vm._v(_vm._s(_vm.value))])
+                        : _c("span", [_vm._v("Select File")])
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "file", id: "inputProjectFile" },
+                      on: { change: _vm.handleFileChange }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    { attrs: { type: "submit", id: "btnSaveAddProject" } },
+                    [_vm._v("Save")]
+                  )
+                ]
+              )
+            ])
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
     _vm.modal
       ? _c(
           "div",
@@ -65739,7 +66150,7 @@ var render = function() {
           },
           [
             _c("div", { attrs: { id: "modalView" } }, [
-              _vm._m(0),
+              _vm._m(1),
               _vm._v(" "),
               _c(
                 "form",
@@ -65777,14 +66188,12 @@ var render = function() {
                   _c("label", { staticClass: "file-select" }, [
                     _c("div", { staticClass: "select-button" }, [
                       _vm.value
-                        ? _c("span", { attrs: { id: "valueImgSelected" } }, [
-                            _vm._v(_vm._s(_vm.value))
-                          ])
+                        ? _c("span", [_vm._v(_vm._s(_vm.value))])
                         : _c("span", [_vm._v("Select File")])
                     ]),
                     _vm._v(" "),
                     _c("input", {
-                      attrs: { type: "file", id: "inputViewFile" },
+                      attrs: { type: "file" },
                       on: { change: _vm.handleFileChange }
                     })
                   ]),
@@ -65808,7 +66217,7 @@ var render = function() {
           },
           [
             _c("div", { attrs: { id: "modalTask" } }, [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _c(
                 "form",
@@ -65924,36 +66333,43 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _vm.listModal
-      ? _c("div", { attrs: { id: "addListModal" } }, [
-          _c("div", { attrs: { id: "addList" } }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.newListTask,
-                  expression: "newListTask"
-                }
-              ],
-              attrs: { type: "text", placeholder: "List title" },
-              domProps: { value: _vm.newListTask },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+      ? _c(
+          "div",
+          {
+            attrs: { id: "addListModal" },
+            on: { click: _vm.handleClickModalList }
+          },
+          [
+            _c("div", { attrs: { id: "addList" } }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.newListTask,
+                    expression: "newListTask"
                   }
-                  _vm.newListTask = $event.target.value
+                ],
+                attrs: { type: "text", placeholder: "List title" },
+                domProps: { value: _vm.newListTask },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.newListTask = $event.target.value
+                  }
                 }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              { attrs: { id: "btnAddList" }, on: { click: _vm.addList } },
-              [_vm._v("Add")]
-            )
-          ])
-        ])
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                { attrs: { id: "btnAddList" }, on: { click: _vm.addList } },
+                [_vm._v("Add")]
+              )
+            ])
+          ]
+        )
       : _vm._e(),
     _vm._v(" "),
     _c(
@@ -66406,6 +66822,14 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "headerAddProject" } }, [
+      _c("span", [_vm._v("Add project")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
