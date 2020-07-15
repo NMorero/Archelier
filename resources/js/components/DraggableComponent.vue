@@ -372,6 +372,8 @@ export default {
         var client = self.clients.filter((obj) => {
             return obj.id == self.projectClientModal;
         });
+        console.log(client);
+        ss
         var man = self.managers.filter((obj) => {
             return obj.id == self.projectManagerModal;
         });
