@@ -2393,7 +2393,8 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("ht
             leader_id: self.projectLeaderModal,
             project_name: self.projectNameModal,
             status: 'next',
-            thumbnail: response.data.thumbnail
+            thumbnail: response.data.thumbnail,
+            views: []
           });
           self.projects.push({
             // CAMBIA A FILTRAR ARRAY CLIENTS  LEADERS Y MANAGERS, THUMBNAIL Y ID DESDE RESPONSE
@@ -2412,7 +2413,8 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("ht
             leader_id: self.projectLeaderModal,
             project_name: self.projectNameModal,
             status: 'next',
-            thumbnail: response.data.thumbnail
+            thumbnail: response.data.thumbnail,
+            views: []
           });
           self.addProjectModal = false;
           self.projectNameModal = '';

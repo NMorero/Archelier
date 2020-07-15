@@ -402,6 +402,7 @@ export default {
                     project_name: self.projectNameModal,
                     status: 'next',
                     thumbnail: response.data.thumbnail,
+                    views: [],
                 });
                 self.projects.push({
                     // CAMBIA A FILTRAR ARRAY CLIENTS  LEADERS Y MANAGERS, THUMBNAIL Y ID DESDE RESPONSE
@@ -418,6 +419,7 @@ export default {
                     project_name: self.projectNameModal,
                     status: 'next',
                     thumbnail: response.data.thumbnail,
+                    views: [],
                 });
                 self.addProjectModal = false;
                 self.projectNameModal = '';
