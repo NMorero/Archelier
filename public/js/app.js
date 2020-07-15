@@ -2414,6 +2414,15 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("ht
             status: 'next',
             thumbnail: response.data.thumbnail
           });
+          self.addProjectModal = false;
+          self.projectNameModal = '';
+          self.projectDateModal = '';
+          self.projectManagerModal = '';
+          self.projectLeaderModal = '';
+          self.projectClientModal = '';
+          self.projectAliasModal = '';
+          self.value = '';
+          self.file = '';
         })["catch"](function (error) {
           self.output = error;
           alert('There was an error while uploading project');
@@ -2552,6 +2561,7 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("ht
       axios.post('/Admin/Projects/addView/' + currentObj.projectActual[0].id, formData, config).then(function (response) {
         currentObj.success = response.data.success;
         currentObj.value = "";
+        currentObj.file = "";
         currentObj.viewTitle = "";
         currentObj.viewIdCounter = currentObj.viewIdCounter + 1;
       })["catch"](function (error) {

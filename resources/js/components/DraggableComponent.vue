@@ -419,6 +419,15 @@ export default {
                     status: 'next',
                     thumbnail: response.data.thumbnail,
                 });
+                self.addProjectModal = false;
+                self.projectNameModal = '';
+                self.projectDateModal = '';
+                self.projectManagerModal = '';
+                self.projectLeaderModal = '';
+                self.projectClientModal = '';
+                self.projectAliasModal = '';
+                self.value = '';
+                self.file = '';
             })
             .catch(function (error) {
                 self.output = error;
@@ -525,6 +534,7 @@ export default {
             .then(function (response) {
                 currentObj.success = response.data.success;
                 currentObj.value = "";
+                currentObj.file = "";
                 currentObj.viewTitle = "";
                 currentObj.viewIdCounter = currentObj.viewIdCounter + 1;
             })
