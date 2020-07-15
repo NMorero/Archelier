@@ -2377,7 +2377,7 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("ht
         axios.post('/Admin/Projects/addProject', formData, config).then(function (response) {
           self.list1.push({
             // CAMBIA A FILTRAR ARRAY CLIENTS  LEADERS Y MANAGERS, THUMBNAIL Y ID DESDE RESPONSE
-            client: client.name,
+            client: client.client_name,
             client_id: self.projectClientModal,
             devs: {
               devs: [],

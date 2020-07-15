@@ -387,7 +387,7 @@ export default {
             .then(function (response) {
                 self.list1.push({
                     // CAMBIA A FILTRAR ARRAY CLIENTS  LEADERS Y MANAGERS, THUMBNAIL Y ID DESDE RESPONSE
-                    client:client.name,
+                    client:client.client_name,
                     client_id:self.projectClientModal,
                     devs:{devs:[], devsLists:[]},
                     id:response.data.id,
