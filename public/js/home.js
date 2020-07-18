@@ -11,7 +11,7 @@ elmnt.scrollIntoView();
 
 
 
-var socket = io.connect('http://186.108.203.172:4200');
+var socket = io.connect('http://186.108.201.191:4200');
         socket.on('connect', function(data) {
             console.log('Connected to websocket');
         });

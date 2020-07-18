@@ -2234,7 +2234,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 
-var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("http://186.108.203.172:4200");
+var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default.a.connect("http://186.108.201.191:4200");
 /* harmony default export */ __webpack_exports__["default"] = ({
   order: 1,
   components: {
@@ -37251,7 +37251,7 @@ Util_1.Collection.mapMethods(Wedge);
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.17';
+  var VERSION = '4.17.19';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
@@ -82246,8 +82246,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/appelie/Escritorio/Archelier/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/appelie/Escritorio/Archelier/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Proyectos\Archelier\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Proyectos\Archelier\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),
